@@ -17,7 +17,6 @@
 		6D00EBB8174E55C00045BF49 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBB7174E55C00045BF49 /* Default@2x.png */; };
 		6D00EBBA174E55C00045BF49 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBB9174E55C00045BF49 /* Default-568h@2x.png */; };
 		6D00EBBD174E55C00045BF49 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D00EBBC174E55C00045BF49 /* ViewController.m */; };
-		6D00EBC0174E55C00045BF49 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBBE174E55C00045BF49 /* ViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +35,6 @@
 		6D00EBB9174E55C00045BF49 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		6D00EBBB174E55C00045BF49 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		6D00EBBC174E55C00045BF49 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		6D00EBBF174E55C00045BF49 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +85,6 @@
 				6D00EBB3174E55C00045BF49 /* AppDelegate.m */,
 				6D00EBBB174E55C00045BF49 /* ViewController.h */,
 				6D00EBBC174E55C00045BF49 /* ViewController.m */,
-				6D00EBBE174E55C00045BF49 /* ViewController.xib */,
 				6D00EBAA174E55C00045BF49 /* Supporting Files */,
 			);
 			path = Cosmetology;
@@ -162,7 +159,6 @@
 				6D00EBB6174E55C00045BF49 /* Default.png in Resources */,
 				6D00EBB8174E55C00045BF49 /* Default@2x.png in Resources */,
 				6D00EBBA174E55C00045BF49 /* Default-568h@2x.png in Resources */,
-				6D00EBC0174E55C00045BF49 /* ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,14 +184,6 @@
 				6D00EBAD174E55C00045BF49 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		6D00EBBE174E55C00045BF49 /* ViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6D00EBBF174E55C00045BF49 /* en */,
-			);
-			name = ViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -257,7 +245,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cosmetology/Cosmetology-Prefix.pch";
 				INFOPLIST_FILE = "Cosmetology/Cosmetology-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -268,7 +258,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cosmetology/Cosmetology-Prefix.pch";
 				INFOPLIST_FILE = "Cosmetology/Cosmetology-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
