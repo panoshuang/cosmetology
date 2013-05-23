@@ -1,0 +1,299 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6D00EBA4174E55C00045BF49 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBA3174E55C00045BF49 /* UIKit.framework */; };
+		6D00EBA6174E55C00045BF49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBA5174E55C00045BF49 /* Foundation.framework */; };
+		6D00EBA8174E55C00045BF49 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBA7174E55C00045BF49 /* CoreGraphics.framework */; };
+		6D00EBAE174E55C00045BF49 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBAC174E55C00045BF49 /* InfoPlist.strings */; };
+		6D00EBB0174E55C00045BF49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D00EBAF174E55C00045BF49 /* main.m */; };
+		6D00EBB4174E55C00045BF49 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D00EBB3174E55C00045BF49 /* AppDelegate.m */; };
+		6D00EBB6174E55C00045BF49 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBB5174E55C00045BF49 /* Default.png */; };
+		6D00EBB8174E55C00045BF49 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBB7174E55C00045BF49 /* Default@2x.png */; };
+		6D00EBBA174E55C00045BF49 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBB9174E55C00045BF49 /* Default-568h@2x.png */; };
+		6D00EBBD174E55C00045BF49 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D00EBBC174E55C00045BF49 /* ViewController.m */; };
+		6D00EBC0174E55C00045BF49 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBBE174E55C00045BF49 /* ViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6D00EB9F174E55C00045BF49 /* Cosmetology.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cosmetology.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D00EBA3174E55C00045BF49 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6D00EBA5174E55C00045BF49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6D00EBA7174E55C00045BF49 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6D00EBAB174E55C00045BF49 /* Cosmetology-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Cosmetology-Info.plist"; sourceTree = "<group>"; };
+		6D00EBAD174E55C00045BF49 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6D00EBAF174E55C00045BF49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6D00EBB1174E55C00045BF49 /* Cosmetology-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cosmetology-Prefix.pch"; sourceTree = "<group>"; };
+		6D00EBB2174E55C00045BF49 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6D00EBB3174E55C00045BF49 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6D00EBB5174E55C00045BF49 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		6D00EBB7174E55C00045BF49 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		6D00EBB9174E55C00045BF49 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		6D00EBBB174E55C00045BF49 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		6D00EBBC174E55C00045BF49 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6D00EBBF174E55C00045BF49 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6D00EB9C174E55C00045BF49 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D00EBA4174E55C00045BF49 /* UIKit.framework in Frameworks */,
+				6D00EBA6174E55C00045BF49 /* Foundation.framework in Frameworks */,
+				6D00EBA8174E55C00045BF49 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6D00EB94174E55C00045BF49 = {
+			isa = PBXGroup;
+			children = (
+				6D00EBA9174E55C00045BF49 /* Cosmetology */,
+				6D00EBA2174E55C00045BF49 /* Frameworks */,
+				6D00EBA0174E55C00045BF49 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6D00EBA0174E55C00045BF49 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6D00EB9F174E55C00045BF49 /* Cosmetology.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6D00EBA2174E55C00045BF49 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6D00EBA3174E55C00045BF49 /* UIKit.framework */,
+				6D00EBA5174E55C00045BF49 /* Foundation.framework */,
+				6D00EBA7174E55C00045BF49 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6D00EBA9174E55C00045BF49 /* Cosmetology */ = {
+			isa = PBXGroup;
+			children = (
+				6D00EBB2174E55C00045BF49 /* AppDelegate.h */,
+				6D00EBB3174E55C00045BF49 /* AppDelegate.m */,
+				6D00EBBB174E55C00045BF49 /* ViewController.h */,
+				6D00EBBC174E55C00045BF49 /* ViewController.m */,
+				6D00EBBE174E55C00045BF49 /* ViewController.xib */,
+				6D00EBAA174E55C00045BF49 /* Supporting Files */,
+			);
+			path = Cosmetology;
+			sourceTree = "<group>";
+		};
+		6D00EBAA174E55C00045BF49 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6D00EBAB174E55C00045BF49 /* Cosmetology-Info.plist */,
+				6D00EBAC174E55C00045BF49 /* InfoPlist.strings */,
+				6D00EBAF174E55C00045BF49 /* main.m */,
+				6D00EBB1174E55C00045BF49 /* Cosmetology-Prefix.pch */,
+				6D00EBB5174E55C00045BF49 /* Default.png */,
+				6D00EBB7174E55C00045BF49 /* Default@2x.png */,
+				6D00EBB9174E55C00045BF49 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6D00EB9E174E55C00045BF49 /* Cosmetology */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D00EBC3174E55C00045BF49 /* Build configuration list for PBXNativeTarget "Cosmetology" */;
+			buildPhases = (
+				6D00EB9B174E55C00045BF49 /* Sources */,
+				6D00EB9C174E55C00045BF49 /* Frameworks */,
+				6D00EB9D174E55C00045BF49 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Cosmetology;
+			productName = Cosmetology;
+			productReference = 6D00EB9F174E55C00045BF49 /* Cosmetology.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6D00EB96174E55C00045BF49 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = pengpai;
+			};
+			buildConfigurationList = 6D00EB99174E55C00045BF49 /* Build configuration list for PBXProject "Cosmetology" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6D00EB94174E55C00045BF49;
+			productRefGroup = 6D00EBA0174E55C00045BF49 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6D00EB9E174E55C00045BF49 /* Cosmetology */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6D00EB9D174E55C00045BF49 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D00EBAE174E55C00045BF49 /* InfoPlist.strings in Resources */,
+				6D00EBB6174E55C00045BF49 /* Default.png in Resources */,
+				6D00EBB8174E55C00045BF49 /* Default@2x.png in Resources */,
+				6D00EBBA174E55C00045BF49 /* Default-568h@2x.png in Resources */,
+				6D00EBC0174E55C00045BF49 /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6D00EB9B174E55C00045BF49 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D00EBB0174E55C00045BF49 /* main.m in Sources */,
+				6D00EBB4174E55C00045BF49 /* AppDelegate.m in Sources */,
+				6D00EBBD174E55C00045BF49 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6D00EBAC174E55C00045BF49 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6D00EBAD174E55C00045BF49 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6D00EBBE174E55C00045BF49 /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6D00EBBF174E55C00045BF49 /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6D00EBC1174E55C00045BF49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		6D00EBC2174E55C00045BF49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6D00EBC4174E55C00045BF49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cosmetology/Cosmetology-Prefix.pch";
+				INFOPLIST_FILE = "Cosmetology/Cosmetology-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6D00EBC5174E55C00045BF49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cosmetology/Cosmetology-Prefix.pch";
+				INFOPLIST_FILE = "Cosmetology/Cosmetology-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6D00EB99174E55C00045BF49 /* Build configuration list for PBXProject "Cosmetology" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D00EBC1174E55C00045BF49 /* Debug */,
+				6D00EBC2174E55C00045BF49 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D00EBC3174E55C00045BF49 /* Build configuration list for PBXNativeTarget "Cosmetology" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D00EBC4174E55C00045BF49 /* Debug */,
+				6D00EBC5174E55C00045BF49 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6D00EB96174E55C00045BF49 /* Project object */;
+}
