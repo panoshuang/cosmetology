@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6315709F0A558E7B3E50E89C /* MainProductInfoDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 63157A84748410F10B4F384A /* MainProductInfoDao.m */; };
+		63157C75C37C72D87A8C6F81 /* MainProductInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 631576D04EF85D4C815CE2FA /* MainProductInfo.m */; };
 		6D00EBA4174E55C00045BF49 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBA3174E55C00045BF49 /* UIKit.framework */; };
 		6D00EBA6174E55C00045BF49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBA5174E55C00045BF49 /* Foundation.framework */; };
 		6D00EBA8174E55C00045BF49 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBA7174E55C00045BF49 /* CoreGraphics.framework */; };
@@ -57,6 +59,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		631574420B21BDD5EC2686BB /* MainProductInfoDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainProductInfoDao.h; sourceTree = "<group>"; };
+		631576D04EF85D4C815CE2FA /* MainProductInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainProductInfo.m; sourceTree = "<group>"; };
+		6315794AC857EEFB600F7AE3 /* MainProductInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainProductInfo.h; sourceTree = "<group>"; };
+		63157A84748410F10B4F384A /* MainProductInfoDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainProductInfoDao.m; sourceTree = "<group>"; };
 		6D00EB9F174E55C00045BF49 /* Cosmetology.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cosmetology.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D00EBA3174E55C00045BF49 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6D00EBA5174E55C00045BF49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -269,6 +275,8 @@
 			children = (
 				6D917D4B17509D7E00263F64 /* UserSettingInfoDao.h */,
 				6D917D4C17509D7E00263F64 /* UserSettingInfoDao.m */,
+				63157A84748410F10B4F384A /* MainProductInfoDao.m */,
+				631574420B21BDD5EC2686BB /* MainProductInfoDao.h */,
 			);
 			path = DbDao;
 			sourceTree = "<group>";
@@ -358,6 +366,8 @@
 		6D917D9717509F4400263F64 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				631576D04EF85D4C815CE2FA /* MainProductInfo.m */,
+				6315794AC857EEFB600F7AE3 /* MainProductInfo.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -554,6 +564,8 @@
 				6D60502817539F49000635F3 /* FMDatabasePool.m in Sources */,
 				6D60502917539F49000635F3 /* FMDatabaseQueue.m in Sources */,
 				6D60502B17539F49000635F3 /* FMResultSet.m in Sources */,
+				63157C75C37C72D87A8C6F81 /* MainProductInfo.m in Sources */,
+				6315709F0A558E7B3E50E89C /* MainProductInfoDao.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
