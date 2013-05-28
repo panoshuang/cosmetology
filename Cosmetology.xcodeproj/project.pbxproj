@@ -14,7 +14,6 @@
 		6D00EBA8174E55C00045BF49 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBA7174E55C00045BF49 /* CoreGraphics.framework */; };
 		6D00EBAE174E55C00045BF49 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBAC174E55C00045BF49 /* InfoPlist.strings */; };
 		6D00EBB0174E55C00045BF49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D00EBAF174E55C00045BF49 /* main.m */; };
-		6D00EBB4174E55C00045BF49 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D00EBB3174E55C00045BF49 /* AppDelegate.m */; };
 		6D00EBB6174E55C00045BF49 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBB5174E55C00045BF49 /* Default.png */; };
 		6D00EBB8174E55C00045BF49 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBB7174E55C00045BF49 /* Default@2x.png */; };
 		6D00EBBA174E55C00045BF49 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBB9174E55C00045BF49 /* Default-568h@2x.png */; };
@@ -31,6 +30,7 @@
 		6D60502817539F49000635F3 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D60502017539F49000635F3 /* FMDatabasePool.m */; };
 		6D60502917539F49000635F3 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D60502217539F49000635F3 /* FMDatabaseQueue.m */; };
 		6D60502B17539F49000635F3 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D60502517539F49000635F3 /* FMResultSet.m */; };
+		6D8D34DB17550C29003F9E9E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D34DA17550C29003F9E9E /* AppDelegate.m */; };
 		6D917D5217509D7E00263F64 /* BaseDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D917CFD17509D7E00263F64 /* BaseDatabase.m */; };
 		6D917D7817509D7E00263F64 /* UserSettingInfoDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D917D4C17509D7E00263F64 /* UserSettingInfoDao.m */; };
 		6D917D8D17509DD900263F64 /* GMGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D917D7D17509DD900263F64 /* GMGridView.m */; };
@@ -71,8 +71,6 @@
 		6D00EBAD174E55C00045BF49 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6D00EBAF174E55C00045BF49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6D00EBB1174E55C00045BF49 /* Cosmetology-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cosmetology-Prefix.pch"; sourceTree = "<group>"; };
-		6D00EBB2174E55C00045BF49 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
-		6D00EBB3174E55C00045BF49 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../../AppDelegate.m; sourceTree = "<group>"; };
 		6D00EBB5174E55C00045BF49 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		6D00EBB7174E55C00045BF49 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		6D00EBB9174E55C00045BF49 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -98,6 +96,8 @@
 		6D60502317539F49000635F3 /* fmdb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fmdb.m; sourceTree = "<group>"; };
 		6D60502417539F49000635F3 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		6D60502517539F49000635F3 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		6D8D34D917550C29003F9E9E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6D8D34DA17550C29003F9E9E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6D917CFC17509D7E00263F64 /* BaseDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDatabase.h; sourceTree = "<group>"; };
 		6D917CFD17509D7E00263F64 /* BaseDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDatabase.m; sourceTree = "<group>"; };
 		6D917D4B17509D7E00263F64 /* UserSettingInfoDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingInfoDao.h; sourceTree = "<group>"; };
@@ -236,28 +236,28 @@
 			path = "UIAlertView-Blocks";
 			sourceTree = "<group>";
 		};
+		6D8D34D817550C11003F9E9E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				6D8D34D917550C29003F9E9E /* AppDelegate.h */,
+				6D8D34DA17550C29003F9E9E /* AppDelegate.m */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		6D917CF917509D7E00263F64 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				6D8D34D817550C11003F9E9E /* App */,
 				6D917D9C1750A0DE00263F64 /* Util */,
 				6D917D9717509F4400263F64 /* Model */,
 				6D917D9617509F3000263F64 /* Business */,
-				6D917CFA17509D7E00263F64 /* App */,
 				6D917CFB17509D7E00263F64 /* DbCore */,
 				6D917D4D17509D7E00263F64 /* Inc */,
 				6D917D4E17509D7E00263F64 /* Libs */,
 				6D917D4F17509D7E00263F64 /* UI */,
 			);
 			path = src;
-			sourceTree = "<group>";
-		};
-		6D917CFA17509D7E00263F64 /* App */ = {
-			isa = PBXGroup;
-			children = (
-				6D00EBB2174E55C00045BF49 /* AppDelegate.h */,
-				6D00EBB3174E55C00045BF49 /* AppDelegate.m */,
-			);
-			path = App;
 			sourceTree = "<group>";
 		};
 		6D917CFB17509D7E00263F64 /* DbCore */ = {
@@ -543,7 +543,6 @@
 			files = (
 				6D60501517539BAA000635F3 /* FileUtil.m in Sources */,
 				6D00EBB0174E55C00045BF49 /* main.m in Sources */,
-				6D00EBB4174E55C00045BF49 /* AppDelegate.m in Sources */,
 				6D00EBBD174E55C00045BF49 /* ViewController.m in Sources */,
 				6D917D5217509D7E00263F64 /* BaseDatabase.m in Sources */,
 				6D917D7817509D7E00263F64 /* UserSettingInfoDao.m in Sources */,
@@ -566,6 +565,7 @@
 				6D60502B17539F49000635F3 /* FMResultSet.m in Sources */,
 				63157C75C37C72D87A8C6F81 /* MainProductInfo.m in Sources */,
 				6315709F0A558E7B3E50E89C /* MainProductInfoDao.m in Sources */,
+				6D8D34DB17550C29003F9E9E /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
