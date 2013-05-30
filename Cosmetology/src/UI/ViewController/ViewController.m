@@ -16,7 +16,7 @@
 
 -(void)loadView{
     [super loadView];
-    self.navigationController.navigationBarHidden = YES;
+    self.navigationController.navigationBarHidden = NO;
     self.view.backgroundColor = [UIColor redColor];
 }
 
