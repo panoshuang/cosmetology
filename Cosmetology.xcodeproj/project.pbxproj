@@ -17,7 +17,6 @@
 		6D00EBB6174E55C00045BF49 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBB5174E55C00045BF49 /* Default.png */; };
 		6D00EBB8174E55C00045BF49 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBB7174E55C00045BF49 /* Default@2x.png */; };
 		6D00EBBA174E55C00045BF49 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBB9174E55C00045BF49 /* Default-568h@2x.png */; };
-		6D00EBBD174E55C00045BF49 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D00EBBC174E55C00045BF49 /* MainViewController.m */; };
 		6D605006175398CC000635F3 /* RIButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D605001175398CC000635F3 /* RIButtonItem.m */; };
 		6D605007175398CC000635F3 /* UIActionSheet+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D605003175398CC000635F3 /* UIActionSheet+Blocks.m */; };
 		6D605008175398CC000635F3 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D605005175398CC000635F3 /* UIAlertView+Blocks.m */; };
@@ -31,7 +30,7 @@
 		6D60502917539F49000635F3 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D60502217539F49000635F3 /* FMDatabaseQueue.m */; };
 		6D60502B17539F49000635F3 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D60502517539F49000635F3 /* FMResultSet.m */; };
 		6D8D34DB17550C29003F9E9E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D34DA17550C29003F9E9E /* AppDelegate.m */; };
-		6D8D34E217550D9A003F9E9E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D34E117550D9A003F9E9E /* ViewController.m */; };
+		6D8D34E217550D9A003F9E9E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D34E117550D9A003F9E9E /* MainViewController.m */; };
 		6D917D5217509D7E00263F64 /* BaseDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D917CFD17509D7E00263F64 /* BaseDatabase.m */; };
 		6D917D7817509D7E00263F64 /* UserSettingInfoDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D917D4C17509D7E00263F64 /* UserSettingInfoDao.m */; };
 		6D917D8D17509DD900263F64 /* GMGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D917D7D17509DD900263F64 /* GMGridView.m */; };
@@ -75,7 +74,6 @@
 		6D00EBB5174E55C00045BF49 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		6D00EBB7174E55C00045BF49 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		6D00EBB9174E55C00045BF49 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		6D00EBBC174E55C00045BF49 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = ../../../MainViewController.m; sourceTree = "<group>"; };
 		6D605000175398CC000635F3 /* RIButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIButtonItem.h; sourceTree = "<group>"; };
 		6D605001175398CC000635F3 /* RIButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIButtonItem.m; sourceTree = "<group>"; };
 		6D605002175398CC000635F3 /* UIActionSheet+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+Blocks.h"; sourceTree = "<group>"; };
@@ -98,8 +96,8 @@
 		6D60502517539F49000635F3 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		6D8D34D917550C29003F9E9E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6D8D34DA17550C29003F9E9E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6D8D34E017550D9A003F9E9E /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		6D8D34E117550D9A003F9E9E /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6D8D34E017550D9A003F9E9E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		6D8D34E117550D9A003F9E9E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		6D917CFC17509D7E00263F64 /* BaseDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDatabase.h; sourceTree = "<group>"; };
 		6D917CFD17509D7E00263F64 /* BaseDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDatabase.m; sourceTree = "<group>"; };
 		6D917D4B17509D7E00263F64 /* UserSettingInfoDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingInfoDao.h; sourceTree = "<group>"; };
@@ -250,8 +248,8 @@
 		6D8D34DF17550D87003F9E9E /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				6D8D34E017550D9A003F9E9E /* ViewController.h */,
-				6D8D34E117550D9A003F9E9E /* ViewController.m */,
+				6D8D34E017550D9A003F9E9E /* MainViewController.h */,
+				6D8D34E117550D9A003F9E9E /* MainViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -545,7 +543,6 @@
 			files = (
 				6D60501517539BAA000635F3 /* FileUtil.m in Sources */,
 				6D00EBB0174E55C00045BF49 /* main.m in Sources */,
-				6D00EBBD174E55C00045BF49 /* MainViewController.m in Sources */,
 				6D917D5217509D7E00263F64 /* BaseDatabase.m in Sources */,
 				6D917D7817509D7E00263F64 /* UserSettingInfoDao.m in Sources */,
 				6D917D8D17509DD900263F64 /* GMGridView.m in Sources */,
@@ -568,7 +565,7 @@
 				63157C75C37C72D87A8C6F81 /* MainProductInfo.m in Sources */,
 				6315709F0A558E7B3E50E89C /* MainProductInfoDao.m in Sources */,
 				6D8D34DB17550C29003F9E9E /* AppDelegate.m in Sources */,
-				6D8D34E217550D9A003F9E9E /* ViewController.m in Sources */,
+				6D8D34E217550D9A003F9E9E /* MainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
