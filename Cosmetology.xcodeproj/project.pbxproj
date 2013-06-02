@@ -46,6 +46,9 @@
 		6D917DD91750A20100263F64 /* VoiceHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D917DD31750A20100263F64 /* VoiceHandle.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6D917DDB1750A24D00263F64 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D917DDA1750A24B00263F64 /* libsqlite3.dylib */; };
 		6D917DDD1750A28900263F64 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D917DDC1750A28900263F64 /* QuartzCore.framework */; };
+		6DCF1D2E175AE78B00AB4423 /* CustomGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF1D2D175AE78B00AB4423 /* CustomGridViewCell.m */; };
+		6DCF1D32175AEAF200AB4423 /* MainCatalogViewContrller.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF1D31175AEAF200AB4423 /* MainCatalogViewContrller.m */; };
+		6DCF1D35175AF06500AB4423 /* PasswordManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF1D34175AF06500AB4423 /* PasswordManagerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +148,12 @@
 		6D917DD31750A20100263F64 /* VoiceHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceHandle.m; sourceTree = "<group>"; };
 		6D917DDA1750A24B00263F64 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		6D917DDC1750A28900263F64 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		6DCF1D2C175AE78B00AB4423 /* CustomGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomGridViewCell.h; sourceTree = "<group>"; };
+		6DCF1D2D175AE78B00AB4423 /* CustomGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomGridViewCell.m; sourceTree = "<group>"; };
+		6DCF1D30175AEAF200AB4423 /* MainCatalogViewContrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainCatalogViewContrller.h; sourceTree = "<group>"; };
+		6DCF1D31175AEAF200AB4423 /* MainCatalogViewContrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainCatalogViewContrller.m; sourceTree = "<group>"; };
+		6DCF1D33175AF06500AB4423 /* PasswordManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordManagerViewController.h; sourceTree = "<group>"; };
+		6DCF1D34175AF06500AB4423 /* PasswordManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordManagerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +259,10 @@
 			children = (
 				6D8D34E017550D9A003F9E9E /* MainViewController.h */,
 				6D8D34E117550D9A003F9E9E /* MainViewController.m */,
+				6DCF1D30175AEAF200AB4423 /* MainCatalogViewContrller.h */,
+				6DCF1D31175AEAF200AB4423 /* MainCatalogViewContrller.m */,
+				6DCF1D33175AF06500AB4423 /* PasswordManagerViewController.h */,
+				6DCF1D34175AF06500AB4423 /* PasswordManagerViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -324,6 +337,8 @@
 		6D917D5017509D7E00263F64 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				6DCF1D2C175AE78B00AB4423 /* CustomGridViewCell.h */,
+				6DCF1D2D175AE78B00AB4423 /* CustomGridViewCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -566,6 +581,9 @@
 				6315709F0A558E7B3E50E89C /* MainProductInfoDao.m in Sources */,
 				6D8D34DB17550C29003F9E9E /* AppDelegate.m in Sources */,
 				6D8D34E217550D9A003F9E9E /* MainViewController.m in Sources */,
+				6DCF1D2E175AE78B00AB4423 /* CustomGridViewCell.m in Sources */,
+				6DCF1D32175AEAF200AB4423 /* MainCatalogViewContrller.m in Sources */,
+				6DCF1D35175AF06500AB4423 /* PasswordManagerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,7 +657,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cosmetology/Cosmetology-Prefix.pch";
 				INFOPLIST_FILE = "Cosmetology/Cosmetology-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Cosmetology/src/Libs/VoiceConvert/lib\"",
@@ -656,7 +674,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cosmetology/Cosmetology-Prefix.pch";
 				INFOPLIST_FILE = "Cosmetology/Cosmetology-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Cosmetology/src/Libs/VoiceConvert/lib\"",

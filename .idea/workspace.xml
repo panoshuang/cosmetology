@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" name="Default" comment="" />
+    <list default="true" id="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="Cosmetology.iws" />
     <ignored path=".idea/workspace.xml" />
+    <file path="/Dummy.txt" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1370076459854" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,55 +27,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainProductInfo.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cosmetology/src/Model/MainProductInfo.m">
+      <file leaf-file-name="MainProductInfoDao.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/MainProductInfoDao.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="19" selection-start="240" selection-end="240" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BaseDatabase.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cosmetology/src/DbCore/BaseDatabase.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="26" selection-start="360" selection-end="360" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserSettingInfoDao.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/UserSettingInfoDao.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="150" column="10" selection-start="8251" selection-end="8271" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BaseDatabase.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cosmetology/src/DbCore/BaseDatabase.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="0" selection-start="1180" selection-end="1180" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainProductInfoDao.h" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/MainProductInfoDao.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="363" selection-end="363" vertical-scroll-proportion="0.62347186">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GMGridView.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cosmetology/src/Libs/GMGridView/GMGridView.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="43" selection-start="416" selection-end="416" vertical-scroll-proportion="0.0">
+            <state line="49" column="35" selection-start="1629" selection-end="1629" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -86,10 +45,55 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainProductInfoDao.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/MainProductInfoDao.m">
+      <file leaf-file-name="GMGridView.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cosmetology/src/Libs/GMGridView/GMGridView.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="35" selection-start="1629" selection-end="1629" vertical-scroll-proportion="0.0">
+            <state line="11" column="43" selection-start="416" selection-end="416" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainProductInfoDao.h" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/MainProductInfoDao.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="25" selection-start="437" selection-end="437" vertical-scroll-proportion="0.77017117">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseDatabase.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cosmetology/src/DbCore/BaseDatabase.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="48" column="0" selection-start="1180" selection-end="1180" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserSettingInfoDao.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/UserSettingInfoDao.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="150" column="10" selection-start="8251" selection-end="8271" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseDatabase.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cosmetology/src/DbCore/BaseDatabase.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="26" selection-start="360" selection-end="360" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainProductInfo.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cosmetology/src/Model/MainProductInfo.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="19" selection-start="240" selection-end="240" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -101,6 +105,14 @@
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
@@ -117,8 +129,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="139" />
-    <option name="y" value="22" />
+    <option name="x" value="325" />
+    <option name="y" value="81" />
     <option name="width" value="1302" />
     <option name="height" value="746" />
   </component>
@@ -138,7 +150,7 @@
       </profile-state>
     </entry>
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -238,12 +250,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="settings.github" />
     <property name="FullScreen" value="false" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="Cosmetology" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager" selected="Application.Unnamed">
     <configuration default="false" name="Unnamed" type="AppleRunConfiguration" factoryName="Application" temporary="true" SCHEME_NAME="Unnamed" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
@@ -300,8 +312,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="139" y="22" width="1302" height="746" extended-state="0" />
-    <editor active="false" />
+    <frame x="325" y="81" width="1302" height="746" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -309,7 +321,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28381547" sideWeight="0.6702454" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28803545" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3297546" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3297546" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -432,30 +444,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cosmetology/src/Libs/GMGridView/GMGridView.h">
+    <entry file="file://$PROJECT_DIR$/Cosmetology/src/Inc/Database_define.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="43" selection-start="416" selection-end="416" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="2" column="150" selection-start="37" selection-end="37" vertical-scroll-proportion="0.06407323" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cosmetology/src/Model/MainProductInfo.m">
+    <entry file="file://$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/MainProductInfoDao.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="19" selection-start="240" selection-end="240" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cosmetology/src/DbCore/BaseDatabase.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="26" selection-start="360" selection-end="360" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cosmetology/src/DbCore/BaseDatabase.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="0" selection-start="1180" selection-end="1180" vertical-scroll-proportion="0.0">
+        <state line="49" column="35" selection-start="1629" selection-end="1629" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -467,6 +463,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Cosmetology/src/Libs/GMGridView/GMGridView.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="43" selection-start="416" selection-end="416" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cosmetology/src/DbCore/BaseDatabase.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="0" selection-start="1180" selection-end="1180" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/UserSettingInfoDao.m">
       <provider selected="true" editor-type-id="text-editor">
         <state line="150" column="10" selection-start="8251" selection-end="8271" vertical-scroll-proportion="0.0">
@@ -474,21 +484,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/MainProductInfoDao.m">
+    <entry file="file://$PROJECT_DIR$/Cosmetology/src/DbCore/BaseDatabase.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="35" selection-start="1629" selection-end="1629" vertical-scroll-proportion="0.0">
+        <state line="18" column="26" selection-start="360" selection-end="360" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cosmetology/src/Inc/Database_define.h">
+    <entry file="file://$PROJECT_DIR$/Cosmetology/src/Model/MainProductInfo.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="150" selection-start="37" selection-end="37" vertical-scroll-proportion="0.06407323" />
+        <state line="15" column="19" selection-start="240" selection-end="240" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/MainProductInfoDao.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="363" selection-end="363" vertical-scroll-proportion="0.62347186">
+        <state line="22" column="25" selection-start="437" selection-end="437" vertical-scroll-proportion="0.77017117">
           <folding />
         </state>
       </provider>
