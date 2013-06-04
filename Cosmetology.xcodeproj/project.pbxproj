@@ -46,7 +46,11 @@
 		6D917DD91750A20100263F64 /* VoiceHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D917DD31750A20100263F64 /* VoiceHandle.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6D917DDB1750A24D00263F64 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D917DDA1750A24B00263F64 /* libsqlite3.dylib */; };
 		6D917DDD1750A28900263F64 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D917DDC1750A28900263F64 /* QuartzCore.framework */; };
-		6DCF1D2E175AE78B00AB4423 /* CustomGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF1D2D175AE78B00AB4423 /* CustomGridViewCell.m */; };
+		6DAC02D8175E166F00A3F015 /* MainCatalogGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC02D7175E166F00A3F015 /* MainCatalogGridViewCell.m */; };
+		6DAC02E3175E2CCC00A3F015 /* bg_main_catalog@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAC02E1175E2CCC00A3F015 /* bg_main_catalog@2x.png */; };
+		6DAC02E4175E2CCC00A3F015 /* bg_main_catalog_item.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAC02E2175E2CCC00A3F015 /* bg_main_catalog_item.png */; };
+		6DAC02E6175E2CF100A3F015 /* close_x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAC02E5175E2CF100A3F015 /* close_x.png */; };
+		6DAD9BD8175CD55F00E33E81 /* MainCatalogItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD9BD7175CD55F00E33E81 /* MainCatalogItem.m */; };
 		6DCF1D32175AEAF200AB4423 /* MainCatalogViewContrller.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF1D31175AEAF200AB4423 /* MainCatalogViewContrller.m */; };
 		6DCF1D35175AF06500AB4423 /* PasswordManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF1D34175AF06500AB4423 /* PasswordManagerViewController.m */; };
 /* End PBXBuildFile section */
@@ -148,8 +152,14 @@
 		6D917DD31750A20100263F64 /* VoiceHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceHandle.m; sourceTree = "<group>"; };
 		6D917DDA1750A24B00263F64 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		6D917DDC1750A28900263F64 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		6DCF1D2C175AE78B00AB4423 /* CustomGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomGridViewCell.h; sourceTree = "<group>"; };
-		6DCF1D2D175AE78B00AB4423 /* CustomGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomGridViewCell.m; sourceTree = "<group>"; };
+		6DAA5966175B068800140A80 /* MainDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainDelegate.h; sourceTree = "<group>"; };
+		6DAC02D6175E166F00A3F015 /* MainCatalogGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainCatalogGridViewCell.h; path = Cosmetology/src/UI/View/MainCatalogGridViewCell.h; sourceTree = SOURCE_ROOT; };
+		6DAC02D7175E166F00A3F015 /* MainCatalogGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainCatalogGridViewCell.m; path = Cosmetology/src/UI/View/MainCatalogGridViewCell.m; sourceTree = SOURCE_ROOT; };
+		6DAC02E1175E2CCC00A3F015 /* bg_main_catalog@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_main_catalog@2x.png"; sourceTree = "<group>"; };
+		6DAC02E2175E2CCC00A3F015 /* bg_main_catalog_item.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_main_catalog_item.png; sourceTree = "<group>"; };
+		6DAC02E5175E2CF100A3F015 /* close_x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_x.png; sourceTree = "<group>"; };
+		6DAD9BD6175CD55F00E33E81 /* MainCatalogItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainCatalogItem.h; path = Cosmetology/src/UI/View/MainCatalogItem.h; sourceTree = SOURCE_ROOT; };
+		6DAD9BD7175CD55F00E33E81 /* MainCatalogItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainCatalogItem.m; path = Cosmetology/src/UI/View/MainCatalogItem.m; sourceTree = SOURCE_ROOT; };
 		6DCF1D30175AEAF200AB4423 /* MainCatalogViewContrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainCatalogViewContrller.h; sourceTree = "<group>"; };
 		6DCF1D31175AEAF200AB4423 /* MainCatalogViewContrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainCatalogViewContrller.m; sourceTree = "<group>"; };
 		6DCF1D33175AF06500AB4423 /* PasswordManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordManagerViewController.h; sourceTree = "<group>"; };
@@ -221,6 +231,7 @@
 		6D00EBAA174E55C00045BF49 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6DAC02DF175E2CCC00A3F015 /* res */,
 				6D00EBAB174E55C00045BF49 /* Cosmetology-Info.plist */,
 				6D00EBAC174E55C00045BF49 /* InfoPlist.strings */,
 				6D00EBAF174E55C00045BF49 /* main.m */,
@@ -328,6 +339,7 @@
 		6D917D4F17509D7E00263F64 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				6DAA5964175B062B00140A80 /* Delegate */,
 				6D8D34DF17550D87003F9E9E /* ViewController */,
 				6D917D5017509D7E00263F64 /* view */,
 			);
@@ -337,8 +349,10 @@
 		6D917D5017509D7E00263F64 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				6DCF1D2C175AE78B00AB4423 /* CustomGridViewCell.h */,
-				6DCF1D2D175AE78B00AB4423 /* CustomGridViewCell.m */,
+				6DAD9BD6175CD55F00E33E81 /* MainCatalogItem.h */,
+				6DAD9BD7175CD55F00E33E81 /* MainCatalogItem.m */,
+				6DAC02D6175E166F00A3F015 /* MainCatalogGridViewCell.h */,
+				6DAC02D7175E166F00A3F015 /* MainCatalogGridViewCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -475,6 +489,32 @@
 			path = "opencore-amrwb";
 			sourceTree = "<group>";
 		};
+		6DAA5964175B062B00140A80 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				6DAA5966175B068800140A80 /* MainDelegate.h */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		6DAC02DF175E2CCC00A3F015 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				6DAC02E5175E2CF100A3F015 /* close_x.png */,
+				6DAC02E0175E2CCC00A3F015 /* mainCatalog */,
+			);
+			path = res;
+			sourceTree = "<group>";
+		};
+		6DAC02E0175E2CCC00A3F015 /* mainCatalog */ = {
+			isa = PBXGroup;
+			children = (
+				6DAC02E1175E2CCC00A3F015 /* bg_main_catalog@2x.png */,
+				6DAC02E2175E2CCC00A3F015 /* bg_main_catalog_item.png */,
+			);
+			path = mainCatalog;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -546,6 +586,9 @@
 				6D00EBB6174E55C00045BF49 /* Default.png in Resources */,
 				6D00EBB8174E55C00045BF49 /* Default@2x.png in Resources */,
 				6D00EBBA174E55C00045BF49 /* Default-568h@2x.png in Resources */,
+				6DAC02E3175E2CCC00A3F015 /* bg_main_catalog@2x.png in Resources */,
+				6DAC02E4175E2CCC00A3F015 /* bg_main_catalog_item.png in Resources */,
+				6DAC02E6175E2CF100A3F015 /* close_x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,9 +624,10 @@
 				6315709F0A558E7B3E50E89C /* MainProductInfoDao.m in Sources */,
 				6D8D34DB17550C29003F9E9E /* AppDelegate.m in Sources */,
 				6D8D34E217550D9A003F9E9E /* MainViewController.m in Sources */,
-				6DCF1D2E175AE78B00AB4423 /* CustomGridViewCell.m in Sources */,
 				6DCF1D32175AEAF200AB4423 /* MainCatalogViewContrller.m in Sources */,
 				6DCF1D35175AF06500AB4423 /* PasswordManagerViewController.m in Sources */,
+				6DAD9BD8175CD55F00E33E81 /* MainCatalogItem.m in Sources */,
+				6DAC02D8175E166F00A3F015 /* MainCatalogGridViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

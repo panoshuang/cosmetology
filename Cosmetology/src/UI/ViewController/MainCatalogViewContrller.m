@@ -10,11 +10,12 @@
 #import <QuartzCore/QuartzCore.h>
 #import "MainProductInfo.h"
 #import "GMGridView.h"
-#import "CustomGridViewCell.h"
+#import "MainCatalogGridViewCell.h"
+#import "MainCatalogItem.h"
 
 #define ITEM_SPACE 15
 
-@interface MainCatalogViewContrller () <GMGridViewDataSource, GMGridViewSortingDelegate, GMGridViewTransformationDelegate, GMGridViewActionDelegate>
+@interface MainCatalogViewContrller () <GMGridViewDataSource, GMGridViewSortingDelegate, GMGridViewTransformationDelegate, GMGridViewActionDelegate,MainCatalogGridViewCellDelegate>
 {
     __gm_weak GMGridView *_gmGridView;
     UINavigationController *_optionsNav;
@@ -35,9 +36,13 @@
 
 @implementation MainCatalogViewContrller
 
+@synthesize delegate = _delegate;
+@synthesize bIsEdit = _bIsEdit;
+
 -(id)init{
     self = [super init];
     if (self) {
+        _bIsEdit = YES;
         _catalogArray = [[NSMutableArray alloc] init];
         [self loadCatalog];
     }
@@ -48,6 +53,7 @@
     for (int i = 0; i < 20; i++) {
         MainProductInfo *productInfo = [[MainProductInfo alloc] init];
         productInfo.name = [NSString stringWithFormat:@"productInfo%i",i];
+        productInfo.enable = YES;
         [_catalogArray addObject:productInfo];
     }
 }
@@ -72,12 +78,13 @@
     
     _gmGridView.style = GMGridViewStyleSwap;
     _gmGridView.itemSpacing = spacing;
-    _gmGridView.minEdgeInsets = UIEdgeInsetsMake(spacing, spacing, spacing, spacing);
+    _gmGridView.minEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
     _gmGridView.centerGrid = NO;
     _gmGridView.actionDelegate = self;
     _gmGridView.sortingDelegate = self;
     _gmGridView.transformDelegate = self;
     _gmGridView.dataSource = self;
+    [_gmGridView setEditing:YES animated:NO];
     
     UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
     infoButton.frame = CGRectMake(self.view.bounds.size.width - 40,
@@ -118,9 +125,11 @@
 
 - (CGSize)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
-
-   return CGSizeMake(170, 110);
-
+    if (_bIsEdit) {
+        return CGSizeMake(184, 80);
+    }else{
+        return CGSizeMake(184, 52);
+    }
 }
 
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForItemAtIndex:(NSInteger)index
@@ -129,34 +138,31 @@
     
     CGSize size = [self GMGridView:gridView sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
     
-    CustomGridViewCell *cell = (CustomGridViewCell *)[gridView dequeueReusableCell];
+    MainCatalogGridViewCell *cell = (MainCatalogGridViewCell *)[gridView dequeueReusableCell];
     
     if (!cell)
     {
-        cell = [[CustomGridViewCell alloc] init];
+        cell = [[MainCatalogGridViewCell alloc] init];
+        cell.delegate = self;
         cell.deleteButtonIcon = [UIImage imageNamed:@"close_x.png"];
         cell.deleteButtonOffset = CGPointMake(-15, -15);
         
-        //        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-        //        view.backgroundColor = [UIColor redColor];
-        //        view.layer.masksToBounds = NO;
-        //        view.layer.cornerRadius = 8;
+        MainCatalogItem *mainCatalogItem = [[MainCatalogItem alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];      
+        mainCatalogItem.delegate = cell;
+        cell.contentView = mainCatalogItem;
         
-        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-        btn.titleLabel.textColor = [UIColor redColor];
-       
-        [btn addTarget:self action:@selector(test:) forControlEvents:UIControlEventTouchUpInside];
-        
-        
-        cell.contentView = btn;
-        [cell setEditing:YES animated:NO];
     }
     MainProductInfo *productInfo = [_catalogArray objectAtIndex:index];
+    MainCatalogItem *contentItem = (MainCatalogItem *)cell.contentView;
+    contentItem.lbName.text = productInfo.name;
+    [contentItem setEdit:YES];
+    [contentItem.swEdit setSelected:productInfo.enable];
+    
 //    [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    UIButton *contentBtn = (UIButton *)cell.contentView;
-     [contentBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    contentBtn.backgroundColor = [UIColor greenColor];
-    [contentBtn setTitle:productInfo.name forState:UIControlStateNormal];
+//    UIButton *contentBtn = (UIButton *)cell.contentView;
+//     [contentBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+//    contentBtn.backgroundColor = [UIColor greenColor];
+//    [contentBtn setTitle:productInfo.name forState:UIControlStateNormal];
 //    NSLog(@"%@",productInfo.name);
 //    UILabel *label = [[UILabel alloc] initWithFrame:cell.contentView.bounds];
 //    label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -168,18 +174,9 @@
 //    label.font = [UIFont boldSystemFontOfSize:20];
 //    [cell.contentView addSubview:label];
     
-    
+//    [cell setEditing:YES animated:NO];
     
     return cell;
-}
-
--(void)test:(UIButton *)sender{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"touch"
-                                                        message:nil
-                                                       delegate:nil
-                                              cancelButtonTitle:@"YES"
-                                              otherButtonTitles: nil];
-    [alertView show];
 }
 
 
@@ -339,6 +336,14 @@
     
 }
 
+
+#pragma mark -  MainCatalogGridViewCellDelegate 
+
+-(void)mainCatalogGridViewCellDidSwitch:(MainCatalogGridViewCell *)cell value:(BOOL)isOpen{
+    DDetailLog(@"");
+    int index = [_gmGridView positionForItemSubview:cell];
+    DDetailLog(@"indxe : %d",index);
+}
 
 //////////////////////////////////////////////////////////////
 #pragma mark private methods

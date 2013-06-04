@@ -199,8 +199,8 @@
             self.deleteButton.alpha = editing ? 1.f : 0.f;
         }
 		
-        self.contentView.userInteractionEnabled = !editing;
-        [self shakeStatus:editing];
+//        self.contentView.userInteractionEnabled = !editing;
+//        [self shakeStatus:editing];
     }
 }
 

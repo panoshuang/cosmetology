@@ -10,7 +10,7 @@
 #import "MainCatalogViewContrller.h"
 #import "PasswordManagerViewController.h"
 
-@interface MainViewController (){
+@interface MainViewController ()<MainCatalogViewControllerDelegate>{
     MainCatalogViewContrller *_mainCatalogViewController;
     UIPopoverController *_popoverController;
     PasswordManagerViewController *_passwordManagerViewController;
@@ -34,6 +34,7 @@
     
     _mainCatalogViewController = [[MainCatalogViewContrller alloc] init];
     _mainCatalogViewController.view.frame = CGRectMake(0, 0, 200, 748);
+    _mainCatalogViewController.delegate = self;
     [self.view addSubview:_mainCatalogViewController.view];
     
     
@@ -74,6 +75,16 @@
     {
         [_popoverController dismissPopoverAnimated:YES];
     }
+}
+
+-(void)mainPushViewController:(UIViewController *)viewController animated:(BOOL)animate{
+    [self.navigationController pushViewController:viewController animated:animate];
+}
+
+#pragma mark - MainCatalogViewControllerDelegate
+
+-(void)mainCatalogViewController:(MainCatalogViewContrller *)maiCatalogViewController didSelectCatalogID:(int)catalogID{
+    
 }
 
 @end
