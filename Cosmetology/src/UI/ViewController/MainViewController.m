@@ -9,12 +9,15 @@
 #import "MainViewController.h"
 #import "MainCatalogViewContrller.h"
 #import "PasswordManagerViewController.h"
+#import "PasswordManager.h"
 
 @interface MainViewController ()<MainCatalogViewControllerDelegate>{
     MainCatalogViewContrller *_mainCatalogViewController;
-    UIPopoverController *_popoverController;
+    UIPopoverController *_popController;
     PasswordManagerViewController *_passwordManagerViewController;
     UIButton *_editBtn;
+    UIButton *_editPasswordBtn;
+    BOOL _bIsEdit;
 }
 
 
@@ -38,10 +41,19 @@
     [self.view addSubview:_mainCatalogViewController.view];
     
     
-    _editBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    _editBtn.frame = CGRectMake(1024 - 100, 0, 100, 50);
-    [_editBtn addTarget:self action:@selector(showEditView:) forControlEvents:UIControlEventTouchUpInside];
+    _editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_editBtn setTitle:@"编辑" forState:UIControlStateNormal];
+    _editBtn.backgroundColor = [UIColor redColor];
+    _editBtn.frame = CGRectMake(1024 - 200, 0, 100, 50);
+    [_editBtn addTarget:self action:@selector(editMainCatalog:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_editBtn];
+
+    _editPasswordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _editPasswordBtn.frame =  CGRectMake(1024 - 100, 0, 100, 50);
+    _editPasswordBtn.backgroundColor = [UIColor redColor];
+    [_editPasswordBtn setTitle:@"修改密码" forState:UIControlStateNormal];
+    [_editPasswordBtn addTarget:self action:@selector(showEditView:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_editPasswordBtn];
     
     _passwordManagerViewController = [[PasswordManagerViewController alloc] init];
 }
@@ -58,22 +70,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)editMainCatalog:(UIButton *)sender{
+    _bIsEdit = !_bIsEdit;
+    _mainCatalogViewController.bIsEdit = _bIsEdit;
+}
+
 -(void)showEditView:(UIButton *)sender{
-    if(![_popoverController isPopoverVisible])
+    if(![_popController isPopoverVisible])
     {
-        if (!_popoverController)
+        if (!_popController)
         {
-            _popoverController = [[UIPopoverController alloc] initWithContentViewController:_passwordManagerViewController];
+        _popController = [[UIPopoverController alloc] initWithContentViewController:_passwordManagerViewController];
         }
 
-        [_popoverController presentPopoverFromRect:_editBtn.frame
+        [_popController presentPopoverFromRect:_editBtn.frame
                                             inView:self.view
                           permittedArrowDirections:UIPopoverArrowDirectionAny
                                           animated:YES];
     }
     else
     {
-        [_popoverController dismissPopoverAnimated:YES];
+        [_popController dismissPopoverAnimated:YES];
     }
 }
 

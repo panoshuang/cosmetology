@@ -42,7 +42,6 @@
 -(id)init{
     self = [super init];
     if (self) {
-        _bIsEdit = YES;
         _catalogArray = [[NSMutableArray alloc] init];
         [self loadCatalog];
     }
@@ -84,7 +83,7 @@
     _gmGridView.sortingDelegate = self;
     _gmGridView.transformDelegate = self;
     _gmGridView.dataSource = self;
-    [_gmGridView setEditing:YES animated:NO];
+//    [_gmGridView setEditing:YES animated:NO];
     
     UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
     infoButton.frame = CGRectMake(self.view.bounds.size.width - 40,
@@ -111,6 +110,12 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+}
+
+-(void)setBIsEdit:(BOOL)bIsEdit {
+    _bIsEdit = bIsEdit;
+    [_gmGridView setEditing:_bIsEdit];
+    [_gmGridView reloadData];
 }
 
 
@@ -155,7 +160,7 @@
     MainProductInfo *productInfo = [_catalogArray objectAtIndex:index];
     MainCatalogItem *contentItem = (MainCatalogItem *)cell.contentView;
     contentItem.lbName.text = productInfo.name;
-    [contentItem setEdit:YES];
+    [contentItem setEdit:_bIsEdit];
     [contentItem.swEdit setSelected:productInfo.enable];
     
 //    [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];

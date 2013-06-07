@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6315709F0A558E7B3E50E89C /* MainProductInfoDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 63157A84748410F10B4F384A /* MainProductInfoDao.m */; };
+		6315799195ED1EC87FF97BAA /* PasswordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 63157AE4E065570A862D8872 /* PasswordManager.m */; };
 		63157C75C37C72D87A8C6F81 /* MainProductInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 631576D04EF85D4C815CE2FA /* MainProductInfo.m */; };
 		6D00EBA4174E55C00045BF49 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBA3174E55C00045BF49 /* UIKit.framework */; };
 		6D00EBA6174E55C00045BF49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBA5174E55C00045BF49 /* Foundation.framework */; };
@@ -67,9 +68,12 @@
 
 /* Begin PBXFileReference section */
 		631574420B21BDD5EC2686BB /* MainProductInfoDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainProductInfoDao.h; sourceTree = "<group>"; };
+		631575B78D6CD061E6786E85 /* Userdefault_define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Userdefault_define.h; sourceTree = "<group>"; };
+		631575BC2397329C7D9E0908 /* PasswordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordManager.h; sourceTree = "<group>"; };
 		631576D04EF85D4C815CE2FA /* MainProductInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainProductInfo.m; sourceTree = "<group>"; };
 		6315794AC857EEFB600F7AE3 /* MainProductInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainProductInfo.h; sourceTree = "<group>"; };
 		63157A84748410F10B4F384A /* MainProductInfoDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainProductInfoDao.m; sourceTree = "<group>"; };
+		63157AE4E065570A862D8872 /* PasswordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordManager.m; sourceTree = "<group>"; };
 		6D00EB9F174E55C00045BF49 /* Cosmetology.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cosmetology.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D00EBA3174E55C00045BF49 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6D00EBA5174E55C00045BF49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -321,6 +325,7 @@
 				6D917D991750A08200263F64 /* global_define.h */,
 				6D917D9A1750A09600263F64 /* log.h */,
 				6D917D981750A06D00263F64 /* Database_define.h */,
+				631575B78D6CD061E6786E85 /* Userdefault_define.h */,
 			);
 			path = Inc;
 			sourceTree = "<group>";
@@ -388,6 +393,8 @@
 		6D917D9617509F3000263F64 /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				63157AE4E065570A862D8872 /* PasswordManager.m */,
+				631575BC2397329C7D9E0908 /* PasswordManager.h */,
 			);
 			path = Business;
 			sourceTree = "<group>";
@@ -628,6 +635,7 @@
 				6DCF1D35175AF06500AB4423 /* PasswordManagerViewController.m in Sources */,
 				6DAD9BD8175CD55F00E33E81 /* MainCatalogItem.m in Sources */,
 				6DAC02D8175E166F00A3F015 /* MainCatalogGridViewCell.m in Sources */,
+				6315799195ED1EC87FF97BAA /* PasswordManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
