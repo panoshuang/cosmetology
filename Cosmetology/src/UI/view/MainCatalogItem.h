@@ -2,26 +2,17 @@
 //  MainCatalogItem.h
 //  Cosmetology
 //
-//  Created by mijie on 13-6-3.
+//  Created by mijie on 13-6-10.
 //  Copyright (c) 2013年 pengpai. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "ReflectionView.h"
 
-@protocol MainCatalogItemDelegate;
+@interface MainCatalogItem : ReflectionView{
+    UIImageView *_ivBg;
+}
 
-@interface MainCatalogItem : UIView
+@property (nonatomic,strong) UIImageView *ivBg;
 
-@property (nonatomic ,strong) UILabel  *lbName;
-@property (nonatomic ,strong) UISwitch *swEdit;
-@property (nonatomic )   BOOL      bIsEdit;
-@property (nonatomic ,weak) id<MainCatalogItemDelegate> delegate;
-
--(void)setEdit:(BOOL)isEdit;
-
-@end
-
-@protocol MainCatalogItemDelegate <NSObject>
-
--(void)mainCatalogItemDidSwitch:(MainCatalogItem *)catalogItem value:(BOOL)isOpen;
 @end

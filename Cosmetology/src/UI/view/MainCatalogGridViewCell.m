@@ -23,7 +23,7 @@
 
 #pragma mark - MainCatalogItemDelegate
 
--(void)mainCatalogItemDidSwitch:(MainCatalogItem *)catalogItem value:(BOOL)isOpen{
+-(void)mainCatalogItemDidSwitch:(SubCatalogItem *)catalogItem value:(BOOL)isOpen{
     if ([_delegate respondsToSelector:@selector(mainCatalogGridViewCellDidSwitch:value:)]) {
         [_delegate mainCatalogGridViewCellDidSwitch:self value:isOpen];
     }

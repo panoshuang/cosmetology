@@ -47,13 +47,20 @@
 		6D917DD91750A20100263F64 /* VoiceHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D917DD31750A20100263F64 /* VoiceHandle.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6D917DDB1750A24D00263F64 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D917DDA1750A24B00263F64 /* libsqlite3.dylib */; };
 		6D917DDD1750A28900263F64 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D917DDC1750A28900263F64 /* QuartzCore.framework */; };
+		6D99107C1765727B003C7C12 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D99107B1765727B003C7C12 /* iCarousel.m */; };
 		6DAC02D8175E166F00A3F015 /* MainCatalogGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC02D7175E166F00A3F015 /* MainCatalogGridViewCell.m */; };
 		6DAC02E3175E2CCC00A3F015 /* bg_main_catalog@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAC02E1175E2CCC00A3F015 /* bg_main_catalog@2x.png */; };
 		6DAC02E4175E2CCC00A3F015 /* bg_main_catalog_item.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAC02E2175E2CCC00A3F015 /* bg_main_catalog_item.png */; };
 		6DAC02E6175E2CF100A3F015 /* close_x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAC02E5175E2CF100A3F015 /* close_x.png */; };
-		6DAD9BD8175CD55F00E33E81 /* MainCatalogItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD9BD7175CD55F00E33E81 /* MainCatalogItem.m */; };
-		6DCF1D32175AEAF200AB4423 /* MainCatalogViewContrller.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF1D31175AEAF200AB4423 /* MainCatalogViewContrller.m */; };
+		6DAD0F5A1765C52600D37D08 /* ReflectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD8FA321765C0E000B2D81B /* ReflectionView.m */; };
+		6DAD0F5D1766082D00D37D08 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAD0F5C1766082D00D37D08 /* test.png */; };
+		6DAD0F62176626D100D37D08 /* MainCatalogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD0F61176626D100D37D08 /* MainCatalogManager.m */; };
+		6DAD0F66176628B700D37D08 /* AddMainCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD0F65176628B700D37D08 /* AddMainCatalogViewController.m */; };
+		6DAD9BD8175CD55F00E33E81 /* SubCatalogItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD9BD7175CD55F00E33E81 /* SubCatalogItem.m */; };
+		6DC1DEC91765C495009F43AD /* MainCatalogItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC1DEC81765C495009F43AD /* MainCatalogItem.m */; };
+		6DCF1D32175AEAF200AB4423 /* SubCatalogViewContrller.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF1D31175AEAF200AB4423 /* SubCatalogViewContrller.m */; };
 		6DCF1D35175AF06500AB4423 /* PasswordManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF1D34175AF06500AB4423 /* PasswordManagerViewController.m */; };
+		6DD8FA3017657EB200B2D81B /* page.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DD8FA2F17657EB200B2D81B /* page.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,18 +163,30 @@
 		6D917DD31750A20100263F64 /* VoiceHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceHandle.m; sourceTree = "<group>"; };
 		6D917DDA1750A24B00263F64 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		6D917DDC1750A28900263F64 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		6D99107A1765727B003C7C12 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		6D99107B1765727B003C7C12 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		6DAA5966175B068800140A80 /* MainDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainDelegate.h; sourceTree = "<group>"; };
 		6DAC02D6175E166F00A3F015 /* MainCatalogGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainCatalogGridViewCell.h; path = Cosmetology/src/UI/View/MainCatalogGridViewCell.h; sourceTree = SOURCE_ROOT; };
 		6DAC02D7175E166F00A3F015 /* MainCatalogGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainCatalogGridViewCell.m; path = Cosmetology/src/UI/View/MainCatalogGridViewCell.m; sourceTree = SOURCE_ROOT; };
 		6DAC02E1175E2CCC00A3F015 /* bg_main_catalog@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_main_catalog@2x.png"; sourceTree = "<group>"; };
 		6DAC02E2175E2CCC00A3F015 /* bg_main_catalog_item.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_main_catalog_item.png; sourceTree = "<group>"; };
 		6DAC02E5175E2CF100A3F015 /* close_x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_x.png; sourceTree = "<group>"; };
-		6DAD9BD6175CD55F00E33E81 /* MainCatalogItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainCatalogItem.h; path = Cosmetology/src/UI/View/MainCatalogItem.h; sourceTree = SOURCE_ROOT; };
-		6DAD9BD7175CD55F00E33E81 /* MainCatalogItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainCatalogItem.m; path = Cosmetology/src/UI/View/MainCatalogItem.m; sourceTree = SOURCE_ROOT; };
-		6DCF1D30175AEAF200AB4423 /* MainCatalogViewContrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainCatalogViewContrller.h; sourceTree = "<group>"; };
-		6DCF1D31175AEAF200AB4423 /* MainCatalogViewContrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainCatalogViewContrller.m; sourceTree = "<group>"; };
+		6DAD0F5C1766082D00D37D08 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
+		6DAD0F60176626D100D37D08 /* MainCatalogManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainCatalogManager.h; sourceTree = "<group>"; };
+		6DAD0F61176626D100D37D08 /* MainCatalogManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainCatalogManager.m; sourceTree = "<group>"; };
+		6DAD0F64176628B700D37D08 /* AddMainCatalogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMainCatalogViewController.h; sourceTree = "<group>"; };
+		6DAD0F65176628B700D37D08 /* AddMainCatalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMainCatalogViewController.m; sourceTree = "<group>"; };
+		6DAD9BD6175CD55F00E33E81 /* SubCatalogItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubCatalogItem.h; path = Cosmetology/src/UI/View/SubCatalogItem.h; sourceTree = SOURCE_ROOT; };
+		6DAD9BD7175CD55F00E33E81 /* SubCatalogItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubCatalogItem.m; path = Cosmetology/src/UI/View/SubCatalogItem.m; sourceTree = SOURCE_ROOT; };
+		6DC1DEC71765C494009F43AD /* MainCatalogItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainCatalogItem.h; path = Cosmetology/src/UI/View/MainCatalogItem.h; sourceTree = SOURCE_ROOT; };
+		6DC1DEC81765C495009F43AD /* MainCatalogItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainCatalogItem.m; path = Cosmetology/src/UI/View/MainCatalogItem.m; sourceTree = SOURCE_ROOT; };
+		6DCF1D30175AEAF200AB4423 /* SubCatalogViewContrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubCatalogViewContrller.h; sourceTree = "<group>"; };
+		6DCF1D31175AEAF200AB4423 /* SubCatalogViewContrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubCatalogViewContrller.m; sourceTree = "<group>"; };
 		6DCF1D33175AF06500AB4423 /* PasswordManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordManagerViewController.h; sourceTree = "<group>"; };
 		6DCF1D34175AF06500AB4423 /* PasswordManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordManagerViewController.m; sourceTree = "<group>"; };
+		6DD8FA2F17657EB200B2D81B /* page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page.png; sourceTree = "<group>"; };
+		6DD8FA311765C0E000B2D81B /* ReflectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReflectionView.h; sourceTree = "<group>"; };
+		6DD8FA321765C0E000B2D81B /* ReflectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReflectionView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,10 +293,12 @@
 			children = (
 				6D8D34E017550D9A003F9E9E /* MainViewController.h */,
 				6D8D34E117550D9A003F9E9E /* MainViewController.m */,
-				6DCF1D30175AEAF200AB4423 /* MainCatalogViewContrller.h */,
-				6DCF1D31175AEAF200AB4423 /* MainCatalogViewContrller.m */,
+				6DCF1D30175AEAF200AB4423 /* SubCatalogViewContrller.h */,
+				6DCF1D31175AEAF200AB4423 /* SubCatalogViewContrller.m */,
 				6DCF1D33175AF06500AB4423 /* PasswordManagerViewController.h */,
 				6DCF1D34175AF06500AB4423 /* PasswordManagerViewController.m */,
+				6DAD0F64176628B700D37D08 /* AddMainCatalogViewController.h */,
+				6DAD0F65176628B700D37D08 /* AddMainCatalogViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -333,6 +354,7 @@
 		6D917D4E17509D7E00263F64 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				6D9910791765727B003C7C12 /* ICarousel */,
 				6D604FFF175398CC000635F3 /* UIAlertView-Blocks */,
 				6D917DC11750A20100263F64 /* VoiceConvert */,
 				6D917DA71750A1CF00263F64 /* DbEngine */,
@@ -354,10 +376,14 @@
 		6D917D5017509D7E00263F64 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				6DAD9BD6175CD55F00E33E81 /* MainCatalogItem.h */,
-				6DAD9BD7175CD55F00E33E81 /* MainCatalogItem.m */,
+				6DD8FA311765C0E000B2D81B /* ReflectionView.h */,
+				6DD8FA321765C0E000B2D81B /* ReflectionView.m */,
+				6DAD9BD6175CD55F00E33E81 /* SubCatalogItem.h */,
+				6DAD9BD7175CD55F00E33E81 /* SubCatalogItem.m */,
 				6DAC02D6175E166F00A3F015 /* MainCatalogGridViewCell.h */,
 				6DAC02D7175E166F00A3F015 /* MainCatalogGridViewCell.m */,
+				6DC1DEC71765C494009F43AD /* MainCatalogItem.h */,
+				6DC1DEC81765C495009F43AD /* MainCatalogItem.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -395,6 +421,8 @@
 			children = (
 				63157AE4E065570A862D8872 /* PasswordManager.m */,
 				631575BC2397329C7D9E0908 /* PasswordManager.h */,
+				6DAD0F60176626D100D37D08 /* MainCatalogManager.h */,
+				6DAD0F61176626D100D37D08 /* MainCatalogManager.m */,
 			);
 			path = Business;
 			sourceTree = "<group>";
@@ -496,6 +524,15 @@
 			path = "opencore-amrwb";
 			sourceTree = "<group>";
 		};
+		6D9910791765727B003C7C12 /* ICarousel */ = {
+			isa = PBXGroup;
+			children = (
+				6D99107A1765727B003C7C12 /* iCarousel.h */,
+				6D99107B1765727B003C7C12 /* iCarousel.m */,
+			);
+			path = ICarousel;
+			sourceTree = "<group>";
+		};
 		6DAA5964175B062B00140A80 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -507,6 +544,8 @@
 		6DAC02DF175E2CCC00A3F015 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				6DAD0F5C1766082D00D37D08 /* test.png */,
+				6DD8FA2F17657EB200B2D81B /* page.png */,
 				6DAC02E5175E2CF100A3F015 /* close_x.png */,
 				6DAC02E0175E2CCC00A3F015 /* mainCatalog */,
 			);
@@ -596,6 +635,8 @@
 				6DAC02E3175E2CCC00A3F015 /* bg_main_catalog@2x.png in Resources */,
 				6DAC02E4175E2CCC00A3F015 /* bg_main_catalog_item.png in Resources */,
 				6DAC02E6175E2CF100A3F015 /* close_x.png in Resources */,
+				6DD8FA3017657EB200B2D81B /* page.png in Resources */,
+				6DAD0F5D1766082D00D37D08 /* test.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,6 +647,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DAD0F5A1765C52600D37D08 /* ReflectionView.m in Sources */,
 				6D60501517539BAA000635F3 /* FileUtil.m in Sources */,
 				6D00EBB0174E55C00045BF49 /* main.m in Sources */,
 				6D917D5217509D7E00263F64 /* BaseDatabase.m in Sources */,
@@ -631,11 +673,15 @@
 				6315709F0A558E7B3E50E89C /* MainProductInfoDao.m in Sources */,
 				6D8D34DB17550C29003F9E9E /* AppDelegate.m in Sources */,
 				6D8D34E217550D9A003F9E9E /* MainViewController.m in Sources */,
-				6DCF1D32175AEAF200AB4423 /* MainCatalogViewContrller.m in Sources */,
+				6DCF1D32175AEAF200AB4423 /* SubCatalogViewContrller.m in Sources */,
 				6DCF1D35175AF06500AB4423 /* PasswordManagerViewController.m in Sources */,
-				6DAD9BD8175CD55F00E33E81 /* MainCatalogItem.m in Sources */,
+				6DAD9BD8175CD55F00E33E81 /* SubCatalogItem.m in Sources */,
 				6DAC02D8175E166F00A3F015 /* MainCatalogGridViewCell.m in Sources */,
 				6315799195ED1EC87FF97BAA /* PasswordManager.m in Sources */,
+				6D99107C1765727B003C7C12 /* iCarousel.m in Sources */,
+				6DC1DEC91765C495009F43AD /* MainCatalogItem.m in Sources */,
+				6DAD0F62176626D100D37D08 /* MainCatalogManager.m in Sources */,
+				6DAD0F66176628B700D37D08 /* AddMainCatalogViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

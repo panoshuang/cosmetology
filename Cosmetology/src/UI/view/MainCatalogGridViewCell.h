@@ -7,7 +7,7 @@
 //
 
 #import "GMGridViewCell.h"
-#import "MainCatalogItem.h"
+#import "SubCatalogItem.h"
 
 @protocol MainCatalogGridViewCellDelegate;
 
