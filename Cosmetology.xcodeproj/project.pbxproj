@@ -57,6 +57,8 @@
 		6DAD0F62176626D100D37D08 /* MainCatalogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD0F61176626D100D37D08 /* MainCatalogManager.m */; };
 		6DAD0F66176628B700D37D08 /* AddMainCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD0F65176628B700D37D08 /* AddMainCatalogViewController.m */; };
 		6DAD9BD8175CD55F00E33E81 /* SubCatalogItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD9BD7175CD55F00E33E81 /* SubCatalogItem.m */; };
+		6DB09D8B1767171500B121E2 /* CommonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB09D8A1767171500B121E2 /* CommonUtil.m */; };
+		6DB09D8F17671BAC00B121E2 /* ResourceCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB09D8E17671BAC00B121E2 /* ResourceCache.m */; };
 		6DC1DEC91765C495009F43AD /* MainCatalogItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC1DEC81765C495009F43AD /* MainCatalogItem.m */; };
 		6DCF1D32175AEAF200AB4423 /* SubCatalogViewContrller.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF1D31175AEAF200AB4423 /* SubCatalogViewContrller.m */; };
 		6DCF1D35175AF06500AB4423 /* PasswordManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF1D34175AF06500AB4423 /* PasswordManagerViewController.m */; };
@@ -178,6 +180,10 @@
 		6DAD0F65176628B700D37D08 /* AddMainCatalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMainCatalogViewController.m; sourceTree = "<group>"; };
 		6DAD9BD6175CD55F00E33E81 /* SubCatalogItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubCatalogItem.h; path = Cosmetology/src/UI/View/SubCatalogItem.h; sourceTree = SOURCE_ROOT; };
 		6DAD9BD7175CD55F00E33E81 /* SubCatalogItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubCatalogItem.m; path = Cosmetology/src/UI/View/SubCatalogItem.m; sourceTree = SOURCE_ROOT; };
+		6DB09D891767171500B121E2 /* CommonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtil.h; sourceTree = "<group>"; };
+		6DB09D8A1767171500B121E2 /* CommonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtil.m; sourceTree = "<group>"; };
+		6DB09D8D17671BAC00B121E2 /* ResourceCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceCache.h; sourceTree = "<group>"; };
+		6DB09D8E17671BAC00B121E2 /* ResourceCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceCache.m; sourceTree = "<group>"; };
 		6DC1DEC71765C494009F43AD /* MainCatalogItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainCatalogItem.h; path = Cosmetology/src/UI/View/MainCatalogItem.h; sourceTree = SOURCE_ROOT; };
 		6DC1DEC81765C495009F43AD /* MainCatalogItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainCatalogItem.m; path = Cosmetology/src/UI/View/MainCatalogItem.m; sourceTree = SOURCE_ROOT; };
 		6DCF1D30175AEAF200AB4423 /* SubCatalogViewContrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubCatalogViewContrller.h; sourceTree = "<group>"; };
@@ -449,6 +455,10 @@
 				6D917DA01750A0FB00263F64 /* NDDate+Chinese.m */,
 				6D917D9D1750A0EE00263F64 /* FileUtil.h */,
 				6D917D9E1750A0EE00263F64 /* FileUtil.m */,
+				6DB09D891767171500B121E2 /* CommonUtil.h */,
+				6DB09D8A1767171500B121E2 /* CommonUtil.m */,
+				6DB09D8D17671BAC00B121E2 /* ResourceCache.h */,
+				6DB09D8E17671BAC00B121E2 /* ResourceCache.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -682,6 +692,8 @@
 				6DC1DEC91765C495009F43AD /* MainCatalogItem.m in Sources */,
 				6DAD0F62176626D100D37D08 /* MainCatalogManager.m in Sources */,
 				6DAD0F66176628B700D37D08 /* AddMainCatalogViewController.m in Sources */,
+				6DB09D8B1767171500B121E2 /* CommonUtil.m in Sources */,
+				6DB09D8F17671BAC00B121E2 /* ResourceCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

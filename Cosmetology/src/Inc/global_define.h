@@ -71,178 +71,7 @@
 
 #define kBottomBarHeight                      46    //评论回复页面等的底部工具栏高度
 
-#define NOTIFY_CENTER_CELL_HEAD_VIEW_HEIGHT 33
-#define NOTIFY_CENTER_CELL_HEAD_LABEL_HEIGHT 17
-#define NOTIFY_CENTER_CELL_HEAD_LABEL_FONT [UIFont boldSystemFontOfSize:16]
-#define NOTIFY_CENTER_CELL_MID_LABEL_FONT  [UIFont systemFontOfSize:14]
-#define NOTIFY_CENTER_CELL_FOOTER_LABEL_FONT  [UIFont systemFontOfSize:14]
-#define NOTIFY_CENTER_CELL_MAIN_VIEW_BORDER_COLOR [UIColor colorWithHexColor:0xcccccc].CGColor
-#define NOTIFY_CENTER_CELL_SEPARATE_BORDER_COLOR  [UIColor colorWithHexColor:0xcdcdcd].CGColor
-#define NOTIFY_CENTER_CELL_TIME_LABEL_HEIGHT 10
-#define NOTIFY_CENTER_CELL_TIME_LABEL_FONT [UIFont systemFontOfSize:10]
-#define NOTIFY_CENTER_CELL_MAX_TITLE_CONTENT_WIDTH 244
-#define NOTIFY_CENTER_CELL_MAX_FOOTER_CONTENT_WIDTH  270
-#define NOTIFY_CENTER_CELL_NICKNAME_VIEW_HEIGHT 15
-#define NOTIFY_CENTER_CELL_NICKNAME_LABEL_HEIGHT [UIFont boldSystemFontForSize:14]
 
-
-
-
-
-
-
-
-//灰色的标题栏
-#define GRAY_TITLE_COLOR \
-[UIColor colorWithRed:0xbf/ 255.0 green:0xbf/ 255.0 blue:0xbf/255.0 alpha:1]
-
-//灰色的提示语
-#define GRAY_TIP_COLOR \
-[UIColor colorWithRed:0x7d/255.0 green:0x7d/255.0 blue:0x7d/255.0 alpha:1]
-
-//黑色线条颜色
-#define BLACK_LINE_COLOR \
-[UIColor colorWithRed:0x14/255.0 green:0x14/255.0 blue:0x14/255.0 alpha:1]
-
-//通用的文字颜色(橙色)
-#define ORANGE_TEXT_COLOR \
-[UIColor colorWithRed:234/255.0 green:119/255.0 blue:0 alpha:1]
-
-//通用的文字颜色(红褐色)
-#define RED_BROWN_TEXT_COLOR \
-[UIColor colorWithRed:.148 green:.047 blue:0 alpha:1]
-
-//组合框的文字颜色(红色)
-#define RED_TEXT_COLOR \
-[UIColor colorWithRed:.359 green:.176 blue:.09 alpha:1]
-
-//非法内容的的颜色
-#define ILLEGAL_CONTENT_TEXT_COLOR \
-[UIColor grayColor]
-
-//手机联系人列表cell的电话号码的文字颜色(蓝色)
-#define BLUE_PHONE_CELL_TEXT_COLOR \
-[UIColor colorWithRed:4/255.0 green:57/255.0 blue:122/255.0 alpha:1]
-
-//拨打电话视图中具体内容的信息的文字颜色(蓝色)
-#define BLUE_PHONE_CALL_TEXT_COLOR \
-[UIColor colorWithRed:67/255.0 green:95/255.0 blue:129/255.0 alpha:1]
-
-//拨打电话视图中快速拨打内容的信息的文字颜色(蓝色)
-#define BLUE_QUICK_PHONE_CALL_TEXT_COLOR \
-[UIColor colorWithRed:34/255.0 green:147/255.0 blue:218/255.0 alpha:1]
-
-//通用的粗体
-#define COMMON_BOLD_FONT @"Helvetica-Bold"
-
-#define TREE_NODE_INDENT            15  //节点默认的缩进大小
-
-//最小缩放比例
-#define MinimumZoomScale 0.3
-
-//最大缩放比例
-#define MaximumZoomScale 9.0
-
-
-//无效的无符号值
-#define NO_NEED_INT_VALUE 999999
-
-//对视图中元素的尺寸的定义
-#define TITLE_BAR_HEIGHT            28
-
-
-#define TOP_TAB_ITEM_HEIGHT         26
-#define TOOL_BAR_HEIGHT             36
-#define CELL_SETTING_ITEM_HEIGHT    44
-#define CELL_BTN_HEIGHT             35
-#define CELL_ORG_TITLE_HEIGHT       34
-#define CELL_ORG_TITLE_HEAD_SIZE    26
-#define CELL_TITLE_HEIGHT           34
-#define CELL_TITLE_FRIEND_HEIGHT    30
-#define CELL_ARROW_SIZE             30
-#define CELL_BTN_SIZE               25
-#define CHECKBOX_SIZE               25
-#define INFO_ROW_HEIGHT             20
-
-#define IMAGE_STATUS_SIZE           15  //状态的图标大小
-
-#define TAB_SELECT_LINE_HEIGHT      3   //Tab被选中时候选择线的高度
-#define UITEXTFIELD_HEIGHT          31  //单行输入框的高度
-#define FLOWVIEW_HEIGHT             100 //流量面板的高度
-
-#define CHAT_PIC_MAX_WIDTH          90 //聊天界面图片最大的宽度
-#define CHAT_PIC_MAX_HEIGHT         60 //聊天界面图片最大的宽度
-
-#define DEFAULT_INPUT_LIMIT         50  //默认输入框允许的最大字符数量
-#define SIGN_INPUT_LIMIT            70 //签名输入框允许的最大字符数量
-#define NOTE_INPUT_LIMIT            40  //备注输入框允许的最大字符数量
-#define SMS_INPUT_LIMIT             300 //短信输入框允许的最大字符数量
-#define TAG_INPUT_LIMIT             10  //分组命名输入框允许的最大字符数量
-
-
-#define HTTP_TIMEOUT                60  //HTTP连接的超时时间
-#define HEART_TIME_INTERVAL         30  //心跳包的时间间隔
-#define ACK_TIME_INTERVAL           0.8 //未ack消息定时器的时间间隔
-#define SHAKE_TIME_INTERVAL         0.8 //图片闪动的时间间隔
-#define RENEW_SID_TIME_INTERVAL     60*3//sid刷新的时间
-#define RECENT_LIST_SHOW_NUM        15  //最近联系列表的记录数量
-#define CHAT_HISTORY_PAGE_NUM       15  //聊天记录每页的记录数
-#define COOOKIE_SESSION_TIME        60*60*48    //cookie会话的有效时间
-
-//其他宏定义
-#define RES_SYS_DB_NAME        @"sys.db"            //存储系统信息的原始库文件名
-#define RES_USER_DB_NAME       @"user.db"           //存储用户信息的原始库文件名
-#define RES_SMILEY_NAME        @"Smiley.plist"      //表情的对照表
-#define SAVE_PASSWORD          @"pnd91und91und91u"  //保存密码后,在输入框显示的串
-
-//HTTP ACTION
-#define HTTP_METHOD_GET         @"GET"
-#define HTTP_METHOD_POST        @"POST"
-#define HTTP_METHOD_PUT         @"PUT"
-#define HTTP_METHOD_DELETE      @"DELETE"
-
-//HTTP or HTTPS PreHeader
-#define HEADER_HTTPS            @"http://"
-#define HEADER_HTTP             @"http://"
-
-//服务器地址
-
-
-//#define SERVER_CLIENT_HTTP_URL       @"121.14.195.83:8282"
-//#define SERVER__CLIENT_SOCKET_URL    @"121.14.195.83"
-//#define SERVER_CLIENT_SOCKET_PORT    9997
-//#define SERVER_CLIENT_HTTP_RESOURCE_URL @"http://121.14.195.83:8282/res/"
-
-//外网
-//#define SERVER_CLIENT_HTTP_URL       @"121.14.195.83:8282"
-//#define SERVER__CLIENT_SOCKET_URL    @"121.14.195.83"
-//#define SERVER_CLIENT_SOCKET_PORT    9997
-
-//外网映射   http://api.51homi.com:8282
-//#define SERVER_CLIENT_HTTP_URL       @"api.51homi.com:8282"
-//#define SERVER__CLIENT_SOCKET_URL    @"ns.51homi.com"
-//#define SERVER_CLIENT_SOCKET_PORT    9997
-
-//内网
-//#define SERVER_CLIENT_HTTP_URL       @"192.168.0.166:8282"
-//#define SERVER__CLIENT_SOCKET_URL    @"192.168.0.166"
-//#define SERVER_CLIENT_SOCKET_PORT    9997
-
-//内网映射
-#define SERVER_CLIENT_HTTP_URL       @"mijietest.f3322.org:8282"
-#define SERVER__CLIENT_SOCKET_URL    @"mijietest.f3322.org"
-#define SERVER_CLIENT_SOCKET_PORT    9997
-
-//顺德服务器
-//#define SERVER_CLIENT_HTTP_URL       @"113.105.247.221:8282"
-//#define SERVER__CLIENT_SOCKET_URL    @"113.105.247.221"
-//#define SERVER_CLIENT_SOCKET_PORT    9997
-
-
-//本地
-//#define SERVER_CLIENT_HTTP_URL       @"192.168.0.130:8080"
-//#define SERVER__CLIENT_SOCKET_URL    @"192.168.0.130"
-//#define SERVER_CLIENT_SOCKET_PORT    9997
 
 //系统客户id
 #define SYSTEM_CUSTOMER_SERVER_ID   @"10000"
@@ -259,34 +88,6 @@
 #define LIMIT_USER_GRID    30
 #define DEFAULT_ALL_LIMIT  200
 #define LIMIT_5            5 //5条分页
-
-#define TIME_BEGIN_YEAR    2012//时间轴的起始年份
-#define TIME_GEGIN_MONTH   7   //时间轴的起始月份
-
-#define NETWORK_REQUEST_TIMEOUT     20
-#define MAX_SHARE_CONTENT_LENGTH 140
-
-//隐私申请的module定义
-#define PRIVACY_MODULE_LEAVE_MSG   @"leaveMsg"  //留言权限
-#define PRIVACY_MODULE_MOOD_LOCUS_VISIBLE  @"moodLocusVisible"  //心情历史权限
-#define PRIVACY_MODULE_ALBUM_VISIBLE       @"albumVisible" //相册权限
-
-#define BIRTHDY_SYSTEM_FORMAT              @"yyyy-MM-dd" //生日的时间格式
-
-#define BLOCK_TIPS_STRING                 @"此条内容违规已被删除，有疑问请联系客服。"
-
-#define DELETE_TIPS_STRING                @"此条内容已被删除."
-#define MOOD_PROTECT_TIPS_STR              @"我的心情事迹做了隐私保护，看不到啦"
-#define MOOD_NO_DESCRIPTION_TIPS_STR       @"HOHO,没描述,看不到心情境遇类似度"
-
-
-#define HTTP_UPLOAD_FILE_INFO_DIC_KEY     @"httpUploadFileInfoDicKey"   //用于在传递上传文件到网络核心层时候的字典key
-#define HTTP_UPLOAD_FILE_INFO_ARRAY_DIC_KEY     @"httpUploadFileInfoArrayDicKey"   //用于在传递上传文件到网络核心层时候的字典key
-
-#define TOPIC_MATCH_TOPIC_CATALOG_ID   0 //智能匹配话题类别id
-#define TOPIC_MATCH_TOPIC_CATALOG_NAME @"你可能遇到的问题" //智能匹配话题类别的名称
-
-
 
 #define HTTP_UPDA
 
@@ -406,8 +207,7 @@ pData = NULL;\
 #define ALERT_MSG(title, msg, btnmsg)\
 UIAlertView *alertDialog;\
 alertDialog = [[UIAlertView alloc] initWithTitle: title message:msg delegate: nil cancelButtonTitle: btnmsg otherButtonTitles: nil];\
-[alertDialog show];\
-[alertDialog release];
+[alertDialog show];
 
 #define ALERT_MSG_NETWORK_Error  ALERT_MSG(@"网络连接失败",nil,@"确定")
 

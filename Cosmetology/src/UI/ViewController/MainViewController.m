@@ -14,6 +14,7 @@
 #import "MainProductInfo.h"
 #import "MainCatalogItem.h"
 #import "GMGridView.h"
+#import "AddMainCatalogViewController.h"
 
 @interface MainViewController ()<SubCatalogViewControllerDelegate,iCarouselDataSource, iCarouselDelegate>{
     SubCatalogViewContrller *_subCatalogViewController;
@@ -118,10 +119,16 @@
 
 -(void)addCatalog{
     DDetailLog(@"");
+    AddMainCatalogViewController *addMainCatalogViewController = [[AddMainCatalogViewController alloc] init];
+    [self.navigationController pushViewController:addMainCatalogViewController animated:YES];
+    
 }
 
 -(void)deleteCurCatalog{
     DDetailLog(@"");
+    int index = [_catalogCarousel currentItemIndex];
+    [_catalogArray removeObjectAtIndex:index];
+    [_catalogCarousel removeItemAtIndex:index animated:YES];
 }
 
 -(void)showEditView:(UIButton *)sender{
