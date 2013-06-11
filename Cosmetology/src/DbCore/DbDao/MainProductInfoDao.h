@@ -17,9 +17,12 @@
 
 - (BOOL)deleteMainProductForID:(int)productID;
 
+-(BOOL)updateMainProduct:(MainProductInfo *)mainProductInfo;
+
 - (NSArray *)allEnableMainProductInfo;
 
 - (NSArray *)allMainProductInfo;
 
+-(MainProductInfo *)experienceCatalog;
 
 @end

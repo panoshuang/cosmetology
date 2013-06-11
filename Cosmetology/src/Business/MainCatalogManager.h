@@ -13,9 +13,14 @@
 
 +(MainCatalogManager *)instance;
 
+//初始化超值体验项目
+-(BOOL)initExperienceCatalog;
+
 -(BOOL)addMainCatalog:(MainProductInfo *)mainProductInfo;
 
 -(BOOL)deleteMainCatalogForId:(int)productId;
+
+-(BOOL)updateMainCatalog:(MainProductInfo *)mainProductInfo;
 
 -(NSArray *)allMainProductInfo;
 

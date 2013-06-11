@@ -46,6 +46,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BaseDatabase )
             *rollback = isError;
             return;
         }
+        
+        
 
     }];
     return isError;
@@ -56,7 +58,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BaseDatabase )
             "("
             MAIN_PRODUCT_INFO_TABLE_PRODUCT_ID" INTEGER PRIMARY KEY AUTOINCREMENT,"
             MAIN_PRODUCT_INFO_TABLE_NAME" TEXT NOT NULL,"
-            MAIN_PRODUCT_INFO_ENABLE" TEXT "
+            MAIN_PRODUCT_INFO_ENABLE" TEXT,"
+            MAIN_PRODUCT_INFO_INDEX" INTEGER,"
+            MAIN_PRODUCT_INFO_BG_IMAGE_FILE" TEXT,"
+            MAIN_PRODUCT_INFO_PREVIEW_IMAGE_FILE" TEXT,"
+            MAIN_PRODUCT_INFO_SUB_ITEM_BTN_IMAGE_NAME" TEXT"
             ")"
     ];
     DBErrorCheckLog(db);
