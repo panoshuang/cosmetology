@@ -138,13 +138,26 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/SubCatalogViewContrller.m"
-         timestampString = "392569274.110514"
+         timestampString = "392635331.914483"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "120"
-         endingLineNumber = "120"
+         startingLineNumber = "153"
+         endingLineNumber = "153"
          landmarkName = "-viewDidAppear:"
          landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cosmetology/src/UI/ViewController/SubCatalogViewContrller.m"
+         timestampString = "392632309.328429"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "110"
+         endingLineNumber = "110"
+         landmarkName = "@implementation SubCatalogViewContrller"
+         landmarkType = "3">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

@@ -173,6 +173,7 @@ UIAlertView *alertDialog;\
 alertDialog = [[UIAlertView alloc] initWithTitle: title message:msg delegate: nil cancelButtonTitle: btnmsg otherButtonTitles: nil];\
 [alertDialog show];
 
+
 #define ALERT_MSG_NETWORK_Error  ALERT_MSG(@"网络连接失败",nil,@"确定")
 
 //用于设置导航view的大小

@@ -12,10 +12,11 @@
 #import "GMGridView.h"
 #import "MainCatalogGridViewCell.h"
 #import "SubCatalogItem.h"
+#import "global_define.h"
 
-#define ITEM_SPACE 15
+#define ITEM_SPACE 30
 
-@interface SubCatalogViewContrller () <GMGridViewDataSource, GMGridViewSortingDelegate, GMGridViewTransformationDelegate, GMGridViewActionDelegate,MainCatalogGridViewCellDelegate>
+@interface SubCatalogViewContrller () <GMGridViewDataSource, GMGridViewSortingDelegate, GMGridViewTransformationDelegate, GMGridViewActionDelegate,MainCatalogGridViewCellDelegate,UIAlertViewDelegate,UITextFieldDelegate>
 {
     UINavigationController *_optionsNav;
     UIPopoverController *_optionsPopOver;
@@ -71,7 +72,9 @@
     
     NSInteger spacing = ITEM_SPACE;
     
-    GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:self.view.bounds];
+    CGRect gridViewFrame = CGRectMake(118, 218, 300, 461);
+    
+    GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:gridViewFrame];
     gmGridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     gmGridView.backgroundColor = [UIColor clearColor];
     
@@ -96,7 +99,37 @@
     infoButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
     [infoButton addTarget:self action:@selector(presentInfo) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:infoButton];
+    
+    UIButton *updatePassword = [UIButton buttonWithType:UIButtonTypeCustom];
+    updatePassword.frame = CGRectMake(self.view.frame.size.width - 40, 0, 80, 30);
+    updatePassword.backgroundColor = [UIColor blueColor];
+    [updatePassword setTitle:@"输入密码" forState:UIControlStateNormal];
+    [updatePassword addTarget:self action:@selector(updatePassword) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:updatePassword];
 }
+
+-(void)updatePassword
+{
+    UIAlertView *alert1 = [[UIAlertView alloc]
+              initWithTitle:NSLocalizedString(@"输入密码", nil)
+              message:NSLocalizedString(@"\n", nil)
+              delegate:self
+              cancelButtonTitle:@"取消"
+              otherButtonTitles:@"确认",
+              nil];
+    alert1.delegate = self;
+    UITextField *txt1 = [[UITextField alloc]initWithFrame:CGRectMake(12, 40, 260, 40)];
+    txt1.font = [UIFont boldSystemFontOfSize:18];
+    txt1.layer.cornerRadius = 6;
+    txt1.layer.masksToBounds = YES;
+    txt1.secureTextEntry = YES;
+    txt1.delegate = self;
+    txt1.backgroundColor = [UIColor whiteColor];
+    [alert1 addSubview:txt1];
+    [alert1 show];
+}
+
+
 
 - (void)viewDidLoad
 {
@@ -435,5 +468,15 @@
     [_gmGridView reloadData];
 }
 
+
+///////////////////////////////////////////////
+#pragma mark --
+#pragma mark UIAlertViewDelegate
+//////////////////////////////////////////////
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex; 
+{
+    //TODO:
+}
 
 @end
