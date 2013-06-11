@@ -89,17 +89,6 @@
 #define DEFAULT_ALL_LIMIT  200
 #define LIMIT_5            5 //5条分页
 
-#define HTTP_UPDA
-
-//ho米的appstore 的id
-#define HOMI_APP_STORE_ID 578167281
-
-//appStore 链接前缀
-#define APP_URL_PREFIX @"itms-apps://"
-
-#define TOPIC_OPTION_STRING_SEPARATOR_COMPONENT  @"|,|"  //话题多个答案之间的分隔符
-
-
 
 //头像的尺寸big,middle,small,tiny
 #define IMAGE_SIZE_BIG          @"big"
@@ -149,40 +138,15 @@
 #define KEY_BUS_CMD  @"cmd"
 #define KEY_BUS_NOTIFY  @"notify"
 
-//用于统计的事件名
-#define EVENT_LOGIN  @"event_login"
-#define EVENT_CHANGEROLE  @"event_changerole"
-#define EVENT_RELOGIN  @"event_relogin"
-#define EVENT_SENDSMS  @"event_sendsms"
-#define EVENT_SEARCH_NET_FRIEND  @"event_search_net_friend"
-#define EVENT_SEARCH_LOCAL_FRIEND  @"event_search_local_friend"
-#define EVENT_SEND_PERSON_MSG  @"event_sendmsg_person"
-#define EVENT_SEND_GROUP_MSG  @"event_sendmsg_group"
+#pragma mark - 默认值定义
+#define EXPERIENCE_CATALOG_INDEX  NSIntegerMax
 
 
+#pragma mark - 中文字符串定义
 
-#define EDIT_INFO_FAX_TAG       500 //修改传真信息的Tag
-#define EDIT_INFO_MAIL_TAG      501 //修改邮箱信息的Tag
-#define EDIT_INFO_ADDR_TAG      502 //修改地址信息的Tag
-#define EDIT_INFO_CODE_TAG      503 //修改邮编信息的Tag
-#define EDIT_INFO_SIGN_TAG      504 //修改签名信息的Tag
-#define EDIT_INFO_SEX_TAG       505 //修改性别信息的Tag
-#define EDIT_INFO_BLOOD_TAG     506 //修改血型信息的Tag
-#define EDIT_INFO_BIR_TAG       507 //修改生日信息的Tag
-#define EDIT_INFO_SITE_TAG      508 //修改主页信息的Tag
-#define EDIT_INFO_DESC_TAG      509 //修改说明信息的Tag
-#define EDIT_INFO_PHONE_TAG     510 //修改常用电话信息的Tag
+#define EXPERIENCE_CATALOG_NAME @"超值体验"
 
-#define CID_PERSON_GROUP 1      //个人群的群分类ID
-#define CID_DEPT_GROUP 2       //部门群的群分类ID
-#define CID_OTHER_GROUP 3       //其他群的群分类ID
 
-#define GTYPE_PERSON_GROUP 2 //个人的群
-#define GTYPE_DEPT_GROUP 10  //部门群的类型编号
-#define GTYPE_CLASS_GROUP 11  //班级群
-#define GTYPE_CLASS_MASTER_GROUP 12  //班级老师群
-#define GTYPE_CLASS_STUDENT_GROUP 13  //班级学生群
-#define GTYPE_CLASS_GUARDIAN_GROUP 14  //班级家长群
 
 /*
  *以下是一些功能性宏定义

@@ -12,7 +12,10 @@
 #define MAIN_PRODUCT_INFO_TABLE_PRODUCT_ID       @"productID"
 #define MAIN_PRODUCT_INFO_TABLE_NAME             @"name"
 #define MAIN_PRODUCT_INFO_ENABLE                 @"enable"
-
+#define MAIN_PRODUCT_INFO_INDEX                  @"sortIndex"
+#define MAIN_PRODUCT_INFO_BG_IMAGE_FILE          @"bgImageFile"
+#define MAIN_PRODUCT_INFO_PREVIEW_IMAGE_FILE     @"previewImageFile"
+#define MAIN_PRODUCT_INFO_SUB_ITEM_BTN_IMAGE_NAME @"subItemBtnImageName"
 
 
 

@@ -10,11 +10,17 @@
 
 #import "MainViewController.h"
 #import "PasswordManager.h"
+#import "BaseDatabase.h"
+#import "MainCatalogManager.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //初始化数据库
+    [BaseDatabase instance];
+    //初始化超值体验项目
+    [[MainCatalogManager instance] initExperienceCatalog];
     [PasswordManager instance];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.

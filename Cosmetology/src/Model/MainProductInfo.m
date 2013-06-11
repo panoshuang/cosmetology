@@ -14,6 +14,21 @@
 @synthesize productID;
 @synthesize name;
 @synthesize enable;
+@synthesize index;
+@synthesize bgImageFile;
+@synthesize previewImageFile;
+@synthesize subItemBtnImageName;
+
+-(id)init{
+    self = [super init];
+    if (self) {
+        name = @"";
+        bgImageFile = @"";
+        previewImageFile = @"";
+        subItemBtnImageName = @"";
+    }
+    return self;
+}
 
 
 @end
