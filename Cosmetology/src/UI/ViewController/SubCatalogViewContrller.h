@@ -10,12 +10,16 @@
 
 @class GMGridView;
 @protocol SubCatalogViewControllerDelegate;
+@protocol MainDelegate;
+
 
 @interface SubCatalogViewContrller : UIViewController{
     __weak id<SubCatalogViewControllerDelegate> _delegate;
+    __weak id<MainDelegate> _mainDelegate;
 }
 
 @property (nonatomic,weak) id<SubCatalogViewControllerDelegate> delegate;
+@property (nonatomic,weak) id<MainDelegate> mainDelegate;
 @property (nonatomic) BOOL bIsEdit;
 @property (nonatomic,strong) UIImageView *ivBg;
 @property (nonatomic,strong) GMGridView *gmGridView;

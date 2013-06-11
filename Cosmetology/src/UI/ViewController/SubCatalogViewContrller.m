@@ -13,6 +13,7 @@
 #import "MainCatalogGridViewCell.h"
 #import "SubCatalogItem.h"
 #import "global_define.h"
+#import "AddSubCatalogViewController.h"
 
 #define ITEM_SPACE 30
 
@@ -106,6 +107,20 @@
     [updatePassword setTitle:@"输入密码" forState:UIControlStateNormal];
     [updatePassword addTarget:self action:@selector(updatePassword) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:updatePassword];
+    
+    UIButton *addSubcatalogItem = [UIButton buttonWithType:UIButtonTypeCustom];
+    addSubcatalogItem.frame = CGRectMake(self.view.frame.size.width - 160, 0, 40, 30);
+    addSubcatalogItem.backgroundColor = [UIColor blueColor];
+    [addSubcatalogItem setTitle:@"添加" forState:UIControlStateNormal];
+    [addSubcatalogItem addTarget:self action:@selector(addSubcatalogItem) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:addSubcatalogItem];
+}
+
+-(void)addSubcatalogItem
+{
+    DDetailLog(@"");
+    AddSubCatalogViewController *addSubcatalogViewController = [[AddSubCatalogViewController alloc]init];
+    [_mainDelegate mainPushViewController:addSubcatalogViewController animated:YES];
 }
 
 -(void)updatePassword

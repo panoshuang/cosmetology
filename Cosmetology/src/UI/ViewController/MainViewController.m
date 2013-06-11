@@ -291,6 +291,7 @@
     _subCatalogViewController = [[SubCatalogViewContrller alloc] init];
     _subCatalogViewController.view.frame = self.view.bounds;
     _subCatalogViewController.delegate = self;
+    _subCatalogViewController.mainDelegate = self;
     [self.view addSubview:_subCatalogViewController.view];
     _subCatalogViewController.view.alpha = 0;
     _subCatalogViewController.view.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
