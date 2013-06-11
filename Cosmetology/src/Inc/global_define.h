@@ -207,11 +207,8 @@ pData = NULL;\
 #define ALERT_MSG(title, msg, btnmsg)\
 UIAlertView *alertDialog;\
 alertDialog = [[UIAlertView alloc] initWithTitle: title message:msg delegate: nil cancelButtonTitle: btnmsg otherButtonTitles: nil];\
-<<<<<<< HEAD
-[alertDialog show];\
-=======
 [alertDialog show];
->>>>>>> af856c2dc2f45e2ed76dfdcd364d56e1a29e0d2d
+
 
 #define ALERT_MSG_NETWORK_Error  ALERT_MSG(@"网络连接失败",nil,@"确定")
 
