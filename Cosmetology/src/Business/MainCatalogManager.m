@@ -46,4 +46,21 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MainCatalogManager)
     return [[MainProductInfoDao instance] allMainProductInfo];
 }
 
+-(NSArray *)allEnableProductInfo{
+    return [[MainProductInfoDao instance] allEnableMainProductInfo];
+}
+
+-(MainProductInfo *)lastMainProductInfo{
+    return [[MainProductInfoDao instance] lastCreateCatalog];
+}
+
+//为新增类别获取合适的index排序索引
+-(int)indexForNewCatalog{
+    //获取最后插入的一条类别
+    MainProductInfo *productInfo = [[MainProductInfoDao instance] lastCreateCatalog];
+    int newIndex = productInfo.index + 1;
+    return newIndex;
+    
+}
+
 @end

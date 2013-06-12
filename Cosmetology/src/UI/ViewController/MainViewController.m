@@ -15,8 +15,9 @@
 #import "MainCatalogItem.h"
 #import "GMGridView.h"
 #import "AddMainCatalogViewController.h"
+#import "MainCatalogManager.h"
 
-@interface MainViewController ()<SubCatalogViewControllerDelegate,iCarouselDataSource, iCarouselDelegate>{
+@interface MainViewController ()<SubCatalogViewControllerDelegate,iCarouselDataSource, iCarouselDelegate,AddMainCatalogViewControllerDelegate>{
     SubCatalogViewContrller *_subCatalogViewController;
     UIPopoverController *_popController;
     PasswordManagerViewController *_passwordManagerViewController;
@@ -40,12 +41,7 @@
     if (self) {
         _bIsWrap = YES;
         _catalogArray = [[NSMutableArray alloc] initWithCapacity:10];
-        for (int i = 0; i < 10; i++) {
-            MainProductInfo *productInfo = [[MainProductInfo alloc] init];
-            productInfo.name = [NSString stringWithFormat:@"productInfo%i",i];
-            productInfo.enable = YES;
-            [_catalogArray addObject:productInfo];
-        }
+        [_catalogArray addObjectsFromArray:[[MainCatalogManager instance] allEnableProductInfo]];
     }
     return self;
 }
@@ -120,6 +116,7 @@
 -(void)addCatalog{
     DDetailLog(@"");
     AddMainCatalogViewController *addMainCatalogViewController = [[AddMainCatalogViewController alloc] init];
+    addMainCatalogViewController.delegate = self;
     [self.navigationController pushViewController:addMainCatalogViewController animated:YES];
     
 }
@@ -300,6 +297,19 @@
                      }completion:^(BOOL complete){
                           
                      }];
+}
+
+#pragma mark - AddMainCatalogViewControllerDelegate
+-(void)addMainCatalogViewController:(AddMainCatalogViewController *)addMainCatalogViewController didSaveCatalog:(MainProductInfo *)mainProductInfo{
+    int count = _catalogArray.count;
+    int index = 0;
+    if (count <= 1) {
+        index = 0;
+    }else{
+        index = count - 2;
+    }
+    [_catalogArray insertObject:mainProductInfo atIndex:index];
+    [_catalogCarousel insertItemAtIndex:index animated:YES];
 }
 
 @end

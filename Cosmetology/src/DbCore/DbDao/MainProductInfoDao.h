@@ -25,4 +25,6 @@
 
 -(MainProductInfo *)experienceCatalog;
 
+-(MainProductInfo *)lastCreateCatalog;
+
 @end

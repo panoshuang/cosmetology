@@ -30,7 +30,61 @@
     BOOL result5  = [FileUtil createPathWithRelativeToDocFilePath:AUDIO_CACHE_PATH];
     //创建视频缓存目录
     BOOL result6  = [FileUtil createPathWithRelativeToDocFilePath:VEDIO_CACHE_PATH];
-    return result0 && result1 && result2 && result3 && result4 && result5 && result6;
+    //创建价格缓存目录
+    BOOL result7 = [FileUtil createPathWithRelativeToDocFilePath:IMAGE_CACHE_PATH_PRICE];
+    return result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7;
 }
+
++(NSString*)resouceCachePathForCachePath:(EnumResourceCacheType)cacheType{
+    NSString *path = [FileUtil getDocumentDirectory];
+    switch (cacheType) {
+        case kResourceCacheTypeBackgroundImage:
+            path = [path stringByAppendingPathComponent:IMAGE_CACHE_PATH_BACKGROUND];
+            break;
+        case kResourceCacheTypeMainCatalogPreviewImage:
+            path = [path stringByAppendingPathComponent:IMAGE_CACHE_PATH_MAIN_CATALOG];
+            break;
+        case kResourceCacheTypeAdImage:
+            path = [path stringByAppendingPathComponent:IMAGE_CACHE_PATH_AD];
+            break;
+        case kResourceCacheTypePriceImage:
+            path = [path stringByAppendingPathComponent:IMAGE_CACHE_PATH_PRICE];
+            break;
+        case kResourceCacheTypeUserAutograph:
+            path = [path stringByAppendingPathComponent:IMAGE_CACHE_PATH_MSG_USER_AUTOGRAPH];
+            break;
+        case kResourceCacheTypeUserPortrait:
+            path = [path stringByAppendingPathComponent:IMAGE_CACHE_PATH_MSG_USER_PORTRAIT];
+            break;
+        case kResourceCacheTypeAudio:
+            path = [path stringByAppendingPathComponent:AUDIO_CACHE_PATH];
+            break;
+        case kResourceCacheTypeVedio:
+            path = [path stringByAppendingPathComponent:VEDIO_CACHE_PATH];
+            break;
+        default:
+            break;
+    }
+    return path;
+}
+
+/**
+	保存资源data到指定类型的缓存目录中
+	@param data 类型的data数据
+	@param relatePath 文件名
+	@param cacheType 缓存类型
+	@returns 返回绝对路径
+ */
++(NSString *)saveResouceData:(NSData *)data relatePath:(NSString *)relatePath resourceType:(EnumResourceCacheType)cacheType{
+    NSString *absolutePath = [[ResourceCache resouceCachePathForCachePath:cacheType] stringByAppendingPathComponent:relatePath];
+    BOOL success =  [FileUtil saveData:data toFileName:absolutePath];
+    if (success) {
+        return absolutePath;
+    }else{
+        return nil;
+    }
+}
+
+
 
 @end

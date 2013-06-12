@@ -24,8 +24,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MainProductInfoDao)
                         MAIN_PRODUCT_INFO_INDEX","
                         MAIN_PRODUCT_INFO_BG_IMAGE_FILE","
                         MAIN_PRODUCT_INFO_PREVIEW_IMAGE_FILE","
-                        MAIN_PRODUCT_INFO_SUB_ITEM_BTN_IMAGE_NAME""
-            ")""VALUES(?,?,?,?,?,?)"
+                        MAIN_PRODUCT_INFO_SUB_ITEM_BTN_IMAGE_NAME","
+                        MAIN_PRODUCT_INFO_CREATE_AT
+            ")""VALUES(?,?,?,?,?,?,?)"
 
     ];
     NSArray *argArray = [NSArray arrayWithObjects:mainProductInfo.name.length > 0 ? mainProductInfo.name:@"",
@@ -34,6 +35,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MainProductInfoDao)
                                                  mainProductInfo.bgImageFile,
                                                  mainProductInfo.previewImageFile,
                                                  mainProductInfo.subItemBtnImageName,
+                                                 [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]],
                                                   nil];
     __block BOOL isSuccess;
     [[[BaseDatabase instance] fmDbQueue] inDatabase:^(FMDatabase *db) {
@@ -83,7 +85,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MainProductInfoDao)
     NSString *sqlStr = [NSString stringWithFormat:@"select * from "MAIN_PRODUCT_INFO_TABLE_TABLE_NAME
             " WHERE "MAIN_PRODUCT_INFO_ENABLE" =?"];
     [[BaseDatabase instance].fmDbQueue inDatabase:^(FMDatabase *db) {
-        FMResultSet *resultSet = [db executeQuery:sqlStr,[NSNumber numberWithInt:0]];
+        FMResultSet *resultSet = [db executeQuery:sqlStr,[NSNumber numberWithInt:1]];
         while ([resultSet next]){
             MainProductInfo *mainProductInfo = [self mainProductInfoFromFMResultSet:resultSet];
             [resultArray addObject:mainProductInfo];
@@ -113,6 +115,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MainProductInfoDao)
                         MAIN_PRODUCT_INFO_TABLE_NAME"=?  AND "MAIN_PRODUCT_INFO_INDEX"=?"];
     [[BaseDatabase instance].fmDbQueue inDatabase:^(FMDatabase *db) {
         FMResultSet *resultSet = [db executeQuery:sqlStr,EXPERIENCE_CATALOG_NAME,[NSNumber numberWithInteger:EXPERIENCE_CATALOG_INDEX]];
+        while ([resultSet next]){
+            mainProductInfo = [self mainProductInfoFromFMResultSet:resultSet];
+        }
+        DBErrorCheckLog(db);
+    }];
+    return mainProductInfo;
+}
+
+-(MainProductInfo *)lastCreateCatalog{
+    __block MainProductInfo *mainProductInfo = nil;
+    NSString *sqlStr = [NSString stringWithFormat:@"select * from "MAIN_PRODUCT_INFO_TABLE_TABLE_NAME" ORDER BY "MAIN_PRODUCT_INFO_CREATE_AT" DESC LIMIT 1"];
+    [[BaseDatabase instance].fmDbQueue inDatabase:^(FMDatabase *db) {
+        FMResultSet *resultSet = [db executeQuery:sqlStr];
         while ([resultSet next]){
             mainProductInfo = [self mainProductInfoFromFMResultSet:resultSet];
         }

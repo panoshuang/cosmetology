@@ -24,4 +24,11 @@
 
 -(NSArray *)allMainProductInfo;
 
+-(NSArray *)allEnableProductInfo;
+
+-(MainProductInfo *)lastMainProductInfo;
+
+//为新增类别获取合适的index排序索引
+-(int)indexForNewCatalog;
+
 @end

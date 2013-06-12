@@ -15,4 +15,5 @@
     #import "log.h"
     #import "global_define.h"
     #import "Userdefault_define.h"
+    #import "TypeDefine.h"
 #endif
