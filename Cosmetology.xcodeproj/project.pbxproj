@@ -48,6 +48,8 @@
 		6D917DDB1750A24D00263F64 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D917DDA1750A24B00263F64 /* libsqlite3.dylib */; };
 		6D917DDD1750A28900263F64 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D917DDC1750A28900263F64 /* QuartzCore.framework */; };
 		6D99107C1765727B003C7C12 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D99107B1765727B003C7C12 /* iCarousel.m */; };
+		6DA2C68117675AC60098F911 /* AddSubCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA2C68017675AC60098F911 /* AddSubCatalogViewController.m */; };
+		6DA2C68717675D4C0098F911 /* SubProductInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA2C68617675D4C0098F911 /* SubProductInfo.m */; };
 		6DAC02D8175E166F00A3F015 /* MainCatalogGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC02D7175E166F00A3F015 /* MainCatalogGridViewCell.m */; };
 		6DAC02E3175E2CCC00A3F015 /* bg_main_catalog@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAC02E1175E2CCC00A3F015 /* bg_main_catalog@2x.png */; };
 		6DAC02E4175E2CCC00A3F015 /* bg_main_catalog_item.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAC02E2175E2CCC00A3F015 /* bg_main_catalog_item.png */; };
@@ -173,6 +175,10 @@
 		6D917DDC1750A28900263F64 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6D99107A1765727B003C7C12 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		6D99107B1765727B003C7C12 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		6DA2C67F17675AC60098F911 /* AddSubCatalogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSubCatalogViewController.h; sourceTree = "<group>"; };
+		6DA2C68017675AC60098F911 /* AddSubCatalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSubCatalogViewController.m; sourceTree = "<group>"; };
+		6DA2C68517675D4C0098F911 /* SubProductInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubProductInfo.h; sourceTree = "<group>"; };
+		6DA2C68617675D4C0098F911 /* SubProductInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubProductInfo.m; sourceTree = "<group>"; };
 		6DAA5966175B068800140A80 /* MainDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainDelegate.h; sourceTree = "<group>"; };
 		6DAC02D6175E166F00A3F015 /* MainCatalogGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainCatalogGridViewCell.h; path = Cosmetology/src/UI/View/MainCatalogGridViewCell.h; sourceTree = SOURCE_ROOT; };
 		6DAC02D7175E166F00A3F015 /* MainCatalogGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainCatalogGridViewCell.m; path = Cosmetology/src/UI/View/MainCatalogGridViewCell.m; sourceTree = SOURCE_ROOT; };
@@ -321,6 +327,8 @@
 				6DAD0F65176628B700D37D08 /* AddMainCatalogViewController.m */,
 				6DB30E9617683E54005D9884 /* SelectSubItemBtnBgViewController.h */,
 				6DB30E9717683E54005D9884 /* SelectSubItemBtnBgViewController.m */,
+				6DA2C67F17675AC60098F911 /* AddSubCatalogViewController.h */,
+				6DA2C68017675AC60098F911 /* AddSubCatalogViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -454,6 +462,8 @@
 			children = (
 				631576D04EF85D4C815CE2FA /* MainProductInfo.m */,
 				6315794AC857EEFB600F7AE3 /* MainProductInfo.h */,
+				6DA2C68517675D4C0098F911 /* SubProductInfo.h */,
+				6DA2C68617675D4C0098F911 /* SubProductInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -730,6 +740,8 @@
 				6DB09D8B1767171500B121E2 /* CommonUtil.m in Sources */,
 				6DB09D8F17671BAC00B121E2 /* ResourceCache.m in Sources */,
 				6DB30E9817683E54005D9884 /* SelectSubItemBtnBgViewController.m in Sources */,
+				6DA2C68117675AC60098F911 /* AddSubCatalogViewController.m in Sources */,
+				6DA2C68717675D4C0098F911 /* SubProductInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
