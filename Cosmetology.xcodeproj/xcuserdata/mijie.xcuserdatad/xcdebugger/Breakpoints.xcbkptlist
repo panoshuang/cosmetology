@@ -34,7 +34,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/MainViewController.m"
-         timestampString = "392740894.276932"
+         timestampString = "392821682.197422"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "250"
@@ -73,7 +73,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/MainViewController.m"
-         timestampString = "392740894.276932"
+         timestampString = "392821682.197422"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "257"
@@ -125,7 +125,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/MainViewController.m"
-         timestampString = "392740894.276932"
+         timestampString = "392821682.197422"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "207"
@@ -138,12 +138,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/SubCatalogViewContrller.m"
-         timestampString = "392635331.914483"
+         timestampString = "392823104.461704"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "153"
-         endingLineNumber = "153"
-         landmarkName = "-viewDidAppear:"
+         startingLineNumber = "162"
+         endingLineNumber = "162"
+         landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -156,19 +156,19 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "110"
          endingLineNumber = "110"
-         landmarkName = "@implementation SubCatalogViewContrller"
-         landmarkType = "3">
+         landmarkName = "-loadView"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/AddMainCatalogViewController.m"
-         timestampString = "392740189.463532"
+         timestampString = "392821915.268359"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "251"
-         endingLineNumber = "251"
+         startingLineNumber = "267"
+         endingLineNumber = "267"
          landmarkName = "-selectSubItemBtnBgViewController:didSelectImageName:"
          landmarkType = "5">
       </FileBreakpoint>

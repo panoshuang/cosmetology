@@ -18,6 +18,7 @@
 
 @synthesize lbName = _lbName;
 @synthesize swEdit = _swEdit;
+@synthesize btnEdit = _btnEdit;
 @synthesize bIsEdit = _bIsEdit;
 @synthesize delegate = _delegate;
 
@@ -33,10 +34,16 @@
         _lbName.backgroundColor = [UIColor clearColor];
         _swEdit = [[UISwitch alloc] initWithFrame:CGRectZero];
         [_swEdit addTarget:self action:@selector(switchValueChange:) forControlEvents:UIControlEventValueChanged];
+        _btnEdit = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        _btnEdit.frame = CGRectMake(0, 0, 60, 30);
+        [_btnEdit setTitle:@"编辑" forState:UIControlStateNormal];
+        [_btnEdit addTarget:self action:@selector(editItemName:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_ivBg];
         [self addSubview:_lbName];
         [self addSubview:_swEdit];
+        [self addSubview:_btnEdit];
         _swEdit.hidden = YES;
+        _btnEdit.hidden = YES;
     }
     return self;
 }
@@ -51,7 +58,8 @@
 //                                    ivBgFrame.origin.y + ivBgFrame.size.height + kCommonSpace,
 //                                    selfBounds.size.width,
 //                                    25);
-    _swEdit.center = CGPointMake(selfBounds.size.width/2, selfBounds.size.height - 15);
+    _swEdit.center = CGPointMake(selfBounds.size.width/3, selfBounds.size.height - 15);
+    _btnEdit.center = CGPointMake(2*selfBounds.size.width/3 +15, selfBounds.size.height - 15);
 }
 
 -(void)setEdit:(BOOL)isEdit{
@@ -61,8 +69,10 @@
         _bIsEdit = isEdit;
         if (_bIsEdit) {
             _swEdit.hidden = NO;
+            _btnEdit.hidden = NO;
         }else{
             _swEdit.hidden = YES;
+            _btnEdit.hidden = YES;
         }
     }
 }
@@ -71,6 +81,14 @@
     if ([_delegate respondsToSelector:@selector(mainCatalogItemDidSwitch:value:)]) {
         [_delegate mainCatalogItemDidSwitch:self value:sw.state];
     }
+}
+
+-(void)editItemName:(UIButton *)btn
+{
+    if ([_delegate respondsToSelector:@selector(subCatalogItemEdit)]) {
+        [_delegate subCatalogItemEdit];
+    }
+    
 }
 
 /*

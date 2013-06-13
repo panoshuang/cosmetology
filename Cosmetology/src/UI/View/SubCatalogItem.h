@@ -14,6 +14,7 @@
 
 @property (nonatomic ,strong) UILabel  *lbName;
 @property (nonatomic ,strong) UISwitch *swEdit;
+@property (nonatomic ,strong) UIButton *btnEdit;
 @property (nonatomic )   BOOL      bIsEdit;
 @property (nonatomic ,weak) id<MainCatalogItemDelegate> delegate;
 
@@ -24,4 +25,7 @@
 @protocol MainCatalogItemDelegate <NSObject>
 
 -(void)mainCatalogItemDidSwitch:(SubCatalogItem *)catalogItem value:(BOOL)isOpen;
+
+-(void)subCatalogItemEdit;
+
 @end

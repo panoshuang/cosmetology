@@ -16,6 +16,7 @@
 @interface SubCatalogViewContrller : UIViewController{
     __weak id<SubCatalogViewControllerDelegate> _delegate;
     __weak id<MainDelegate> _mainDelegate;
+    BOOL _bIsEdit;
 }
 
 @property (nonatomic,weak) id<SubCatalogViewControllerDelegate> delegate;

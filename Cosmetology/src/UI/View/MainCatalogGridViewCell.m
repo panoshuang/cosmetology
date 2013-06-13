@@ -29,6 +29,13 @@
     }
 }
 
+-(void)subCatalogItemEdit
+{
+    if ([_delegate respondsToSelector:@selector(subCatalogGridViewCellDidBtn)]) {
+        [_delegate subCatalogGridViewCellDidBtn];
+    }
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
