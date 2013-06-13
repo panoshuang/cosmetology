@@ -11,6 +11,8 @@
 
 @implementation ResourceCache
 
+SYNTHESIZE_SINGLETON_FOR_CLASS(ResourceCache)
+
 
 /**
 	创建缓存目录
@@ -83,6 +85,18 @@
     }else{
         return nil;
     }
+}
+
+//通过绝对路径名获取图片
++(UIImage *)imageForCachePath:(NSString *)path{
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    UIImage *image = [UIImage imageWithData:data];
+    return image;
+}
+
+//通过绝对路径删除资源
+-(BOOL)deleteResourceForPath:(NSString *)path{
+    return [FileUtil deleteFileWithAbsoluteFilePath:path];
 }
 
 

@@ -2,35 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cosmetology/res/page.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cosmetology/src/UI/View/MainCatalogGridViewCell.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cosmetology/src/UI/View/MainCatalogGridViewCell.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cosmetology/src/UI/View/ReflectionView.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cosmetology/src/UI/View/ReflectionView.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cosmetology/src/UI/View/SubCatalogItem.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cosmetology/src/UI/View/SubCatalogItem.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cosmetology/src/Libs/ICarousel/iCarousel.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cosmetology/src/Libs/ICarousel/iCarousel.m" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/MainCatalogViewContrller.h" afterPath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/SubCatalogViewContrller.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/MainCatalogViewContrller.m" afterPath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/SubCatalogViewContrller.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cosmetology/src/Util/DeviceHelper.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cosmetology/src/Util/DeviceHelper.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology.xcodeproj/project.xcworkspace/xcuserdata/mijie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/Cosmetology.xcodeproj/project.xcworkspace/xcuserdata/mijie.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddMainCatalogViewController.h" afterPath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddMainCatalogViewController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddMainCatalogViewController.m" afterPath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddMainCatalogViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology.xcodeproj/xcuserdata/mijie.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" afterPath="$PROJECT_DIR$/Cosmetology.xcodeproj/xcuserdata/mijie.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/MainViewController.m" afterPath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/MainViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology/src/Util/ResourceCache.h" afterPath="$PROJECT_DIR$/Cosmetology/src/Util/ResourceCache.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology/src/Util/ResourceCache.m" afterPath="$PROJECT_DIR$/Cosmetology/src/Util/ResourceCache.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Cosmetology.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Cosmetology.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1370852267593" ignored="false" />
+    <file path="/Dummy.txt" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371129549666" ignored="false" />
     <file path="/MainCatalogItem.m" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1370356023692" ignored="false" />
     <file path="/MainCatalogViewContrller.m" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1370693280856" ignored="false" />
-    <file path="/MainViewController.m" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1370618278001" ignored="false" />
+    <file path="/MainViewController.m" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371132669082" ignored="false" />
     <file path="/PasswordManager.h" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1370616269720" ignored="false" />
     <file path="/PasswordManager.m" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1370616861645" ignored="false" />
     <file path="/Userdefault_define.h" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1370615991761" ignored="false" />
     <file path="/AppDelegate.m" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1370616768786" ignored="false" />
     <file path="/Cosmetology-Prefix.pch" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1370617020321" ignored="false" />
+    <file path="/AddMainCatalogViewController.h" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371132459402" ignored="false" />
+    <file path="/AddMainCatalogViewController.m" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371132422114" ignored="false" />
+    <file path="/ResourceCache.h" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371132197004" ignored="false" />
+    <file path="/ResourceCache.m" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371132230102" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,88 +48,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GMGridView.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cosmetology/src/Libs/GMGridView/GMGridView.h">
+      <file leaf-file-name="MainViewController.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/MainViewController.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="11" selection-start="2209" selection-end="2209" vertical-scroll-proportion="0.0">
+            <state line="14" column="35" selection-start="257" selection-end="257" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GMGridView.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cosmetology/src/Libs/GMGridView/GMGridView.m">
+      <file leaf-file-name="c++config.h" pinned="false" current="true" current-in-tab="true">
+        <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk/usr/include/c++/4.2.1/bits/c++config.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1458" column="20" selection-start="52615" selection-end="52615" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Cosmetology-Prefix.pch" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cosmetology/Cosmetology-Prefix.pch">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="4" selection-start="408" selection-end="408" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NSUserDefaults.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSUserDefaults.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="8" selection-start="401" selection-end="401" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppDelegate.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cosmetology/src/App/AppDelegate.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="31" selection-start="387" selection-end="387" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PasswordManager.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cosmetology/src/Business/PasswordManager.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="43" selection-start="1140" selection-end="1140" vertical-scroll-proportion="0.0">
-              <folding>
-                <marker date="1370616864000" expanded="true" signature="257:261" placeholder="{...}" />
-                <marker date="1370616864000" expanded="true" signature="321:429" placeholder="{...}" />
-                <marker date="1370616864000" expanded="true" signature="475:785" placeholder="{...}" />
-                <marker date="1370616864000" expanded="true" signature="852:976" placeholder="{...}" />
-                <marker date="1370616864000" expanded="true" signature="1021:1142" placeholder="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainCatalogGridViewCell.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/View/MainCatalogGridViewCell.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="1" selection-start="290" selection-end="290" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SubCatalogItem.m" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/View/SubCatalogItem.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="77" selection-start="275" selection-end="275" vertical-scroll-proportion="-0.21070234">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SubCatalogItem.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/View/SubCatalogItem.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="229" selection-end="229" vertical-scroll-proportion="0.0">
+            <state line="40" column="9" selection-start="1730" selection-end="1749" vertical-scroll-proportion="-5.7586207">
               <folding />
             </state>
           </provider>
@@ -140,7 +69,75 @@
       <file leaf-file-name="MainViewController.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/MainViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="36" selection-start="2436" selection-end="2436" vertical-scroll-proportion="0.0">
+            <state line="101" column="52" selection-start="3872" selection-end="3872" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ResourceCache.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cosmetology/src/Util/ResourceCache.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="99" column="11" selection-start="3491" selection-end="3491" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#137#164#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ResourceCache.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cosmetology/src/Util/ResourceCache.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="0" selection-start="1005" selection-end="1064" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UIImageExtras.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cosmetology/src/Util/UIImageExtras.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="325" column="16" selection-start="12303" selection-end="12303" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainCatalogManager.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cosmetology/src/Business/MainCatalogManager.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="32" column="7" selection-start="796" selection-end="796" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddMainCatalogViewController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddMainCatalogViewController.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="256" column="63" selection-start="10615" selection-end="10615" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#179#216#0" expanded="true" />
+                <element signature="e#1246#1279#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddMainCatalogViewController.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddMainCatalogViewController.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="35" selection-start="684" selection-end="712" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SubCatalogItem.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/View/SubCatalogItem.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="78" selection-start="546" selection-end="546" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -164,10 +161,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Cosmetology/src/Model/MainProductInfo.h" />
-        <option value="$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/MainProductInfoDao.h" />
-        <option value="$PROJECT_DIR$/Cosmetology/src/Inc/Database_define.h" />
-        <option value="$PROJECT_DIR$/Cosmetology/src/DbCore/BaseDatabase.h" />
         <option value="$PROJECT_DIR$/Cosmetology/src/DbCore/BaseDatabase.m" />
         <option value="$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/MainProductInfoDao.m" />
         <option value="$PROJECT_DIR$/Cosmetology/MainViewController.h" />
@@ -177,15 +170,19 @@
         <option value="$PROJECT_DIR$/Cosmetology/src/App/AppDelegate.m" />
         <option value="$PROJECT_DIR$/Cosmetology/src/Business/PasswordManager.m" />
         <option value="$PROJECT_DIR$/Cosmetology/Cosmetology-Prefix.pch" />
-        <option value="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/MainViewController.m" />
         <option value="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/MainCatalogViewContrller.m" />
         <option value="$PROJECT_DIR$/Cosmetology/src/UI/View/MainCatalogItem.m" />
+        <option value="$PROJECT_DIR$/Cosmetology/src/Util/ResourceCache.h" />
+        <option value="$PROJECT_DIR$/Cosmetology/src/Util/ResourceCache.m" />
+        <option value="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddMainCatalogViewController.h" />
+        <option value="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddMainCatalogViewController.m" />
+        <option value="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/MainViewController.m" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="92" />
-    <option name="y" value="25" />
+    <option name="x" value="340" />
+    <option name="y" value="94" />
     <option name="width" value="1362" />
     <option name="height" value="746" />
   </component>
@@ -302,6 +299,10 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Util" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -350,10 +351,6 @@
               <option name="myItemId" value="UI" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -370,10 +367,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UI" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -471,12 +464,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.lastSelected" value="editor.preferences.completion" />
     <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="editor.preferences.completion" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../homi/homi/homi.xcodeproj" />
     <property name="FullScreen" value="false" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="Cosmetology" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RunManager" selected="Application.Cosmetology">
     <configuration default="false" name="Unnamed" type="AppleRunConfiguration" factoryName="Application" temporary="true" SCHEME_NAME="Unnamed" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
@@ -544,23 +538,23 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="92" y="25" width="1362" height="746" extended-state="6" />
-    <editor active="true" />
+    <frame x="340" y="94" width="1362" height="746" extended-state="0" />
+    <editor active="false" />
     <layout>
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3283582" sideWeight="0.49906015" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32961783" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22479463" sideWeight="0.42172524" order="1" side_tool="true" content_ui="tabs" x="5" y="302" width="258" height="466" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22479463" sideWeight="0.5782748" order="0" side_tool="false" content_ui="combo" x="4" y="22" width="290" height="417" />
+      <window_info id="Structure" active="false" anchor="top" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39966834" sideWeight="0.4212272" order="0" side_tool="true" content_ui="tabs" x="5" y="302" width="258" height="466" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22479463" sideWeight="0.67164177" order="0" side_tool="false" content_ui="combo" x="4" y="22" width="290" height="417" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29552716" sideWeight="0.8280075" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2852761" sideWeight="0.17199248" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.49906015" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32961783" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -629,70 +623,10 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/View/MainCatalogGridViewCell.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="42" selection-start="290" selection-end="290" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/MainViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="91" selection-start="1872" selection-end="1872" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/View/MainCatalogGridViewCell.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/MainViewController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="187" selection-end="187" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cosmetology/src/Inc/Userdefault_define.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="30" selection-start="245" selection-end="245" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cosmetology/src/Business/PasswordManager.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="66" selection-start="343" selection-end="343" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSUserDefaults.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="8" selection-start="401" selection-end="401" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cosmetology/src/App/AppDelegate.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="31" selection-start="387" selection-end="387" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Cosmetology/src/Business/PasswordManager.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="43" selection-start="1140" selection-end="1140" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1370616864000" expanded="true" signature="257:261" placeholder="{...}" />
-            <marker date="1370616864000" expanded="true" signature="321:429" placeholder="{...}" />
-            <marker date="1370616864000" expanded="true" signature="475:785" placeholder="{...}" />
-            <marker date="1370616864000" expanded="true" signature="852:976" placeholder="{...}" />
-            <marker date="1370616864000" expanded="true" signature="1021:1142" placeholder="{...}" />
-          </folding>
+        <state line="42" column="43" selection-start="1090" selection-end="1090" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -724,13 +658,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/MainViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="36" selection-start="2436" selection-end="2436" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/View/SubCatalogItem.h">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="0" selection-start="229" selection-end="229" vertical-scroll-proportion="0.0">
@@ -738,9 +665,77 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Cosmetology/src/Util/UIImageExtras.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="325" column="16" selection-start="12303" selection-end="12303" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/View/SubCatalogItem.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="77" selection-start="275" selection-end="275" vertical-scroll-proportion="-0.21070234">
+        <state line="27" column="78" selection-start="546" selection-end="546" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cosmetology/src/Util/ResourceCache.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="0" selection-start="1005" selection-end="1064" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cosmetology/src/Util/ResourceCache.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="11" selection-start="3491" selection-end="3491" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#137#164#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cosmetology/src/Business/MainCatalogManager.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="7" selection-start="796" selection-end="796" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddMainCatalogViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="256" column="63" selection-start="10615" selection-end="10615" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#179#216#0" expanded="true" />
+            <element signature="e#1246#1279#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddMainCatalogViewController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="35" selection-start="684" selection-end="712" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/MainViewController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="35" selection-start="257" selection-end="257" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/MainViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="101" column="52" selection-start="3872" selection-end="3872" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk/usr/include/c++/4.2.1/bits/c++config.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="9" selection-start="1730" selection-end="1749" vertical-scroll-proportion="-5.7586207">
           <folding />
         </state>
       </provider>

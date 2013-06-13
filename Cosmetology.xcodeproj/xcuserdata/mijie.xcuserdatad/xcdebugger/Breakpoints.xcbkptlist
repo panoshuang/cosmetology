@@ -35,11 +35,12 @@
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/MainViewController.m"
          timestampString = "392821682.197422"
+         timestampString = "392826889.466362"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "250"
-         endingLineNumber = "250"
-         landmarkName = "-carousel:itemTransformForOffset:baseTransform:"
+         startingLineNumber = "254"
+         endingLineNumber = "254"
+         landmarkName = "-carousel:placeholderViewAtIndex:reusingView:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -74,11 +75,12 @@
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/MainViewController.m"
          timestampString = "392821682.197422"
+         timestampString = "392826889.466362"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "257"
-         endingLineNumber = "257"
-         landmarkName = "-carousel:valueForOption:withDefault:"
+         startingLineNumber = "261"
+         endingLineNumber = "261"
+         landmarkName = "-carousel:itemTransformForOffset:baseTransform:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -126,11 +128,12 @@
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/MainViewController.m"
          timestampString = "392821682.197422"
+         timestampString = "392826889.466362"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "207"
-         endingLineNumber = "207"
-         landmarkName = "-numberOfPlaceholdersInCarousel:"
+         startingLineNumber = "211"
+         endingLineNumber = "211"
+         landmarkName = "-carousel:viewForItemAtIndex:reusingView:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -143,6 +146,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "162"
          endingLineNumber = "162"
+         startingLineNumber = "153"
+         endingLineNumber = "153"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
@@ -170,6 +175,12 @@
          startingLineNumber = "267"
          endingLineNumber = "267"
          landmarkName = "-selectSubItemBtnBgViewController:didSelectImageName:"
+         timestampString = "392827347.340033"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "251"
+         endingLineNumber = "251"
+         landmarkName = "-save"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint

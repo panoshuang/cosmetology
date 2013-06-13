@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6315709F0A558E7B3E50E89C /* MainProductInfoDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 63157A84748410F10B4F384A /* MainProductInfoDao.m */; };
 		6315799195ED1EC87FF97BAA /* PasswordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 63157AE4E065570A862D8872 /* PasswordManager.m */; };
+		63157A379D0754F317A6A9E6 /* DeviceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 631575783B6472DA84B7F12A /* DeviceHelper.m */; };
 		63157C75C37C72D87A8C6F81 /* MainProductInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 631576D04EF85D4C815CE2FA /* MainProductInfo.m */; };
 		6D00EBA4174E55C00045BF49 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBA3174E55C00045BF49 /* UIKit.framework */; };
 		6D00EBA6174E55C00045BF49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBA5174E55C00045BF49 /* Foundation.framework */; };
@@ -47,6 +48,8 @@
 		6D917DD91750A20100263F64 /* VoiceHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D917DD31750A20100263F64 /* VoiceHandle.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6D917DDB1750A24D00263F64 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D917DDA1750A24B00263F64 /* libsqlite3.dylib */; };
 		6D917DDD1750A28900263F64 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D917DDC1750A28900263F64 /* QuartzCore.framework */; };
+		6D98EE10176A0C2600DE5F56 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D98EE0F176A0C2600DE5F56 /* libicucore.dylib */; };
+		6D98EE13176A0DA000DE5F56 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D98EE12176A0DA000DE5F56 /* CoreTelephony.framework */; };
 		6D99107C1765727B003C7C12 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D99107B1765727B003C7C12 /* iCarousel.m */; };
 		6DA2C68117675AC60098F911 /* AddSubCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA2C68017675AC60098F911 /* AddSubCatalogViewController.m */; };
 		6DA2C68717675D4C0098F911 /* SubProductInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA2C68617675D4C0098F911 /* SubProductInfo.m */; };
@@ -84,7 +87,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		63157396229EBAC3BA9A6064 /* DeviceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceHelper.h; sourceTree = "<group>"; };
 		631574420B21BDD5EC2686BB /* MainProductInfoDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainProductInfoDao.h; sourceTree = "<group>"; };
+		631575783B6472DA84B7F12A /* DeviceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceHelper.m; sourceTree = "<group>"; };
 		631575B78D6CD061E6786E85 /* Userdefault_define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Userdefault_define.h; sourceTree = "<group>"; };
 		631575BC2397329C7D9E0908 /* PasswordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordManager.h; sourceTree = "<group>"; };
 		631576D04EF85D4C815CE2FA /* MainProductInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainProductInfo.m; sourceTree = "<group>"; };
@@ -173,6 +178,8 @@
 		6D917DD31750A20100263F64 /* VoiceHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceHandle.m; sourceTree = "<group>"; };
 		6D917DDA1750A24B00263F64 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		6D917DDC1750A28900263F64 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		6D98EE0F176A0C2600DE5F56 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		6D98EE12176A0DA000DE5F56 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		6D99107A1765727B003C7C12 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		6D99107B1765727B003C7C12 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		6DA2C67F17675AC60098F911 /* AddSubCatalogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSubCatalogViewController.h; sourceTree = "<group>"; };
@@ -220,6 +227,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D98EE13176A0DA000DE5F56 /* CoreTelephony.framework in Frameworks */,
+				6D98EE10176A0C2600DE5F56 /* libicucore.dylib in Frameworks */,
 				6D60501417539B2E000635F3 /* AVFoundation.framework in Frameworks */,
 				6D60500E17539A6B000635F3 /* AudioToolbox.framework in Frameworks */,
 				6D60500A1753999B000635F3 /* CoreAudio.framework in Frameworks */,
@@ -256,6 +265,8 @@
 		6D00EBA2174E55C00045BF49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6D98EE12176A0DA000DE5F56 /* CoreTelephony.framework */,
+				6D98EE0F176A0C2600DE5F56 /* libicucore.dylib */,
 				6D917DDA1750A24B00263F64 /* libsqlite3.dylib */,
 				6D60501317539B2E000635F3 /* AVFoundation.framework */,
 				6D60500D17539A6B000635F3 /* AudioToolbox.framework */,
@@ -486,6 +497,8 @@
 				6DB09D8D17671BAC00B121E2 /* ResourceCache.h */,
 				6DB09D8E17671BAC00B121E2 /* ResourceCache.m */,
 				6DB30EA5176868FE005D9884 /* TypeDefine.h */,
+				631575783B6472DA84B7F12A /* DeviceHelper.m */,
+				63157396229EBAC3BA9A6064 /* DeviceHelper.h */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -742,6 +755,7 @@
 				6DB30E9817683E54005D9884 /* SelectSubItemBtnBgViewController.m in Sources */,
 				6DA2C68117675AC60098F911 /* AddSubCatalogViewController.m in Sources */,
 				6DA2C68717675D4C0098F911 /* SubProductInfo.m in Sources */,
+				63157A379D0754F317A6A9E6 /* DeviceHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,6 +23,7 @@
     PasswordManagerViewController *_passwordManagerViewController;
     iCarousel *_catalogCarousel;
     UIButton *_deleteBtn;
+    UIButton *_addBtn;
     UIButton *_editBtn;
     UIButton *_editPasswordBtn;
     BOOL _bIsEdit;
@@ -72,15 +73,21 @@
     UIBarButtonItem *deleteItem = [[UIBarButtonItem alloc] init];
     deleteItem.customView = _deleteBtn;
     
+    _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_addBtn setTitle:@"添加" forState:UIControlStateNormal];
+    _addBtn.backgroundColor = [UIColor redColor];
+    _addBtn.frame = CGRectMake(0, 0, 100, 50);
+    [_addBtn addTarget:self action:@selector(addCatalog) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithCustomView:_addBtn];
+    addItem.customView = _addBtn;
+    
     _editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_editBtn setTitle:@"添加" forState:UIControlStateNormal];
+    _editBtn.frame =  CGRectMake(0, 0, 100, 50);
     _editBtn.backgroundColor = [UIColor redColor];
-    _editBtn.frame = CGRectMake(0, 0, 100, 50);
-    [_editBtn addTarget:self action:@selector(addCatalog) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithCustomView:_editBtn];
+    [_editBtn setTitle:@"修改产品" forState:UIControlStateNormal];
+    [_editBtn addTarget:self action:@selector(editMainCatalog:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *editItem = [[UIBarButtonItem alloc] init];
     editItem.customView = _editBtn;
-    
-    
 
     _editPasswordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _editPasswordBtn.frame =  CGRectMake(0, 0, 100, 50);
@@ -90,7 +97,7 @@
     UIBarButtonItem *pwdItem = [[UIBarButtonItem alloc] init];
     pwdItem.customView = _editPasswordBtn;
     
-    toolBar.items = [NSArray arrayWithObjects:deleteItem,editItem,pwdItem,nil];
+    toolBar.items = [NSArray arrayWithObjects:deleteItem,addItem,editItem,pwdItem,nil];
     
     
     _passwordManagerViewController = [[PasswordManagerViewController alloc] init];
@@ -109,8 +116,11 @@
 }
 
 -(void)editMainCatalog:(UIButton *)sender{
-    _bIsEdit = !_bIsEdit;
-    _subCatalogViewController.bIsEdit = _bIsEdit;
+    MainProductInfo *curProduct = [_catalogArray objectAtIndex:_catalogCarousel.currentItemIndex];
+    AddMainCatalogViewController *addMainCatalogViewController = [[AddMainCatalogViewController alloc] initWithProductInfo:curProduct];
+    addMainCatalogViewController.bIsEdit = YES;
+    addMainCatalogViewController.delegate = self;
+    [self.navigationController pushViewController:addMainCatalogViewController animated:YES];
 }
 
 -(void)addCatalog{
@@ -136,7 +146,7 @@
         _popController = [[UIPopoverController alloc] initWithContentViewController:_passwordManagerViewController];
         }
 
-        [_popController presentPopoverFromRect:_editBtn.frame
+        [_popController presentPopoverFromRect:_addBtn.frame
                                             inView:self.view
                           permittedArrowDirections:UIPopoverArrowDirectionAny
                                           animated:YES];
@@ -301,7 +311,7 @@
 }
 
 #pragma mark - AddMainCatalogViewControllerDelegate
--(void)addMainCatalogViewController:(AddMainCatalogViewController *)addMainCatalogViewController didSaveCatalog:(MainProductInfo *)mainProductInfo{
+-(void)addMainCatalogViewController:(AddMainCatalogViewController *)addMainCatalogViewController didAddCatalog:(MainProductInfo *)mainProductInfo{
     int count = _catalogArray.count;
     int index = 0;
     if (count <= 1) {
@@ -312,6 +322,7 @@
     [_catalogArray insertObject:mainProductInfo atIndex:index];
     [_catalogCarousel insertItemAtIndex:index animated:YES];
 }
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -327,6 +338,16 @@
 - (BOOL)shouldAutorotate
 {
     return YES;
+}
+
+
+
+-(void)addMainCatalogViewController:(AddMainCatalogViewController *)addMainCatalogViewController didUpdateCatalog:(MainProductInfo *)mainProductInfo;
+{
+   int index = [_catalogArray indexOfObject:mainProductInfo];
+    if(index != NSNotFound){
+        [_catalogCarousel reloadItemAtIndex:index animated:YES];
+    }
 }
 
 
