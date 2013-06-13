@@ -6,12 +6,14 @@
 //  Copyright (c) 2013年 pengpai. All rights reserved.
 //
 
+#import <CoreGraphics/CoreGraphics.h>
 #import "AddMainCatalogViewController.h"
 #import "SelectSubItemBtnBgViewController.h"
 #import "CommonUtil.h"
 #import "ResourceCache.h"
 #import "MainProductInfo.h"
 #import "MainCatalogManager.h"
+#import "UIImageExtras.h"
 
 #define TAG_SELECT_BG_IMAGE  10000
 #define TAG_SELECT_PREVIEW_IMAGE 10001
@@ -19,6 +21,7 @@
 @interface AddMainCatalogViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,SelectSubItemBtnBgViewControllerDelegate>{
     UILabel *_lbName;
     UITextField *_tfName;
+    UISwitch *_swEnable;
     UIButton *_btnBgPhoto;
     UIImageView *_ivBg;
     UIButton *_btnPreview; //选择预览图按钮
@@ -31,22 +34,49 @@
     UIImage *_imageSubItemBtnBg;
     NSString *_strSubItemBtnBgName;
     MainProductInfo *_mainProductInfo;
+    BOOL _bIsEdit;
+    BOOL _bIsProductEnable;
 }
 
 @end
 
-@implementation AddMainCatalogViewController
+@implementation AddMainCatalogViewController {
+@private
+
+}
 
 @synthesize delegate = _delegate;
+
+@synthesize mainProductInfo = _mainProductInfo;
+
+@synthesize bIsEdit = _bIsEdit;
 
 - (id)init
 {
     self = [super init];
     if (self) {
         // Custom initialization
+        _bIsProductEnable = YES;
+        _bIsEdit = NO;
     }
     return self;
 }
+
+- (id)initWithProductInfo:(MainProductInfo *)aProductInfo {
+    self = [super init];
+    if (self) {
+        self.mainProductInfo = aProductInfo;
+        _bIsEdit = YES;
+        _bIsProductEnable = _mainProductInfo.enable;
+    }
+
+    return self;
+}
+
++ (id)controllerWithProductInfo:(MainProductInfo *)aProductInfo {
+    return [[self alloc] initWithProductInfo:aProductInfo];
+}
+
 
 - (void)viewDidLoad
 {
@@ -75,7 +105,22 @@
                                                             _lbName.frame.size.height)];
     _tfName.borderStyle = UITextBorderStyleRoundedRect;
     [self.view addSubview:_tfName];
-    
+
+    UILabel *lbEnableTips = [[UILabel alloc] initWithFrame:CGRectMake(_tfName.frame.origin.x + _tfName.frame.size.width + kCommonSpace,
+            _lbName.frame.origin.y,
+            100,
+            _lbName.frame.size.height)] ;
+    lbEnableTips.text = @"开始产品";
+    [self.view addSubview:lbEnableTips];
+
+    _swEnable = [[UISwitch alloc] init];
+    CGRect swFrame = _swEnable.frame;
+    swFrame.origin.x = lbEnableTips.frame.origin.x + lbEnableTips.frame.size.width + kCommonSpace;
+    swFrame.origin.y = lbEnableTips.frame.origin.y;
+    _swEnable.frame = swFrame;
+    [_swEnable addTarget:self action:@selector(enableProduct:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:_swEnable];
+
     _btnBgPhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     _btnBgPhoto.frame = CGRectMake(_lbName.frame.origin.x,
                                  _lbName.frame.origin.y + _lbName.frame.size.height + kCommonSpace *2 ,
@@ -120,6 +165,14 @@
                                                           200,
                                                           200)];
     [self.view addSubview:_ivSubItemBtnBg];
+
+    if(_bIsEdit){
+        _tfName.text = _mainProductInfo.name;
+        _ivBg.image = [ResourceCache imageForCachePath:_mainProductInfo.bgImageFile];
+        _ivPreview.image = [ResourceCache imageForCachePath:_mainProductInfo.previewImageFile];
+        _ivSubItemBtnBg.image = [UIImage imageNamed:_mainProductInfo.subItemBtnImageName];
+        [_swEnable setOn:_mainProductInfo.enable animated:NO];
+    }
     
     
 	// Do any additional setup after loading the view.
@@ -136,58 +189,107 @@
 }
 
 -(void)save{
-    if (_tfName.text.length == 0) {
-        ALERT_MSG(@"名字不能为空",nil , @"确定");
-        return;
-    }
-    if (_imageBg == nil) {
-        ALERT_MSG(@"背景图片不能为空", nil, @"确定");
-        return;
-    }
-    if (_imagePriview == nil) {
-        ALERT_MSG(@"预览图片不能为空", nil, @"确定");
-        return;
-    }
-    if (_imageSubItemBtnBg == nil) {
-        ALERT_MSG(@"子项目按钮图片不能为空", nil, @"确定");
-        return;
-    }
-    //生成图片的uuid,保存到缓存
-    NSString *bgUuid = [CommonUtil uuid];
-    NSString *bgImageFilePath =[ResourceCache saveResouceData:UIImageJPEGRepresentation(_imageBg, 1)
-                                                   relatePath:bgUuid
-                                                 resourceType:kResourceCacheTypeBackgroundImage];
-    
-    if (bgImageFilePath.length == 0) {
-        ALERT_MSG(@"保存失败", nil, @"确定");
-        return;
-    }
-    
-    //保存类别预览图片
-    NSString *previewUuid = [CommonUtil uuid];
-    NSString *previewImageFilePath =[ResourceCache saveResouceData:UIImageJPEGRepresentation(_imagePriview, 1)
-                                                   relatePath:previewUuid
-                                                 resourceType:kResourceCacheTypeMainCatalogPreviewImage];
-    
-    if (previewImageFilePath.length == 0) {
-        ALERT_MSG(@"保存失败", nil, @"确定");
-        return;
-    }
-    
-    _mainProductInfo = [[MainProductInfo alloc] init];
-    _mainProductInfo.name = _tfName.text;
-    _mainProductInfo.enable = YES;
-    _mainProductInfo.bgImageFile = bgImageFilePath;
-    _mainProductInfo.previewImageFile = previewImageFilePath;
-    _mainProductInfo.subItemBtnImageName = _strSubItemBtnBgName;
-    //获取合适index
-    int index = [[MainCatalogManager instance] indexForNewCatalog];
-    _mainProductInfo.index = index;
-    [[MainCatalogManager instance] addMainCatalog:_mainProductInfo];
-    _mainProductInfo.productID = [[MainCatalogManager instance] lastMainProductInfo].productID;
-    
-    if ([_delegate respondsToSelector:@selector(addMainCatalogViewController:didSaveCatalog:)]) {
-        [_delegate addMainCatalogViewController:self didSaveCatalog:_mainProductInfo];
+    //判断是否是编辑模式
+    if(!_bIsEdit){
+        if (_tfName.text.length == 0) {
+            ALERT_MSG(@"名字不能为空",nil , @"确定");
+            return;
+        }
+        if (_imageBg == nil) {
+            ALERT_MSG(@"背景图片不能为空", nil, @"确定");
+            return;
+        }
+        if (_imagePriview == nil) {
+            ALERT_MSG(@"预览图片不能为空", nil, @"确定");
+            return;
+        }
+        if (_imageSubItemBtnBg == nil) {
+            ALERT_MSG(@"子项目按钮图片不能为空", nil, @"确定");
+            return;
+        }
+        //生成图片的uuid,保存到缓存
+        NSString *bgUuid = [CommonUtil uuid];
+        NSString *bgImageFilePath =[ResourceCache saveResouceData:UIImageJPEGRepresentation(_imageBg, 1)
+                                                       relatePath:bgUuid
+                                                     resourceType:kResourceCacheTypeBackgroundImage];
+
+        if (bgImageFilePath.length == 0) {
+            ALERT_MSG(@"保存失败", nil, @"确定");
+            return;
+        }
+
+        //保存类别预览图片
+        NSString *previewUuid = [CommonUtil uuid];
+        NSString *previewImageFilePath =[ResourceCache saveResouceData:UIImageJPEGRepresentation(_imagePriview, 1)
+                                                            relatePath:previewUuid
+                                                          resourceType:kResourceCacheTypeMainCatalogPreviewImage];
+
+        if (previewImageFilePath.length == 0) {
+            ALERT_MSG(@"保存失败", nil, @"确定");
+            return;
+        }
+
+        _mainProductInfo = [[MainProductInfo alloc] init];
+        _mainProductInfo.name = _tfName.text;
+        _mainProductInfo.enable = YES;
+        _mainProductInfo.bgImageFile = bgImageFilePath;
+        _mainProductInfo.previewImageFile = previewImageFilePath;
+        _mainProductInfo.subItemBtnImageName = _strSubItemBtnBgName;
+        //获取合适index
+        int index = [[MainCatalogManager instance] indexForNewCatalog];
+        _mainProductInfo.index = index;
+        [[MainCatalogManager instance] addMainCatalog:_mainProductInfo];
+        _mainProductInfo.productID = [[MainCatalogManager instance] lastMainProductInfo].productID;
+
+        if ([_delegate respondsToSelector:@selector(addMainCatalogViewController:didAddCatalog:)]) {
+            [_delegate addMainCatalogViewController:self didAddCatalog:_mainProductInfo];
+        }
+    }else{
+        if (_tfName.text.length == 0) {
+            ALERT_MSG(@"名字不能为空",nil , @"确定");
+            return;
+        }else{
+            _mainProductInfo.name = _tfName.text;
+        }
+        if (_imageBg != nil) {
+            //替换背景图片
+            [[ResourceCache instance] deleteResourceForPath:_mainProductInfo.bgImageFile];
+            //生成图片的uuid,保存到缓存
+            NSString *bgUuid = [CommonUtil uuid];
+            NSString *bgImageFilePath =[ResourceCache saveResouceData:UIImageJPEGRepresentation(_imageBg, 1)
+                                                           relatePath:bgUuid
+                                                         resourceType:kResourceCacheTypeBackgroundImage];
+
+            if (bgImageFilePath.length == 0) {
+                ALERT_MSG(@"保存失败", nil, @"确定");
+                return;
+            }
+            _mainProductInfo.bgImageFile = bgImageFilePath;
+
+        }
+        if (_imagePriview != nil) {
+            [[ResourceCache instance] deleteResourceForPath:_mainProductInfo.previewImageFile];
+            //保存类别预览图片
+            NSString *previewUuid = [CommonUtil uuid];
+            NSString *previewImageFilePath =[ResourceCache saveResouceData:UIImageJPEGRepresentation(_imagePriview, 1)
+                                                                relatePath:previewUuid
+                                                              resourceType:kResourceCacheTypeMainCatalogPreviewImage];
+
+            if (previewImageFilePath.length == 0) {
+                ALERT_MSG(@"保存失败", nil, @"确定");
+                return;
+            }
+            _mainProductInfo.previewImageFile = previewImageFilePath;
+        }
+        if (_imageSubItemBtnBg != nil) {
+            _mainProductInfo.subItemBtnImageName = _strSubItemBtnBgName;
+        }
+
+        [[MainCatalogManager instance] updateMainCatalog:_mainProductInfo];
+
+        if ([_delegate respondsToSelector:@selector(addMainCatalogViewController:didUpdateCatalog:)]) {
+            [_delegate addMainCatalogViewController:self didUpdateCatalog:_mainProductInfo];
+        }
     }
     [self.navigationController popViewControllerAnimated:YES];
 }

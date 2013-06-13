@@ -71,7 +71,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MainProductInfoDao)
                          [NSNumber numberWithInteger:mainProductInfo.index],
                          mainProductInfo.bgImageFile,
                          mainProductInfo.previewImageFile,
-                         mainProductInfo.subItemBtnImageName,nil];
+                         mainProductInfo.subItemBtnImageName,
+                         [NSNumber numberWithInt:mainProductInfo.productID],nil];
     __block BOOL isSuccess;
     [[[BaseDatabase instance] fmDbQueue] inDatabase:^(FMDatabase *db) {
         isSuccess = [db executeUpdate:sqlStr withArgumentsInArray:argArray];
