@@ -248,7 +248,6 @@
 		6D00EB94174E55C00045BF49 = {
 			isa = PBXGroup;
 			children = (
-				6D98EE12176A0DA000DE5F56 /* CoreTelephony.framework */,
 				6D00EBA9174E55C00045BF49 /* Cosmetology */,
 				6D00EBA2174E55C00045BF49 /* Frameworks */,
 				6D00EBA0174E55C00045BF49 /* Products */,
@@ -266,6 +265,7 @@
 		6D00EBA2174E55C00045BF49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6D98EE12176A0DA000DE5F56 /* CoreTelephony.framework */,
 				6D98EE0F176A0C2600DE5F56 /* libicucore.dylib */,
 				6D917DDA1750A24B00263F64 /* libsqlite3.dylib */,
 				6D60501317539B2E000635F3 /* AVFoundation.framework */,
