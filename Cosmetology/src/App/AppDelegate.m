@@ -12,6 +12,7 @@
 #import "PasswordManager.h"
 #import "BaseDatabase.h"
 #import "MainCatalogManager.h"
+#import "ResourceCache.h"
 
 @implementation AppDelegate
 
@@ -19,6 +20,8 @@
 {
     //初始化数据库
     [BaseDatabase instance];
+    //初始化图片缓存目录
+    [ResourceCache createAllCachePath];
     //初始化超值体验项目
     [[MainCatalogManager instance] initExperienceCatalog];
     [PasswordManager instance];

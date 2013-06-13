@@ -16,6 +16,7 @@
 #define MAIN_PRODUCT_INFO_BG_IMAGE_FILE          @"bgImageFile"
 #define MAIN_PRODUCT_INFO_PREVIEW_IMAGE_FILE     @"previewImageFile"
 #define MAIN_PRODUCT_INFO_SUB_ITEM_BTN_IMAGE_NAME @"subItemBtnImageName"
+#define MAIN_PRODUCT_INFO_CREATE_AT               @"createAt" //创建时间,不在实体中记录
 
 
 

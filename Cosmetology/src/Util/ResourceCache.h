@@ -21,4 +21,9 @@
 
 +(BOOL)createAllCachePath;
 
++(NSString*)resouceCachePathForCachePath:(EnumResourceCacheType)cacheType;
+
+//保存资源data到指定类型的缓存目录中
++(NSString *)saveResouceData:(NSData *)data relatePath:(NSString *)relatePath resourceType:(EnumResourceCacheType)cacheType;
+
 @end

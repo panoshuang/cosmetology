@@ -101,6 +101,10 @@
     [data writeToFile:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:fileName] atomically:YES];//缓冲把对象数据保存到文件中
 }
 
++ (BOOL) saveData:(NSData *)data toFileName:(NSString *)fileName{
+    return [data writeToFile:fileName atomically:YES];
+}
+
 +(NSString *)cachesPath
 {
     NSArray *cache = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);

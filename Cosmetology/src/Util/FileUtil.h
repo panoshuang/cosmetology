@@ -34,6 +34,7 @@
 //保存对象到指定文件
 + (void) saveObjectToFile:(id)obj key:(NSString *) fileName;
 
++ (BOOL) saveData:(NSData *)data toFileName:(NSString *)fileName;
 
 //获取缓存目录
 +(NSString *)cachesPath;
