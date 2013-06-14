@@ -24,6 +24,8 @@
     
     NSMutableArray *_catalogArray;
     NSInteger _lastDeleteItemIndexAsked;
+    NSString *_newProductName;
+    NSString *_passWord;
 }
 
 - (void)addMoreItem;
@@ -300,6 +302,8 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    _passWord = [[NSString alloc]init];
+    _newProductName = [[NSString alloc]init];
     if (buttonIndex == 1)
     {
         [_catalogArray removeObjectAtIndex:_lastDeleteItemIndexAsked];
@@ -308,12 +312,14 @@
         if (!_bIsEdit) {
             _bIsEdit = YES;
             _gmGridView.editing = YES;
-            [_gmGridView reloadData];
         }
+        DDetailLog(@"%@",_newProductName);
+        DDetailLog(@"%@",_passWord);
     }
     if (buttonIndex == 0) {
         DDetailLog(@"00000");
     }
+    [_gmGridView reloadData];
 }
 
 //////////////////////////////////////////////////////////////
@@ -464,7 +470,6 @@
     txt1.backgroundColor = [UIColor whiteColor];
     [alert1 addSubview:txt1];
     [alert1 show];
-
 }
 
 //////////////////////////////////////////////////////////////

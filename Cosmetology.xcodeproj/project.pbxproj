@@ -74,6 +74,9 @@
 		6DCF1D32175AEAF200AB4423 /* SubCatalogViewContrller.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF1D31175AEAF200AB4423 /* SubCatalogViewContrller.m */; };
 		6DCF1D35175AF06500AB4423 /* PasswordManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF1D34175AF06500AB4423 /* PasswordManagerViewController.m */; };
 		6DD8FA3017657EB200B2D81B /* page.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DD8FA2F17657EB200B2D81B /* page.png */; };
+		CE82515E176AAD6A00B3FB3F /* SubCatalogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE82515D176AAD6900B3FB3F /* SubCatalogManager.m */; };
+		CE825162176AADA300B3FB3F /* SubProductInfoDao.m in Sources */ = {isa = PBXBuildFile; fileRef = CE825161176AADA300B3FB3F /* SubProductInfoDao.m */; };
+		CE825165176AC0F400B3FB3F /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = CE825164176AC0F300B3FB3F /* Test.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -220,6 +223,12 @@
 		6DD8FA2F17657EB200B2D81B /* page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page.png; sourceTree = "<group>"; };
 		6DD8FA311765C0E000B2D81B /* ReflectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReflectionView.h; sourceTree = "<group>"; };
 		6DD8FA321765C0E000B2D81B /* ReflectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReflectionView.m; sourceTree = "<group>"; };
+		CE82515C176AAD6900B3FB3F /* SubCatalogManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubCatalogManager.h; sourceTree = "<group>"; };
+		CE82515D176AAD6900B3FB3F /* SubCatalogManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubCatalogManager.m; sourceTree = "<group>"; };
+		CE825160176AADA300B3FB3F /* SubProductInfoDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubProductInfoDao.h; sourceTree = "<group>"; };
+		CE825161176AADA300B3FB3F /* SubProductInfoDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubProductInfoDao.m; sourceTree = "<group>"; };
+		CE825163176AC0F300B3FB3F /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+		CE825164176AC0F300B3FB3F /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,6 +339,8 @@
 			children = (
 				6D8D34E017550D9A003F9E9E /* MainViewController.h */,
 				6D8D34E117550D9A003F9E9E /* MainViewController.m */,
+				CE825163176AC0F300B3FB3F /* Test.h */,
+				CE825164176AC0F300B3FB3F /* Test.m */,
 				6DCF1D30175AEAF200AB4423 /* SubCatalogViewContrller.h */,
 				6DCF1D31175AEAF200AB4423 /* SubCatalogViewContrller.m */,
 				6DCF1D33175AF06500AB4423 /* PasswordManagerViewController.h */,
@@ -376,6 +387,8 @@
 				6D917D4C17509D7E00263F64 /* UserSettingInfoDao.m */,
 				63157A84748410F10B4F384A /* MainProductInfoDao.m */,
 				631574420B21BDD5EC2686BB /* MainProductInfoDao.h */,
+				CE825160176AADA300B3FB3F /* SubProductInfoDao.h */,
+				CE825161176AADA300B3FB3F /* SubProductInfoDao.m */,
 			);
 			path = DbDao;
 			sourceTree = "<group>";
@@ -464,6 +477,8 @@
 				631575BC2397329C7D9E0908 /* PasswordManager.h */,
 				6DAD0F60176626D100D37D08 /* MainCatalogManager.h */,
 				6DAD0F61176626D100D37D08 /* MainCatalogManager.m */,
+				CE82515C176AAD6900B3FB3F /* SubCatalogManager.h */,
+				CE82515D176AAD6900B3FB3F /* SubCatalogManager.m */,
 			);
 			path = Business;
 			sourceTree = "<group>";
@@ -756,6 +771,9 @@
 				6DA2C68117675AC60098F911 /* AddSubCatalogViewController.m in Sources */,
 				6DA2C68717675D4C0098F911 /* SubProductInfo.m in Sources */,
 				63157A379D0754F317A6A9E6 /* DeviceHelper.m in Sources */,
+				CE82515E176AAD6A00B3FB3F /* SubCatalogManager.m in Sources */,
+				CE825162176AADA300B3FB3F /* SubProductInfoDao.m in Sources */,
+				CE825165176AC0F400B3FB3F /* Test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
