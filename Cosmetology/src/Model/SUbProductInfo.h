@@ -14,11 +14,12 @@
     int mainProductID;
     NSString *name;
     BOOL enable;
+    int index;
 }
 
 @property(nonatomic)int productID;
 @property(nonatomic)int mainProductID;
 @property(nonatomic,copy)NSString *name;
 @property(nonatomic)BOOL enable;
-
+@property(nonatomic) int index;
 @end

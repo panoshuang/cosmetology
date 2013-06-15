@@ -16,11 +16,16 @@
 #import "GMGridView.h"
 #import "AddMainCatalogViewController.h"
 #import "MainCatalogManager.h"
+#import "RIButtonItem.h"
+#import "UIAlertView+Blocks.h"
+#import "ExperienceViewController.h"
 
-@interface MainViewController ()<SubCatalogViewControllerDelegate,iCarouselDataSource, iCarouselDelegate,AddMainCatalogViewControllerDelegate>{
+@interface MainViewController ()<SubCatalogViewControllerDelegate,iCarouselDataSource,
+        iCarouselDelegate,AddMainCatalogViewControllerDelegate, ExperienceViewControllerDelegate>{
     SubCatalogViewContrller *_subCatalogViewController;
     UIPopoverController *_popController;
     PasswordManagerViewController *_passwordManagerViewController;
+    ExperienceViewController *_experienceViewController;
     iCarousel *_catalogCarousel;
     UIButton *_deleteBtn;
     UIButton *_addBtn;
@@ -133,9 +138,28 @@
 
 -(void)deleteCurCatalog{
     DDetailLog(@"");
-    int index = [_catalogCarousel currentItemIndex];
-    [_catalogArray removeObjectAtIndex:index];
-    [_catalogCarousel removeItemAtIndex:index animated:YES];
+    //判断是否是超值体验项目,超值体验项目不能删除的
+    if([_catalogCarousel currentItemIndex] == _catalogArray.count - 1){
+        ALERT_MSG(@"不能删除超值体验项目", nil, @"确定");
+    }else{
+        RIButtonItem *confirmItem = [RIButtonItem item];
+        confirmItem.label = @"确定";
+        confirmItem.action = ^{
+            int index = [_catalogCarousel currentItemIndex];
+            MainProductInfo *productInfo = [_catalogArray objectAtIndex:index];
+            //删除数据库中的分类
+            [[MainCatalogManager instance] deleteMainCatalogForId:productInfo.productID];
+            [_catalogArray removeObjectAtIndex:index];
+            [_catalogCarousel removeItemAtIndex:index animated:YES];
+        }   ;
+        RIButtonItem *cancelItem = [RIButtonItem item];
+        cancelItem.label = @"取消";
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"确定要删除当前的项目?"
+                                                            message:nil
+                                                   cancelButtonItem:cancelItem
+                                                   otherButtonItems:confirmItem, nil];
+        [alertView show];
+    }
 }
 
 -(void)showEditView:(UIButton *)sender{
@@ -161,10 +185,15 @@
     [self.navigationController pushViewController:viewController animated:animate];
 }
 
-#pragma mark - MainCatalogViewControllerDelegate
+#pragma mark - SubCatalogViewControllerDelegate
 
 -(void)subCatalogViewController:(SubCatalogViewContrller *)maiCatalogViewController didSelectCatalogID:(int)catalogID{
     
+}
+
+#pragma mark  - ExperienceViewControllerDelegate
+-(void)experienceViewController:(ExperienceViewController *)experienceViewController didSelectSubCatalog:(SubProductInfo *)subProductInfo{
+
 }
 
 #pragma mark -
@@ -295,16 +324,29 @@
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index{
     DDetailLog(@"");
     //显示二级项目
-    _subCatalogViewController = [[SubCatalogViewContrller alloc] init];
-    _subCatalogViewController.view.frame = self.view.bounds;
-    _subCatalogViewController.delegate = self;
-    _subCatalogViewController.mainDelegate = self;
-    [self.view addSubview:_subCatalogViewController.view];
-    _subCatalogViewController.view.alpha = 0;
-    _subCatalogViewController.view.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
+    //检查是否是超值体验项目
+    UIViewController *viewController = nil;
+    if(index == _catalogArray.count - 1){
+        _experienceViewController = [[ExperienceViewController alloc] init];
+        _experienceViewController.delegate = self;
+        _experienceViewController.mainDelegate = self;
+        viewController = _experienceViewController;
+
+
+    }else{
+        _subCatalogViewController = [[SubCatalogViewContrller alloc] init];
+        _subCatalogViewController.delegate = self;
+        _subCatalogViewController.mainDelegate = self;
+        viewController = _subCatalogViewController;
+    }
+
+    viewController.view.frame = self.view.bounds;
+    [self.view addSubview:viewController.view];
+    viewController.view.alpha = 0;
+    viewController.view.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
     [UIView animateWithDuration:.5
                      animations:^{
-                         _subCatalogViewController.view.alpha = 1;
+                         viewController.view.alpha = 1;
                      }completion:^(BOOL complete){
                           
                      }];
@@ -322,6 +364,8 @@
     [_catalogArray insertObject:mainProductInfo atIndex:index];
     [_catalogCarousel insertItemAtIndex:index animated:YES];
 }
+
+
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

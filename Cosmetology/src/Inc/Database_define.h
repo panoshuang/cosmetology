@@ -18,5 +18,13 @@
 #define MAIN_PRODUCT_INFO_SUB_ITEM_BTN_IMAGE_NAME @"subItemBtnImageName"
 #define MAIN_PRODUCT_INFO_CREATE_AT               @"createAt" //创建时间,不在实体中记录
 
+#pragma mark - SubProductInfo表
+#define SUB_PRODUCT_INFO_TABLE_TABLE_NAME       @"subProductInfo"
+#define SUB_PRODUCT_INFO_TABLE_PRODUCT_ID       @"productID"
+#define SUB_PRODUCT_INFO_TABLE_MAIN_PRODUCT_ID  @"mainProductID"
+#define SUB_PRODUCT_INFO_TABLE_NAME             @"name"
+#define SUB_PRODUCT_INFO_TABLE_ENABLE           @"enable"
+#define SUB_PRODUCT_INFO_TABLE_INDEX            @"sortIndex"
+
 
 

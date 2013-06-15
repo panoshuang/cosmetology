@@ -16,6 +16,8 @@
 //初始化超值体验项目
 -(BOOL)initExperienceCatalog;
 
+-(MainProductInfo *)experienceCatalog;
+
 -(BOOL)addMainCatalog:(MainProductInfo *)mainProductInfo;
 
 -(BOOL)deleteMainCatalogForId:(int)productId;
