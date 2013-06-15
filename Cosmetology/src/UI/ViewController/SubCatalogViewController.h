@@ -11,11 +11,13 @@
 @class GMGridView;
 @protocol SubCatalogViewControllerDelegate;
 @protocol MainDelegate;
+ @class MainProductInfo;
 
 
-@interface SubCatalogViewContrller : UIViewController{
+ @interface SubCatalogViewController : UIViewController{
     __weak id<SubCatalogViewControllerDelegate> _delegate;
     __weak id<MainDelegate> _mainDelegate;
+    MainProductInfo *_mainProductInfo;
     BOOL _bIsEdit;
 }
 
@@ -24,11 +26,17 @@
 @property (nonatomic) BOOL bIsEdit;
 @property (nonatomic,strong) UIImageView *ivBg;
 @property (nonatomic,strong) GMGridView *gmGridView;
+ @property(nonatomic, strong) MainProductInfo *mainProductInfo;
 
-@end
+ - (id)initWithMainProductInfo:(MainProductInfo *)aMainProductInfo;
+
+ + (id)objectWithMainProductInfo:(MainProductInfo *)aMainProductInfo;
+
+
+ @end
 
 @protocol SubCatalogViewControllerDelegate <NSObject>
 
--(void)subCatalogViewController:(SubCatalogViewContrller *)maiCatalogViewController didSelectCatalogID:(int)catalogID;
+-(void)subCatalogViewController:(SubCatalogViewController *)maiCatalogViewController didSelectCatalogID:(int)catalogID;
 
 @end

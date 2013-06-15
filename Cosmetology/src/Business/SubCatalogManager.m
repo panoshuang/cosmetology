@@ -37,6 +37,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SubCatalogManager)
     return [[SubProductInfoDao instance] lastCreateCatalog];
 }
 
+-(NSArray *)allSubProductInfoForMainProductID:(int)mainProductID{
+    return [[SubProductInfoDao instance] allSubProductInfoForMainProductID:mainProductID];
+}
+
+-(NSArray *)allEnableProductInfoForMainProductID:(int)mainProductID{
+    return [[SubProductInfoDao instance] allEnableProductInfoForMainProductID:mainProductID];
+}
+
 //为新增类别获取合适的index排序索引
 -(int)indexForNewCatalog{
     //获取最后插入的一条类别

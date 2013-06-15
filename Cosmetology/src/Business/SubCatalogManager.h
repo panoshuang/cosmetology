@@ -24,6 +24,10 @@
 
 -(NSArray *)allEnableProductInfo;
 
+-(NSArray *)allSubProductInfoForMainProductID:(int)mainProductID;
+
+-(NSArray *)allEnableProductInfoForMainProductID:(int)mainProductID;
+
 -(SubProductInfo *)lastSubProductInfo;
 
 //为新增类别获取合适的index排序索引
