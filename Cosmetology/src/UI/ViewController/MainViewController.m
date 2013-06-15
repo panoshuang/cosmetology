@@ -323,6 +323,25 @@
     [_catalogCarousel insertItemAtIndex:index animated:YES];
 }
 
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    
+    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight );
+    
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return YES;
+}
+
+
+
 -(void)addMainCatalogViewController:(AddMainCatalogViewController *)addMainCatalogViewController didUpdateCatalog:(MainProductInfo *)mainProductInfo;
 {
    int index = [_catalogArray indexOfObject:mainProductInfo];
@@ -330,5 +349,6 @@
         [_catalogCarousel reloadItemAtIndex:index animated:YES];
     }
 }
+
 
 @end

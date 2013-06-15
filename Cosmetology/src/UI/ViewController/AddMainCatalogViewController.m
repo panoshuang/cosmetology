@@ -330,6 +330,22 @@
                                   animated:YES];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    
+    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight );
+    
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return YES;
+}
+
 #pragma mark UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker
         didFinishPickingImage:(UIImage *)image

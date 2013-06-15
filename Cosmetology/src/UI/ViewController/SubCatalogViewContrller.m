@@ -24,6 +24,8 @@
     
     NSMutableArray *_catalogArray;
     NSInteger _lastDeleteItemIndexAsked;
+    NSString *_newProductName;
+    NSString *_passWord;
 }
 
 - (void)addMoreItem;
@@ -105,7 +107,7 @@
     updatePassword.frame = CGRectMake(self.view.frame.size.width - 40, 0, 80, 30);
     updatePassword.backgroundColor = [UIColor blueColor];
     [updatePassword setTitle:@"输入密码" forState:UIControlStateNormal];
-    [updatePassword addTarget:self action:@selector(updatePassword) forControlEvents:UIControlEventTouchUpInside];
+    [updatePassword addTarget:self action:@selector(inputPassword:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:updatePassword];
     
     UIButton *addSubcatalogItem = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -123,7 +125,7 @@
     [_mainDelegate mainPushViewController:addSubcatalogViewController animated:YES];
 }
 
--(void)updatePassword
+-(void)inputPassword:(UIButton *)btn
 {
     UIAlertView *alert1 = [[UIAlertView alloc]
               initWithTitle:NSLocalizedString(@"输入密码", nil)
@@ -144,6 +146,15 @@
     [alert1 show];
 }
 
+//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    if (buttonIndex == 1) {
+//        DDetailLog(@"111111")
+//    }
+//    if (buttonIndex == 0) {
+//        DDetailLog(@"00000");
+//    }
+//}
 
 
 - (void)viewDidLoad
@@ -291,11 +302,24 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    _passWord = [[NSString alloc]init];
+    _newProductName = [[NSString alloc]init];
     if (buttonIndex == 1)
     {
         [_catalogArray removeObjectAtIndex:_lastDeleteItemIndexAsked];
         [_gmGridView removeObjectAtIndex:_lastDeleteItemIndexAsked withAnimation:GMGridViewItemAnimationFade];
+        DDetailLog(@"111111");
+        if (!_bIsEdit) {
+            _bIsEdit = YES;
+            _gmGridView.editing = YES;
+        }
+        DDetailLog(@"%@",_newProductName);
+        DDetailLog(@"%@",_passWord);
     }
+    if (buttonIndex == 0) {
+        DDetailLog(@"00000");
+    }
+    [_gmGridView reloadData];
 }
 
 //////////////////////////////////////////////////////////////
@@ -426,6 +450,28 @@
     DDetailLog(@"indxe : %d",index);
 }
 
+-(void)subCatalogGridViewCellDidBtn
+{
+    DDetailLog(@"delegate call...");
+    UIAlertView *alert1 = [[UIAlertView alloc]
+                           initWithTitle:NSLocalizedString(@"输入新项目名", nil)
+                           message:NSLocalizedString(@"\n", nil)
+                           delegate:self
+                           cancelButtonTitle:@"取消"
+                           otherButtonTitles:@"确认",
+                           nil];
+    alert1.delegate = self;
+    UITextField *txt1 = [[UITextField alloc]initWithFrame:CGRectMake(12, 40, 260, 40)];
+    txt1.font = [UIFont boldSystemFontOfSize:18];
+    txt1.layer.cornerRadius = 6;
+    txt1.layer.masksToBounds = YES;
+    txt1.secureTextEntry = YES;
+    txt1.delegate = self;
+    txt1.backgroundColor = [UIColor whiteColor];
+    [alert1 addSubview:txt1];
+    [alert1 show];
+}
+
 //////////////////////////////////////////////////////////////
 #pragma mark private methods
 //////////////////////////////////////////////////////////////
@@ -484,14 +530,5 @@
 }
 
 
-///////////////////////////////////////////////
-#pragma mark --
-#pragma mark UIAlertViewDelegate
-//////////////////////////////////////////////
-
-- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex; 
-{
-    //TODO:
-}
 
 @end
