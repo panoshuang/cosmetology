@@ -15,4 +15,5 @@
 @synthesize name;
 @synthesize enable;
 
+@synthesize index;
 @end

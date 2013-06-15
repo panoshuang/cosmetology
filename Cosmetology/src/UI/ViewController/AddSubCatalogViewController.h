@@ -13,7 +13,14 @@
 
 @interface AddSubCatalogViewController : UIViewController
 
+@property (nonatomic) int mainCatalogId;
+
 @property(nonatomic,weak)id<AddSubCatalogViewControllerDelegate>delegate;
+
+- (id)initWithMainCatalogId:(int)aMainCatalogId;
+
++ (id)controllerWithMainCatalogId:(int)aMainCatalogId;
+
 
 @end
 

@@ -30,6 +30,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MainCatalogManager)
     }
 }
 
+-(MainProductInfo *)experienceCatalog{
+    return [[MainProductInfoDao instance] experienceCatalog];
+}
+
 -(BOOL)addMainCatalog:(MainProductInfo *)mainProductInfo{
     return [[MainProductInfoDao instance] addMainProductInfo:mainProductInfo];
 }
@@ -58,8 +62,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MainCatalogManager)
 -(int)indexForNewCatalog{
     //获取最后插入的一条类别
     MainProductInfo *productInfo = [[MainProductInfoDao instance] lastCreateCatalog];
-    int newIndex = productInfo.index + 1;
-    return newIndex;
+    if(productInfo.index == EXPERIENCE_CATALOG_INDEX) {
+        int newIndex = 0;
+        return newIndex;
+    } else{
+        int newIndex = productInfo.index + 1;
+        return newIndex;
+    }
+
     
 }
 

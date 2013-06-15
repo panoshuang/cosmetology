@@ -8,6 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
+#import "SubProductInfo.h"
+
 @interface SubCatalogManager : NSObject
+
++(SubCatalogManager *)instance;
+
+-(int)addSubCatalog:(SubProductInfo *)subProductInfo;
+
+-(BOOL)deleteSubCatalogForId:(int)productId;
+
+-(BOOL)updateSubCatalog:(SubProductInfo *)subProductInfo;
+
+-(NSArray *)allSubProductInfo;
+
+-(NSArray *)allEnableProductInfo;
+
+-(SubProductInfo *)lastSubProductInfo;
+
+//为新增类别获取合适的index排序索引
+-(int)indexForNewCatalog;
 
 @end

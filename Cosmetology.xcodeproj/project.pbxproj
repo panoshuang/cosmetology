@@ -8,9 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		6315709F0A558E7B3E50E89C /* MainProductInfoDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 63157A84748410F10B4F384A /* MainProductInfoDao.m */; };
+		6315742C00BEBA50C6E2ED1C /* UIActionSheet+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 63157BC9160A2D58CBEAC1F7 /* UIActionSheet+Blocks.m */; };
+		631577B9579DC7E1D33063FE /* RIButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 631575A5F7E9A2DDA2086950 /* RIButtonItem.m */; };
+		631578B99B931F5381733F77 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 63157B4736B061BAC6A16CBD /* UIAlertView+Blocks.m */; };
 		6315799195ED1EC87FF97BAA /* PasswordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 63157AE4E065570A862D8872 /* PasswordManager.m */; };
 		63157A379D0754F317A6A9E6 /* DeviceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 631575783B6472DA84B7F12A /* DeviceHelper.m */; };
+		63157BDF76EA46FF72E26FF1 /* ExperienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63157FB2CF3374EE2F7B0B3F /* ExperienceViewController.m */; };
 		63157C75C37C72D87A8C6F81 /* MainProductInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 631576D04EF85D4C815CE2FA /* MainProductInfo.m */; };
+		63157D0476B934B7BAB0120A /* bg_experience.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 631577F53182818B8D3485F2 /* bg_experience.jpg */; };
 		6D00EBA4174E55C00045BF49 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBA3174E55C00045BF49 /* UIKit.framework */; };
 		6D00EBA6174E55C00045BF49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBA5174E55C00045BF49 /* Foundation.framework */; };
 		6D00EBA8174E55C00045BF49 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBA7174E55C00045BF49 /* CoreGraphics.framework */; };
@@ -19,9 +24,6 @@
 		6D00EBB6174E55C00045BF49 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBB5174E55C00045BF49 /* Default.png */; };
 		6D00EBB8174E55C00045BF49 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBB7174E55C00045BF49 /* Default@2x.png */; };
 		6D00EBBA174E55C00045BF49 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBB9174E55C00045BF49 /* Default-568h@2x.png */; };
-		6D605006175398CC000635F3 /* RIButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D605001175398CC000635F3 /* RIButtonItem.m */; };
-		6D605007175398CC000635F3 /* UIActionSheet+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D605003175398CC000635F3 /* UIActionSheet+Blocks.m */; };
-		6D605008175398CC000635F3 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D605005175398CC000635F3 /* UIAlertView+Blocks.m */; };
 		6D60500A1753999B000635F3 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D6050091753999B000635F3 /* CoreAudio.framework */; };
 		6D60500E17539A6B000635F3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D60500D17539A6B000635F3 /* AudioToolbox.framework */; };
 		6D60501417539B2E000635F3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D60501317539B2E000635F3 /* AVFoundation.framework */; };
@@ -90,15 +92,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		63157161CC43DB01BF4564CD /* UIActionSheet+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+Blocks.h"; sourceTree = "<group>"; };
 		63157396229EBAC3BA9A6064 /* DeviceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceHelper.h; sourceTree = "<group>"; };
 		631574420B21BDD5EC2686BB /* MainProductInfoDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainProductInfoDao.h; sourceTree = "<group>"; };
 		631575783B6472DA84B7F12A /* DeviceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceHelper.m; sourceTree = "<group>"; };
+		631575A5F7E9A2DDA2086950 /* RIButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIButtonItem.m; sourceTree = "<group>"; };
 		631575B78D6CD061E6786E85 /* Userdefault_define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Userdefault_define.h; sourceTree = "<group>"; };
 		631575BC2397329C7D9E0908 /* PasswordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordManager.h; sourceTree = "<group>"; };
 		631576D04EF85D4C815CE2FA /* MainProductInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainProductInfo.m; sourceTree = "<group>"; };
+		631577F53182818B8D3485F2 /* bg_experience.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_experience.jpg; sourceTree = "<group>"; };
 		6315794AC857EEFB600F7AE3 /* MainProductInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainProductInfo.h; sourceTree = "<group>"; };
+		63157979717B4C06A55267B0 /* ExperienceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExperienceViewController.h; sourceTree = "<group>"; };
 		63157A84748410F10B4F384A /* MainProductInfoDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainProductInfoDao.m; sourceTree = "<group>"; };
+		63157AC11D4D7D4FC0F8BBF2 /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
 		63157AE4E065570A862D8872 /* PasswordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordManager.m; sourceTree = "<group>"; };
+		63157B4736B061BAC6A16CBD /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
+		63157BC9160A2D58CBEAC1F7 /* UIActionSheet+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+Blocks.m"; sourceTree = "<group>"; };
+		63157E380050D8A67EFB6E4B /* RIButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIButtonItem.h; sourceTree = "<group>"; };
+		63157FB2CF3374EE2F7B0B3F /* ExperienceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExperienceViewController.m; sourceTree = "<group>"; };
 		6D00EB9F174E55C00045BF49 /* Cosmetology.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cosmetology.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D00EBA3174E55C00045BF49 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6D00EBA5174E55C00045BF49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -110,12 +121,6 @@
 		6D00EBB5174E55C00045BF49 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		6D00EBB7174E55C00045BF49 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		6D00EBB9174E55C00045BF49 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		6D605000175398CC000635F3 /* RIButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIButtonItem.h; sourceTree = "<group>"; };
-		6D605001175398CC000635F3 /* RIButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIButtonItem.m; sourceTree = "<group>"; };
-		6D605002175398CC000635F3 /* UIActionSheet+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+Blocks.h"; sourceTree = "<group>"; };
-		6D605003175398CC000635F3 /* UIActionSheet+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+Blocks.m"; sourceTree = "<group>"; };
-		6D605004175398CC000635F3 /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
-		6D605005175398CC000635F3 /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
 		6D6050091753999B000635F3 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		6D60500D17539A6B000635F3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		6D60501317539B2E000635F3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -254,6 +259,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63157E968921C04DB20E1681 /* UIAlertView-Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				63157E380050D8A67EFB6E4B /* RIButtonItem.h */,
+				631575A5F7E9A2DDA2086950 /* RIButtonItem.m */,
+				63157161CC43DB01BF4564CD /* UIActionSheet+Blocks.h */,
+				63157BC9160A2D58CBEAC1F7 /* UIActionSheet+Blocks.m */,
+				63157AC11D4D7D4FC0F8BBF2 /* UIAlertView+Blocks.h */,
+				63157B4736B061BAC6A16CBD /* UIAlertView+Blocks.m */,
+			);
+			path = "UIAlertView-Blocks";
+			sourceTree = "<group>";
+		};
 		6D00EB94174E55C00045BF49 = {
 			isa = PBXGroup;
 			children = (
@@ -312,19 +330,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		6D604FFF175398CC000635F3 /* UIAlertView-Blocks */ = {
-			isa = PBXGroup;
-			children = (
-				6D605000175398CC000635F3 /* RIButtonItem.h */,
-				6D605001175398CC000635F3 /* RIButtonItem.m */,
-				6D605002175398CC000635F3 /* UIActionSheet+Blocks.h */,
-				6D605003175398CC000635F3 /* UIActionSheet+Blocks.m */,
-				6D605004175398CC000635F3 /* UIAlertView+Blocks.h */,
-				6D605005175398CC000635F3 /* UIAlertView+Blocks.m */,
-			);
-			path = "UIAlertView-Blocks";
-			sourceTree = "<group>";
-		};
 		6D8D34D817550C11003F9E9E /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,6 +356,8 @@
 				6DB30E9717683E54005D9884 /* SelectSubItemBtnBgViewController.m */,
 				6DA2C67F17675AC60098F911 /* AddSubCatalogViewController.h */,
 				6DA2C68017675AC60098F911 /* AddSubCatalogViewController.m */,
+				63157FB2CF3374EE2F7B0B3F /* ExperienceViewController.m */,
+				63157979717B4C06A55267B0 /* ExperienceViewController.h */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -409,7 +416,6 @@
 			isa = PBXGroup;
 			children = (
 				6D9910791765727B003C7C12 /* ICarousel */,
-				6D604FFF175398CC000635F3 /* UIAlertView-Blocks */,
 				6D917DC11750A20100263F64 /* VoiceConvert */,
 				6D917DA71750A1CF00263F64 /* DbEngine */,
 				6D917D7A17509DD900263F64 /* GMGridView */,
@@ -547,6 +553,7 @@
 				6D917DD11750A20100263F64 /* VoiceConverter.mm */,
 				6D917DD21750A20100263F64 /* VoiceHandle.h */,
 				6D917DD31750A20100263F64 /* VoiceHandle.m */,
+				63157E968921C04DB20E1681 /* UIAlertView-Blocks */,
 			);
 			path = VoiceConvert;
 			sourceTree = "<group>";
@@ -635,6 +642,7 @@
 				6DB30E9D17684321005D9884 /* btn_sub_item_light_purple.png */,
 				6DB30E9E17684321005D9884 /* btn_sub_item_orange.png */,
 				6DB30E9F17684321005D9884 /* btn_sub_item_purple.png */,
+				631577F53182818B8D3485F2 /* bg_experience.jpg */,
 			);
 			name = subCatalog;
 			sourceTree = "<group>";
@@ -720,6 +728,7 @@
 				6DB30EA217684321005D9884 /* btn_sub_item_light_purple.png in Resources */,
 				6DB30EA317684321005D9884 /* btn_sub_item_orange.png in Resources */,
 				6DB30EA417684321005D9884 /* btn_sub_item_purple.png in Resources */,
+				63157D0476B934B7BAB0120A /* bg_experience.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,9 +753,6 @@
 				6D917DD51750A20100263F64 /* wav.mm in Sources */,
 				6D917DD81750A20100263F64 /* VoiceConverter.mm in Sources */,
 				6D917DD91750A20100263F64 /* VoiceHandle.m in Sources */,
-				6D605006175398CC000635F3 /* RIButtonItem.m in Sources */,
-				6D605007175398CC000635F3 /* UIActionSheet+Blocks.m in Sources */,
-				6D605008175398CC000635F3 /* UIAlertView+Blocks.m in Sources */,
 				6D60502617539F49000635F3 /* FMDatabase.m in Sources */,
 				6D60502717539F49000635F3 /* FMDatabaseAdditions.m in Sources */,
 				6D60502817539F49000635F3 /* FMDatabasePool.m in Sources */,
@@ -774,6 +780,10 @@
 				CE82515E176AAD6A00B3FB3F /* SubCatalogManager.m in Sources */,
 				CE825162176AADA300B3FB3F /* SubProductInfoDao.m in Sources */,
 				CE825165176AC0F400B3FB3F /* Test.m in Sources */,
+				63157BDF76EA46FF72E26FF1 /* ExperienceViewController.m in Sources */,
+				631577B9579DC7E1D33063FE /* RIButtonItem.m in Sources */,
+				6315742C00BEBA50C6E2ED1C /* UIActionSheet+Blocks.m in Sources */,
+				631578B99B931F5381733F77 /* UIAlertView+Blocks.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
