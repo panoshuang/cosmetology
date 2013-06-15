@@ -2,35 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cosmetology/res/bg_experience.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/ExperienceViewController.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/ExperienceViewController.m" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Cosmetology/src/Libs/UIAlertView-Blocks/RIButtonItem.h" afterPath="$PROJECT_DIR$/Cosmetology/src/Libs/VoiceConvert/UIAlertView-Blocks/RIButtonItem.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Cosmetology/src/Libs/UIAlertView-Blocks/RIButtonItem.m" afterPath="$PROJECT_DIR$/Cosmetology/src/Libs/VoiceConvert/UIAlertView-Blocks/RIButtonItem.m" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Cosmetology/src/Libs/UIAlertView-Blocks/UIActionSheet+Blocks.h" afterPath="$PROJECT_DIR$/Cosmetology/src/Libs/VoiceConvert/UIAlertView-Blocks/UIActionSheet+Blocks.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Cosmetology/src/Libs/UIAlertView-Blocks/UIActionSheet+Blocks.m" afterPath="$PROJECT_DIR$/Cosmetology/src/Libs/VoiceConvert/UIAlertView-Blocks/UIActionSheet+Blocks.m" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Cosmetology/src/Libs/UIAlertView-Blocks/UIAlertView+Blocks.h" afterPath="$PROJECT_DIR$/Cosmetology/src/Libs/VoiceConvert/UIAlertView-Blocks/UIAlertView+Blocks.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Cosmetology/src/Libs/UIAlertView-Blocks/UIAlertView+Blocks.m" afterPath="$PROJECT_DIR$/Cosmetology/src/Libs/VoiceConvert/UIAlertView-Blocks/UIAlertView+Blocks.m" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Cosmetology/src/Model/SUbProductInfo.h" afterPath="$PROJECT_DIR$/Cosmetology/src/Model/SubProductInfo.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Cosmetology/src/Model/SUbProductInfo.m" afterPath="$PROJECT_DIR$/Cosmetology/src/Model/SubProductInfo.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddSubCatalogViewController.h" afterPath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddSubCatalogViewController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddSubCatalogViewController.m" afterPath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddSubCatalogViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology/src/DbCore/BaseDatabase.m" afterPath="$PROJECT_DIR$/Cosmetology/src/DbCore/BaseDatabase.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology/src/Inc/Database_define.h" afterPath="$PROJECT_DIR$/Cosmetology/src/Inc/Database_define.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology/src/Business/MainCatalogManager.h" afterPath="$PROJECT_DIR$/Cosmetology/src/Business/MainCatalogManager.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology/src/Business/MainCatalogManager.m" afterPath="$PROJECT_DIR$/Cosmetology/src/Business/MainCatalogManager.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/MainProductInfoDao.m" afterPath="$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/MainProductInfoDao.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/MainViewController.m" afterPath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/MainViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology/src/Business/SubCatalogManager.h" afterPath="$PROJECT_DIR$/Cosmetology/src/Business/SubCatalogManager.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology/src/Business/SubCatalogManager.m" afterPath="$PROJECT_DIR$/Cosmetology/src/Business/SubCatalogManager.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/SubProductInfoDao.h" afterPath="$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/SubProductInfoDao.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/SubProductInfoDao.m" afterPath="$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/SubProductInfoDao.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Cosmetology.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Cosmetology.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371266110704" ignored="false" />
+    <file path="/Dummy.txt" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371281192308" ignored="false" />
     <file path="/MainCatalogItem.m" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1370356023692" ignored="false" />
     <file path="/MainCatalogViewContrller.m" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1370693280856" ignored="false" />
     <file path="/MainViewController.m" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371272958636" ignored="false" />
@@ -50,11 +28,11 @@
     <file path="/SubCatalogManager.h" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371280521386" ignored="false" />
     <file path="/SubCatalogManager.m" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371280181920" ignored="false" />
     <file path="/SubProductInfoDao.h" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371280199052" ignored="false" />
-    <file path="/SubProductInfoDao.m" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371280495835" ignored="false" />
+    <file path="/SubProductInfoDao.m" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371281484667" ignored="false" />
     <file path="/Database_define.h" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371280911757" ignored="false" />
     <file path="/BaseDatabase.m" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371277106240" ignored="false" />
     <file path="/SUbProductInfo.h" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371277387639" ignored="false" />
-    <file path="/AddSubCatalogViewController.m" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371280170217" ignored="false" />
+    <file path="/AddSubCatalogViewController.m" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371281535988" ignored="false" />
     <file path="/AddSubCatalogViewController.h" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371278294621" ignored="false" />
     <file path="/MainCatalogManager.h" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371278691190" ignored="false" />
     <file path="/fragment.m" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371281044133" ignored="false" />
@@ -85,10 +63,10 @@
                 </provider>
               </entry>
             </file>
-            <file leaf-file-name="SubCatalogViewContrller.m" pinned="false" current="false" current-in-tab="false">
+            <file leaf-file-name="SubCatalogViewContrller.m" pinned="false" current="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/SubCatalogViewContrller.m">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state line="22" column="2" selection-start="682" selection-end="682" vertical-scroll-proportion="0.0">
+                  <state line="22" column="2" selection-start="682" selection-end="682" vertical-scroll-proportion="0.41627544">
                     <folding>
                       <element signature="e#143#178#0" expanded="true" />
                     </folding>
@@ -96,10 +74,10 @@
                 </provider>
               </entry>
             </file>
-            <file leaf-file-name="Database_define.h" pinned="false" current="false" current-in-tab="true">
+            <file leaf-file-name="Database_define.h" pinned="false" current="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/Cosmetology/src/Inc/Database_define.h">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state line="26" column="55" selection-start="1183" selection-end="1183" vertical-scroll-proportion="0.5582822">
+                  <state line="26" column="55" selection-start="1183" selection-end="1183" vertical-scroll-proportion="0.0">
                     <folding />
                   </state>
                 </provider>
@@ -116,15 +94,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ExperienceViewController.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/ExperienceViewController.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="484" column="25" selection-start="16665" selection-end="16665" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MainCatalogManager.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Cosmetology/src/Business/MainCatalogManager.m">
           <provider selected="true" editor-type-id="text-editor">
@@ -143,15 +112,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AddSubCatalogViewController.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddSubCatalogViewController.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="0" selection-start="739" selection-end="739" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="BaseDatabase.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Cosmetology/src/DbCore/BaseDatabase.m">
           <provider selected="true" editor-type-id="text-editor">
@@ -164,7 +124,7 @@
       <file leaf-file-name="AddSubCatalogViewController.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddSubCatalogViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="127" column="0" selection-start="4322" selection-end="4322" vertical-scroll-proportion="0.0">
+            <state line="126" column="69" selection-start="4325" selection-end="4325" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#177#216#0" expanded="true" />
                 <element signature="e#645#678#0" expanded="true" />
@@ -184,11 +144,22 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="sqlite3.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/usr/include/sqlite3.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="254" column="24" selection-start="10697" selection-end="10697" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="SubProductInfoDao.m" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/SubProductInfoDao.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="65" selection-start="1591" selection-end="1591" vertical-scroll-proportion="0.59951454">
-              <folding />
+            <state line="41" column="82" selection-start="1565" selection-end="1565" vertical-scroll-proportion="0.4223301">
+              <folding>
+                <element signature="e#143#172#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -207,7 +178,7 @@
       <file leaf-file-name="SubCatalogManager.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Cosmetology/src/Business/SubCatalogManager.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="11" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0">
+            <state line="16" column="46" selection-start="390" selection-end="390" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#143#172#0" expanded="true" />
               </folding>
@@ -244,17 +215,17 @@
         <option value="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/ExperienceViewController.m" />
         <option value="$PROJECT_DIR$/Cosmetology/src/Business/SubCatalogManager.m" />
         <option value="$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/SubProductInfoDao.h" />
-        <option value="$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/SubProductInfoDao.m" />
         <option value="$PROJECT_DIR$/Cosmetology/src/Business/SubCatalogManager.h" />
-        <option value="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddSubCatalogViewController.m" />
         <option value="$PROJECT_DIR$/Cosmetology/src/DbCore/BaseDatabase.m" />
         <option value="$PROJECT_DIR$/Cosmetology/src/Inc/Database_define.h" />
+        <option value="$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/SubProductInfoDao.m" />
+        <option value="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddSubCatalogViewController.m" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="55" />
-    <option name="y" value="22" />
+    <option name="x" value="151" />
+    <option name="y" value="49" />
     <option name="width" value="1362" />
     <option name="height" value="746" />
   </component>
@@ -706,11 +677,15 @@
       <created>1371265936195</created>
       <updated>1371265936196</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="增加子项目的dao层操作">
+      <created>1371281211735</created>
+      <updated>1371281211735</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="55" y="22" width="1362" height="746" extended-state="0" />
+    <frame x="151" y="49" width="1362" height="746" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43290734" sideWeight="0.49906015" order="7" side_tool="false" content_ui="tabs" />
@@ -774,7 +749,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改冲突" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加子项目的dao层操作" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -791,36 +766,14 @@
     <MESSAGE value="增加MainCatalogItem" />
     <MESSAGE value="增加密码逻辑处理类" />
     <MESSAGE value="修改冲突" />
+    <MESSAGE value="增加子项目的dao层操作" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/SubCatalogViewContrller.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="2" selection-start="682" selection-end="682" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#143#178#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/MainViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cosmetology/src/Business/MainCatalogManager.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="320" selection-end="358" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/ExperienceViewController.h">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="24" selection-start="233" selection-end="233" vertical-scroll-proportion="0.0">
@@ -874,15 +827,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cosmetology/src/Business/SubCatalogManager.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="11" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#143#172#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Cosmetology/src/Business/SubCatalogManager.h">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="39" selection-start="245" selection-end="245" vertical-scroll-proportion="0.0">
@@ -892,19 +836,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddSubCatalogViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="127" column="0" selection-start="4322" selection-end="4322" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#177#216#0" expanded="true" />
-            <element signature="e#645#678#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Cosmetology/src/Inc/Database_define.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="55" selection-start="1183" selection-end="1183" vertical-scroll-proportion="0.5582822">
+        <state line="26" column="55" selection-start="1183" selection-end="1183" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -916,10 +850,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/usr/include/sqlite3.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="254" column="24" selection-start="10697" selection-end="10697" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cosmetology/src/Libs/DbEngine/FMDatabase.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="356" column="16" selection-start="8619" selection-end="8619" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/SubCatalogViewContrller.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="2" selection-start="682" selection-end="682" vertical-scroll-proportion="0.41627544">
+          <folding>
+            <element signature="e#143#178#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddSubCatalogViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="126" column="69" selection-start="4325" selection-end="4325" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#177#216#0" expanded="true" />
+            <element signature="e#645#678#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cosmetology/src/Business/SubCatalogManager.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="46" selection-start="390" selection-end="390" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#143#172#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Cosmetology/src/DbCore/DbDao/SubProductInfoDao.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="65" selection-start="1591" selection-end="1591" vertical-scroll-proportion="0.59951454">
-          <folding />
+        <state line="41" column="82" selection-start="1565" selection-end="1565" vertical-scroll-proportion="0.4223301">
+          <folding>
+            <element signature="e#143#172#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

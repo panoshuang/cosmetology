@@ -124,7 +124,7 @@
     int index = [SubCatalogManager instance].indexForNewCatalog;
     _subProductInfo.index = index;
     _subProductInfo.enable = YES;
-    [[SubCatalogManager instance] addSubCatalog:_subProductInfo];
+     _subProductInfo.productID = [[SubCatalogManager instance] addSubCatalog:_subProductInfo];
 
     if ([_delegate respondsToSelector:@selector(addSubCatalogViewController:didSaveCatalog:)]) {
         [_delegate addSubCatalogViewController:self didSaveCatalog:_subProductInfo];
