@@ -29,13 +29,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SubProductInfoDao)
                                                   [NSNumber numberWithInteger:subProductInfo.enable],
                                                   [NSNumber numberWithInt:subProductInfo.index],
                                                   nil];
-    int productID = NSNotFound;
+    __block int productID = NSNotFound;
     [[[BaseDatabase instance] fmDbQueue] inDatabase:^(FMDatabase *db) {
         BOOL  isSuccess = [db executeUpdate:sqlStr withArgumentsInArray:argArray];
         DDetailLog(@"add row")
         DBErrorCheckLog(db);
         if(isSuccess){
-            FMResultSet *resultSet =  [db executeQuery:@"select last_insert_rowid()"];
+            productID =  (int)[db lastInsertRowId];
             DDetailLog(@"get row id")
             DBErrorCheckLog(db);
         }
