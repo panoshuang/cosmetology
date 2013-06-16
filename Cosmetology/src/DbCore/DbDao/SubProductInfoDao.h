@@ -23,6 +23,10 @@
 
 - (NSArray *)allSubProductInfo;
 
+-(NSArray *)allSubProductInfoForMainProductID:(int)mainProductID;
+
+-(NSArray *)allEnableProductInfoForMainProductID:(int)mainProductID;
+
 -(SubProductInfo *)lastCreateCatalog;
 
 @end

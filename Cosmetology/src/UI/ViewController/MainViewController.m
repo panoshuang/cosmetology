@@ -7,7 +7,7 @@
 //
 
 #import "MainViewController.h"
-#import "SubCatalogViewContrller.h"
+#import "SubCatalogViewController.h"
 #import "PasswordManagerViewController.h"
 #import "PasswordManager.h"
 #import "iCarousel.h"
@@ -22,7 +22,7 @@
 
 @interface MainViewController ()<SubCatalogViewControllerDelegate,iCarouselDataSource,
         iCarouselDelegate,AddMainCatalogViewControllerDelegate, ExperienceViewControllerDelegate>{
-    SubCatalogViewContrller *_subCatalogViewController;
+    SubCatalogViewController *_subCatalogViewController;
     UIPopoverController *_popController;
     PasswordManagerViewController *_passwordManagerViewController;
     ExperienceViewController *_experienceViewController;
@@ -187,7 +187,7 @@
 
 #pragma mark - SubCatalogViewControllerDelegate
 
--(void)subCatalogViewController:(SubCatalogViewContrller *)maiCatalogViewController didSelectCatalogID:(int)catalogID{
+-(void)subCatalogViewController:(SubCatalogViewController *)maiCatalogViewController didSelectCatalogID:(int)catalogID{
     
 }
 
@@ -325,6 +325,7 @@
     DDetailLog(@"");
     //显示二级项目
     //检查是否是超值体验项目
+    MainProductInfo *productInfo = [_catalogArray objectAtIndex:index];
     UIViewController *viewController = nil;
     if(index == _catalogArray.count - 1){
         _experienceViewController = [[ExperienceViewController alloc] init];
@@ -334,7 +335,7 @@
 
 
     }else{
-        _subCatalogViewController = [[SubCatalogViewContrller alloc] init];
+        _subCatalogViewController = [[SubCatalogViewController alloc] initWithMainProductInfo:productInfo];
         _subCatalogViewController.delegate = self;
         _subCatalogViewController.mainDelegate = self;
         viewController = _subCatalogViewController;

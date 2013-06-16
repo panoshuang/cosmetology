@@ -188,6 +188,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)enableProduct:(UISwitch *)sw{
+    _bIsProductEnable = _swEnable.state;
+}
+
 -(void)save{
     //判断是否是编辑模式
     if(!_bIsEdit){

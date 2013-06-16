@@ -23,6 +23,6 @@
 @optional
 -(void)mainCatalogGridViewCellDidSwitch:(MainCatalogGridViewCell *)cell value:(BOOL)isOpen;
 
--(void)subCatalogGridViewCellDidBtn;
+- (void)subCatalogGridViewCellDidEditName:(MainCatalogGridViewCell *)cell;
 
 @end

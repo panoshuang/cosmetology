@@ -73,7 +73,7 @@
 		6DB30EA317684321005D9884 /* btn_sub_item_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB30E9E17684321005D9884 /* btn_sub_item_orange.png */; };
 		6DB30EA417684321005D9884 /* btn_sub_item_purple.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB30E9F17684321005D9884 /* btn_sub_item_purple.png */; };
 		6DC1DEC91765C495009F43AD /* MainCatalogItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC1DEC81765C495009F43AD /* MainCatalogItem.m */; };
-		6DCF1D32175AEAF200AB4423 /* SubCatalogViewContrller.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF1D31175AEAF200AB4423 /* SubCatalogViewContrller.m */; };
+		6DCF1D32175AEAF200AB4423 /* SubCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF1D31175AEAF200AB4423 /* SubCatalogViewController.m */; };
 		6DCF1D35175AF06500AB4423 /* PasswordManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF1D34175AF06500AB4423 /* PasswordManagerViewController.m */; };
 		6DD8FA3017657EB200B2D81B /* page.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DD8FA2F17657EB200B2D81B /* page.png */; };
 		CE82515E176AAD6A00B3FB3F /* SubCatalogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE82515D176AAD6900B3FB3F /* SubCatalogManager.m */; };
@@ -221,8 +221,8 @@
 		6DB30EA5176868FE005D9884 /* TypeDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeDefine.h; sourceTree = "<group>"; };
 		6DC1DEC71765C494009F43AD /* MainCatalogItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainCatalogItem.h; path = Cosmetology/src/UI/View/MainCatalogItem.h; sourceTree = SOURCE_ROOT; };
 		6DC1DEC81765C495009F43AD /* MainCatalogItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainCatalogItem.m; path = Cosmetology/src/UI/View/MainCatalogItem.m; sourceTree = SOURCE_ROOT; };
-		6DCF1D30175AEAF200AB4423 /* SubCatalogViewContrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubCatalogViewContrller.h; sourceTree = "<group>"; };
-		6DCF1D31175AEAF200AB4423 /* SubCatalogViewContrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubCatalogViewContrller.m; sourceTree = "<group>"; };
+		6DCF1D30175AEAF200AB4423 /* SubCatalogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubCatalogViewController.h; sourceTree = "<group>"; };
+		6DCF1D31175AEAF200AB4423 /* SubCatalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubCatalogViewController.m; sourceTree = "<group>"; };
 		6DCF1D33175AF06500AB4423 /* PasswordManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordManagerViewController.h; sourceTree = "<group>"; };
 		6DCF1D34175AF06500AB4423 /* PasswordManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordManagerViewController.m; sourceTree = "<group>"; };
 		6DD8FA2F17657EB200B2D81B /* page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page.png; sourceTree = "<group>"; };
@@ -346,8 +346,8 @@
 				6D8D34E117550D9A003F9E9E /* MainViewController.m */,
 				CE825163176AC0F300B3FB3F /* Test.h */,
 				CE825164176AC0F300B3FB3F /* Test.m */,
-				6DCF1D30175AEAF200AB4423 /* SubCatalogViewContrller.h */,
-				6DCF1D31175AEAF200AB4423 /* SubCatalogViewContrller.m */,
+				6DCF1D30175AEAF200AB4423 /* SubCatalogViewController.h */,
+				6DCF1D31175AEAF200AB4423 /* SubCatalogViewController.m */,
 				6DCF1D33175AF06500AB4423 /* PasswordManagerViewController.h */,
 				6DCF1D34175AF06500AB4423 /* PasswordManagerViewController.m */,
 				6DAD0F64176628B700D37D08 /* AddMainCatalogViewController.h */,
@@ -762,7 +762,7 @@
 				6315709F0A558E7B3E50E89C /* MainProductInfoDao.m in Sources */,
 				6D8D34DB17550C29003F9E9E /* AppDelegate.m in Sources */,
 				6D8D34E217550D9A003F9E9E /* MainViewController.m in Sources */,
-				6DCF1D32175AEAF200AB4423 /* SubCatalogViewContrller.m in Sources */,
+				6DCF1D32175AEAF200AB4423 /* SubCatalogViewController.m in Sources */,
 				6DCF1D35175AF06500AB4423 /* PasswordManagerViewController.m in Sources */,
 				6DAD9BD8175CD55F00E33E81 /* SubCatalogItem.m in Sources */,
 				6DAC02D8175E166F00A3F015 /* MainCatalogGridViewCell.m in Sources */,

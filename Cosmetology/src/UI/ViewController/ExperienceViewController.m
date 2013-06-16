@@ -458,8 +458,7 @@
     DDetailLog(@"indxe : %d",index);
 }
 
--(void)subCatalogGridViewCellDidBtn
-{
+- (void)subCatalogGridViewCellDidEditName:(MainCatalogGridViewCell *)cell {
     DDetailLog(@"delegate call...");
     UIAlertView *alert1 = [[UIAlertView alloc]
             initWithTitle:NSLocalizedString(@"输入新项目名", nil)

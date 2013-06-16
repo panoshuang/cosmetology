@@ -31,8 +31,8 @@
 
 -(void)subCatalogItemEdit
 {
-    if ([_delegate respondsToSelector:@selector(subCatalogGridViewCellDidBtn)]) {
-        [_delegate subCatalogGridViewCellDidBtn];
+    if ([_delegate respondsToSelector:@selector(subCatalogGridViewCellDidEditName:)]) {
+        [_delegate subCatalogGridViewCellDidEditName:self];
     }
 }
 
