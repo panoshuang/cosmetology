@@ -46,7 +46,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SubProductInfoDao)
 
 -(BOOL)deleteSubProductForID:(int)productID{
     NSString *sqlStr = [NSString stringWithFormat:@"DELETE FROM "SUB_PRODUCT_INFO_TABLE_TABLE_NAME
-                                                  " WHERE "SUB_PRODUCT_INFO_TABLE_MAIN_PRODUCT_ID" =?"];
+                                                  " WHERE "SUB_PRODUCT_INFO_TABLE_PRODUCT_ID" =?"];
     __block BOOL isSuccess;
     [[[BaseDatabase instance] fmDbQueue] inDatabase:^(FMDatabase *db) {
         isSuccess = [db executeUpdate:sqlStr, [NSNumber numberWithInt:productID]];
@@ -63,7 +63,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SubProductInfoDao)
             SUB_PRODUCT_INFO_TABLE_ENABLE"=?,"
             SUB_PRODUCT_INFO_TABLE_INDEX"=?"
             " WHERE "SUB_PRODUCT_INFO_TABLE_PRODUCT_ID"=?"];
-    NSArray *argArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:subProductInfo.productID],
+    NSArray *argArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:subProductInfo.mainProductID],
                                                   subProductInfo.name,
                                                   [NSNumber numberWithInteger:subProductInfo.enable],
                                                   [NSNumber numberWithInt:subProductInfo.index],
