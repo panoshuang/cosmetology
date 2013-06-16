@@ -17,6 +17,9 @@
 #import "AddSubCatalogViewController.h"
 #import "MainCatalogManager.h"
 #import "SubCatalogManager.h"
+#import "PhotoScrollViewController.h"
+#import "PhotoBrowserDataSource.h"
+#import "AdPhotoManager.h"
 
 #define ITEM_SPACE 30
 
@@ -292,6 +295,21 @@
 - (void)GMGridView:(GMGridView *)gridView didTapOnItemAtIndex:(NSInteger)position
 {
     NSLog(@"Did tap at index %d", position);
+    //重新提交
+
+    SubProductInfo *subProductInfo = [_catalogArray objectAtIndex:position];
+    
+    //跳转到广告页面
+    PhotoBrowserDataSource *dataSource = [[PhotoBrowserDataSource alloc] init];
+    NSMutableArray *adPhotoArray = [NSMutableArray arrayWithArray:[[AdPhotoManager instance] allAdPhotoInfoForSubProductID:subProductInfo.productID]];
+    [dataSource setPhotoList:adPhotoArray];
+    PhotoScrollViewController *photoScrollViewController = [[PhotoScrollViewController alloc]
+            initWithDataSource:dataSource
+      andStartWithPhotoAtIndex:0];
+    //TODO:把编辑设置是,以后需要修改
+    photoScrollViewController.bIsEdit = YES;
+    photoScrollViewController.subProductID = subProductInfo.productID;
+    [self.mainDelegate mainPushViewController:photoScrollViewController animated:YES];
 }
 
 - (void)GMGridViewDidTapOnEmptySpace:(GMGridView *)gridView

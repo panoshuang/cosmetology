@@ -16,7 +16,6 @@
 @interface KTPhotoView : UIScrollView <UIScrollViewDelegate>
 {
    UIImageView *imageView_;
-   KTPhotoScrollViewController *scroller_;
    NSInteger index_;
    ImageDownloadReceiver *imageDownloadReceiver;
     UIView *progressBackgroundView;
@@ -26,9 +25,8 @@
 }
 
 
-@property (nonatomic, assign) KTPhotoScrollViewController *scroller;
+@property (nonatomic, weak) KTPhotoScrollViewController *scroller;
 @property (nonatomic, assign) NSInteger index;
-@property (nonatomic , retain)     ImageDownloadReceiver *imageDownloadReceiver;
 
 - (void)setImage:(UIImage *)newImage;
 - (void)turnOffZoom;

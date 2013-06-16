@@ -7,7 +7,21 @@
 
 
 #import <Foundation/Foundation.h>
+#import "AdPhotoInfo.h"
 
 
 @interface AdPhotoInfoDao : NSObject
+
++(AdPhotoInfoDao *)instance;
+
+-(int)addAdPhotoInfo:(AdPhotoInfo *)subProductInfo;
+
+- (BOOL)deleteAdPhotoForID:(int)productID;
+
+-(BOOL)updateAdPhoto:(AdPhotoInfo *)subProductInfo;
+
+-(NSArray *)allAdPhotoInfoForSubProductID:(int)subProductID;
+
+-(AdPhotoInfo *)lastAdPhotoInfo;
+
 @end

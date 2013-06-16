@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "KTPhotoBrowserDataSource.h"
-#import "PhotoAlbumInfo.h"
+#import "AdPhotoInfo.h"
 
 
 @interface PhotoBrowserDataSource : NSObject <KTPhotoBrowserDataSource>

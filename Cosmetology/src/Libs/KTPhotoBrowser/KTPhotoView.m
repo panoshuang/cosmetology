@@ -9,12 +9,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "KTPhotoView.h"
 #import "KTPhotoScrollViewController.h"
-#import "ImageDownloadReceiver.h"
-#import "ImageDownloader.h"
 #import "DeviceHelper.h"
-#import "YLProgressBar.h"
-#import "YLBackgroundView.h"
-#import "HomiUtil.h"
+
 
 
 @interface KTPhotoView (KTPrivateMethods)
@@ -27,24 +23,16 @@
 
 @synthesize scroller = scroller_;
 @synthesize index = index_;
-@synthesize imageDownloadReceiver;
 
 - (void)dealloc 
 {
     DDetailLog(@"");
-   [imageView_ release], imageView_ = nil;
-    imageDownloadReceiver.imageContainer = nil;
-    [imageDownloadReceiver release];
-    DDetailLog(@"");
-   [super dealloc];
 }
 
 - (id)initWithFrame:(CGRect)frame
 {
    self = [super initWithFrame:frame];
    if (self) {
-       imageDownloadReceiver  = [[ImageDownloadReceiver alloc] initWithContainer:self];
-       imageDownloadReceiver.shouldCalculateProgress  = YES;
       [self setDelegate:self];
       [self setMaximumZoomScale:5.0];
       [self setShowsHorizontalScrollIndicator:YES];
@@ -58,39 +46,10 @@
 - (void)loadSubviewsWithFrame:(CGRect)frame
 {
    imageView_ = [[UIImageView alloc] initWithFrame:frame];
-   [imageView_ setContentMode:UIViewContentModeScaleAspectFit];
+   [imageView_ setContentMode:UIViewContentModeScaleAspectFill];
    [self addSubview:imageView_];
-
-    CGRect progressBackgroundFrame = CGRectMake(0, 0, 200, 200);
-    progressBackgroundView = [[UIView alloc] initWithFrame:progressBackgroundFrame];
-    progressBackgroundView.backgroundColor = [UIColor clearColor];
-    [self addSubview:progressBackgroundView];
-    [progressBackgroundView release];
-
-    CGRect goalBarFrame = CGRectMake(0, 0, 200, 20);
-    progressBar = [[UIProgressView alloc] init];
-    progressBar.frame = goalBarFrame;
-    progressBar.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)) ;
-    progressBar.layer.masksToBounds = YES;
-    [progressBackgroundView addSubview:progressBar];
-    progressBar.center = CGPointMake(CGRectGetMidX(progressBackgroundView.bounds), CGRectGetMidY(progressBackgroundView.bounds)) ;
-    [progressBar release];
-
-    CGRect progressLabelFrame = CGRectMake(progressBar.center.x - 30, progressBar.frame.origin.y - 20, 60, 20);
-    progressLabel = [[UILabel alloc] initWithFrame:progressLabelFrame];
-    progressLabel.textAlignment = UITextAlignmentCenter;
-    progressLabel.font = [UIFont systemFontOfSize:18];
-    progressLabel.textColor = [UIColor whiteColor];
-    progressLabel.backgroundColor = [UIColor clearColor];
-    [progressBackgroundView addSubview:progressLabel];
-    [progressLabel release];
-    progressLabel.text = @"0.0%";
 }
 
--(void)removeProgressView{
-    [progressBackgroundView removeFromSuperview];
-    progressBackgroundView = nil;
-}
 
 - (void)setImage:(UIImage *)newImage 
 {
@@ -321,51 +280,6 @@
    self.contentOffset = offset;
 }
 
-- (void)setImageWithURL:(NSString *)urlStr placeholderImage:(UIImage *)placeholder{
-    if (placeholder){
-        imageView_.image = placeholder;
-    }
-    if (urlStr.length == 0){
-        return;
-    }
-    if ([HomiUtil hasCacheImageForUrl:urlStr]){
-        [self removeProgressView];
-    }
-    [[ImageDownloader photosDownloader] removeDelegate:imageDownloadReceiver forURL:urlStr];
-    [[ImageDownloader photosDownloader] queueImage:urlStr delegate:imageDownloadReceiver];
-}
-
-
-//更新进度条
-- (void)updateProgress:(NSNumber*)totalBytesReadNumber
-               ofTotal:(NSNumber*)totalSizeNumber{
-    DDetailLog(@"progress totalBytesReadNumber :%lld", totalBytesReadNumber.longLongValue);
-    DDetailLog(@"progress totalSizeNumber :%lld", totalSizeNumber.longLongValue);
-    CGFloat percent = (totalBytesReadNumber.floatValue/totalSizeNumber.floatValue);
-    DDetailLog(@"progress percent :%f", percent);
-    [progressBar setProgress:percent];
-    progressLabel.text = [NSString stringWithFormat:@"%.1f%%",percent*100];
-
-}
-
-- (void)imageDidDownload:(NSData *)imageData url:(NSString *)url {
-   [self removeProgressView];
-    UIImage *resultImage = [UIImage imageWithData:imageData];
-    if (resultImage) {
-        imageView_.image = resultImage;
-        [self setImageViewFrame];
-
-//        [self setNeedsDisplay];
-//        [self setNeedsLayout];
-    }
-}
-
-
-- (void)imageDownloadFailed:(NSError *)error url:(NSString *)url {
-    [progressBackgroundView removeFromSuperview];
-    progressBackgroundView = nil;
-    DDetailLog(@"imageDownloadFailed: %@, %@", url, [error localizedDescription]);
-}
 
 
 @end

@@ -9,8 +9,8 @@
 #import "KTPhotoView.h"
 #import "KTThumbView.h"
 
-#import "PhotoInfo.h"
-#import "HomiUtil.h"
+#import "AdPhotoInfo.h"
+#import "ResourceCache.h"
 
 
 @implementation PhotoBrowserDataSource
@@ -29,15 +29,12 @@
     else
     {
         NSMutableArray *tmpArrPhoto =  [arrNewPhoto mutableCopy];
-        [arrPhoto release];
         arrPhoto = tmpArrPhoto;
     }
 }
 
 -(void)dealloc
 {
-    [arrPhoto release];
-    [super dealloc];
 }
 
 #pragma mark -
@@ -50,38 +47,15 @@
 
 - (void)imageAtIndex:(NSInteger)index photoView:(KTPhotoView *)photoView
 {
-    PhotoInfo *photoInfo = [arrPhoto objectAtIndex:index];
-    if (photoInfo.isBlock)
-    {
-        [photoView setImage:[UIImage imageNamed:@"image_block.jpg"]];
-    }
-    else
-    {
-        UIImage *placeHolderImage = [HomiUtil imageFromCacheForUrl:photoInfo.smallPhotoUrl];
-        if (placeHolderImage == nil)
-        {
-            placeHolderImage = [UIImage imageNamed:@"photowall_loading.png"];//[HomiUtil defaultContentImage];
-        }
-        [photoView setImageWithURL:photoInfo.largePhotoUrl placeholderImage:placeHolderImage];
-    }
+    AdPhotoInfo *photoInfo = [arrPhoto objectAtIndex:index];
+    [photoView setImage:[[ResourceCache instance] imageForCachePath:photoInfo.imageFilePath]];
+
 }
 
 - (void)thumbImageAtIndex:(NSInteger)index thumbView:(KTThumbView *)thumbView
 {
-    PhotoInfo *photoInfo = [arrPhoto objectAtIndex:index];
-    if (photoInfo.isBlock)
-    {
-        [thumbView setThumbImage:[UIImage imageNamed:@"image_block.jpg"]];
-    }
-    else
-    {
-        UIImage *placeHolderImage = [HomiUtil imageFromCacheForUrl:photoInfo.smallPhotoUrl];
-        if (placeHolderImage == nil)
-        {
-            placeHolderImage = [HomiUtil defaultContentImage];
-        }
-        [thumbView setImageWithURL:photoInfo.smallPhotoUrl placeholderImage:placeHolderImage];
-    }
+    AdPhotoInfo *photoInfo = [arrPhoto objectAtIndex:index];
+    [thumbView setThumbImage:[[ResourceCache instance] imageForCachePath:photoInfo.imageFilePath]];
 }
 
 - (void)deleteImageAtIndex:(NSInteger)index
