@@ -9,19 +9,14 @@
 #import "KTThumbView.h"
 #import "KTThumbsViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "ImageDownloader.h"
-#import "ImageDownloadReceiver.h"
 
 
 @implementation KTThumbView
 
 @synthesize controller = controller_;
-@synthesize imageDownloadReceiver;
 
 - (void)dealloc 
 {
-    [imageDownloadReceiver release];
-   [super dealloc];
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -63,28 +58,6 @@
    }
 }
 
-- (void)setImageWithURL:(NSString *)urlStr placeholderImage:(UIImage *)placeholder{
-    if (placeholder){
-        [self setImage:placeholder forState:UIControlStateNormal];
-    }
-    [[ImageDownloader photosDownloader] removeDelegate:imageDownloadReceiver forURL:urlStr];
-    [[ImageDownloader photosDownloader] queueImage:urlStr delegate:imageDownloadReceiver];
-}
-
-- (void)imageDidDownload:(NSData *)imageData url:(NSString *)url {
-    DDetailLog(@"imageDidDownload: %@", url);
-    UIImage *resultImage = [UIImage imageWithData:imageData];
-    if (resultImage) {
-        [self setImage:resultImage forState:UIControlStateNormal] ;
-        [self setNeedsDisplay];
-        [self setNeedsLayout];
-    }
-}
-
-
-- (void)imageDownloadFailed:(NSError *)error url:(NSString *)url {
-    DDetailLog(@"imageDownloadFailed: %@, %@", url, [error localizedDescription]);
-}
 
 
 @end

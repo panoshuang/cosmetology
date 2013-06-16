@@ -50,6 +50,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BaseDatabase )
             *rollback = isError;
             return;
         }
+        if(![self createAdPhotoInfoTable:db]){
+            *rollback = isError;
+            return;
+        }
         
 
     }];
@@ -82,6 +86,20 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BaseDatabase )
             SUB_PRODUCT_INFO_TABLE_ENABLE" INTEGER,"
             SUB_PRODUCT_INFO_TABLE_INDEX" INTEGER,"
             " FOREIGN KEY  ("SUB_PRODUCT_INFO_TABLE_MAIN_PRODUCT_ID") REFERENCES "MAIN_PRODUCT_INFO_TABLE_TABLE_NAME" ("MAIN_PRODUCT_INFO_TABLE_PRODUCT_ID") ON DELETE CASCADE"
+            ")"
+    ];
+    DBErrorCheckLog(db);
+    return isSuccess;
+}
+
+-(BOOL)createAdPhotoInfoTable:(FMDatabase *)db{
+    BOOL isSuccess = [db executeUpdate:@"CREATE TABLE  IF NOT EXISTS "AD_PHOTO_INFO_TABLE_TABLE_NAME
+            "("
+            AD_PHOTO_INFO_TABLE_PHOTO_ID" INTEGER PRIMARY KEY AUTOINCREMENT,"
+            AD_PHOTO_INFO_TABLE_SUB_PRODUCT_ID" INTEGER ,"
+            AD_PHOTO_INFO_TABLE_INDEX" INTEGER,"
+            AD_PHOTO_INFO_TABLE_IMAGE_FILE_PATH" TEXT NOT NULL,"
+            " FOREIGN KEY  ("AD_PHOTO_INFO_TABLE_SUB_PRODUCT_ID") REFERENCES "SUB_PRODUCT_INFO_TABLE_TABLE_NAME" ("SUB_PRODUCT_INFO_TABLE_PRODUCT_ID") ON DELETE CASCADE"
             ")"
     ];
     DBErrorCheckLog(db);

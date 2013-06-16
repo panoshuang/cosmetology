@@ -21,7 +21,7 @@
     //初始化数据库
     [BaseDatabase instance];
     //初始化图片缓存目录
-    [ResourceCache createAllCachePath];
+    [[ResourceCache instance] createAllCachePath];
     //初始化超值体验项目
     [[MainCatalogManager instance] initExperienceCatalog];
     [PasswordManager instance];

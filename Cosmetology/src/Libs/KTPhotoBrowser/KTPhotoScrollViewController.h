@@ -52,6 +52,8 @@
 
 - (id)initWithDataSource:(id <KTPhotoBrowserDataSource>)dataSource andStartWithPhotoAtIndex:(NSUInteger)index;
 
+- (void)setScrollViewContentSize;
+
 - (void)toggleChromeDisplay;
 
 

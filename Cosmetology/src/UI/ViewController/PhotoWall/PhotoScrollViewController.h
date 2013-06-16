@@ -7,21 +7,23 @@
 //
 
 #import "KTPhotoScrollViewController.h"
-#import "PhotoAlbumInfo.h"
+#import "MHImagePickerMutilSelector.h"
 
 
 @protocol PhotoScrollViewControllerDelegate;
 
 
-@interface PhotoScrollViewController : KTPhotoScrollViewController <UIAlertViewDelegate, UINavigationControllerDelegate>
+@interface PhotoScrollViewController : KTPhotoScrollViewController <UIAlertViewDelegate, UINavigationControllerDelegate,  UINavigationControllerDelegate,
+        MHImagePickerMutilSelectorDelegate>
 {
-    NSString *userID;
-    id <PhotoScrollViewControllerDelegate> delegate;
-    UIActionSheet *actionSheet;
+    BOOL _bIsEdit;
+    UIPopoverController *_popController;
+    int _subProductID;
 }
 
-@property (nonatomic, retain) NSString *userID;
 @property (nonatomic, assign) id <PhotoScrollViewControllerDelegate> delegate;
+@property (nonatomic) BOOL bIsEdit;
+@property(nonatomic) int subProductID;
 
 - (id)initWithDataSource:(id <KTPhotoBrowserDataSource>)dataSource andStartWithPhotoAtIndex:(NSUInteger)index1;
 

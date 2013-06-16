@@ -10,25 +10,18 @@
 
 @class KTThumbsViewController;
 
-@class ImageDownloadReceiver;
-
 @interface KTThumbView : UIButton 
 {
 @private
-   KTThumbsViewController *controller_;
-
-   ImageDownloadReceiver *imageDownloadReceiver;
+    __weak KTThumbsViewController *controller_;
 }
 
-@property (nonatomic, assign) KTThumbsViewController *controller;
-@property (nonatomic , retain)ImageDownloadReceiver *imageDownloadReceiver;
+@property (nonatomic, weak) KTThumbsViewController *controller;
 
 
 - (id)initWithFrame:(CGRect)frame;
 - (void)setThumbImage:(UIImage *)newImage;
 - (void)setHasBorder:(BOOL)hasBorder;
-
-- (void)setImageWithURL:(NSString *)urlStr placeholderImage:(UIImage *)placeholder;
 
 @end
 

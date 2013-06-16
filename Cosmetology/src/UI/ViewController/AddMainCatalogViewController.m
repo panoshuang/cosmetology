@@ -168,8 +168,8 @@
 
     if(_bIsEdit){
         _tfName.text = _mainProductInfo.name;
-        _ivBg.image = [ResourceCache imageForCachePath:_mainProductInfo.bgImageFile];
-        _ivPreview.image = [ResourceCache imageForCachePath:_mainProductInfo.previewImageFile];
+        _ivBg.image = [[ResourceCache instance] imageForCachePath:_mainProductInfo.bgImageFile];
+        _ivPreview.image = [[ResourceCache instance]imageForCachePath:_mainProductInfo.previewImageFile];
         _ivSubItemBtnBg.image = [UIImage imageNamed:_mainProductInfo.subItemBtnImageName];
         [_swEnable setOn:_mainProductInfo.enable animated:NO];
     }
@@ -213,9 +213,9 @@
         }
         //生成图片的uuid,保存到缓存
         NSString *bgUuid = [CommonUtil uuid];
-        NSString *bgImageFilePath =[ResourceCache saveResouceData:UIImageJPEGRepresentation(_imageBg, 1)
-                                                       relatePath:bgUuid
-                                                     resourceType:kResourceCacheTypeBackgroundImage];
+        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imageBg, 1)
+                                                         relatePath:bgUuid
+                                                       resourceType:kResourceCacheTypeBackgroundImage];
 
         if (bgImageFilePath.length == 0) {
             ALERT_MSG(@"保存失败", nil, @"确定");
@@ -224,9 +224,9 @@
 
         //保存类别预览图片
         NSString *previewUuid = [CommonUtil uuid];
-        NSString *previewImageFilePath =[ResourceCache saveResouceData:UIImageJPEGRepresentation(_imagePriview, 1)
-                                                            relatePath:previewUuid
-                                                          resourceType:kResourceCacheTypeMainCatalogPreviewImage];
+        NSString *previewImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imagePriview, 1)
+                                                              relatePath:previewUuid
+                                                            resourceType:kResourceCacheTypeMainCatalogPreviewImage];
 
         if (previewImageFilePath.length == 0) {
             ALERT_MSG(@"保存失败", nil, @"确定");
@@ -260,9 +260,9 @@
             [[ResourceCache instance] deleteResourceForPath:_mainProductInfo.bgImageFile];
             //生成图片的uuid,保存到缓存
             NSString *bgUuid = [CommonUtil uuid];
-            NSString *bgImageFilePath =[ResourceCache saveResouceData:UIImageJPEGRepresentation(_imageBg, 1)
-                                                           relatePath:bgUuid
-                                                         resourceType:kResourceCacheTypeBackgroundImage];
+            NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imageBg, 1)
+                                                             relatePath:bgUuid
+                                                           resourceType:kResourceCacheTypeBackgroundImage];
 
             if (bgImageFilePath.length == 0) {
                 ALERT_MSG(@"保存失败", nil, @"确定");
@@ -275,9 +275,9 @@
             [[ResourceCache instance] deleteResourceForPath:_mainProductInfo.previewImageFile];
             //保存类别预览图片
             NSString *previewUuid = [CommonUtil uuid];
-            NSString *previewImageFilePath =[ResourceCache saveResouceData:UIImageJPEGRepresentation(_imagePriview, 1)
-                                                                relatePath:previewUuid
-                                                              resourceType:kResourceCacheTypeMainCatalogPreviewImage];
+            NSString *previewImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imagePriview, 1)
+                                                                  relatePath:previewUuid
+                                                                resourceType:kResourceCacheTypeMainCatalogPreviewImage];
 
             if (previewImageFilePath.length == 0) {
                 ALERT_MSG(@"保存失败", nil, @"确定");

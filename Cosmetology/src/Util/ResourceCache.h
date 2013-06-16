@@ -21,15 +21,15 @@
 
 +(ResourceCache *)instance;
 
-+(BOOL)createAllCachePath;
+-(BOOL)createAllCachePath;
 
-+(NSString*)resouceCachePathForCachePath:(EnumResourceCacheType)cacheType;
+-(NSString*)resourceCachePathForCachePath:(EnumResourceCacheType)cacheType;
 
 //保存资源data到指定类型的缓存目录中
-+(NSString *)saveResouceData:(NSData *)data relatePath:(NSString *)relatePath resourceType:(EnumResourceCacheType)cacheType;
+-(NSString *)saveResourceData:(NSData *)data relatePath:(NSString *)relatePath resourceType:(EnumResourceCacheType)cacheType;
 
 //通过绝对路径名获取图片
-+(UIImage *)imageForCachePath:(NSString *)path;
+-(UIImage *)imageForCachePath:(NSString *)path;
 
 //通过绝对路径删除资源
 -(BOOL)deleteResourceForPath:(NSString *)path;

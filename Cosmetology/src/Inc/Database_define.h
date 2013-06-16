@@ -26,5 +26,13 @@
 #define SUB_PRODUCT_INFO_TABLE_ENABLE           @"enable"
 #define SUB_PRODUCT_INFO_TABLE_INDEX            @"sortIndex"
 
+#pragma mark - AdPhotoInfo表
+#define AD_PHOTO_INFO_TABLE_TABLE_NAME          @"adPhotoInfo"
+#define AD_PHOTO_INFO_TABLE_PHOTO_ID            @"photoID"
+#define AD_PHOTO_INFO_TABLE_SUB_PRODUCT_ID      @"subProductID"
+#define AD_PHOTO_INFO_TABLE_INDEX               @"sortIndex"
+#define AD_PHOTO_INFO_TABLE_IMAGE_FILE_PATH     @"imageFilePath"
+
+
 
 

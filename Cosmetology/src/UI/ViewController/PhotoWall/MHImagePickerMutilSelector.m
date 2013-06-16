@@ -47,10 +47,10 @@
         for (UIView* ii in viewController.view.subviews) {
             // NSLog(@"%@",ii);
         }
-        [[viewController.view.subviews objectAtIndex:0] setFrame:CGRectMake(0, 0, [UIScreen mainScreen].applicationFrame.size.width, [UIScreen mainScreen].applicationFrame.size.height-kTitleBarHeight)];
+        [[viewController.view.subviews objectAtIndex:0] setFrame:CGRectMake(0, 0, 320, 480-kTitleBarHeight)];
         
-        selectedPan=[[UIView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height- kTitleBarHeight, [UIScreen mainScreen].applicationFrame.size.width, kTitleBarHeight)];
-        UIImageView* imv=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].applicationFrame.size.width, kTitleBarHeight)];
+        selectedPan=[[UIView alloc] initWithFrame:CGRectMake(0, 440 - kTitleBarHeight,320, kTitleBarHeight)];
+        UIImageView* imv=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, kTitleBarHeight)];
         [imv setImage:[UIImage imageNamed:@"chat_bottom_bg_black.png"]];
         [selectedPan addSubview:imv];
         [imv release];
@@ -58,7 +58,7 @@
 
         
         btn_done=[UIButton buttonWithType:UIButtonTypeCustom];
-        [btn_done setFrame:CGRectMake(self.view.bounds.size.width - kToolBtnSmallWidth- kCommonSpace, (kTitleBarHeight- kToolBtnSmallWidth)/2, kToolBtnSmallWidth, kToolBtnSmallWidth)];
+        [btn_done setFrame:CGRectMake(320 - kToolBtnSmallWidth- kCommonSpace, (kTitleBarHeight- kToolBtnSmallWidth)/2, kToolBtnSmallWidth, kToolBtnSmallWidth)];
         [btn_done setImage:[UIImage imageNamed:@"btn_gray_confirm_nomal.png"] forState:UIControlStateNormal];
         [btn_done setImage:[UIImage imageNamed:@"btn_gray_confirm_highted.png"] forState:UIControlStateHighlighted];
 
@@ -67,7 +67,7 @@
         [selectedPan addSubview:btn_done];
         
         
-        tbv=[[UITableView alloc] initWithFrame:CGRectMake(0, kCommonSpace, kTitleBarHeight, [UIScreen mainScreen].applicationFrame.size.width - kTitleBarHeight - 2* kCommonSpace) style:UITableViewStylePlain];
+        tbv=[[UITableView alloc] initWithFrame:CGRectMake(0, kCommonSpace, kTitleBarHeight, 320 - kTitleBarHeight - 2* kCommonSpace) style:UITableViewStylePlain];
         tbv.backgroundColor = [UIColor blackColor];
         tbv.transform=CGAffineTransformMakeRotation(M_PI * -90 / 180);
         tbv.center=CGPointMake((320-btn_done.frame.size.width- kCommonSpace)/2, kTitleBarHeight/2);
@@ -224,7 +224,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft||interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
 @end

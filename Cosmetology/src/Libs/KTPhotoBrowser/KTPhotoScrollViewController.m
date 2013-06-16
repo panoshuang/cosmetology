@@ -63,6 +63,10 @@ const CGFloat ktkDefaultTitlebarHeight         = 46;
 {
     [super loadView];
 
+    UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,20,1024,768)];
+    self.view = mainView;
+    [mainView release];
+
     CGRect scrollFrame = [self frameForPagingScrollView];
     UIScrollView *newView = [[UIScrollView alloc] initWithFrame:scrollFrame];
     [newView setDelegate:self];
@@ -129,7 +133,7 @@ const CGFloat ktkDefaultTitlebarHeight         = 46;
             [toolbarItems addObject:trashButton];
     }
 
-    CGRect screenFrame  = [[UIScreen mainScreen] bounds];
+    CGRect screenFrame  = CGRectMake(0, 0, 1024, 768);
     CGRect toolbarFrame = CGRectMake(0,
             screenFrame.size.height - ktkDefaultToolbarHeight,
             screenFrame.size.width,
@@ -241,6 +245,9 @@ const CGFloat ktkDefaultTitlebarHeight         = 46;
     [self setTitleWithCurrentPhotoIndex];
     [self toggleNavButtons];
     [self startChromeDisplayTimer];
+
+    self.view.backgroundColor = [UIColor redColor];
+    scrollView_.backgroundColor = [UIColor blueColor];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -301,7 +308,7 @@ const CGFloat ktkDefaultTitlebarHeight         = 46;
 
 - (CGRect)frameForPagingScrollView
 {
-    CGRect frame = [[UIScreen mainScreen] bounds];
+    CGRect frame = CGRectMake(0, 0, 1024, 768);
     frame.origin.x -= PADDING;
     frame.size.width += (2 * PADDING);
     return frame;
@@ -340,7 +347,7 @@ const CGFloat ktkDefaultTitlebarHeight         = 46;
         KTPhotoView *photoView = [[KTPhotoView alloc] initWithFrame:frame];
         [photoView setScroller:self];
         [photoView setIndex:index];
-        [photoView setBackgroundColor:[UIColor clearColor]];
+        [photoView setBackgroundColor:[UIColor orangeColor]];
 
         // Set the photo image.
         if (dataSource_)
