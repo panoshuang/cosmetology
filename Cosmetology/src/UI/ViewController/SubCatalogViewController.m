@@ -316,21 +316,43 @@
 
 - (void)GMGridView:(GMGridView *)gridView processDeleteActionForItemAtIndex:(NSInteger)index
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure you want to delete this item?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
-    
-    [alert show];
-    
-    _lastDeleteItemIndexAsked = index;
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure you want to delete this item?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
+//
+//    [alert show];
+//
+//    _lastDeleteItemIndexAsked = index;
+    SubProductInfo *productInfo = [_catalogArray objectAtIndex:index];
+    UIAlertView *alertView = nil;
+    alertView = [[UIAlertView alloc] initWithTitle:@"Confirm"
+                                           message:@"Are you sure you want to delete this item?"
+                                  cancelButtonItem:nil
+                                  otherButtonItems:nil];
+
+    RIButtonItem *confirmItem = [RIButtonItem item];
+    confirmItem.label = @"确定";
+    confirmItem.action = ^{
+        [[SubCatalogManager instance] deleteSubCatalogForId:productInfo.productID];
+
+        [_catalogArray removeObjectAtIndex:index];
+        [_gmGridView removeObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade];
+    };
+    RIButtonItem *cancelItem = [RIButtonItem item];
+    cancelItem.label = @"取消";
+    [alertView addButtonItem:confirmItem];
+    [alertView addButtonItem:cancelItem];
+    [alertView show];
 }
 
+
+#pragma mark UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     _passWord = [[NSString alloc]init];
     _newProductName = [[NSString alloc]init];
     if (buttonIndex == 1)
     {
-        [_catalogArray removeObjectAtIndex:_lastDeleteItemIndexAsked];
-        [_gmGridView removeObjectAtIndex:_lastDeleteItemIndexAsked withAnimation:GMGridViewItemAnimationFade];
+//        [_catalogArray removeObjectAtIndex:_lastDeleteItemIndexAsked];
+//        [_gmGridView removeObjectAtIndex:_lastDeleteItemIndexAsked withAnimation:GMGridViewItemAnimationFade];
         DDetailLog(@"111111");
         if (!_bIsEdit) {
             _bIsEdit = YES;
