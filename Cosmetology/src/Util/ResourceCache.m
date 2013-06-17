@@ -17,7 +17,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ResourceCache)
 /**
 	创建缓存目录
  */
-+(BOOL)createAllCachePath{
+-(BOOL)createAllCachePath{
     //创建背景图片缓存目录
     BOOL result0 = [FileUtil createPathWithRelativeToDocFilePath:IMAGE_CACHE_PATH_BACKGROUND];
     //创建主页产品图片
@@ -37,7 +37,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ResourceCache)
     return result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7;
 }
 
-+(NSString*)resouceCachePathForCachePath:(EnumResourceCacheType)cacheType{
+-(NSString*)resourceCachePathForCachePath:(EnumResourceCacheType)cacheType{
     NSString *path = [FileUtil getDocumentDirectory];
     switch (cacheType) {
         case kResourceCacheTypeBackgroundImage:
@@ -77,8 +77,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ResourceCache)
 	@param cacheType 缓存类型
 	@returns 返回绝对路径
  */
-+(NSString *)saveResouceData:(NSData *)data relatePath:(NSString *)relatePath resourceType:(EnumResourceCacheType)cacheType{
-    NSString *absolutePath = [[ResourceCache resouceCachePathForCachePath:cacheType] stringByAppendingPathComponent:relatePath];
+-(NSString *)saveResourceData:(NSData *)data relatePath:(NSString *)relatePath resourceType:(EnumResourceCacheType)cacheType{
+    NSString *absolutePath = [[self resourceCachePathForCachePath:cacheType] stringByAppendingPathComponent:relatePath];
     BOOL success =  [FileUtil saveData:data toFileName:absolutePath];
     if (success) {
         return absolutePath;
@@ -88,7 +88,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ResourceCache)
 }
 
 //通过绝对路径名获取图片
-+(UIImage *)imageForCachePath:(NSString *)path{
+-(UIImage *)imageForCachePath:(NSString *)path{
     NSData *data = [NSData dataWithContentsOfFile:path];
     UIImage *image = [UIImage imageWithData:data];
     return image;

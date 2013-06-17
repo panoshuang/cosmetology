@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 pengpai. All rights reserved.
 //
 
-#import "SubCatalogViewContrller.h"
+#import "SubCatalogViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MainProductInfo.h"
 #import "GMGridView.h"
@@ -14,10 +14,15 @@
 #import "SubCatalogItem.h"
 #import "global_define.h"
 #import "AddSubCatalogViewController.h"
+#import "UIAlertView+Blocks.h"
+#import "SUbProductInfo.h"
+#import "SubCatalogManager.h"
 
 #define ITEM_SPACE 30
 
-@interface SubCatalogViewContrller () <GMGridViewDataSource, GMGridViewSortingDelegate, GMGridViewTransformationDelegate, GMGridViewActionDelegate,MainCatalogGridViewCellDelegate,UIAlertViewDelegate,UITextFieldDelegate>
+@interface SubCatalogViewController () <GMGridViewDataSource, GMGridViewSortingDelegate, GMGridViewTransformationDelegate,
+        GMGridViewActionDelegate,MainCatalogGridViewCellDelegate,UIAlertViewDelegate,UITextFieldDelegate,
+        AddSubCatalogViewControllerDelegate>
 {
     UINavigationController *_optionsNav;
     UIPopoverController *_optionsPopOver;
@@ -37,11 +42,13 @@
 @end
 
 
-@implementation SubCatalogViewContrller
+@implementation SubCatalogViewController
 
 @synthesize delegate = _delegate;
 @synthesize bIsEdit = _bIsEdit;
 @synthesize gmGridView = _gmGridView;
+@synthesize mainProductInfo = _mainProductInfo;
+
 
 -(id)init{
     self = [super init];
@@ -52,12 +59,27 @@
     return self;
 }
 
+- (id)initWithMainProductInfo:(MainProductInfo *)aMainProductInfo {
+    self = [super init];
+    if (self) {
+        _mainProductInfo = aMainProductInfo;
+        _catalogArray = [[NSMutableArray alloc] init];
+        [self loadCatalog];
+    }
+
+    return self;
+}
+
++ (id)objectWithMainProductInfo:(MainProductInfo *)aMainProductInfo {
+    return [[SubCatalogViewController alloc] initWithMainProductInfo:aMainProductInfo];
+}
+
+
 -(void)loadCatalog{
-    for (int i = 0; i < 20; i++) {
-        MainProductInfo *productInfo = [[MainProductInfo alloc] init];
-        productInfo.name = [NSString stringWithFormat:@"productInfo%i",i];
-        productInfo.enable = YES;
-        [_catalogArray addObject:productInfo];
+    if(_bIsEdit){
+        [_catalogArray addObjectsFromArray:[[SubCatalogManager instance] allSubProductInfoForMainProductID:_mainProductInfo.productID]];
+    }else{
+        [_catalogArray addObjectsFromArray:[[SubCatalogManager instance] allEnableProductInfoForMainProductID:_mainProductInfo.productID]];
     }
 }
 
@@ -121,8 +143,9 @@
 -(void)addSubcatalogItem
 {
     DDetailLog(@"");
-    AddSubCatalogViewController *addSubcatalogViewController = [[AddSubCatalogViewController alloc]init];
-    [_mainDelegate mainPushViewController:addSubcatalogViewController animated:YES];
+    AddSubCatalogViewController *addSubCatalogViewController = [[AddSubCatalogViewController alloc] initWithMainCatalogId:_mainProductInfo.productID];
+    addSubCatalogViewController.delegate = self;
+    [_mainDelegate mainPushViewController:addSubCatalogViewController animated:YES];
 }
 
 -(void)inputPassword:(UIButton *)btn
@@ -293,21 +316,43 @@
 
 - (void)GMGridView:(GMGridView *)gridView processDeleteActionForItemAtIndex:(NSInteger)index
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure you want to delete this item?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
-    
-    [alert show];
-    
-    _lastDeleteItemIndexAsked = index;
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure you want to delete this item?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
+//
+//    [alert show];
+//
+//    _lastDeleteItemIndexAsked = index;
+    SubProductInfo *productInfo = [_catalogArray objectAtIndex:index];
+    UIAlertView *alertView = nil;
+    alertView = [[UIAlertView alloc] initWithTitle:@"Confirm"
+                                           message:@"Are you sure you want to delete this item?"
+                                  cancelButtonItem:nil
+                                  otherButtonItems:nil];
+
+    RIButtonItem *confirmItem = [RIButtonItem item];
+    confirmItem.label = @"确定";
+    confirmItem.action = ^{
+        [[SubCatalogManager instance] deleteSubCatalogForId:productInfo.productID];
+
+        [_catalogArray removeObjectAtIndex:index];
+        [_gmGridView removeObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade];
+    };
+    RIButtonItem *cancelItem = [RIButtonItem item];
+    cancelItem.label = @"取消";
+    [alertView addButtonItem:confirmItem];
+    [alertView addButtonItem:cancelItem];
+    [alertView show];
 }
 
+
+#pragma mark UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     _passWord = [[NSString alloc]init];
     _newProductName = [[NSString alloc]init];
     if (buttonIndex == 1)
     {
-        [_catalogArray removeObjectAtIndex:_lastDeleteItemIndexAsked];
-        [_gmGridView removeObjectAtIndex:_lastDeleteItemIndexAsked withAnimation:GMGridViewItemAnimationFade];
+//        [_catalogArray removeObjectAtIndex:_lastDeleteItemIndexAsked];
+//        [_gmGridView removeObjectAtIndex:_lastDeleteItemIndexAsked withAnimation:GMGridViewItemAnimationFade];
         DDetailLog(@"111111");
         if (!_bIsEdit) {
             _bIsEdit = YES;
@@ -450,26 +495,48 @@
     DDetailLog(@"indxe : %d",index);
 }
 
--(void)subCatalogGridViewCellDidBtn
-{
+- (void)subCatalogGridViewCellDidEditName:(MainCatalogGridViewCell *)cell {
     DDetailLog(@"delegate call...");
-    UIAlertView *alert1 = [[UIAlertView alloc]
-                           initWithTitle:NSLocalizedString(@"输入新项目名", nil)
-                           message:NSLocalizedString(@"\n", nil)
-                           delegate:self
-                           cancelButtonTitle:@"取消"
-                           otherButtonTitles:@"确认",
-                           nil];
-    alert1.delegate = self;
+    int index = [_gmGridView positionForItemSubview:cell];
+    SubProductInfo *productInfo = [_catalogArray objectAtIndex:index];
+
+    UIAlertView *alertView = nil;
+    alertView = [[UIAlertView alloc] initWithTitle:@"修改名字"
+                                                        message:@"\n\n"
+                                               cancelButtonItem:nil
+                                               otherButtonItems:nil];
+    
     UITextField *txt1 = [[UITextField alloc]initWithFrame:CGRectMake(12, 40, 260, 40)];
     txt1.font = [UIFont boldSystemFontOfSize:18];
     txt1.layer.cornerRadius = 6;
     txt1.layer.masksToBounds = YES;
-    txt1.secureTextEntry = YES;
+    txt1.tag = 1000;
+    txt1.text = productInfo.name;
     txt1.delegate = self;
     txt1.backgroundColor = [UIColor whiteColor];
-    [alert1 addSubview:txt1];
-    [alert1 show];
+    [alertView addSubview:txt1];
+    
+    RIButtonItem *confirmItem = [RIButtonItem item];
+    confirmItem.label = @"确定";
+    confirmItem.action = ^{
+        UITextField *textField = (UITextField *)[alertView viewWithTag:1000];
+        DDetailLog(@"textField is %@",textField.text);
+        productInfo.name = textField.text;
+        [[SubCatalogManager instance] updateSubCatalog:productInfo];
+        [_gmGridView reloadObjectAtIndex:index animated:YES];
+    };
+    RIButtonItem *cancelItem = [RIButtonItem item];
+    cancelItem.label = @"取消";
+    [alertView addButtonItem:confirmItem];
+    [alertView addButtonItem:cancelItem];
+    [alertView show];
+}
+
+#pragma mark -  AddSubCatalogViewControllerDelegate
+
+-(void)addSubCatalogViewController:(AddSubCatalogViewController *)addSubCatalogViewController didSaveCatalog:(SubProductInfo *)subProductInfo{
+    [_catalogArray addObject:subProductInfo];
+    [_gmGridView insertObjectAtIndex:_catalogArray.count - 1 animated:YES];
 }
 
 //////////////////////////////////////////////////////////////

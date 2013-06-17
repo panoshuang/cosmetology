@@ -7,6 +7,8 @@
 //
 
 #import "AddSubCatalogViewController.h"
+#import "SubProductInfo.h"
+#import "SubCatalogManager.h"
 
 @interface AddSubCatalogViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
@@ -26,6 +28,8 @@
 @synthesize delegate = _delegate;
 
 
+@synthesize mainCatalogId = _mainCatalogId;
+
 -(id)init
 {
     self = [super init];
@@ -34,6 +38,20 @@
     }
     return self;
 }
+
+- (id)initWithMainCatalogId:(int)aMainCatalogId {
+    self = [super init];
+    if (self) {
+        self.mainCatalogId = aMainCatalogId;
+    }
+
+    return self;
+}
+
++ (id)controllerWithMainCatalogId:(int)aMainCatalogId {
+    return [[self alloc] initWithMainCatalogId:aMainCatalogId];
+}
+
 
 - (void)viewDidLoad
 {
@@ -99,11 +117,15 @@
         ALERT_MSG(@"名字不能为空", nil, @"确定");
         return;
     }
-    if (_imagePriview == nil) {
-        ALERT_MSG(@"图片不能为空", nil, @"确定");
-        return;
-    }
-    //TODO:插入到数据库
+
+    _subProductInfo = [[SubProductInfo alloc] init];
+    _subProductInfo.mainProductID = self.mainCatalogId;
+    _subProductInfo.name = _tfName.text;
+    int index = [SubCatalogManager instance].indexForNewCatalog;
+    _subProductInfo.index = index;
+    _subProductInfo.enable = YES;
+     _subProductInfo.productID = [[SubCatalogManager instance] addSubCatalog:_subProductInfo];
+
     if ([_delegate respondsToSelector:@selector(addSubCatalogViewController:didSaveCatalog:)]) {
         [_delegate addSubCatalogViewController:self didSaveCatalog:_subProductInfo];
     }

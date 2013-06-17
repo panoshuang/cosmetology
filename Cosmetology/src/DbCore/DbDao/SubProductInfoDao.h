@@ -7,7 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SubProductInfo.h"
 
 @interface SubProductInfoDao : NSObject
+
++(SubProductInfoDao *)instance;
+
+-(int)addSubProductInfo:(SubProductInfo *)subProductInfo;
+
+- (BOOL)deleteSubProductForID:(int)productID;
+
+-(BOOL)updateSubProduct:(SubProductInfo *)subProductInfo;
+
+- (NSArray *)allEnableSubProductInfo;
+
+- (NSArray *)allSubProductInfo;
+
+-(NSArray *)allSubProductInfoForMainProductID:(int)mainProductID;
+
+-(NSArray *)allEnableProductInfoForMainProductID:(int)mainProductID;
+
+-(SubProductInfo *)lastCreateCatalog;
 
 @end

@@ -84,7 +84,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MainProductInfoDao)
 -(NSArray *)allEnableMainProductInfo{
     __block NSMutableArray *resultArray = [NSMutableArray array] ;
     NSString *sqlStr = [NSString stringWithFormat:@"select * from "MAIN_PRODUCT_INFO_TABLE_TABLE_NAME
-            " WHERE "MAIN_PRODUCT_INFO_ENABLE" =?"];
+            " WHERE "MAIN_PRODUCT_INFO_ENABLE" =? ORDER BY "MAIN_PRODUCT_INFO_INDEX" ASC"];
     [[BaseDatabase instance].fmDbQueue inDatabase:^(FMDatabase *db) {
         FMResultSet *resultSet = [db executeQuery:sqlStr,[NSNumber numberWithInt:1]];
         while ([resultSet next]){
