@@ -26,6 +26,7 @@
 		6315783612FB5CC7D40499A1 /* photowall_botttom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63157911E2DEFB2E546E0505 /* photowall_botttom@2x.png */; };
 		6315784301870C93C899EC92 /* KTPhotoScrollToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 631577AC9A448B78C0AD9259 /* KTPhotoScrollToolBar.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		63157883DFBC408822B1D014 /* btn_photo_brower_toolbar_del_nomal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63157C4E23E967DCA956B44B /* btn_photo_brower_toolbar_del_nomal@2x.png */; };
+		63157899E54F574B1E741464 /* PriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63157FCF9A5B51A0E3E27AC6 /* PriceViewController.m */; };
 		631578B99B931F5381733F77 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 63157B4736B061BAC6A16CBD /* UIAlertView+Blocks.m */; };
 		6315790C95F51D746B7D626F /* btn_gray_confirm_highted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63157DACFF5C9EA1D4D9C358 /* btn_gray_confirm_highted@2x.png */; };
 		6315799195ED1EC87FF97BAA /* PasswordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 63157AE4E065570A862D8872 /* PasswordManager.m */; };
@@ -178,6 +179,7 @@
 		63157E1A8149FFB9CE9A5F14 /* AdPhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdPhotoManager.h; sourceTree = "<group>"; };
 		63157E380050D8A67EFB6E4B /* RIButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIButtonItem.h; sourceTree = "<group>"; };
 		63157E57DF284060B7686C64 /* KTThumbsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTThumbsViewController.m; sourceTree = "<group>"; };
+		63157E6203BC83A4BE026E30 /* PriceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceViewController.h; sourceTree = "<group>"; };
 		63157E92DB8D91B364394E50 /* btn_photo_brower_toolbar_del_highted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_photo_brower_toolbar_del_highted@2x.png"; sourceTree = "<group>"; };
 		63157EA5F24ED05D8F96307E /* chat_bottom_bg_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_bottom_bg_black@2x.png"; sourceTree = "<group>"; };
 		63157EC478844F3BF8A971B4 /* PhotoBrowserDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserDataSource.h; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		63157F5E7B8550649C4BDDF5 /* KTPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTPhotoView.m; sourceTree = "<group>"; };
 		63157FA3C8344BE9B78EEF06 /* KTPhotoBrowserGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTPhotoBrowserGlobal.h; sourceTree = "<group>"; };
 		63157FB2CF3374EE2F7B0B3F /* ExperienceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExperienceViewController.m; sourceTree = "<group>"; };
+		63157FCF9A5B51A0E3E27AC6 /* PriceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceViewController.m; sourceTree = "<group>"; };
 		6D00EB9F174E55C00045BF49 /* Cosmetology.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cosmetology.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D00EBA3174E55C00045BF49 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6D00EBA5174E55C00045BF49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -489,6 +492,8 @@
 				63157FB2CF3374EE2F7B0B3F /* ExperienceViewController.m */,
 				63157979717B4C06A55267B0 /* ExperienceViewController.h */,
 				6315799BCD2093AAFD64C66E /* PhotoWall */,
+				63157FCF9A5B51A0E3E27AC6 /* PriceViewController.m */,
+				63157E6203BC83A4BE026E30 /* PriceViewController.h */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -966,6 +971,7 @@
 				631571A157655BF1984062FE /* AdPhotoInfo.m in Sources */,
 				63157C94EF54BA62085716CF /* AdPhotoInfoDao.m in Sources */,
 				63157A47DD695A15FEFD2D34 /* AdPhotoManager.m in Sources */,
+				63157899E54F574B1E741464 /* PriceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

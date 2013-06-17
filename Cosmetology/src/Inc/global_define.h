@@ -159,6 +159,12 @@
 return (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown); \
 }
 
+#define SHOULD_AUTOROTATA_TO_INTERFACE_ORIENTATION_LANDSCAPE \
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation \
+{\
+return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight ); \
+}
+
 //用于释放指针所指向的空间
 #define FREE_MEM(pData) \
 if (pData != NULL) \
