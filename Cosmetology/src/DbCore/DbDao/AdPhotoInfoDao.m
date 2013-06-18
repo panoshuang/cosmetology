@@ -45,12 +45,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AdPhotoInfoDao)
     return productID;
 }
 
-- (BOOL)deleteAdPhotoForID:(int)productID{
+- (BOOL)deleteAdPhotoForID:(int)adPhotoInfoID{
     NSString *sqlStr = [NSString stringWithFormat:@"DELETE FROM "SUB_PRODUCT_INFO_TABLE_TABLE_NAME
                                                   " WHERE "SUB_PRODUCT_INFO_TABLE_MAIN_PRODUCT_ID" =?"];
     __block BOOL isSuccess;
     [[[BaseDatabase instance] fmDbQueue] inDatabase:^(FMDatabase *db) {
-        isSuccess = [db executeUpdate:sqlStr, [NSNumber numberWithInt:productID]];
+        isSuccess = [db executeUpdate:sqlStr, [NSNumber numberWithInt:adPhotoInfoID]];
         DBErrorCheckLog(db);
 
     }];
