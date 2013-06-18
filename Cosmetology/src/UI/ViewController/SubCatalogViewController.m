@@ -18,6 +18,7 @@
 #import "SUbProductInfo.h"
 #import "SubCatalogManager.h"
 
+
 #define ITEM_SPACE 30
 
 @interface SubCatalogViewController () <GMGridViewDataSource, GMGridViewSortingDelegate, GMGridViewTransformationDelegate,
@@ -138,7 +139,9 @@
     [addSubcatalogItem setTitle:@"添加" forState:UIControlStateNormal];
     [addSubcatalogItem addTarget:self action:@selector(addSubcatalogItem) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:addSubcatalogItem];
+   
 }
+
 
 -(void)addSubcatalogItem
 {
