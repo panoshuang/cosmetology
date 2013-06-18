@@ -19,6 +19,7 @@
 #import "RIButtonItem.h"
 #import "UIAlertView+Blocks.h"
 #import "ExperienceViewController.h"
+#import "MessageListsViewController.h"
 
 @interface MainViewController ()<SubCatalogViewControllerDelegate,iCarouselDataSource,
         iCarouselDelegate,AddMainCatalogViewControllerDelegate, ExperienceViewControllerDelegate>{
@@ -106,7 +107,23 @@
     
     
     _passwordManagerViewController = [[PasswordManagerViewController alloc] init];
+    
+    
+    //TODO:留言处理
+    UIButton *messageListBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    messageListBtn.frame = CGRectMake(940,0,80,30);
+    [messageListBtn setTitle:@"留言列表" forState:UIControlStateNormal];
+    [messageListBtn addTarget:self action:@selector(messageList:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:messageListBtn];
 }
+
+-(void)messageList:(UIButton *)btn
+{
+    MessageListsViewController *messageListsViewController = [[MessageListsViewController alloc]init];
+    [self.navigationController pushViewController:messageListsViewController animated:YES];
+    DDetailLog(@"留言列表按钮");
+}
+
 
 - (void)viewDidLoad
 {
