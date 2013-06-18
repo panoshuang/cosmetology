@@ -14,6 +14,7 @@
 #import "CommonUtil.h"
 #import "ResourceCache.h"
 #import "AdPhotoManager.h"
+#import "PriceViewController.h"
 
 
 #define BTN_LIKE_TAG   1001
@@ -69,6 +70,13 @@ static BOOL isProsecutingPhoto = NO;
     self.toolbar.frame = CGRectMake(0, self.view.bounds.size.height - kPhotoBrowerToolBarHight, self.view.bounds.size.width, kPhotoBrowerToolBarHight);
     if (_bIsEdit)
     {
+        UIButton *priceButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
+        [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
+        [priceButton addTarget:self action:@selector(priceBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        priceButton.tag       = BTN_COMMENT_TAG;
+        [buttonArray addObject:priceButton];
+
         UIButton *commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [commentButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
         [commentButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
@@ -214,6 +222,11 @@ static BOOL isProsecutingPhoto = NO;
 //    [alertView show];
 
     //TODO: 此处该成查看留言列表
+}
+
+-(void)priceBtnClicked:(UIButton *)btn{
+    PriceViewController *priceViewController = [[PriceViewController alloc] initWithSubProductID:_subProductID];
+    [self.navigationController pushViewController:priceViewController animated:YES];
 }
 
 
