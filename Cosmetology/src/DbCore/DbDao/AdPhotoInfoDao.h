@@ -14,11 +14,11 @@
 
 +(AdPhotoInfoDao *)instance;
 
--(int)addAdPhotoInfo:(AdPhotoInfo *)subProductInfo;
+-(int)addAdPhotoInfo:(AdPhotoInfo *)adPhotoInfo;
 
-- (BOOL)deleteAdPhotoForID:(int)productID;
+- (BOOL)deleteAdPhotoForID:(int)adPhotoInfoID;
 
--(BOOL)updateAdPhoto:(AdPhotoInfo *)subProductInfo;
+-(BOOL)updateAdPhoto:(AdPhotoInfo *)adPhotoInfo;
 
 -(NSArray *)allAdPhotoInfoForSubProductID:(int)subProductID;
 

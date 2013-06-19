@@ -54,6 +54,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BaseDatabase )
             *rollback = isError;
             return;
         }
+        if (![self creatMessageBoardInfoTable:db]) {
+            *rollback = isError;
+            return;
+        }
         
 
     }];
@@ -102,6 +106,25 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BaseDatabase )
             " FOREIGN KEY  ("AD_PHOTO_INFO_TABLE_SUB_PRODUCT_ID") REFERENCES "SUB_PRODUCT_INFO_TABLE_TABLE_NAME" ("SUB_PRODUCT_INFO_TABLE_PRODUCT_ID") ON DELETE CASCADE"
             ")"
     ];
+    DBErrorCheckLog(db);
+    return isSuccess;
+}
+
+-(BOOL)creatMessageBoardInfoTable:(FMDatabase *)db
+{
+    BOOL isSuccess = [db executeUpdate:@"CREATE TABLE  IF NOT EXISTS "MESSAGE_BOARD_INFO_TABLE_TABLE_NAME
+                      "("
+                      MESSAGE_BOARD_INFO_TABLE_MESSAGE_ID" INTEGER PRIMARY KEY AUTOINCREMENT,"
+                      MESSAGE_BOARD_INFO_TABLE_SUB_PRODUCT_ID" INTEGER ,"
+                      MESSAGE_BOARD_INFO_TABLE_MESSAGE_CONTENT" TEXT,"
+                      MESSAGE_BOARD_INFO_TABLE_MESSAGE_RECORD" TEXT,"
+                      MESSAGE_BOARD_INFO_TABLE_HEAD_PORTRAITS" TEXT,"
+                      MESSAGE_BOARD_INFO_TABLE_SINGE_NAME" TEXT,"
+                      MESSAGE_BOARD_INFO_TABLE_POPULARITY" INTEGER ,"
+                      MESSAGE_BOARD_INFO_TABLE_POPULARITY" REAL,"
+                      " FOREIGN KEY  ("MESSAGE_BOARD_INFO_TABLE_SUB_PRODUCT_ID") REFERENCES "SUB_PRODUCT_INFO_TABLE_TABLE_NAME" ("SUB_PRODUCT_INFO_TABLE_PRODUCT_ID") ON DELETE CASCADE"
+                      ")"
+                      ];
     DBErrorCheckLog(db);
     return isSuccess;
 }

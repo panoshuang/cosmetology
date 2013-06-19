@@ -14,5 +14,7 @@
 @synthesize headPortraits = _headPortraits;
 @synthesize popularity = _popularity;
 @synthesize singeName = _singeName;
+@synthesize messageID = _messageID;
+@synthesize subProductID = _subProductID;
 
 @end
