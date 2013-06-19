@@ -8,6 +8,7 @@
 
 #import "CheckMessageViewController.h"
 #import "MessageBoardInfo.h"
+#import "MessageBoardManager.h"
 
 @interface CheckMessageViewController ()
 {
@@ -29,9 +30,9 @@
     if (self) {
         // Custom initialization
         //messageBoardInfo.headPortraits = [UIImage imageNamed:@"headPortraits.png"];
+        NSArray *messageBoardInfoArray = [[MessageBoardManager instance] allMessageBoardForSubProductID:2];
         messageBoardInfo = [[MessageBoardInfo alloc]init];
-        messageBoardInfo.messageContent = @"这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!这个产品非常好!";
-        messageBoardInfo.popularity = 1000;
+        messageBoardInfo = [messageBoardInfoArray objectAtIndex:2];
     }
     return self;
 }
@@ -85,7 +86,7 @@
     [self.view addSubview:singeName];
     
     //人气显示
-    UILabel *popularityLabel = [[UILabel alloc]initWithFrame:CGRectMake(50, 500, 80, 30)];
+    UILabel *popularityLabel = [[UILabel alloc]initWithFrame:CGRectMake(50, 500, 180, 30)];
     NSString *labelTitle = [NSString stringWithFormat:@"人气:%d",messageBoardInfo.popularity];
     popularityLabel.text = labelTitle;
     [self.view addSubview:popularityLabel];

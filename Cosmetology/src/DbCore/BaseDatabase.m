@@ -23,6 +23,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BaseDatabase )
     if (self){
         [FileUtil createPathWithRelativeToDocFilePath:DATABASE_PARENT_PATH];
         self.fmDbQueue = [FMDatabaseQueue databaseQueueWithPath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:DATABASE_PATH]] ;
+        DDetailLog(@"数据库的路径是：%@",[FileUtil getDocumentDirectory]);
         //判断是否已经建表，没有的话调用建表方法
         if(![self isExitTableAtDbFile]){
             [self createAllTable];
@@ -34,7 +35,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BaseDatabase )
         NSString *sql = @"PRAGMA foreign_keys = ON;";
         [db executeUpdate:sql];
     }];
-
+    
     return self;
 }
 
@@ -115,13 +116,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BaseDatabase )
     BOOL isSuccess = [db executeUpdate:@"CREATE TABLE  IF NOT EXISTS "MESSAGE_BOARD_INFO_TABLE_TABLE_NAME
                       "("
                       MESSAGE_BOARD_INFO_TABLE_MESSAGE_ID" INTEGER PRIMARY KEY AUTOINCREMENT,"
-                      MESSAGE_BOARD_INFO_TABLE_SUB_PRODUCT_ID" INTEGER ,"
                       MESSAGE_BOARD_INFO_TABLE_MESSAGE_CONTENT" TEXT,"
                       MESSAGE_BOARD_INFO_TABLE_MESSAGE_RECORD" TEXT,"
                       MESSAGE_BOARD_INFO_TABLE_HEAD_PORTRAITS" TEXT,"
                       MESSAGE_BOARD_INFO_TABLE_SINGE_NAME" TEXT,"
                       MESSAGE_BOARD_INFO_TABLE_POPULARITY" INTEGER ,"
-                      MESSAGE_BOARD_INFO_TABLE_POPULARITY" REAL,"
+                      MESSAGE_BOARD_INFO_TABLE_SUB_PRODUCT_ID" INTEGER ,"
+                      MESSAGE_BOARD_INFO_TABLE_CREATE_AT" REAL,"
                       " FOREIGN KEY  ("MESSAGE_BOARD_INFO_TABLE_SUB_PRODUCT_ID") REFERENCES "SUB_PRODUCT_INFO_TABLE_TABLE_NAME" ("SUB_PRODUCT_INFO_TABLE_PRODUCT_ID") ON DELETE CASCADE"
                       ")"
                       ];

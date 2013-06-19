@@ -10,6 +10,8 @@
 #import "GMGridView.h"
 #import "EditMessageViewController.h"
 #import "CheckMessageViewController.h"
+#import "MessageBoardInfo.h"
+#import "MessageBoardManager.h"
 
 #define NUMBER_ITEMS_ON_LOAD 250
 #define NUMBER_ITEMS_ON_LOAD2 30
@@ -31,6 +33,7 @@
     NSMutableArray *_data2;
     __gm_weak NSMutableArray *_currentData;
     NSInteger _lastDeleteItemIndexAsked;
+    MessageBoardInfo *messageBoardInfo;
 }
 
 @end
@@ -61,21 +64,31 @@
             self.navigationItem.leftBarButtonItem = addButton;
         }
         
-        _data = [[NSMutableArray alloc] init];
-        
-        for (int i = 0; i < NUMBER_ITEMS_ON_LOAD; i ++)
-        {
-            [_data addObject:[NSString stringWithFormat:@"A %d", i]];
+//        _data = [[NSMutableArray alloc] init];
+//        
+//        for (int i = 0; i < NUMBER_ITEMS_ON_LOAD; i ++)
+//        {
+//            [_data addObject:[NSString stringWithFormat:@"A %d", i]];
+//        }
+//        
+//        _data2 = [[NSMutableArray alloc] init];
+//        
+//        for (int i = 0; i < NUMBER_ITEMS_ON_LOAD2; i ++)
+//        {
+//            [_data2 addObject:[NSString stringWithFormat:@"B %d", i]];
+//        }
+//
+//        _currentData = _data;
+        messageBoardInfo = [[MessageBoardInfo alloc]init];
+        NSArray *messageBoardInfoArray = [[MessageBoardManager instance]allMessageBoardForSubProductID:2];
+        _data = [[NSMutableArray alloc]init];
+        for (int i = 0; i < [messageBoardInfoArray count]; i ++) {
+            messageBoardInfo = [messageBoardInfoArray objectAtIndex:i];
+            [_data addObject:messageBoardInfo.messageContent];
+
         }
-        
-        _data2 = [[NSMutableArray alloc] init];
-        
-        for (int i = 0; i < NUMBER_ITEMS_ON_LOAD2; i ++)
-        {
-            [_data2 addObject:[NSString stringWithFormat:@"B %d", i]];
-        }
-        
         _currentData = _data;
+        
     }
     
     return self;
