@@ -19,13 +19,12 @@
     NSInteger _subProductID;//子产品ID
     
 }
-
+@property(nonatomic)NSInteger messageID;
 @property(nonatomic, strong)NSString *messageContent;
 @property(nonatomic, strong)NSString *messageRecord;
 @property(nonatomic, strong)NSString *headPortraits;
 @property(nonatomic, strong)NSString *singeName;
 @property(nonatomic)NSInteger popularity;
-@property(nonatomic)NSInteger messageID;
 @property(nonatomic)NSInteger subProductID;
 
 

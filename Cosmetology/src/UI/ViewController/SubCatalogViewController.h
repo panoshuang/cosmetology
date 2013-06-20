@@ -11,7 +11,7 @@
 @class GMGridView;
 @protocol SubCatalogViewControllerDelegate;
 @protocol MainDelegate;
- @class MainProductInfo;
+@class MainProductInfo;
 
 
  @interface SubCatalogViewController : UIViewController{

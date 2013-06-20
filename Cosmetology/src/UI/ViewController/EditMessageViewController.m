@@ -9,6 +9,8 @@
 #import "EditMessageViewController.h"
 #import "MyPaletteViewController.h"
 #import "CheckMessageViewController.h"
+#import "MessageBoardInfo.h"
+#import "MessageBoardManager.h"
 
 @interface EditMessageViewController ()
 {
@@ -17,6 +19,8 @@
     UIButton *OKBtn;//OK按钮
     UIButton *record;//录音
     UIButton *singeName;//签名
+    MessageBoardInfo *messageBoardInfo;//留言板信息
+    
 }
 
 @end
@@ -31,6 +35,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    
     
     //头像
     headPortraits = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -76,6 +82,15 @@
     [singeName addTarget:self action:@selector(singeName:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:singeName];
+    
+    //初始化留言板信息
+    messageBoardInfo = [[MessageBoardInfo alloc]init];
+    messageBoardInfo.messageContent = nil;
+    messageBoardInfo.messageRecord = @"录音路劲";
+    messageBoardInfo.headPortraits = @"头像路劲";
+    messageBoardInfo.singeName = @"签名路径";
+    messageBoardInfo.popularity = 10000;
+    messageBoardInfo.subProductID = 2;
 
 }
 
@@ -94,11 +109,14 @@
 
 -(void)saveMessage:(UIButton *)btn
 {
+    messageBoardInfo.messageContent = messageEditTextView.text;
+    [[MessageBoardManager instance] addMessageBoard:messageBoardInfo];
     //TODO:
     [messageEditTextView resignFirstResponder];
     if ([_delegate respondsToSelector:@selector(saveMessage:forSubProductID:)]) {
         [_delegate saveMessage:_messageBoardInfo forSubProductID:_subProductID];
     }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
