@@ -124,6 +124,10 @@
 		CEB69ED21770382400184B79 /* MessageListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB69ECF1770382400184B79 /* MessageListsViewController.m */; };
 		CEB69ED51770384900184B79 /* MessageBoardInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB69ED41770384900184B79 /* MessageBoardInfo.m */; };
 		CEB69ED71770388600184B79 /* headPortraits.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB69ED61770388600184B79 /* headPortraits.png */; };
+		CEE9C1391777D93000F10404 /* VideoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9C1381777D93000F10404 /* VideoItem.m */; };
+		CEE9C13B1777DE2F00F10404 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE9C13A1777DE2F00F10404 /* MediaPlayer.framework */; };
+		CEE9C1771777E74300F10404 /* ss11_8.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CEE9C1321777D79900F10404 /* ss11_8.mp4 */; };
+		CEE9C1781777E74600F10404 /* ss11_8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEE9C1311777D79900F10404 /* ss11_8.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -350,6 +354,11 @@
 		CEB69ED31770384900184B79 /* MessageBoardInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBoardInfo.h; sourceTree = "<group>"; };
 		CEB69ED41770384900184B79 /* MessageBoardInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBoardInfo.m; sourceTree = "<group>"; };
 		CEB69ED61770388600184B79 /* headPortraits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = headPortraits.png; path = ../headPortraits.png; sourceTree = "<group>"; };
+		CEE9C1311777D79900F10404 /* ss11_8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ss11_8.jpg; sourceTree = "<group>"; };
+		CEE9C1321777D79900F10404 /* ss11_8.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ss11_8.mp4; sourceTree = "<group>"; };
+		CEE9C1371777D93000F10404 /* VideoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoItem.h; sourceTree = "<group>"; };
+		CEE9C1381777D93000F10404 /* VideoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoItem.m; sourceTree = "<group>"; };
+		CEE9C13A1777DE2F00F10404 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -357,6 +366,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEE9C13B1777DE2F00F10404 /* MediaPlayer.framework in Frameworks */,
 				CE71EFDC17702E6E00E1B420 /* OpenGLES.framework in Frameworks */,
 				CE71EFDA17702E5600E1B420 /* GLKit.framework in Frameworks */,
 				6D98EE13176A0DA000DE5F56 /* CoreTelephony.framework in Frameworks */,
@@ -448,6 +458,7 @@
 		6D00EB94174E55C00045BF49 = {
 			isa = PBXGroup;
 			children = (
+				CEE9C13A1777DE2F00F10404 /* MediaPlayer.framework */,
 				6D00EBA9174E55C00045BF49 /* Cosmetology */,
 				6D00EBA2174E55C00045BF49 /* Frameworks */,
 				6D00EBA0174E55C00045BF49 /* Products */,
@@ -540,6 +551,8 @@
 				6315799BCD2093AAFD64C66E /* PhotoWall */,
 				63157FCF9A5B51A0E3E27AC6 /* PriceViewController.m */,
 				63157E6203BC83A4BE026E30 /* PriceViewController.h */,
+				CEE9C1371777D93000F10404 /* VideoItem.h */,
+				CEE9C1381777D93000F10404 /* VideoItem.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -812,6 +825,8 @@
 		6DAC02DF175E2CCC00A3F015 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				CEE9C1311777D79900F10404 /* ss11_8.jpg */,
+				CEE9C1321777D79900F10404 /* ss11_8.mp4 */,
 				6DB30E9A1768430F005D9884 /* subCatalog */,
 				6DAD0F5C1766082D00D37D08 /* test.png */,
 				6DD8FA2F17657EB200B2D81B /* page.png */,
@@ -976,6 +991,8 @@
 				631579F40D6F2F4BFC8E5532 /* btn_gray_confirm_highted.png in Resources */,
 				CE71EFD41770149D00E1B420 /* MyPaletteViewController.xib in Resources */,
 				CEB69ED71770388600184B79 /* headPortraits.png in Resources */,
+				CEE9C1771777E74300F10404 /* ss11_8.mp4 in Resources */,
+				CEE9C1781777E74600F10404 /* ss11_8.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1056,6 +1073,7 @@
 				CEB69ED51770384900184B79 /* MessageBoardInfo.m in Sources */,
 				6DBB0531177094E700C6CC57 /* MessageBoardInfoDao.m in Sources */,
 				6DBB05341770A3D000C6CC57 /* MessageBoardManager.m in Sources */,
+				CEE9C1391777D93000F10404 /* VideoItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

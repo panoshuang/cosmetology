@@ -147,6 +147,12 @@
     [editMessageBtn addTarget:self action:@selector(toEditMessage:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:editMessageBtn];
     
+    UIButton *back = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    back.frame = CGRectMake(40,0,80,30);
+    [back setTitle:@"返回" forState:UIControlStateNormal];
+    [back addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:back];
+    
 //    OptionsViewController *optionsController = [[OptionsViewController alloc] init];
 //    optionsController.gridView = gmGridView;
 //    optionsController.contentSizeForViewInPopover = CGSizeMake(400, 500);
@@ -158,6 +164,10 @@
 //        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(optionsDoneAction)];
 //        optionsController.navigationItem.rightBarButtonItem = doneButton;
 //    }
+}
+
+-(void)back:(UIButton *)btn{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad

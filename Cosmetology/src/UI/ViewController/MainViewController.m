@@ -35,6 +35,12 @@
     BOOL _bIsEdit;
     BOOL _bIsWrap;
     NSMutableArray *_catalogArray;
+    
+    //视频
+    MPMoviePlayerController *moviePlayer;
+    NSString *_stringURL;
+    NSURL *_videoURL;
+    int _moviePlayState;
 }
 
 
@@ -43,15 +49,26 @@
 
 @implementation MainViewController
 
+@synthesize item;
+
 -(id)init{
     self = [super init];
     if (self) {
         _bIsWrap = YES;
         _catalogArray = [[NSMutableArray alloc] initWithCapacity:10];
         [_catalogArray addObjectsFromArray:[[MainCatalogManager instance] allEnableProductInfo]];
+        
+        //视频
+        _stringURL = nil;
+        _stringURL = [[NSBundle mainBundle] pathForResource:@"ss11_8" ofType:@"mp4"];
+        //_stringURL = ;
+        NSLog(@"stringURL is %@",_stringURL);
+        
     }
     return self;
 }
+
+
 
 
 -(void)loadView{
@@ -115,7 +132,74 @@
     [messageListBtn setTitle:@"留言列表" forState:UIControlStateNormal];
     [messageListBtn addTarget:self action:@selector(messageList:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:messageListBtn];
+    
+    UIButton *playVideo = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    playVideo.frame = CGRectMake(840,0,80,30);
+    [playVideo setTitle:@"播放视频" forState:UIControlStateNormal];
+    [playVideo addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:playVideo];
 }
+
+-(void)playVideo:(UIButton *)btn{
+    NSLog(@"stringURL is %@",_stringURL);
+    _videoURL = [NSURL fileURLWithPath:_stringURL];
+    NSLog(@"videoURL is %@",_videoURL);
+    if (_videoURL == nil) {
+        UIAlertView *errorMsg = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"视频地址为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [errorMsg show];
+        return;
+    }
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(exitFullScreen:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+    moviePlayer = [[MPMoviePlayerController alloc]initWithContentURL:_videoURL];
+    _moviePlayState = MPMoviePlaybackStateStopped;
+    [moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
+    [moviePlayer.view setFrame:self.view.bounds];
+    [self.view addSubview:moviePlayer.view];
+}
+
+-(void)exitFullScreen:(NSNotification *)notification
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+    
+    NSNumber *reason = [[notification userInfo]objectForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey];
+    if (moviePlayer == nil) {
+        return;
+    }
+    
+    switch ([reason integerValue]) {
+        case MPMovieFinishReasonPlaybackEnded:
+        {
+            NSLog(@"%@,The movie has playback ended!",self);
+            [moviePlayer stop];
+            _moviePlayState = MPMoviePlaybackStateStopped;
+            [moviePlayer.view removeFromSuperview];
+            moviePlayer = nil;
+            break;
+        }
+        case MPMovieFinishReasonPlaybackError:
+        {
+            NSLog(@"An error was encountered during playback");
+            UIAlertView *errorMsg = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"未找到视频" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [errorMsg show];
+            break;
+        }
+        case MPMovieFinishReasonUserExited:
+        {
+            [moviePlayer stop];
+            _moviePlayState = MPMoviePlaybackStateStopped;
+            [moviePlayer.view removeFromSuperview];
+            moviePlayer = nil;
+            NSLog(@"moviePlayerFinish is %@",moviePlayer);
+            break;
+        }
+            
+        default:
+            break;
+    }
+    
+}
+
 
 -(void)messageList:(UIButton *)btn
 {
