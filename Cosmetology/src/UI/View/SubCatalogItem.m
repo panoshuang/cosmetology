@@ -26,7 +26,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor blueColor];
+        self.backgroundColor = [UIColor clearColor];
         _ivBg = [[UIImageView alloc] initWithFrame:CGRectZero];
         _ivBg.image = [UIImage imageNamed:@"bg_main_catalog.png"];
         _lbName = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -51,7 +51,7 @@
 -(void)layoutSubviews{
     [super layoutSubviews];
     CGRect selfBounds = self.bounds;
-    CGRect ivBgFrame = CGRectMake(0, 0, 184, 52);
+    CGRect ivBgFrame = CGRectMake(0, 0, self.bounds.size.width, 52);
     _ivBg.frame = ivBgFrame;
     _lbName.frame = ivBgFrame;
 //    CGRect swEditFrame = CGRectMake(0,

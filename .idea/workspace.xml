@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/PriceViewController.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/PriceViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/PhotoWall/PhotoScrollViewController.m" afterPath="$PROJECT_DIR$/Cosmetology/src/UI/ViewController/PhotoWall/PhotoScrollViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology/src/Inc/global_define.h" afterPath="$PROJECT_DIR$/Cosmetology/src/Inc/global_define.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cosmetology.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Cosmetology.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Cosmetology.iws" />
@@ -38,7 +33,7 @@
     <file path="/MainViewController.m" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371272958636" ignored="false" />
     <file path="/MainCatalogViewContrller.m" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1370693280856" ignored="false" />
     <file path="/MainCatalogItem.m" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1370356023692" ignored="false" />
-    <file path="/Dummy.txt" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1371478024675" ignored="false" />
+    <file path="/Dummy.txt" changelist="1af9de3c-9e4a-4837-8d61-8c0305c4dc0c" time="1373093578732" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +65,7 @@
       <file leaf-file-name="SubCatalogViewController.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/SubCatalogViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="81" column="77" selection-start="2195" selection-end="2195" vertical-scroll-proportion="0.0">
+            <state line="81" column="77" selection-start="2118" selection-end="2118" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -79,7 +74,7 @@
       <file leaf-file-name="global_define.h" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Cosmetology/src/Inc/global_define.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="168" column="46" selection-start="5623" selection-end="5623" vertical-scroll-proportion="0.6309227">
+            <state line="102" column="36" selection-start="3876" selection-end="4012" vertical-scroll-proportion="0.19080068">
               <folding />
             </state>
           </provider>
@@ -88,7 +83,7 @@
       <file leaf-file-name="Database_define.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Cosmetology/src/Inc/Database_define.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="8" selection-start="830" selection-end="830" vertical-scroll-proportion="0.0">
+            <state line="21" column="8" selection-start="931" selection-end="931" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -186,8 +181,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="42" />
-    <option name="y" value="22" />
+    <option name="x" value="848" />
+    <option name="y" value="434" />
     <option name="width" value="1362" />
     <option name="height" value="746" />
   </component>
@@ -420,15 +415,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="42" y="22" width="1362" height="746" extended-state="0" />
+    <frame x="848" y="434" width="1362" height="746" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.49906015" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15349545" sideWeight="0.7060703" order="3" side_tool="false" content_ui="tabs" x="5" y="302" width="258" height="466" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3130699" sideWeight="0.7060703" order="1" side_tool="false" content_ui="combo" x="4" y="22" width="290" height="417" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29392973" sideWeight="0.8280075" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25455928" sideWeight="0.7060703" order="1" side_tool="false" content_ui="combo" x="4" y="22" width="290" height="417" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29339477" sideWeight="0.8280075" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2852761" sideWeight="0.17199248" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32718894" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -437,6 +431,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32961783" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.49906015" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -511,16 +506,12 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/View/MainCatalogGridViewCell.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="57" selection-start="873" selection-end="873" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="34" column="57" selection-start="873" selection-end="873" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddMainCatalogViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="190" column="7" selection-start="7881" selection-end="7881" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="190" column="7" selection-start="7881" selection-end="7881" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddSubCatalogViewController.m">
@@ -532,23 +523,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/ExperienceViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="481" column="0" selection-start="16625" selection-end="16944" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="481" column="0" selection-start="16625" selection-end="16944" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/SubCatalogViewController.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="42" selection-start="442" selection-end="442" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="18" column="42" selection-start="442" selection-end="442" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/MainViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="330" column="76" selection-start="12041" selection-end="12041" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="330" column="76" selection-start="12041" selection-end="12041" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/AddSubCatalogViewController.h">
@@ -560,7 +545,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/SubCatalogViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="77" selection-start="2195" selection-end="2195" vertical-scroll-proportion="0.0">
+        <state line="81" column="77" selection-start="2118" selection-end="2118" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -586,13 +571,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cosmetology/src/Business/SubCatalogManager.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="51" selection-start="1264" selection-end="1264" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Cosmetology/src/UI/ViewController/PhotoWall/PhotoScrollViewController.m">
       <provider selected="true" editor-type-id="text-editor">
         <state line="227" column="14" selection-start="8326" selection-end="8326" vertical-scroll-proportion="0.0">
@@ -609,14 +587,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Cosmetology/src/Inc/Database_define.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="8" selection-start="830" selection-end="830" vertical-scroll-proportion="0.0">
+        <state line="21" column="8" selection-start="931" selection-end="931" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cosmetology/src/Business/SubCatalogManager.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="51" selection-start="1264" selection-end="1264" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Cosmetology/src/Inc/global_define.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="168" column="46" selection-start="5623" selection-end="5623" vertical-scroll-proportion="0.6309227">
+        <state line="102" column="36" selection-start="3876" selection-end="4012" vertical-scroll-proportion="0.19080068">
           <folding />
         </state>
       </provider>

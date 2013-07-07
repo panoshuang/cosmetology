@@ -33,7 +33,7 @@
 
 -(void)loadView {
     [super loadView];
-    UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,20,1024,748)];
+    UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];
 
     mainView.backgroundColor=[UIColor whiteColor];
     self.view = mainView;
@@ -45,6 +45,7 @@
 
     _ivPrice = [[UIImageView alloc] initWithFrame:self.view.bounds];
     _ivPrice.image = [UIImage imageNamed:@"bg_experience.jpg"];
+    _ivPrice.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview:_ivPrice];
 
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0,

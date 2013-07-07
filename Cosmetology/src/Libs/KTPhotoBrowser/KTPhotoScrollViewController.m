@@ -246,8 +246,8 @@ const CGFloat ktkDefaultTitlebarHeight         = 46;
     [self toggleNavButtons];
     [self startChromeDisplayTimer];
 
-    self.view.backgroundColor = [UIColor redColor];
-    scrollView_.backgroundColor = [UIColor blueColor];
+    self.view.backgroundColor = [UIColor blackColor];
+    scrollView_.backgroundColor = [UIColor blackColor];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -347,7 +347,7 @@ const CGFloat ktkDefaultTitlebarHeight         = 46;
         KTPhotoView *photoView = [[KTPhotoView alloc] initWithFrame:frame];
         [photoView setScroller:self];
         [photoView setIndex:index];
-        [photoView setBackgroundColor:[UIColor orangeColor]];
+        [photoView setBackgroundColor:[UIColor clearColor]];
 
         // Set the photo image.
         if (dataSource_)

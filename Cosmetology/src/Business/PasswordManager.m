@@ -30,6 +30,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(PasswordManager)
     NSMutableDictionary *defaultDic = [NSMutableDictionary dictionary] ;
     [defaultDic setObject:@"" forKey:PWD_MAIN_CATALOG];
     [defaultDic setObject:@"" forKey:PWD_SUB_CATALOG];
+    [defaultDic setObject:@"" forKey:PWD_MSG];
     //TODO:后续继续添加其他页面密码
     [userDefaults registerDefaults:defaultDic];
 }
