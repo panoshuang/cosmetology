@@ -13,6 +13,7 @@
 #define kTabBarHeight              45  //TabBar的高度
 #define CHAT_INPUT_VIEW_HEIGHT     52  //聊天页面的输入栏高度
 #define kTitleBarHeight            44  //TitleBar的高度
+#define kToolBarHeight             44  //工具栏的高度 
 #define kUserHeadSize              34  //用户头像的尺寸
 #define kUserHeadSizeMid           50  //profile头像大小
 #define kUserHeadSizeBig           75

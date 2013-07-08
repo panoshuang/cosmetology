@@ -1,9 +1,5 @@
 //
 //  FileUtil.h
-//  WeiBoApp
-//
-//  Created by Martin on 04/02/2011.
-//  Copyright 2011 ePangaea. All rights reserved.
 //
 
 
