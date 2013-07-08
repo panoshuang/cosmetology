@@ -16,4 +16,5 @@
 @synthesize enable;
 
 @synthesize index;
+@synthesize priceImageFilePath;
 @end

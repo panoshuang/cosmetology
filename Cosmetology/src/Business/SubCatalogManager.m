@@ -37,6 +37,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SubCatalogManager)
     return [[SubProductInfoDao instance] lastCreateCatalog];
 }
 
+-(SubProductInfo *)subProductInfoForProductID:(int)productId{
+    return [[SubProductInfoDao instance] subProductInfoForProductID:productId];
+}
+
 -(NSArray *)allSubProductInfoForMainProductID:(int)mainProductID{
     return [[SubProductInfoDao instance] allSubProductInfoForMainProductID:mainProductID];
 }

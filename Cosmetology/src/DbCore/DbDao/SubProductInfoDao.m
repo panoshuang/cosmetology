@@ -151,6 +151,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SubProductInfoDao)
     return subProductInfo;
 }
 
+-(SubProductInfo *)subProductInfoForProductID:(int)productId{
+    __block SubProductInfo *subProductInfo = nil;
+    NSString *sqlStr = [NSString stringWithFormat:@"select * from "SUB_PRODUCT_INFO_TABLE_TABLE_NAME" WHERE "SUB_PRODUCT_INFO_TABLE_PRODUCT_ID" =?"];
+    [[BaseDatabase instance].fmDbQueue inDatabase:^(FMDatabase *db) {
+        FMResultSet *resultSet = [db executeQuery:sqlStr,[NSNumber numberWithInt:productId]];
+        while ([resultSet next]){
+            subProductInfo = [self subProductInfoFromFMResultSet:resultSet];
+        }
+        DBErrorCheckLog(db);
+    }];
+    return subProductInfo;
+}
+
 - (SubProductInfo *)subProductInfoFromFMResultSet:(FMResultSet *)resultSet {
     SubProductInfo *subProductInfo = [[SubProductInfo alloc] init];
     subProductInfo.productID = [resultSet intForColumn:SUB_PRODUCT_INFO_TABLE_PRODUCT_ID];
