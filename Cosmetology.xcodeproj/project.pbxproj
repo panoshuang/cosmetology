@@ -55,6 +55,7 @@
 		6D00EBB6174E55C00045BF49 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBB5174E55C00045BF49 /* Default.png */; };
 		6D00EBB8174E55C00045BF49 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBB7174E55C00045BF49 /* Default@2x.png */; };
 		6D00EBBA174E55C00045BF49 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBB9174E55C00045BF49 /* Default-568h@2x.png */; };
+		6D4F7B041788214F00B3EB01 /* AutoDismissView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4F7B03178820E000B3EB01 /* AutoDismissView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6D60500A1753999B000635F3 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D6050091753999B000635F3 /* CoreAudio.framework */; };
 		6D60500E17539A6B000635F3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D60500D17539A6B000635F3 /* AudioToolbox.framework */; };
 		6D60501417539B2E000635F3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D60501317539B2E000635F3 /* AVFoundation.framework */; };
@@ -86,6 +87,8 @@
 		6D99107C1765727B003C7C12 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D99107B1765727B003C7C12 /* iCarousel.m */; };
 		6DA2C68117675AC60098F911 /* AddSubCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA2C68017675AC60098F911 /* AddSubCatalogViewController.m */; };
 		6DA2C68717675D4C0098F911 /* SubProductInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA2C68617675D4C0098F911 /* SubProductInfo.m */; };
+		6DAA1BA6178920B100518FC3 /* PasswordEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAA1BA5178920B100518FC3 /* PasswordEditViewController.m */; };
+		6DAA1BA9178923A900518FC3 /* PasswordEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAA1BA81789236700518FC3 /* PasswordEditView.m */; };
 		6DAC02D8175E166F00A3F015 /* MainCatalogGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC02D7175E166F00A3F015 /* MainCatalogGridViewCell.m */; };
 		6DAC02E3175E2CCC00A3F015 /* bg_main_catalog@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAC02E1175E2CCC00A3F015 /* bg_main_catalog@2x.png */; };
 		6DAC02E4175E2CCC00A3F015 /* bg_main_catalog_item.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAC02E2175E2CCC00A3F015 /* bg_main_catalog_item.png */; };
@@ -124,6 +127,10 @@
 		CEB69ED21770382400184B79 /* MessageListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB69ECF1770382400184B79 /* MessageListsViewController.m */; };
 		CEB69ED51770384900184B79 /* MessageBoardInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB69ED41770384900184B79 /* MessageBoardInfo.m */; };
 		CEB69ED71770388600184B79 /* headPortraits.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB69ED61770388600184B79 /* headPortraits.png */; };
+		CEE9C1391777D93000F10404 /* VideoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9C1381777D93000F10404 /* VideoItem.m */; };
+		CEE9C13B1777DE2F00F10404 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE9C13A1777DE2F00F10404 /* MediaPlayer.framework */; };
+		CEE9C1771777E74300F10404 /* ss11_8.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CEE9C1321777D79900F10404 /* ss11_8.mp4 */; };
+		CEE9C1781777E74600F10404 /* ss11_8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEE9C1311777D79900F10404 /* ss11_8.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -213,6 +220,8 @@
 		6D00EBB5174E55C00045BF49 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		6D00EBB7174E55C00045BF49 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		6D00EBB9174E55C00045BF49 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		6D4F7B02178820E000B3EB01 /* AutoDismissView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoDismissView.h; sourceTree = "<group>"; };
+		6D4F7B03178820E000B3EB01 /* AutoDismissView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoDismissView.m; sourceTree = "<group>"; };
 		6D6050091753999B000635F3 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		6D60500D17539A6B000635F3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		6D60501317539B2E000635F3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -286,6 +295,10 @@
 		6DA2C68017675AC60098F911 /* AddSubCatalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSubCatalogViewController.m; sourceTree = "<group>"; };
 		6DA2C68517675D4C0098F911 /* SubProductInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubProductInfo.h; sourceTree = "<group>"; };
 		6DA2C68617675D4C0098F911 /* SubProductInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubProductInfo.m; sourceTree = "<group>"; };
+		6DAA1BA4178920B000518FC3 /* PasswordEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordEditViewController.h; sourceTree = "<group>"; };
+		6DAA1BA5178920B100518FC3 /* PasswordEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordEditViewController.m; sourceTree = "<group>"; };
+		6DAA1BA71789236700518FC3 /* PasswordEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasswordEditView.h; sourceTree = "<group>"; };
+		6DAA1BA81789236700518FC3 /* PasswordEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PasswordEditView.m; sourceTree = "<group>"; };
 		6DAA5966175B068800140A80 /* MainDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainDelegate.h; sourceTree = "<group>"; };
 		6DAC02D6175E166F00A3F015 /* MainCatalogGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainCatalogGridViewCell.h; path = Cosmetology/src/UI/View/MainCatalogGridViewCell.h; sourceTree = SOURCE_ROOT; };
 		6DAC02D7175E166F00A3F015 /* MainCatalogGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainCatalogGridViewCell.m; path = Cosmetology/src/UI/View/MainCatalogGridViewCell.m; sourceTree = SOURCE_ROOT; };
@@ -350,6 +363,11 @@
 		CEB69ED31770384900184B79 /* MessageBoardInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBoardInfo.h; sourceTree = "<group>"; };
 		CEB69ED41770384900184B79 /* MessageBoardInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBoardInfo.m; sourceTree = "<group>"; };
 		CEB69ED61770388600184B79 /* headPortraits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = headPortraits.png; path = ../headPortraits.png; sourceTree = "<group>"; };
+		CEE9C1311777D79900F10404 /* ss11_8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ss11_8.jpg; sourceTree = "<group>"; };
+		CEE9C1321777D79900F10404 /* ss11_8.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ss11_8.mp4; sourceTree = "<group>"; };
+		CEE9C1371777D93000F10404 /* VideoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoItem.h; sourceTree = "<group>"; };
+		CEE9C1381777D93000F10404 /* VideoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoItem.m; sourceTree = "<group>"; };
+		CEE9C13A1777DE2F00F10404 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -357,6 +375,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEE9C13B1777DE2F00F10404 /* MediaPlayer.framework in Frameworks */,
 				CE71EFDC17702E6E00E1B420 /* OpenGLES.framework in Frameworks */,
 				CE71EFDA17702E5600E1B420 /* GLKit.framework in Frameworks */,
 				6D98EE13176A0DA000DE5F56 /* CoreTelephony.framework in Frameworks */,
@@ -448,6 +467,7 @@
 		6D00EB94174E55C00045BF49 = {
 			isa = PBXGroup;
 			children = (
+				CEE9C13A1777DE2F00F10404 /* MediaPlayer.framework */,
 				6D00EBA9174E55C00045BF49 /* Cosmetology */,
 				6D00EBA2174E55C00045BF49 /* Frameworks */,
 				6D00EBA0174E55C00045BF49 /* Products */,
@@ -540,6 +560,10 @@
 				6315799BCD2093AAFD64C66E /* PhotoWall */,
 				63157FCF9A5B51A0E3E27AC6 /* PriceViewController.m */,
 				63157E6203BC83A4BE026E30 /* PriceViewController.h */,
+				CEE9C1371777D93000F10404 /* VideoItem.h */,
+				CEE9C1381777D93000F10404 /* VideoItem.m */,
+				6DAA1BA4178920B000518FC3 /* PasswordEditViewController.h */,
+				6DAA1BA5178920B100518FC3 /* PasswordEditViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -624,6 +648,10 @@
 		6D917D5017509D7E00263F64 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				6DAA1BA71789236700518FC3 /* PasswordEditView.h */,
+				6DAA1BA81789236700518FC3 /* PasswordEditView.m */,
+				6D4F7B02178820E000B3EB01 /* AutoDismissView.h */,
+				6D4F7B03178820E000B3EB01 /* AutoDismissView.m */,
 				6DD8FA311765C0E000B2D81B /* ReflectionView.h */,
 				6DD8FA321765C0E000B2D81B /* ReflectionView.m */,
 				6DAD9BD6175CD55F00E33E81 /* SubCatalogItem.h */,
@@ -812,6 +840,8 @@
 		6DAC02DF175E2CCC00A3F015 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				CEE9C1311777D79900F10404 /* ss11_8.jpg */,
+				CEE9C1321777D79900F10404 /* ss11_8.mp4 */,
 				6DB30E9A1768430F005D9884 /* subCatalog */,
 				6DAD0F5C1766082D00D37D08 /* test.png */,
 				6DD8FA2F17657EB200B2D81B /* page.png */,
@@ -976,6 +1006,8 @@
 				631579F40D6F2F4BFC8E5532 /* btn_gray_confirm_highted.png in Resources */,
 				CE71EFD41770149D00E1B420 /* MyPaletteViewController.xib in Resources */,
 				CEB69ED71770388600184B79 /* headPortraits.png in Resources */,
+				CEE9C1771777E74300F10404 /* ss11_8.mp4 in Resources */,
+				CEE9C1781777E74600F10404 /* ss11_8.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -986,6 +1018,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DAA1BA9178923A900518FC3 /* PasswordEditView.m in Sources */,
+				6D4F7B041788214F00B3EB01 /* AutoDismissView.m in Sources */,
 				6DAD0F5A1765C52600D37D08 /* ReflectionView.m in Sources */,
 				6D60501517539BAA000635F3 /* FileUtil.m in Sources */,
 				6D00EBB0174E55C00045BF49 /* main.m in Sources */,
@@ -1056,6 +1090,8 @@
 				CEB69ED51770384900184B79 /* MessageBoardInfo.m in Sources */,
 				6DBB0531177094E700C6CC57 /* MessageBoardInfoDao.m in Sources */,
 				6DBB05341770A3D000C6CC57 /* MessageBoardManager.m in Sources */,
+				CEE9C1391777D93000F10404 /* VideoItem.m in Sources */,
+				6DAA1BA6178920B100518FC3 /* PasswordEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1082,7 +1118,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: guo rui (DWK7KW59K5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: guo rui (DWK7KW59K5)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1097,6 +1134,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1110,7 +1149,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: guo rui (DWK7KW59K5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: guo rui (DWK7KW59K5)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1118,6 +1158,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1126,6 +1168,8 @@
 		6D00EBC4174E55C00045BF49 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: guo rui (DWK7KW59K5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: guo rui (DWK7KW59K5)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cosmetology/Cosmetology-Prefix.pch";
 				INFOPLIST_FILE = "Cosmetology/Cosmetology-Info.plist";
@@ -1135,6 +1179,8 @@
 					"\"$(SRCROOT)/Cosmetology/src/Libs/VoiceConvert/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1143,6 +1189,8 @@
 		6D00EBC5174E55C00045BF49 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: guo rui (DWK7KW59K5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: guo rui (DWK7KW59K5)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cosmetology/Cosmetology-Prefix.pch";
 				INFOPLIST_FILE = "Cosmetology/Cosmetology-Info.plist";
@@ -1152,6 +1200,8 @@
 					"\"$(SRCROOT)/Cosmetology/src/Libs/VoiceConvert/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};

@@ -16,3 +16,9 @@ typedef enum _EnumResourceCacheType {
     kResourceCacheTypeAudio,
     kResourceCacheTypeVedio
 }EnumResourceCacheType;
+
+typedef enum _EnumPasswordType{
+    kPasswordTypeHome,
+    kPasswordTypeSubProduct,
+    kPasswordTypeMsg
+}EnumPasswordType;

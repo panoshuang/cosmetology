@@ -20,21 +20,30 @@
 #import "UIAlertView+Blocks.h"
 #import "ExperienceViewController.h"
 #import "MessageListsViewController.h"
+#import "AutoDismissView.h"
+#import "CommonUtil.h"
+#import "ResourceCache.h"
 
 @interface MainViewController ()<SubCatalogViewControllerDelegate,iCarouselDataSource,
-        iCarouselDelegate,AddMainCatalogViewControllerDelegate, ExperienceViewControllerDelegate>{
+        iCarouselDelegate,AddMainCatalogViewControllerDelegate, ExperienceViewControllerDelegate,
+        UIImagePickerControllerDelegate>{
+    UIImageView *_bgView;
     SubCatalogViewController *_subCatalogViewController;
     UIPopoverController *_popController;
     PasswordManagerViewController *_passwordManagerViewController;
     ExperienceViewController *_experienceViewController;
+            UIToolbar *_toolBar;
     iCarousel *_catalogCarousel;
-    UIButton *_deleteBtn;
-    UIButton *_addBtn;
-    UIButton *_editBtn;
-    UIButton *_editPasswordBtn;
+    UITapGestureRecognizer *_editGesture; //开启编辑的手势
     BOOL _bIsEdit;
     BOOL _bIsWrap;
     NSMutableArray *_catalogArray;
+    
+    //视频
+    MPMoviePlayerController *moviePlayer;
+    NSString *_stringURL;
+    NSURL *_videoURL;
+    int _moviePlayState;
 }
 
 
@@ -43,79 +52,183 @@
 
 @implementation MainViewController
 
+@synthesize item;
+
 -(id)init{
     self = [super init];
     if (self) {
+        //注册背景的userDefaults的值
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults] ;
+        NSMutableDictionary *defaultDic = [NSMutableDictionary dictionary] ;
+        [defaultDic setObject:@"" forKey:HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH];
+        [userDefaults registerDefaults:defaultDic];
+        
         _bIsWrap = YES;
         _catalogArray = [[NSMutableArray alloc] initWithCapacity:10];
         [_catalogArray addObjectsFromArray:[[MainCatalogManager instance] allEnableProductInfo]];
+        
+        //视频
+        _stringURL = nil;
+        _stringURL = [[NSBundle mainBundle] pathForResource:@"ss11_8" ofType:@"mp4"];
+        //_stringURL = ;
+        NSLog(@"stringURL is %@",_stringURL);
+        
     }
     return self;
 }
 
 
+
+
 -(void)loadView{
     [super loadView];
-    UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,20,1024,768)];
+    self.navigationController.navigationBarHidden = YES;
+    UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];
     
     mainView.backgroundColor=[UIColor whiteColor];
     self.view = mainView;
-    self.navigationController.navigationBarHidden = YES;
     
-    _catalogCarousel = [[iCarousel alloc] initWithFrame:self.view.bounds];
+    _bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    //获取背景图片填充
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *bgFilePath = [userDefaults stringForKey:HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH];
+    UIImage *bgImage = [[ResourceCache instance] imageForCachePath:bgFilePath];
+    _bgView.image = bgImage;
+    [self.view addSubview:_bgView];
+    
+    
+    _catalogCarousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, kToolBarHeight, self.view.bounds.size.width, self.view.bounds.size.height - kToolBarHeight)];
     _catalogCarousel.delegate = self;
     _catalogCarousel.dataSource = self;
     _catalogCarousel.type = iCarouselTypeCoverFlow2;
     [self.view addSubview:_catalogCarousel];
     
-    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
-    [self.view addSubview:toolBar];
+    _toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
+    [self.view addSubview:_toolBar];
+    _toolBar.hidden = YES;
     
-    _deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
-    _deleteBtn.backgroundColor = [UIColor redColor];
-    _deleteBtn.frame = CGRectMake(0, 0, 100, 50);
-    [_deleteBtn addTarget:self action:@selector(deleteCurCatalog) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *deleteItem = [[UIBarButtonItem alloc] init];
-    deleteItem.customView = _deleteBtn;
+    UIView *editView = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 100,
+                                                                0,
+                                                                100,
+                                                                kToolBarHeight)];
+    editView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:editView];
+    _editGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editGestureDidTap:)];
+    _editGesture.numberOfTapsRequired = 3;
+    [editView addGestureRecognizer:_editGesture];
     
-    _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_addBtn setTitle:@"添加" forState:UIControlStateNormal];
-    _addBtn.backgroundColor = [UIColor redColor];
-    _addBtn.frame = CGRectMake(0, 0, 100, 50);
-    [_addBtn addTarget:self action:@selector(addCatalog) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithCustomView:_addBtn];
-    addItem.customView = _addBtn;
     
-    _editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _editBtn.frame =  CGRectMake(0, 0, 100, 50);
-    _editBtn.backgroundColor = [UIColor redColor];
-    [_editBtn setTitle:@"修改产品" forState:UIControlStateNormal];
-    [_editBtn addTarget:self action:@selector(editMainCatalog:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *editItem = [[UIBarButtonItem alloc] init];
-    editItem.customView = _editBtn;
+    UIBarButtonItem *deleteItem = [[UIBarButtonItem alloc] initWithTitle:@"删除"
+                                                                   style:UIBarButtonItemStyleDone
+                                                                  target:self
+                                                                  action:@selector(deleteCurCatalog)];
+    
+    UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithTitle:@"添加"
+                                                                 style:UIBarButtonItemStyleDone
+                                                                target:self
+                                                                action:@selector(addCatalog)];
+    
+    UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithTitle:@"修改"
+                                                                 style:UIBarButtonItemStyleDone
+                                                                target:self
+                                                                action:@selector(editMainCatalog)];
 
-    _editPasswordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _editPasswordBtn.frame =  CGRectMake(0, 0, 100, 50);
-    _editPasswordBtn.backgroundColor = [UIColor redColor];
-    [_editPasswordBtn setTitle:@"修改密码" forState:UIControlStateNormal];
-    [_editPasswordBtn addTarget:self action:@selector(showEditView:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *pwdItem = [[UIBarButtonItem alloc] init];
-    pwdItem.customView = _editPasswordBtn;
+
+    UIBarButtonItem *pwdItem = [[UIBarButtonItem alloc] initWithTitle:@"修改密码"
+                                                                style:UIBarButtonItemStyleDone
+                                                               target:self
+                                                               action:@selector(showEditView:)];
     
-    toolBar.items = [NSArray arrayWithObjects:deleteItem,addItem,editItem,pwdItem,nil];
+    UIBarButtonItem *editBgItem = [[UIBarButtonItem alloc] initWithTitle:@"修改背景"
+                                                                style:UIBarButtonItemStyleDone
+                                                               target:self
+                                                               action:@selector(showEditBgView:)];
+    
+    UIBarButtonItem *exitEditItem = [[UIBarButtonItem alloc] initWithTitle:@"退出编辑"
+                                                                     style:UIBarButtonItemStyleDone
+                                                                    target:self
+                                                                    action:@selector(cancelEdit)];
+    
+   _toolBar.items = [NSArray arrayWithObjects:deleteItem,addItem,editItem,pwdItem,editBgItem,exitEditItem,nil];
     
     
     _passwordManagerViewController = [[PasswordManagerViewController alloc] init];
     
     
     //TODO:留言处理
-    UIButton *messageListBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    messageListBtn.frame = CGRectMake(940,0,80,30);
-    [messageListBtn setTitle:@"留言列表" forState:UIControlStateNormal];
-    [messageListBtn addTarget:self action:@selector(messageList:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:messageListBtn];
+//    UIButton *messageListBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    messageListBtn.frame = CGRectMake(940,0,80,30);
+//    [messageListBtn setTitle:@"留言列表" forState:UIControlStateNormal];
+//    [messageListBtn addTarget:self action:@selector(messageList:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:messageListBtn];
+//    
+//    UIButton *playVideo = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    playVideo.frame = CGRectMake(840,0,80,30);
+//    [playVideo setTitle:@"播放视频" forState:UIControlStateNormal];
+//    [playVideo addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:playVideo];
 }
+
+-(void)playVideo:(UIButton *)btn{
+    NSLog(@"stringURL is %@",_stringURL);
+    _videoURL = [NSURL fileURLWithPath:_stringURL];
+    NSLog(@"videoURL is %@",_videoURL);
+    if (_videoURL == nil) {
+        UIAlertView *errorMsg = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"视频地址为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [errorMsg show];
+        return;
+    }
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(exitFullScreen:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+    moviePlayer = [[MPMoviePlayerController alloc]initWithContentURL:_videoURL];
+    _moviePlayState = MPMoviePlaybackStateStopped;
+    [moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
+    [moviePlayer.view setFrame:self.view.bounds];
+    [self.view addSubview:moviePlayer.view];
+}
+
+-(void)exitFullScreen:(NSNotification *)notification
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+    
+    NSNumber *reason = [[notification userInfo]objectForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey];
+    if (moviePlayer == nil) {
+        return;
+    }
+    
+    switch ([reason integerValue]) {
+        case MPMovieFinishReasonPlaybackEnded:
+        {
+            NSLog(@"%@,The movie has playback ended!",self);
+            [moviePlayer stop];
+            _moviePlayState = MPMoviePlaybackStateStopped;
+            [moviePlayer.view removeFromSuperview];
+            moviePlayer = nil;
+            break;
+        }
+        case MPMovieFinishReasonPlaybackError:
+        {
+            NSLog(@"An error was encountered during playback");
+            UIAlertView *errorMsg = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"未找到视频" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [errorMsg show];
+            break;
+        }
+        case MPMovieFinishReasonUserExited:
+        {
+            [moviePlayer stop];
+            _moviePlayState = MPMoviePlaybackStateStopped;
+            [moviePlayer.view removeFromSuperview];
+            moviePlayer = nil;
+            NSLog(@"moviePlayerFinish is %@",moviePlayer);
+            break;
+        }
+            
+        default:
+            break;
+    }
+    
+}
+
 
 -(void)messageList:(UIButton *)btn
 {
@@ -131,13 +244,18 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden  = YES;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(void)editMainCatalog:(UIButton *)sender{
+-(void)editMainCatalog{
     MainProductInfo *curProduct = [_catalogArray objectAtIndex:_catalogCarousel.currentItemIndex];
     AddMainCatalogViewController *addMainCatalogViewController = [[AddMainCatalogViewController alloc] initWithProductInfo:curProduct];
     addMainCatalogViewController.bIsEdit = YES;
@@ -179,15 +297,19 @@
     }
 }
 
--(void)showEditView:(UIButton *)sender{
+-(void)showEditView:(UIBarButtonItem *)sender{
     if(![_popController isPopoverVisible])
     {
         if (!_popController)
         {
-        _popController = [[UIPopoverController alloc] initWithContentViewController:_passwordManagerViewController];
+            _popController = nil;
         }
+        UINavigationController *passwordNavigationController = [[UINavigationController alloc] initWithRootViewController:_passwordManagerViewController];
+        passwordNavigationController.contentSizeForViewInPopover = CGSizeMake(300, 400);
+        _popController = [[UIPopoverController alloc] initWithContentViewController:passwordNavigationController];
 
-        [_popController presentPopoverFromRect:_addBtn.frame
+        UIView *itemView = [sender valueForKey:@"view"];
+        [_popController presentPopoverFromRect:itemView.frame
                                             inView:self.view
                           permittedArrowDirections:UIPopoverArrowDirectionAny
                                           animated:YES];
@@ -196,6 +318,105 @@
     {
         [_popController dismissPopoverAnimated:YES];
     }
+}
+
+-(void)showEditBgView:(UIBarButtonItem *)sender{
+    if(![_popController isPopoverVisible])
+    {
+        if (!_popController)
+        {
+            _popController = nil;
+        }
+        
+        UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+        controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        controller.allowsEditing = NO;
+        controller.delegate = self;
+        _popController=[[UIPopoverController alloc] initWithContentViewController:controller];
+        UIView *itemView = [sender valueForKey:@"view"];
+        [_popController presentPopoverFromRect:itemView.frame
+                                        inView:self.view
+                      permittedArrowDirections:UIPopoverArrowDirectionUp
+                                      animated:YES];
+    }
+    else
+    {
+        [_popController dismissPopoverAnimated:YES];
+    }
+}
+
+-(void)editGestureDidTap:(UITapGestureRecognizer *)gesture{
+    if (_bIsEdit) {
+        [self cancelEdit];
+    }else{
+        //判断是否已经设置了密码,没有的话直接进入编辑模式,有的话要输入密码
+        NSString *editPwdStr = [[PasswordManager instance] passwordForKey:PWD_MAIN_CATALOG];
+        if (editPwdStr.length > 0) {
+            [self inputPassword];
+        }else{
+            _bIsEdit = YES;
+            _toolBar.hidden = NO;
+        }
+    }
+}
+
+-(void)cancelEdit{
+    RIButtonItem *confirmItem = [RIButtonItem item];
+    confirmItem.label = @"确定";
+    confirmItem.action = ^{
+        _bIsEdit = NO;
+        _toolBar.hidden = YES;
+    };
+    RIButtonItem *cancelItem = [RIButtonItem item];
+    cancelItem.label = @"取消";
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"是否要退出编辑模式"
+                                                        message:nil
+                                               cancelButtonItem:cancelItem
+                                               otherButtonItems:confirmItem, nil];
+    [alertView show];
+}
+
+-(void)inputPassword
+{
+    
+    UIAlertView *alertView = nil;
+    alertView = [[UIAlertView alloc] initWithTitle:@"输入密码"
+                                           message:@"\n\n"
+                                  cancelButtonItem:nil
+                                  otherButtonItems:nil];
+    
+    UITextField *txt1 = [[UITextField alloc]initWithFrame:CGRectMake(12, 40, 260, 40)];
+    txt1.font = [UIFont boldSystemFontOfSize:18];
+    txt1.layer.cornerRadius = 6;
+    txt1.layer.masksToBounds = YES;
+    txt1.secureTextEntry = YES;
+    txt1.backgroundColor = [UIColor whiteColor];
+    txt1.backgroundColor = [UIColor whiteColor];
+    txt1.tag = 1000;
+    [alertView addSubview:txt1];
+    
+    RIButtonItem *confirmItem = [RIButtonItem item];
+    confirmItem.label = @"确定";
+    confirmItem.action = ^{
+        UITextField *textField = (UITextField *)[alertView viewWithTag:1000];
+        DDetailLog(@"textField is %@",textField.text);
+        //判断输入的密码是否正确
+        NSString *editPwdStr = [[PasswordManager instance] passwordForKey:PWD_MAIN_CATALOG];
+        if([editPwdStr isEqualToString:textField.text]){
+            _bIsEdit = YES;
+            _toolBar.hidden = NO;
+        }else{
+            [[AutoDismissView instance] showInView:self.view
+                                             title:@"密码错误"
+                                          duration:1];
+        }
+    };
+    RIButtonItem *cancelItem = [RIButtonItem item];
+    cancelItem.label = @"取消";
+    [alertView addButtonItem:cancelItem];
+    [alertView addButtonItem:confirmItem];
+    [alertView show];
+
 }
 
 -(void)mainPushViewController:(UIViewController *)viewController animated:(BOOL)animate{
@@ -229,7 +450,7 @@
     if (view == nil)
     {
         
-        view = [[MainCatalogItem alloc] initWithFrame:CGRectMake(0, 0, 400.0f, 600.0f)];
+        view = [[MainCatalogItem alloc] initWithFrame:CGRectMake(0, 0, 400.0f, 300.0f)];
         view.backgroundColor = [UIColor blueColor];
         ((MainCatalogItem *)view).ivBg.image = [UIImage imageNamed:@"test.png"];
         view.contentMode = UIViewContentModeScaleAspectFill;
@@ -368,6 +589,27 @@
                      }completion:^(BOOL complete){
                           
                      }];
+}
+
+#pragma mark UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker
+        didFinishPickingImage:(UIImage *)image
+                  editingInfo:(NSDictionary *)editingInfo
+{
+    [_popController dismissPopoverAnimated:YES];
+    if (image) {
+        //生成图片的uuid,保存到缓存
+        NSString *bgUuid = [CommonUtil uuid];
+        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+                                                                    relatePath:bgUuid
+                                                                  resourceType:kResourceCacheTypeBackgroundImage];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:bgImageFilePath forKey:HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH];        
+        _bgView.image = image;
+    }else{
+        [[AutoDismissView instance] showInView:self.view title:@"修改失败" duration:1];
+    }
+
 }
 
 #pragma mark - AddMainCatalogViewControllerDelegate

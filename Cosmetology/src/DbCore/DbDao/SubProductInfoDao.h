@@ -29,4 +29,6 @@
 
 -(SubProductInfo *)lastCreateCatalog;
 
+-(SubProductInfo *)subProductInfoForProductID:(int)productId;
+
 @end
