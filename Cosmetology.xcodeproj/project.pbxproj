@@ -52,7 +52,6 @@
 		6D00EBA8174E55C00045BF49 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBA7174E55C00045BF49 /* CoreGraphics.framework */; };
 		6D00EBAE174E55C00045BF49 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBAC174E55C00045BF49 /* InfoPlist.strings */; };
 		6D00EBB0174E55C00045BF49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D00EBAF174E55C00045BF49 /* main.m */; };
-		6D00EBB6174E55C00045BF49 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBB5174E55C00045BF49 /* Default.png */; };
 		6D00EBB8174E55C00045BF49 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBB7174E55C00045BF49 /* Default@2x.png */; };
 		6D00EBBA174E55C00045BF49 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D00EBB9174E55C00045BF49 /* Default-568h@2x.png */; };
 		6D4F7B041788214F00B3EB01 /* AutoDismissView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4F7B03178820E000B3EB01 /* AutoDismissView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -98,6 +97,7 @@
 		6DAD0F62176626D100D37D08 /* MainCatalogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD0F61176626D100D37D08 /* MainCatalogManager.m */; };
 		6DAD0F66176628B700D37D08 /* AddMainCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD0F65176628B700D37D08 /* AddMainCatalogViewController.m */; };
 		6DAD9BD8175CD55F00E33E81 /* SubCatalogItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD9BD7175CD55F00E33E81 /* SubCatalogItem.m */; };
+		6DAFE2B4178AFE7E001AD73A /* Default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6DAFE2B3178AFE7E001AD73A /* Default.jpg */; };
 		6DB09D8B1767171500B121E2 /* CommonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB09D8A1767171500B121E2 /* CommonUtil.m */; };
 		6DB09D8F17671BAC00B121E2 /* ResourceCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB09D8E17671BAC00B121E2 /* ResourceCache.m */; };
 		6DB30E9817683E54005D9884 /* SelectSubItemBtnBgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB30E9717683E54005D9884 /* SelectSubItemBtnBgViewController.m */; };
@@ -217,7 +217,6 @@
 		6D00EBAD174E55C00045BF49 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6D00EBAF174E55C00045BF49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6D00EBB1174E55C00045BF49 /* Cosmetology-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cosmetology-Prefix.pch"; sourceTree = "<group>"; };
-		6D00EBB5174E55C00045BF49 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		6D00EBB7174E55C00045BF49 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		6D00EBB9174E55C00045BF49 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		6D4F7B02178820E000B3EB01 /* AutoDismissView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoDismissView.h; sourceTree = "<group>"; };
@@ -312,6 +311,7 @@
 		6DAD0F65176628B700D37D08 /* AddMainCatalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMainCatalogViewController.m; sourceTree = "<group>"; };
 		6DAD9BD6175CD55F00E33E81 /* SubCatalogItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubCatalogItem.h; path = Cosmetology/src/UI/View/SubCatalogItem.h; sourceTree = SOURCE_ROOT; };
 		6DAD9BD7175CD55F00E33E81 /* SubCatalogItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubCatalogItem.m; path = Cosmetology/src/UI/View/SubCatalogItem.m; sourceTree = SOURCE_ROOT; };
+		6DAFE2B3178AFE7E001AD73A /* Default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Default.jpg; path = res/Default.jpg; sourceTree = "<group>"; };
 		6DB09D891767171500B121E2 /* CommonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtil.h; sourceTree = "<group>"; };
 		6DB09D8A1767171500B121E2 /* CommonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtil.m; sourceTree = "<group>"; };
 		6DB09D8D17671BAC00B121E2 /* ResourceCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceCache.h; sourceTree = "<group>"; };
@@ -518,7 +518,7 @@
 				6D00EBAC174E55C00045BF49 /* InfoPlist.strings */,
 				6D00EBAF174E55C00045BF49 /* main.m */,
 				6D00EBB1174E55C00045BF49 /* Cosmetology-Prefix.pch */,
-				6D00EBB5174E55C00045BF49 /* Default.png */,
+				6DAFE2B3178AFE7E001AD73A /* Default.jpg */,
 				6D00EBB7174E55C00045BF49 /* Default@2x.png */,
 				6D00EBB9174E55C00045BF49 /* Default-568h@2x.png */,
 			);
@@ -974,7 +974,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D00EBAE174E55C00045BF49 /* InfoPlist.strings in Resources */,
-				6D00EBB6174E55C00045BF49 /* Default.png in Resources */,
 				6D00EBB8174E55C00045BF49 /* Default@2x.png in Resources */,
 				6D00EBBA174E55C00045BF49 /* Default-568h@2x.png in Resources */,
 				6DAC02E3175E2CCC00A3F015 /* bg_main_catalog@2x.png in Resources */,
@@ -1008,6 +1007,7 @@
 				CEB69ED71770388600184B79 /* headPortraits.png in Resources */,
 				CEE9C1771777E74300F10404 /* ss11_8.mp4 in Resources */,
 				CEE9C1781777E74600F10404 /* ss11_8.jpg in Resources */,
+				6DAFE2B4178AFE7E001AD73A /* Default.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
