@@ -15,11 +15,13 @@
     NSString *name;
     BOOL enable;
     int index;
+    NSString *priceImageFilePath; //报价图片路径
 }
 
 @property(nonatomic)int productID;
 @property(nonatomic)int mainProductID;
-@property(nonatomic,copy)NSString *name;
+@property(nonatomic,strong)NSString *name;
 @property(nonatomic)BOOL enable;
 @property(nonatomic) int index;
+@property(nonatomic,strong) NSString *priceImageFilePath;
 @end
