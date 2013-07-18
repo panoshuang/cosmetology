@@ -32,7 +32,7 @@
     UIPopoverController *_popController;
     PasswordManagerViewController *_passwordManagerViewController;
     ExperienceViewController *_experienceViewController;
-            UIToolbar *_toolBar;
+    UIToolbar *_toolBar;
     iCarousel *_catalogCarousel;
     UITapGestureRecognizer *_editGesture; //开启编辑的手势
     BOOL _bIsEdit;

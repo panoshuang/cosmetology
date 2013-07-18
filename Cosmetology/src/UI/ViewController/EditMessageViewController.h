@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
 #import "SubProductInfo.h"
 #import "MessageBoardInfo.h"
 
 @protocol messageBoardViewControllerDelegate; 
-@interface EditMessageViewController : UIViewController<UITextViewDelegate>
+@interface EditMessageViewController : UIViewController<UITextViewDelegate,AVAudioRecorderDelegate>
 {
     __weak id _delegate;
     NSInteger _subProductID;

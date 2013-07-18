@@ -17,6 +17,7 @@
 #import "CommonUtil.h"
 #import "SubCatalogManager.h"
 #import "SubProductInfo.h"
+#import "MessageListsViewController.h"
 
 
 @implementation PriceViewController {
@@ -197,7 +198,9 @@
 }
 
 -(void)msgItemClicked:(UIBarButtonItem *)item{
-
+    MessageListsViewController *messageListsViewController = [[MessageListsViewController alloc]init];
+    [self.navigationController pushViewController:messageListsViewController animated:YES];
+    DDetailLog(@"留言列表按钮");
 }
 
 -(void)editBg:(UIBarButtonItem *)sender{
