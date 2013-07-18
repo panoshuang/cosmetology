@@ -15,6 +15,8 @@
 #import "MainCatalogManager.h"
 #import "UIImageExtras.h"
 
+#define FONT_SIZE [UIFont systemFontOfSize:18]
+
 #define TAG_SELECT_BG_IMAGE  10000
 #define TAG_SELECT_PREVIEW_IMAGE 10001
 
@@ -82,7 +84,10 @@
 {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = NO;
-    self.view.backgroundColor = [UIColor grayColor];
+    self.view.backgroundColor = [UIColor colorWithRed:0xf9/(CGFloat)0xff
+                                                green:0xf9/(CGFloat)0xff
+                                                 blue:0xf9/(CGFloat)0xff
+                                                alpha:1];
     UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc] initWithTitle:@"返回"
                                                                     style:UIBarButtonItemStylePlain
                                                                    target:self
@@ -97,6 +102,9 @@
     
     _lbName = [[UILabel alloc] initWithFrame:CGRectMake(kCommonSpace * 2, kCommonSpace, 100, 30)];
     _lbName.text = @"产品名字: ";
+    _lbName.backgroundColor = [UIColor clearColor];
+    _lbName.font = FONT_SIZE;
+    
     [self.view addSubview:_lbName];
     
     _tfName = [[UITextField alloc] initWithFrame:CGRectMake(_lbName.frame.origin.x + _lbName.frame.size.width + kCommonSpace,
@@ -104,6 +112,7 @@
                                                             400,
                                                             _lbName.frame.size.height)];
     _tfName.borderStyle = UITextBorderStyleRoundedRect;
+    _tfName.font = FONT_SIZE;
     [self.view addSubview:_tfName];
 
     UILabel *lbEnableTips = [[UILabel alloc] initWithFrame:CGRectMake(_tfName.frame.origin.x + _tfName.frame.size.width + kCommonSpace,
@@ -111,6 +120,8 @@
             100,
             _lbName.frame.size.height)] ;
     lbEnableTips.text = @"开始产品";
+    lbEnableTips.backgroundColor = [UIColor clearColor];
+    lbEnableTips.font = FONT_SIZE;
     [self.view addSubview:lbEnableTips];
 
     _swEnable = [[UISwitch alloc] init];
@@ -137,7 +148,7 @@
     [self.view addSubview:_ivBg];
     
     _btnPreview = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    _btnPreview.frame = CGRectMake(_ivBg.frame.origin.x + _ivBg.frame.size.width + kCommonSpace * 2,
+    _btnPreview.frame = CGRectMake(_ivBg.frame.origin.x + _ivBg.frame.size.width + kCommonSpaceBig * 2,
                                    _lbName.frame.origin.y + _lbName.frame.size.height + kCommonSpace *2 ,
                                    120,
                                    30);
@@ -152,7 +163,7 @@
     [self.view addSubview:_ivPreview];
     
     _btnSubItemBtnBg = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    _btnSubItemBtnBg.frame = CGRectMake(_ivPreview.frame.origin.x + _ivPreview.frame.size.width + kCommonSpace * 2,
+    _btnSubItemBtnBg.frame = CGRectMake(_ivPreview.frame.origin.x + _ivPreview.frame.size.width + kCommonSpaceBig * 2,
                                    _lbName.frame.origin.y + _lbName.frame.size.height + kCommonSpace *2 ,
                                    120,
                                    30);
@@ -161,9 +172,10 @@
     [self.view addSubview:_btnSubItemBtnBg];
     
     _ivSubItemBtnBg = [[UIImageView alloc] initWithFrame:CGRectMake(_btnSubItemBtnBg.frame.origin.x,
-                                                          _btnSubItemBtnBg.frame.origin.y + _btnSubItemBtnBg.frame.size.height + kCommonSpace,
+                                                          _btnSubItemBtnBg.frame.origin.y + _btnSubItemBtnBg.frame.size.height + kCommonSpaceBig,
                                                           200,
                                                           200)];
+    _ivSubItemBtnBg.contentMode = UIViewContentModeLeft;
     [self.view addSubview:_ivSubItemBtnBg];
 
     if(_bIsEdit){
