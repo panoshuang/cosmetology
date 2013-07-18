@@ -15,6 +15,7 @@
 #import "ResourceCache.h"
 #import "AdPhotoManager.h"
 #import "PriceViewController.h"
+#import "MessageListsViewController.h"
 
 
 #define BTN_LIKE_TAG   1001
@@ -27,7 +28,13 @@
 static BOOL isProsecutingPhoto = NO;
 
 
-@interface PhotoScrollViewController ()
+@interface PhotoScrollViewController (){
+    //视频
+    MPMoviePlayerController *moviePlayer;
+    NSString *_stringURL;
+    NSURL *_videoURL;
+    int _moviePlayState;
+}
 
 @end
 
@@ -56,6 +63,12 @@ static BOOL isProsecutingPhoto = NO;
 - (void)loadView
 {
     [super loadView];
+    
+    //视频
+    _stringURL = nil;
+    _stringURL = [[NSBundle mainBundle] pathForResource:@"ss11_8" ofType:@"mp4"];
+    //_stringURL = ;
+    NSLog(@"stringURL is %@",_stringURL);
 
     //把navigatorController的delegate设置为自己,用于在显示本页面时候设置全屏
     // self.navigationController.delegate = self;
@@ -70,6 +83,13 @@ static BOOL isProsecutingPhoto = NO;
     self.toolbar.frame = CGRectMake(0, self.view.bounds.size.height - kPhotoBrowerToolBarHight, self.view.bounds.size.width, kPhotoBrowerToolBarHight);
     if (_bIsEdit)
     {
+        UIButton *videoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [videoButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
+        [videoButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
+        [videoButton addTarget:self action:@selector(videoBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        videoButton.tag       = BTN_COMMENT_TAG;
+        [buttonArray addObject:videoButton];
+        
         UIButton *priceButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
         [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
@@ -84,12 +104,12 @@ static BOOL isProsecutingPhoto = NO;
         commentButton.tag       = BTN_COMMENT_TAG;
         [buttonArray addObject:commentButton];
 
-        UIButton *delButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [delButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
-        [delButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
-        [delButton addTarget:self action:@selector(deleteBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-        delButton.tag = BTN_DEL_TAG;
-        [buttonArray addObject:delButton];
+        UIButton *messageListButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [messageListButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
+        [messageListButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
+        [messageListButton addTarget:self action:@selector(messageListBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        messageListButton.tag = BTN_DEL_TAG;
+        [buttonArray addObject:messageListButton];
     }
     else
     {
@@ -152,7 +172,9 @@ static BOOL isProsecutingPhoto = NO;
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    
+    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight );
+    
 }
 
 - (void)back:(UIButton *)sender
@@ -172,6 +194,68 @@ static BOOL isProsecutingPhoto = NO;
 //        [[PhotoAlbumManager instance] likePhotoInfo:photoInfo];
 //    }
 }
+
+-(void)videoBtnClicked:(UIButton *)button{
+    NSLog(@"stringURL is %@",_stringURL);
+    _videoURL = [NSURL fileURLWithPath:_stringURL];
+    NSLog(@"videoURL is %@",_videoURL);
+    if (_videoURL == nil) {
+        UIAlertView *errorMsg = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"视频地址为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [errorMsg show];
+        return;
+    }
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(exitFullScreen:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+    moviePlayer = [[MPMoviePlayerController alloc]initWithContentURL:_videoURL];
+    _moviePlayState = MPMoviePlaybackStateStopped;
+    [moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
+    [moviePlayer.view setFrame:self.view.bounds];
+    [self.view addSubview:moviePlayer.view];
+
+}
+
+-(void)exitFullScreen:(NSNotification *)notification
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+    
+    NSNumber *reason = [[notification userInfo]objectForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey];
+    if (moviePlayer == nil) {
+        return;
+    }
+    
+    switch ([reason integerValue]) {
+        case MPMovieFinishReasonPlaybackEnded:
+        {
+            NSLog(@"%@,The movie has playback ended!",self);
+            [moviePlayer stop];
+            _moviePlayState = MPMoviePlaybackStateStopped;
+            [moviePlayer.view removeFromSuperview];
+            moviePlayer = nil;
+            break;
+        }
+        case MPMovieFinishReasonPlaybackError:
+        {
+            NSLog(@"An error was encountered during playback");
+            UIAlertView *errorMsg = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"未找到视频" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [errorMsg show];
+            break;
+        }
+        case MPMovieFinishReasonUserExited:
+        {
+            [moviePlayer stop];
+            _moviePlayState = MPMoviePlaybackStateStopped;
+            [moviePlayer.view removeFromSuperview];
+            moviePlayer = nil;
+            NSLog(@"moviePlayerFinish is %@",moviePlayer);
+            break;
+        }
+            
+        default:
+            break;
+    }
+    
+}
+
 
 - (void)commentPhotoBtnClick:(UIButton *)button
 {
@@ -215,13 +299,16 @@ static BOOL isProsecutingPhoto = NO;
     }
 }
 
-- (void)deleteBtnClicked:(UIButton *)sender
+- (void)messageListBtnClicked:(UIButton *)sender
 {
 //    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"确定要删除该照片？" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
 //    alertView.tag = ALERT_VIEW_DEL_TAG;
 //    [alertView show];
 
     //TODO: 此处该成查看留言列表
+    MessageListsViewController *messageListsViewController = [[MessageListsViewController alloc]init];
+    [self.navigationController pushViewController:messageListsViewController animated:YES];
+    DDetailLog(@"留言列表按钮");
 }
 
 -(void)priceBtnClicked:(UIButton *)btn{

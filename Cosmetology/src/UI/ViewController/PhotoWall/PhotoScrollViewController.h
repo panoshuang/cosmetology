@@ -5,7 +5,7 @@
 //  Created by mijie on 12-7-6.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
-
+#import <MediaPlayer/MediaPlayer.h>
 #import "KTPhotoScrollViewController.h"
 #import "MHImagePickerMutilSelector.h"
 
