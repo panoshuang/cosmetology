@@ -45,24 +45,37 @@
     if ((self =[super init]))
     {
         self.title = @"留言列表";
+        _toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 1024, 44)];
+        [self.view addSubview:_toolBar];
+        _toolBar.hidden = NO;
         
-        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addMoreItem)];
-        
+        UIBarButtonItem *back = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(back:)];
         UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-        space.width = 10;
+        space.width = 875;
         
-        UIBarButtonItem *removeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(removeItem)];
+//        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStyleDone target:self action:@selector(addMoreItem)];
+//        UIBarButtonItem *space2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//        space2.width = 10;
+//        
+//        UIBarButtonItem *removeButton = [[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStyleDone target:self action:@selector(removeItem)];
+//        
+//        UIBarButtonItem *space3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//        space3.width = 10;
+//        
+//        UIBarButtonItem *space4 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//        space4.width = 10;
+//        
+//        UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithTitle:@"刷新" style:UIBarButtonItemStyleDone target:self action:@selector(refreshItem)];
+        UIBarButtonItem *editMessageBtn = [[UIBarButtonItem alloc]initWithTitle:@"我也要留言" style:UIBarButtonItemStyleDone target:self action:@selector(toEditMessage:)];
+        _toolBar.items = [NSArray arrayWithObjects:back,space,editMessageBtn,nil];
+//        if ([self.navigationItem respondsToSelector:@selector(leftBarButtonItems)]) {
+//            self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:addButton, space, removeButton, space2, refreshButton, nil];
+//        }else {
+//            self.navigationItem.leftBarButtonItem = addButton;
+//        }
         
-        UIBarButtonItem *space2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-        space2.width = 10;
+       
         
-        UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshItem)];
-        
-        if ([self.navigationItem respondsToSelector:@selector(leftBarButtonItems)]) {
-            self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:addButton, space, removeButton, space2, refreshButton, nil];
-        }else {
-            self.navigationItem.leftBarButtonItem = addButton;
-        }
         
 //        _data = [[NSMutableArray alloc] init];
 //        
@@ -88,6 +101,7 @@
 
         }
         _currentData = _data;
+        [_gmGridView reloadData];
         
     }
     
@@ -101,11 +115,10 @@
 - (void)loadView
 {
     [super loadView];
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationController.navigationBarHidden = NO;
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
     NSInteger spacing = INTERFACE_IS_PHONE ? 10 : 15;
     
-    GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:self.view.bounds];
+    GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:CGRectMake(0, 44, self.view.bounds.size.width - 50, self.view.bounds.size.height - 90)];
     gmGridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     gmGridView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:gmGridView];
@@ -119,7 +132,7 @@
     _gmGridView.sortingDelegate = self;
     _gmGridView.transformDelegate = self;
     _gmGridView.dataSource = self;
-    
+    [_gmGridView reloadData];
     UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
     infoButton.frame = CGRectMake(self.view.bounds.size.width - 40,
                                   self.view.bounds.size.height - 40,
@@ -127,7 +140,7 @@
                                   40);
     infoButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
     [infoButton addTarget:self action:@selector(presentInfo) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:infoButton];
+    //[self.view addSubview:infoButton];
     
     UISegmentedControl *dataSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"DataSet 1", @"DataSet 2", nil]];
     [dataSegmentedControl sizeToFit];
@@ -139,19 +152,9 @@
     dataSegmentedControl.tintColor = [UIColor greenColor];
     dataSegmentedControl.selectedSegmentIndex = 0;
     [dataSegmentedControl addTarget:self action:@selector(dataSetChange:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:dataSegmentedControl];
+    //[self.view addSubview:dataSegmentedControl];
     
-    UIButton *editMessageBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    editMessageBtn.frame = CGRectMake(940,0,80,30);
-    [editMessageBtn setTitle:@"我也要留言" forState:UIControlStateNormal];
-    [editMessageBtn addTarget:self action:@selector(toEditMessage:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:editMessageBtn];
     
-    UIButton *back = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    back.frame = CGRectMake(40,0,80,30);
-    [back setTitle:@"返回" forState:UIControlStateNormal];
-    [back addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:back];
     
 //    OptionsViewController *optionsController = [[OptionsViewController alloc] init];
 //    optionsController.gridView = gmGridView;
@@ -173,9 +176,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _gmGridView.mainSuperView = self.navigationController.view; //[UIApplication sharedApplication].keyWindow.rootViewController.view;
+    _gmGridView.mainSuperView = self.navigationController.view;
+    //[UIApplication sharedApplication].keyWindow.rootViewController.view;
+    self.navigationController.navigationBarHidden = YES;
 }
-
 
 - (void)viewDidUnload
 {
@@ -508,12 +512,12 @@
     [alertView show];
 }
 
-- (void)dataSetChange:(UISegmentedControl *)control
-{
-    _currentData = ([control selectedSegmentIndex] == 0) ? _data : _data2;
-    
-    [_gmGridView reloadData];
-}
+//- (void)dataSetChange:(UISegmentedControl *)control
+//{
+//    _currentData = ([control selectedSegmentIndex] == 0) ? _data : _data2;
+//    
+//    [_gmGridView reloadData];
+//}
 
 -(void)toEditMessage:(UIButton *)btn
 {

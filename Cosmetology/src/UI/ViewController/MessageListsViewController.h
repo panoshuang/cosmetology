@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface MessageListsViewController : UIViewController
+@interface MessageListsViewController : UIViewController{
+    UIToolbar *_toolBar;
+}
 
 @end

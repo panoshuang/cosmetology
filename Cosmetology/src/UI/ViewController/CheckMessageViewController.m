@@ -12,6 +12,7 @@
 
 @interface CheckMessageViewController ()
 {
+    UIToolbar *_toolBar;
     UIImageView *headPortraits;//头像
     UITextView *messageTextView;//留言展示
     UIButton *playRecord;//播放录音
@@ -28,6 +29,12 @@
 {
     self = [super init];
     if (self) {
+        _toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 1024, 44)];
+        [self.view addSubview:_toolBar];
+        _toolBar.hidden = NO;
+        
+        UIBarButtonItem *back = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(back:)];
+         _toolBar.items = [NSArray arrayWithObjects:back,nil];
         // Custom initialization
         //messageBoardInfo.headPortraits = [UIImage imageNamed:@"headPortraits.png"];
         NSArray *messageBoardInfoArray = [[MessageBoardManager instance] allMessageBoardForSubProductID:2];
@@ -40,29 +47,30 @@
 -(void)loadView
 {
     [super loadView];
-    self.navigationController.navigationBarHidden = NO;
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.navigationBarHidden = YES;
 	// Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
     
     //头像
     headPortraits = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"headPortraits.png"]];
-    headPortraits.frame = CGRectMake(10, 10, 200, 200);
+    headPortraits.frame = CGRectMake(10, 54, 200, 200);
     headPortraits.contentMode = UIViewContentModeScaleToFill;
     [self.view addSubview:headPortraits];
     
     //留言展示
     UIFont *font = [UIFont fontWithName:@"Helvetica" size:24];
-    UILabel *messagelabel = [[UILabel alloc]initWithFrame:CGRectMake(220, 10, 130, 30)];
+    UILabel *messagelabel = [[UILabel alloc]initWithFrame:CGRectMake(220, 54, 130, 30)];
     messagelabel.text = @"我的留言:";
     [messagelabel setFont:font];
     [self.view addSubview:messagelabel];
     
-    messageTextView = [[UITextView alloc]initWithFrame:CGRectMake(330, 10, 600, 200)];
+    messageTextView = [[UITextView alloc]initWithFrame:CGRectMake(330, 54, 600, 200)];
     messageTextView.editable = NO;
     messageTextView.text = messageBoardInfo.messageContent;
     messageTextView.contentMode = UIViewContentModeScaleToFill;
@@ -91,6 +99,10 @@
     popularityLabel.text = labelTitle;
     [self.view addSubview:popularityLabel];
     
+}
+
+-(void)back:(UIButton *)btn{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
