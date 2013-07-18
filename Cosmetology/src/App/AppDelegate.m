@@ -67,8 +67,7 @@
 - (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
 {
     
-    return UIInterfaceOrientationLandscapeLeft|UIInterfaceOrientationLandscapeRight;
-    
+    return UIInterfaceOrientationMaskAll;    
     
 }
 #endif

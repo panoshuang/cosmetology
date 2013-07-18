@@ -1051,9 +1051,7 @@
 				CE71EFD41770149D00E1B420 /* MyPaletteViewController.xib in Resources */,
 				CEE9C1771777E74300F10404 /* ss11_8.mp4 in Resources */,
 				CEE9C1781777E74600F10404 /* ss11_8.jpg in Resources */,
-<<<<<<< HEAD
 				6DAFE2B4178AFE7E001AD73A /* Default.jpg in Resources */,
-=======
 				CEC3E5D41797BC9700055B09 /* record_animate_06.png in Resources */,
 				CEC3E5D51797BC9700055B09 /* record_animate_08.png in Resources */,
 				CEC3E5D61797BC9700055B09 /* record_animate_12.png in Resources */,
@@ -1070,7 +1068,6 @@
 				CEC3E5E11797BC9700055B09 /* record_animate_01.png in Resources */,
 				CEC3E5E31797BEAA00055B09 /* headPortraits.png in Resources */,
 				CEC3E5E51797D90B00055B09 /* background.png in Resources */,
->>>>>>> 714626ef32fd8c971a4441b0f84fef309a7d623e
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

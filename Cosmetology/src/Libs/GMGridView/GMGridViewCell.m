@@ -255,9 +255,7 @@
     highlighted = aHighlighted;
 	
 	[self.contentView recursiveEnumerateSubviewsUsingBlock:^(UIView *view, BOOL *stop) {
-        DDetailLog(@"highlighted %d",highlighted);
 		if ([view respondsToSelector:@selector(setHighlighted:)]) {
-            DDetailLog(@"view %@",view);
 			[(UIControl*)view setHighlighted:highlighted];
 		}
 	}];

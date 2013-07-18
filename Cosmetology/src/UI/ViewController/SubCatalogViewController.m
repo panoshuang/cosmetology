@@ -17,21 +17,33 @@
 #import "UIAlertView+Blocks.h"
 #import "SUbProductInfo.h"
 #import "SubCatalogManager.h"
+#import "ResourceCache.h"
+#import "AutoDismissView.h"
+#import "CommonUtil.h"
+#import "PhotoScrollViewController.h"
+#import "PhotoBrowserDataSource.h"
+#import "AdPhotoManager.h"
+#import "UIAlertView+Blocks.h"
+#import "PasswordManager.h"
 
 
 #define ITEM_SPACE 30
 
 @interface SubCatalogViewController () <GMGridViewDataSource, GMGridViewSortingDelegate, GMGridViewTransformationDelegate,
         GMGridViewActionDelegate,MainCatalogGridViewCellDelegate,UIAlertViewDelegate,UITextFieldDelegate,
-        AddSubCatalogViewControllerDelegate>
+        AddSubCatalogViewControllerDelegate,UIGestureRecognizerDelegate>
 {
     UINavigationController *_optionsNav;
-    UIPopoverController *_optionsPopOver;
-    
+    UIPopoverController *_popController;
+    UIImageView *_ivBg;
+    UIToolbar *_toolbar;
     NSMutableArray *_catalogArray;
     NSInteger _lastDeleteItemIndexAsked;
     NSString *_newProductName;
     NSString *_passWord;
+    UIView *_editTapView ;
+    UITapGestureRecognizer *_editGesture; //开启编辑的手势
+
 }
 
 - (void)addMoreItem;
@@ -91,21 +103,54 @@
 - (void)loadView
 {
     [super loadView];
-    self.view.backgroundColor = [UIColor redColor];
+    UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];
+    mainView.backgroundColor=[UIColor whiteColor];
+    self.view = mainView;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onBgTap:)];
     tapGesture.numberOfTapsRequired = 2;
+    tapGesture.delegate = self;
     [self.view addGestureRecognizer:tapGesture];
     
+    
+    _ivBg = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    _ivBg.image = [[ResourceCache instance] imageForCachePath:self.mainProductInfo.bgImageFile];
+    [self.view addSubview:_ivBg];
+    
+    _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, kToolBarHeight)];
+    if (_bIsEdit) {
+        _toolbar.hidden = NO;
+    }else{
+        _toolbar.hidden = YES;
+    }
+    [self.view addSubview:_toolbar];
+    UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithTitle:@"添加"
+                                                                style:UIBarButtonItemStyleDone
+                                                               target:self
+                                                               action:@selector(addSubcatalogItem)];
+    UIBarButtonItem *editBgItem = [[UIBarButtonItem alloc] initWithTitle:@"修改背景"
+                                                                   style:UIBarButtonItemStyleDone
+                                                                  target:self
+                                                                  action:@selector(editBg:)];
+    _toolbar.items = [NSArray arrayWithObjects:addItem,editBgItem, nil];
+    
+    _editTapView = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 100,
+                                                            0,
+                                                            100,
+                                                            kToolBarHeight)];
+    _editTapView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:_editTapView];
+    _editGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editGestureDidTap:)];
+    _editGesture.numberOfTapsRequired = 3;
+    [_editTapView addGestureRecognizer:_editGesture];
+    
     NSInteger spacing = ITEM_SPACE;
-    
-    CGRect gridViewFrame = CGRectMake(118, 218, 300, 461);
-    
+    CGRect gridViewFrame = CGRectMake(98, 240, 550, 370);
     GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:gridViewFrame];
     gmGridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     gmGridView.backgroundColor = [UIColor clearColor];
     
     _gmGridView = gmGridView;
-    
+    _gmGridView.layer.masksToBounds = YES;
     _gmGridView.style = GMGridViewStyleSwap;
     _gmGridView.itemSpacing = spacing;
     _gmGridView.minEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
@@ -117,60 +162,27 @@
     [self.view addSubview:_gmGridView];
 //    [_gmGridView setEditing:YES animated:NO];
     
-    UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
-    infoButton.frame = CGRectMake(self.view.bounds.size.width - 40,
-                                  self.view.bounds.size.height - 40,
-                                  40,
-                                  40);
-    infoButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
-    [infoButton addTarget:self action:@selector(presentInfo) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:infoButton];
-    
-    UIButton *updatePassword = [UIButton buttonWithType:UIButtonTypeCustom];
-    updatePassword.frame = CGRectMake(self.view.frame.size.width - 40, 0, 80, 30);
-    updatePassword.backgroundColor = [UIColor blueColor];
-    [updatePassword setTitle:@"输入密码" forState:UIControlStateNormal];
-    [updatePassword addTarget:self action:@selector(inputPassword:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:updatePassword];
-    
-    UIButton *addSubcatalogItem = [UIButton buttonWithType:UIButtonTypeCustom];
-    addSubcatalogItem.frame = CGRectMake(self.view.frame.size.width - 160, 0, 40, 30);
-    addSubcatalogItem.backgroundColor = [UIColor blueColor];
-    [addSubcatalogItem setTitle:@"添加" forState:UIControlStateNormal];
-    [addSubcatalogItem addTarget:self action:@selector(addSubcatalogItem) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:addSubcatalogItem];
-   
 }
 
 
--(void)addSubcatalogItem
-{
-    DDetailLog(@"");
-    AddSubCatalogViewController *addSubCatalogViewController = [[AddSubCatalogViewController alloc] initWithMainCatalogId:_mainProductInfo.productID];
-    addSubCatalogViewController.delegate = self;
-    [_mainDelegate mainPushViewController:addSubCatalogViewController animated:YES];
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+    if (gestureRecognizer == _editGesture) {
+        return YES;
+    }else{
+        CGPoint point = [gestureRecognizer locationInView:_editTapView];
+        if (CGRectContainsPoint(_editTapView.bounds, point)) {
+            DDetailLog(@"in _editTapView");
+            return NO;
+        }else{
+            DDetailLog(@"in bgView");
+            return YES;
+        }
+    }
 }
 
--(void)inputPassword:(UIButton *)btn
-{
-    UIAlertView *alert1 = [[UIAlertView alloc]
-              initWithTitle:NSLocalizedString(@"输入密码", nil)
-              message:NSLocalizedString(@"\n", nil)
-              delegate:self
-              cancelButtonTitle:@"取消"
-              otherButtonTitles:@"确认",
-              nil];
-    alert1.delegate = self;
-    UITextField *txt1 = [[UITextField alloc]initWithFrame:CGRectMake(12, 40, 260, 40)];
-    txt1.font = [UIFont boldSystemFontOfSize:18];
-    txt1.layer.cornerRadius = 6;
-    txt1.layer.masksToBounds = YES;
-    txt1.secureTextEntry = YES;
-    txt1.delegate = self;
-    txt1.backgroundColor = [UIColor whiteColor];
-    [alert1 addSubview:txt1];
-    [alert1 show];
-}
+
 
 //-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 //{
@@ -212,22 +224,123 @@
     [_gmGridView reloadData];
 }
 
--(void)onBgTap:(UITapGestureRecognizer *)gesture{
+-(void)editGestureDidTap:(UITapGestureRecognizer *)gesture{
+    if (_bIsEdit) {
+        [self cancelEdit];
+    }else{
+        //判断是否已经设置了密码,没有的话直接进入编辑模式,有的话要输入密码
+        NSString *editPwdStr = [[PasswordManager instance] passwordForKey:PWD_SUB_CATALOG];
+        if (editPwdStr.length > 0) {
+            [self inputPassword];
+        }else{
+            self.bIsEdit  = YES;
+            _toolbar.hidden = NO;
+        }
+    }
+}
 
-//    [UIView animateWithDuration:2 animations:^{
-//        _gmGridView.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
-//        _gmGridView.frame = self.view.bounds;
-//    }completion:NULL];
-//    
+-(void)cancelEdit{
+    RIButtonItem *confirmItem = [RIButtonItem item];
+    confirmItem.label = @"确定";
+    confirmItem.action = ^{
+        self.bIsEdit = NO;
+        _toolbar.hidden = YES;
+    };
+    RIButtonItem *cancelItem = [RIButtonItem item];
+    cancelItem.label = @"取消";
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"是否要退出编辑模式"
+                                                        message:nil
+                                               cancelButtonItem:cancelItem
+                                               otherButtonItems:confirmItem, nil];
+    [alertView show];
+}
+
+
+
+
+-(void)addSubcatalogItem
+{
+    DDetailLog(@"");
+    AddSubCatalogViewController *addSubCatalogViewController = [[AddSubCatalogViewController alloc] initWithMainCatalogId:_mainProductInfo.productID];
+    addSubCatalogViewController.delegate = self;
+    [_mainDelegate mainPushViewController:addSubCatalogViewController animated:YES];
+}
+
+-(void)inputPassword
+{
     
-    [self.view removeFromSuperview];
-//    UIView *testView = [[UIView alloc] initWithFrame:CGRectZero];
-//    [self.view addSubview:testView];
-//    testView.backgroundColor = [UIColor orangeColor];
-//    [UIView animateWithDuration:2
-//                     animations:^{
-//                         testView.frame = self.view.bounds;
-//                     }completion:NULL];
+    UIAlertView *alertView = nil;
+    alertView = [[UIAlertView alloc] initWithTitle:@"输入密码"
+                                           message:@"\n\n"
+                                  cancelButtonItem:nil
+                                  otherButtonItems:nil];
+    
+    UITextField *txt1 = [[UITextField alloc]initWithFrame:CGRectMake(12, 40, 260, 40)];
+    txt1.font = [UIFont boldSystemFontOfSize:18];
+    txt1.layer.cornerRadius = 6;
+    txt1.layer.masksToBounds = YES;
+    txt1.secureTextEntry = YES;
+    txt1.backgroundColor = [UIColor whiteColor];
+    txt1.backgroundColor = [UIColor whiteColor];
+    txt1.tag = 1000;
+    [alertView addSubview:txt1];
+    
+    RIButtonItem *confirmItem = [RIButtonItem item];
+    confirmItem.label = @"确定";
+    confirmItem.action = ^{
+        UITextField *textField = (UITextField *)[alertView viewWithTag:1000];
+        DDetailLog(@"textField is %@",textField.text);
+        //判断输入的密码是否正确
+        NSString *editPwdStr = [[PasswordManager instance] passwordForKey:PWD_SUB_CATALOG];
+        if([editPwdStr isEqualToString:textField.text]){
+            self.bIsEdit = YES;
+            _toolbar.hidden = NO;
+        }else{
+            [[AutoDismissView instance] showInView:self.view
+                                             title:@"密码错误"
+                                          duration:1];
+        }
+    };
+    RIButtonItem *cancelItem = [RIButtonItem item];
+    cancelItem.label = @"取消";
+    [alertView addButtonItem:cancelItem];
+    [alertView addButtonItem:confirmItem];
+    [alertView show];
+    
+}
+
+-(void)editBg:(UIBarButtonItem *)sender{
+    if(![_popController isPopoverVisible])
+    {
+        if (!_popController)
+        {
+            _popController = nil;
+        }
+        
+        UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+        controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        controller.allowsEditing = NO;
+        controller.delegate = self;
+        _popController=[[UIPopoverController alloc] initWithContentViewController:controller];
+        UIView *itemView = [sender valueForKey:@"view"];
+        [_popController presentPopoverFromRect:itemView.frame
+                                        inView:self.view
+                      permittedArrowDirections:UIPopoverArrowDirectionUp
+                                      animated:YES];
+    }
+    else
+    {
+        [_popController dismissPopoverAnimated:YES];
+    }
+}
+
+-(void)onBgTap:(UITapGestureRecognizer *)gesture{
+    [UIView animateWithDuration:2 animations:^{
+        self.view.userInteractionEnabled = NO;
+        self.view.alpha = 0;
+    }completion:^(BOOL complete){
+        [self.view removeFromSuperview];
+    }];
 }
 
 
@@ -243,9 +356,9 @@
 - (CGSize)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
     if (_bIsEdit) {
-        return CGSizeMake(184, 80);
+        return CGSizeMake(230, 80);
     }else{
-        return CGSizeMake(184, 52);
+        return CGSizeMake(230, 52);
     }
 }
 
@@ -276,24 +389,6 @@
     [contentItem setEdit:_bIsEdit];
     [contentItem.swEdit setSelected:productInfo.enable];
     
-//    [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-//    UIButton *contentBtn = (UIButton *)cell.contentView;
-//     [contentBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-//    contentBtn.backgroundColor = [UIColor greenColor];
-//    [contentBtn setTitle:productInfo.name forState:UIControlStateNormal];
-//    NSLog(@"%@",productInfo.name);
-//    UILabel *label = [[UILabel alloc] initWithFrame:cell.contentView.bounds];
-//    label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//    label.text = productInfo.name;
-//    label.textAlignment = UITextAlignmentCenter;
-//    label.backgroundColor = [UIColor clearColor];
-//    label.textColor = [UIColor blackColor];
-//    label.highlightedTextColor = [UIColor whiteColor];
-//    label.font = [UIFont boldSystemFontOfSize:20];
-//    [cell.contentView addSubview:label];
-    
-//    [cell setEditing:YES animated:NO];
-    
     return cell;
 }
 
@@ -310,6 +405,21 @@
 - (void)GMGridView:(GMGridView *)gridView didTapOnItemAtIndex:(NSInteger)position
 {
     NSLog(@"Did tap at index %d", position);
+    //重新提交
+    
+    SubProductInfo *subProductInfo = [_catalogArray objectAtIndex:position];
+    
+    //跳转到广告页面
+    PhotoBrowserDataSource *dataSource = [[PhotoBrowserDataSource alloc] init];
+    NSMutableArray *adPhotoArray = [NSMutableArray arrayWithArray:[[AdPhotoManager instance] allAdPhotoInfoForSubProductID:subProductInfo.productID]];
+    [dataSource setPhotoList:adPhotoArray];
+    PhotoScrollViewController *photoScrollViewController = [[PhotoScrollViewController alloc]
+                                                            initWithDataSource:dataSource
+                                                            andStartWithPhotoAtIndex:0];
+    //TODO:把编辑设置是,以后需要修改
+    photoScrollViewController.bIsEdit = YES;
+    photoScrollViewController.subProductID = subProductInfo.productID;
+    [self.mainDelegate mainPushViewController:photoScrollViewController animated:YES];
 }
 
 - (void)GMGridViewDidTapOnEmptySpace:(GMGridView *)gridView
@@ -326,8 +436,8 @@
 //    _lastDeleteItemIndexAsked = index;
     SubProductInfo *productInfo = [_catalogArray objectAtIndex:index];
     UIAlertView *alertView = nil;
-    alertView = [[UIAlertView alloc] initWithTitle:@"Confirm"
-                                           message:@"Are you sure you want to delete this item?"
+    alertView = [[UIAlertView alloc] initWithTitle:@"确定要删除选择的项目?"
+                                           message:nil
                                   cancelButtonItem:nil
                                   otherButtonItems:nil];
 
@@ -380,6 +490,8 @@
                           delay:0
                         options:UIViewAnimationOptionAllowUserInteraction
                      animations:^{
+                         cell.contentView.layer.cornerRadius = 4;
+                         cell.contentView.layer.masksToBounds = YES;
                          cell.contentView.backgroundColor = [UIColor orangeColor];
                          cell.contentView.layer.shadowOpacity = 0.7;
                      }
@@ -393,8 +505,11 @@
                           delay:0
                         options:UIViewAnimationOptionAllowUserInteraction
                      animations:^{
-                         cell.contentView.backgroundColor = [UIColor redColor];
+                         cell.contentView.layer.cornerRadius = 0;
+                         cell.contentView.layer.masksToBounds = NO;
+                         cell.contentView.backgroundColor = [UIColor clearColor];
                          cell.contentView.layer.shadowOpacity = 0;
+                         cell.highlighted = NO;
                      }
                      completion:nil
      ];
@@ -542,62 +657,6 @@
     [_gmGridView insertObjectAtIndex:_catalogArray.count - 1 animated:YES];
 }
 
-//////////////////////////////////////////////////////////////
-#pragma mark private methods
-//////////////////////////////////////////////////////////////
-
-- (void)addMoreItem
-{
-    // Example: adding object at the last position
-    NSString *newItem = [NSString stringWithFormat:@"%d", (int)(arc4random() % 1000)];
-    
-    [_catalogArray addObject:newItem];
-    [_gmGridView insertObjectAtIndex:[_catalogArray count] - 1 withAnimation:GMGridViewItemAnimationFade | GMGridViewItemAnimationScroll];
-}
-
-- (void)removeItem
-{
-    // Example: removing last item
-    if ([_catalogArray count] > 0)
-    {
-        NSInteger index = [_catalogArray count] - 1;
-        
-        [_gmGridView removeObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade | GMGridViewItemAnimationScroll];
-        [_catalogArray removeObjectAtIndex:index];
-    }
-}
-
-- (void)refreshItem
-{
-    // Example: reloading last item
-    if ([_catalogArray count] > 0)
-    {
-        int index = [_catalogArray count] - 1;
-        
-        NSString *newMessage = [NSString stringWithFormat:@"%d", (arc4random() % 1000)];
-        
-        [_catalogArray replaceObjectAtIndex:index withObject:newMessage];
-        [_gmGridView reloadObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade | GMGridViewItemAnimationScroll];
-    }
-}
-
-- (void)presentInfo
-{
-    NSString *info = @"Long-press an item and its color will change; letting you know that you can now move it around. \n\nUsing two fingers, pinch/drag/rotate an item; zoom it enough and you will enter the fullsize mode";
-    
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Info"
-                                                        message:info
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-    
-    [alertView show];
-}
-
-- (void)dataSetChange:(UISegmentedControl *)control
-{    
-    [_gmGridView reloadData];
-}
 
 
 
