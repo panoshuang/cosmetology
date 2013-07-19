@@ -17,7 +17,7 @@
     UITextView *messageTextView;//留言展示
     UIButton *playRecord;//播放录音
     UIImageView *singeName;//签名
-    
+    NSString *popularityValue;
     MessageBoardInfo *messageBoardInfo;
 }
 
@@ -93,16 +93,22 @@
     singeName.frame = CGRectMake(600, 400, 300, 300);
     [self.view addSubview:singeName];
     
-    //人气显示
-    UILabel *popularityLabel = [[UILabel alloc]initWithFrame:CGRectMake(50, 500, 180, 30)];
-    NSString *labelTitle = [NSString stringWithFormat:@"人气:%d",messageBoardInfo.popularity];
-    popularityLabel.text = labelTitle;
-    [self.view addSubview:popularityLabel];
+    //赞人气
+    UIButton *popularityBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    popularityBtn.frame = CGRectMake(50, 500, 180, 30);
+    popularityValue = [NSString stringWithFormat:@"人气:%d",messageBoardInfo.popularity];
+    [popularityBtn setTitle:popularityValue forState:UIControlStateNormal];
+    [popularityBtn addTarget:self action:@selector(onAddPopularity:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:popularityBtn];
     
 }
 
 -(void)back:(UIButton *)btn{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)onAddPopularity:(UIButton *)btn{
+   //TODO:增加人气
 }
 
 
