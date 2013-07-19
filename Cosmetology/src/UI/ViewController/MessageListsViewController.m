@@ -93,7 +93,7 @@
 //
 //        _currentData = _data;
         messageBoardInfo = [[MessageBoardInfo alloc]init];
-        NSArray *messageBoardInfoArray = [[MessageBoardManager instance]allMessageBoardForSubProductID:2];
+        NSArray *messageBoardInfoArray = [[MessageBoardManager instance] allMessageBoardForSubProductID:2];
         _data = [[NSMutableArray alloc]init];
         for (int i = 0; i < [messageBoardInfoArray count]; i ++) {
             messageBoardInfo = [messageBoardInfoArray objectAtIndex:i];

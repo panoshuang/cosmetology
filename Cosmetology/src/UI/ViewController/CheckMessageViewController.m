@@ -19,6 +19,7 @@
     UIImageView *singeName;//签名
     NSString *popularityValue;
     MessageBoardInfo *messageBoardInfo;
+    UIButton *popularityBtn;//人气
 }
 
 @end
@@ -40,6 +41,53 @@
         NSArray *messageBoardInfoArray = [[MessageBoardManager instance] allMessageBoardForSubProductID:2];
         messageBoardInfo = [[MessageBoardInfo alloc]init];
         messageBoardInfo = [messageBoardInfoArray objectAtIndex:2];
+        NSLog(@"%d",messageBoardInfo.popularity);
+        
+        //头像
+        headPortraits = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"headPortraits.png"]];
+        headPortraits.frame = CGRectMake(10, 54, 200, 200);
+        headPortraits.contentMode = UIViewContentModeScaleToFill;
+        [self.view addSubview:headPortraits];
+        
+        //留言展示
+        UIFont *font = [UIFont fontWithName:@"Helvetica" size:24];
+        UILabel *messagelabel = [[UILabel alloc]initWithFrame:CGRectMake(220, 54, 130, 30)];
+        messagelabel.text = @"我的留言:";
+        [messagelabel setFont:font];
+        [self.view addSubview:messagelabel];
+        
+        messageTextView = [[UITextView alloc]initWithFrame:CGRectMake(330, 54, 600, 200)];
+        messageTextView.editable = NO;
+        messageTextView.text = messageBoardInfo.messageContent;
+        messageTextView.contentMode = UIViewContentModeScaleToFill;
+        messageTextView.backgroundColor = [UIColor yellowColor];
+        
+        [messageTextView setFont:font];
+        [self.view addSubview:messageTextView];
+        
+        
+        
+        //播放录音
+        playRecord= [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        playRecord.frame = CGRectMake(10, 400, 150, 50);
+        [playRecord setTitle:@"播放留言" forState:UIControlStateNormal];
+        [playRecord addTarget:self action:@selector(playRecord:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:playRecord];
+        
+        //签名
+        singeName = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"headPortraits.png"]];
+        singeName.frame = CGRectMake(600, 400, 300, 300);
+        [self.view addSubview:singeName];
+        
+        //赞人气
+        popularityBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        popularityBtn.frame = CGRectMake(50, 500, 180, 30);
+        NSLog(@"%d",messageBoardInfo.popularity);
+        popularityValue = [NSString stringWithFormat:@"人气:%d",messageBoardInfo.popularity];
+        [popularityBtn setTitle:popularityValue forState:UIControlStateNormal];
+        [popularityBtn addTarget:self action:@selector(onAddPopularity:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:popularityBtn];
+
     }
     return self;
 }
@@ -57,50 +105,7 @@
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
     
-    //头像
-    headPortraits = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"headPortraits.png"]];
-    headPortraits.frame = CGRectMake(10, 54, 200, 200);
-    headPortraits.contentMode = UIViewContentModeScaleToFill;
-    [self.view addSubview:headPortraits];
-    
-    //留言展示
-    UIFont *font = [UIFont fontWithName:@"Helvetica" size:24];
-    UILabel *messagelabel = [[UILabel alloc]initWithFrame:CGRectMake(220, 54, 130, 30)];
-    messagelabel.text = @"我的留言:";
-    [messagelabel setFont:font];
-    [self.view addSubview:messagelabel];
-    
-    messageTextView = [[UITextView alloc]initWithFrame:CGRectMake(330, 54, 600, 200)];
-    messageTextView.editable = NO;
-    messageTextView.text = messageBoardInfo.messageContent;
-    messageTextView.contentMode = UIViewContentModeScaleToFill;
-    messageTextView.backgroundColor = [UIColor yellowColor];
-    
-    [messageTextView setFont:font];
-    [self.view addSubview:messageTextView];
-    
-    
-    
-    //播放录音
-    playRecord= [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    playRecord.frame = CGRectMake(10, 400, 150, 50);
-    [playRecord setTitle:@"播放留言" forState:UIControlStateNormal];
-    [playRecord addTarget:self action:@selector(playRecord:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:playRecord];
-    
-    //签名
-    singeName = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"headPortraits.png"]];
-    singeName.frame = CGRectMake(600, 400, 300, 300);
-    [self.view addSubview:singeName];
-    
-    //赞人气
-    UIButton *popularityBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    popularityBtn.frame = CGRectMake(50, 500, 180, 30);
-    popularityValue = [NSString stringWithFormat:@"人气:%d",messageBoardInfo.popularity];
-    [popularityBtn setTitle:popularityValue forState:UIControlStateNormal];
-    [popularityBtn addTarget:self action:@selector(onAddPopularity:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:popularityBtn];
-    
+        
 }
 
 -(void)back:(UIButton *)btn{
@@ -109,6 +114,11 @@
 
 -(void)onAddPopularity:(UIButton *)btn{
    //TODO:增加人气
+    popularityValue = [NSString stringWithFormat:@"人气:%d",(messageBoardInfo.popularity + 1)];
+    messageBoardInfo.popularity += 1;
+    [popularityBtn setTitle:popularityValue forState:UIControlStateNormal];
+    [[MessageBoardManager instance] updateMessageBoard:messageBoardInfo];
+    
 }
 
 
