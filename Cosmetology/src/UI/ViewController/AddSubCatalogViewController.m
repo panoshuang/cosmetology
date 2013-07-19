@@ -58,7 +58,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden =NO;
-    self.view.backgroundColor = [UIColor grayColor];
+    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc]initWithTitle:@"返回"
                                                                    style:UIBarButtonItemStyleDone
                                                                   target:self

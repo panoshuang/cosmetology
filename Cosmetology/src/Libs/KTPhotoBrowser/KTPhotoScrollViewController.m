@@ -608,7 +608,6 @@ const CGFloat ktkDefaultTitlebarHeight         = 46;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    DDetailLog(@"%@", self);
     CGFloat   pageWidth      = scrollView.frame.size.width;
     float     fractionalPage = scrollView.contentOffset.x / pageWidth;
     NSInteger page           = floor(fractionalPage);
