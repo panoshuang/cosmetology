@@ -12,6 +12,9 @@
 #import "CheckMessageViewController.h"
 #import "MessageBoardInfo.h"
 #import "MessageBoardManager.h"
+#import "ResourceCache.h"
+#import "CommonUtil.h"
+#import "AutoDismissView.h"
 
 #define NUMBER_ITEMS_ON_LOAD 250
 #define NUMBER_ITEMS_ON_LOAD2 30
@@ -34,6 +37,9 @@
     __gm_weak NSMutableArray *_currentData;
     NSInteger _lastDeleteItemIndexAsked;
     MessageBoardInfo *messageBoardInfo;
+    
+    UIImageView *_bgView;//背景图片
+    UIPopoverController *_popController;
 }
 
 @end
@@ -49,14 +55,25 @@
         [self.view addSubview:_toolBar];
         _toolBar.hidden = NO;
         
-        UIBarButtonItem *back = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(back:)];
-        UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-        space.width = 875;
+        UIBarButtonItem *back = [[UIBarButtonItem alloc]initWithTitle:@"返回"
+                                                                style:UIBarButtonItemStyleDone
+                                                               target:self
+                                                               action:@selector(back:)];
+        UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                                               target:nil
+                                                                               action:nil];
+        space.width = 750;
         
-//        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStyleDone target:self action:@selector(addMoreItem)];
-//        UIBarButtonItem *space2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//        space2.width = 10;
-//        
+        UIBarButtonItem *bgButton = [[UIBarButtonItem alloc]initWithTitle:@"修改背景"
+                                                                    style:UIBarButtonItemStyleDone
+                                                                   target:self
+                                                                   action:@selector(showEditBgView:)];
+        
+        UIBarButtonItem *space1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                                                target:nil
+                                                                                action:nil];
+        space1.width = 10;
+//
 //        UIBarButtonItem *removeButton = [[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStyleDone target:self action:@selector(removeItem)];
 //        
 //        UIBarButtonItem *space3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
@@ -66,8 +83,11 @@
 //        space4.width = 10;
 //        
 //        UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithTitle:@"刷新" style:UIBarButtonItemStyleDone target:self action:@selector(refreshItem)];
-        UIBarButtonItem *editMessageBtn = [[UIBarButtonItem alloc]initWithTitle:@"我也要留言" style:UIBarButtonItemStyleDone target:self action:@selector(toEditMessage:)];
-        _toolBar.items = [NSArray arrayWithObjects:back,space,editMessageBtn,nil];
+        UIBarButtonItem *editMessageBtn = [[UIBarButtonItem alloc]initWithTitle:@"我也要留言"
+                                                                          style:UIBarButtonItemStyleDone target:self
+                                                                         action:@selector(toEditMessage:)];
+        _toolBar.items = [NSArray arrayWithObjects:back,space1,bgButton, space,editMessageBtn,nil];
+        
 //        if ([self.navigationItem respondsToSelector:@selector(leftBarButtonItems)]) {
 //            self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:addButton, space, removeButton, space2, refreshButton, nil];
 //        }else {
@@ -115,7 +135,21 @@
 - (void)loadView
 {
     [super loadView];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+    UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];
+    
+    mainView.backgroundColor=[UIColor whiteColor];
+    self.view = mainView;
+    _bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    //获取背景图片填充
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *bgFilePath = [userDefaults stringForKey:HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH];
+    UIImage *bgImage = [[ResourceCache instance] imageForCachePath:bgFilePath];
+    if (bgImage) {
+        _bgView.image = bgImage;
+    }
+    _bgView.image = [UIImage imageNamed:@"background.jpg"];
+    [self.view addSubview:_bgView];
+    
     NSInteger spacing = INTERFACE_IS_PHONE ? 10 : 15;
     
     GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:CGRectMake(0, 44, self.view.bounds.size.width - 50, self.view.bounds.size.height - 90)];
@@ -189,6 +223,55 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+}
+
+//////////////////////////////////////////////////////////////
+#pragma mark 切换背景
+//////////////////////////////////////////////////////////////
+-(void)showEditBgView:(UIBarButtonItem *)sender{
+    if(![_popController isPopoverVisible])
+    {
+        if (!_popController)
+        {
+            _popController = nil;
+        }
+        
+        UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+        controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        controller.allowsEditing = NO;
+        controller.delegate = self;
+        _popController=[[UIPopoverController alloc] initWithContentViewController:controller];
+        UIView *itemView = [sender valueForKey:@"view"];
+        [_popController presentPopoverFromRect:itemView.frame
+                                        inView:self.view
+                      permittedArrowDirections:UIPopoverArrowDirectionUp
+                                      animated:YES];
+    }
+    else
+    {
+        [_popController dismissPopoverAnimated:YES];
+    }
+}
+
+#pragma mark UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker
+        didFinishPickingImage:(UIImage *)image
+                  editingInfo:(NSDictionary *)editingInfo
+{
+    [_popController dismissPopoverAnimated:YES];
+    if (image) {
+        //生成图片的uuid,保存到缓存
+        NSString *bgUuid = [CommonUtil uuid];
+        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+                                                                    relatePath:bgUuid
+                                                                  resourceType:kResourceCacheTypeBackgroundImage];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:bgImageFilePath forKey:HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH];
+        _bgView.image = image;
+    }else{
+        [[AutoDismissView instance] showInView:self.view title:@"修改失败" duration:1];
+    }
+    
 }
 
 //////////////////////////////////////////////////////////////
@@ -301,6 +384,7 @@
 - (void)GMGridViewDidTapOnEmptySpace:(GMGridView *)gridView
 {
     NSLog(@"Tap on empty space");
+    _toolBar.hidden = !_toolBar.hidden;
 }
 
 - (void)GMGridView:(GMGridView *)gridView processDeleteActionForItemAtIndex:(NSInteger)index
