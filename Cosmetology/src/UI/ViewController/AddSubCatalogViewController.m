@@ -56,9 +56,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];
+    self.view = mainView;
+    self.view.backgroundColor = [UIColor colorWithRed:0xf9/(CGFloat)0xff
+                                                green:0xf9/(CGFloat)0xff
+                                                 blue:0xf9/(CGFloat)0xff
+                                                alpha:1];
     self.navigationController.navigationBarHidden =NO;
-    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc]initWithTitle:@"返回"
                                                                    style:UIBarButtonItemStyleDone
                                                                   target:self
@@ -73,6 +77,8 @@
     
     _lbName = [[UILabel alloc] initWithFrame:CGRectMake(kCommonSpace * 2, kCommonSpace, 100, 30)];
     _lbName.text = @"产品名字: ";
+    _lbName.backgroundColor = [UIColor clearColor];
+    _lbName.font = kFontSystemSize18;
     [self.view addSubview:_lbName];
     
     _tfName = [[UITextField alloc] initWithFrame:CGRectMake(_lbName.frame.origin.x + _lbName.frame.size.width + kCommonSpace,
@@ -91,10 +97,10 @@
     [_btnPhoto addTarget:self action:@selector(selectPhoto:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btnPhoto];
     
-    _ivPriview = [[UIImageView alloc] initWithFrame:CGRectMake(_tfName.frame.origin.x,
+    _ivPriview = [[UIImageView alloc] initWithFrame:CGRectMake(_btnPhoto.frame.origin.x + _btnPhoto.frame.size.width + 2 *kCommonSpace,
                                                                _btnPhoto.frame.origin.y,
                                                                500,
-                                                               500)];
+                                                               500 * (768/1024.0))];
     [self.view addSubview:_ivPriview];
     
 

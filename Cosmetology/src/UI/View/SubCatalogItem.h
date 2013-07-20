@@ -12,6 +12,7 @@
 
 @interface SubCatalogItem : UIView
 
+@property (nonatomic, strong) UIImageView *ivBg;
 @property (nonatomic ,strong) UILabel  *lbName;
 @property (nonatomic ,strong) UISwitch *swEdit;
 @property (nonatomic ,strong) UIButton *btnEdit;

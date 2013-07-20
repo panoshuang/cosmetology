@@ -67,9 +67,9 @@
 
 -(void)loadCatalog{
     if(_bIsEdit){
-        [_catalogArray addObjectsFromArray:[[SubCatalogManager instance] allSubProductInfo]];
+        [_catalogArray addObjectsFromArray:[[SubCatalogManager instance] allSubProductInfoForMainProductID:self.experienceInfo.productID]];
     }else{
-        [_catalogArray addObjectsFromArray:[[SubCatalogManager instance] allEnableProductInfo]];
+        [_catalogArray addObjectsFromArray:[[SubCatalogManager instance] allEnableProductInfoForMainProductID:self.experienceInfo.productID]];
     }
 }
 

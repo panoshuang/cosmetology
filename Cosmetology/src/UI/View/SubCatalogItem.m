@@ -16,6 +16,7 @@
 
 @implementation SubCatalogItem
 
+@synthesize ivBg = _ivBg;
 @synthesize lbName = _lbName;
 @synthesize swEdit = _swEdit;
 @synthesize btnEdit = _btnEdit;
