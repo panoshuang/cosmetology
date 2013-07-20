@@ -18,6 +18,8 @@
 #import "PasswordManager.h"
 #import "RIButtonItem.h"
 #import "UIAlertView+Blocks.h"
+#import "MsgGridViewCell.h"
+#import "MsgItem.h"
 
 #define NUMBER_ITEMS_ON_LOAD 250
 #define NUMBER_ITEMS_ON_LOAD2 30
@@ -35,8 +37,7 @@
     UINavigationController *_optionsNav;
     UIPopoverController *_optionsPopOver;
     
-    NSMutableArray *_data;
-    NSMutableArray *_data2;
+    NSMutableArray *_msgArray;
     __gm_weak NSMutableArray *_currentData;
     NSInteger _lastDeleteItemIndexAsked;
     MessageBoardInfo *messageBoardInfo;
@@ -52,86 +53,25 @@
 
 @implementation MessageListsViewController
 
-- (id)init
+
+@synthesize bIsEdit = _bIsEdit;
+@synthesize productId = _productId;
+
+-(id)initWithProductId:(int)aId
 {
     if ((self =[super init]))
     {
-        self.title = @"留言列表";
-        _toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 1024, 44)];
-        [self.view addSubview:_toolBar];
-        _toolBar.hidden = NO;
-        
-        UIBarButtonItem *back = [[UIBarButtonItem alloc]initWithTitle:@"返回"
-                                                                style:UIBarButtonItemStyleDone
-                                                               target:self
-                                                               action:@selector(back:)];
-        UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                                                               target:nil
-                                                                               action:nil];
-        space.width = 10;
-        
-        UIBarButtonItem *bgButton = [[UIBarButtonItem alloc]initWithTitle:@"修改背景"
-                                                                    style:UIBarButtonItemStyleDone
-                                                                   target:self
-                                                                   action:@selector(showEditBgView:)];
-        
-        UIBarButtonItem *space1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                                                                target:nil
-                                                                                action:nil];
-        space1.width = 10;
-//
-//        UIBarButtonItem *removeButton = [[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStyleDone target:self action:@selector(removeItem)];
-//        
-//        UIBarButtonItem *space3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//        space3.width = 10;
-//        
-//        UIBarButtonItem *space4 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//        space4.width = 10;
-//        
-//        UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithTitle:@"刷新" style:UIBarButtonItemStyleDone target:self action:@selector(refreshItem)];
-        UIBarButtonItem *editMessageBtn = [[UIBarButtonItem alloc]initWithTitle:@"我也要留言"
-                                                                          style:UIBarButtonItemStyleDone target:self
-                                                                         action:@selector(toEditMessage:)];
-        _toolBar.items = [NSArray arrayWithObjects:back,space1,bgButton, space,editMessageBtn,nil];
-        
-//        if ([self.navigationItem respondsToSelector:@selector(leftBarButtonItems)]) {
-//            self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:addButton, space, removeButton, space2, refreshButton, nil];
-//        }else {
-//            self.navigationItem.leftBarButtonItem = addButton;
-//        }
-        
-       
-        
-        
-//        _data = [[NSMutableArray alloc] init];
-//
-//        for (int i = 0; i < NUMBER_ITEMS_ON_LOAD; i ++)
-//        {
-//            [_data addObject:[NSString stringWithFormat:@"A %d", i]];
-//        }
-//        
-//        _data2 = [[NSMutableArray alloc] init];
-//        
-//        for (int i = 0; i < NUMBER_ITEMS_ON_LOAD2; i ++)
-//        {
-//            [_data2 addObject:[NSString stringWithFormat:@"B %d", i]];
-//        }
-//
-//        _currentData = _data;
+        _msgArray = [[NSMutableArray alloc] init];
         messageBoardInfo = [[MessageBoardInfo alloc]init];
-        NSArray *messageBoardInfoArray = [[MessageBoardManager instance] allMessageBoardForSubProductID:2];
-        _data = [[NSMutableArray alloc]init];
-        for (int i = 0; i < [messageBoardInfoArray count]; i ++) {
-            messageBoardInfo = [messageBoardInfoArray objectAtIndex:i];
-            [_data addObject:messageBoardInfo.messageContent];
-
-        }
-        _currentData = _data;
-        [_gmGridView reloadData];
+        [self loadData];
         
     }
     
     return self;
+}
+
+-(void)loadData{
+    [_msgArray addObjectsFromArray:[[MessageBoardManager instance] allMessageBoardForSubProductID:_productId]];
 }
 
 //////////////////////////////////////////////////////////////
@@ -141,11 +81,11 @@
 - (void)loadView
 {
     [super loadView];
-    UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];
-    
+    UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];    
     mainView.backgroundColor=[UIColor whiteColor];
     self.view = mainView;
     _bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    
     //获取背景图片填充
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *bgFilePath = [userDefaults stringForKey:HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH];
@@ -156,19 +96,47 @@
     _bgView.image = [UIImage imageNamed:@"background.jpg"];
     [self.view addSubview:_bgView];
     
+    _toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 1024, 44)];
+    [self.view addSubview:_toolBar];
+    
+    
+    UIBarButtonItem *back = [[UIBarButtonItem alloc]initWithTitle:@"返回"
+                                                            style:UIBarButtonItemStyleDone
+                                                           target:self
+                                                           action:@selector(back:)];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                                           target:nil
+                                                                           action:nil];
+    space.width = 10;
+    
+    UIBarButtonItem *bgButton = [[UIBarButtonItem alloc]initWithTitle:@"修改背景"
+                                                                style:UIBarButtonItemStyleDone
+                                                               target:self
+                                                               action:@selector(showEditBgView:)];
+    
+    UIBarButtonItem *space1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                                            target:nil
+                                                                            action:nil];
+    space1.width = 10;
+    UIBarButtonItem *editMessageBtn = [[UIBarButtonItem alloc]initWithTitle:@"我也要留言"
+                                                                      style:UIBarButtonItemStyleDone target:self
+                                                                     action:@selector(toEditMessage:)];
+    _toolBar.items = [NSArray arrayWithObjects:back,space1,bgButton, space,editMessageBtn,nil];
+    
+    
+    
     //点击三次,启动编辑功能
-    UIView *editView = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 100,
+    _editTapView = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 100,
                                                                 0,
                                                                 100,
                                                                 kToolBarHeight)];
-    editView.backgroundColor = [UIColor yellowColor];
-    [self.view addSubview:editView];
+    _editTapView.backgroundColor = [UIColor yellowColor];
+    [self.view addSubview:_editTapView];
     _editGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editGestureDidTap:)];
     _editGesture.numberOfTapsRequired = 3;
-    [editView addGestureRecognizer:_editGesture];
+    [_editTapView addGestureRecognizer:_editGesture];
     
-    NSInteger spacing = INTERFACE_IS_PHONE ? 10 : 15;
-    
+    NSInteger spacing = 15;    
     GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:CGRectMake(0, 44, self.view.bounds.size.width - 50, self.view.bounds.size.height - 90)];
     gmGridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     gmGridView.backgroundColor = [UIColor clearColor];
@@ -184,40 +152,6 @@
     _gmGridView.transformDelegate = self;
     _gmGridView.dataSource = self;
     [_gmGridView reloadData];
-    UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
-    infoButton.frame = CGRectMake(self.view.bounds.size.width - 40,
-                                  self.view.bounds.size.height - 40,
-                                  40,
-                                  40);
-    infoButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
-    [infoButton addTarget:self action:@selector(presentInfo) forControlEvents:UIControlEventTouchUpInside];
-    //[self.view addSubview:infoButton];
-    
-    UISegmentedControl *dataSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"DataSet 1", @"DataSet 2", nil]];
-    [dataSegmentedControl sizeToFit];
-    dataSegmentedControl.frame = CGRectMake(5,
-                                            self.view.bounds.size.height - dataSegmentedControl.bounds.size.height - 5,
-                                            dataSegmentedControl.bounds.size.width,
-                                            dataSegmentedControl.bounds.size.height);
-    dataSegmentedControl.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
-    dataSegmentedControl.tintColor = [UIColor greenColor];
-    dataSegmentedControl.selectedSegmentIndex = 0;
-    [dataSegmentedControl addTarget:self action:@selector(dataSetChange:) forControlEvents:UIControlEventValueChanged];
-    //[self.view addSubview:dataSegmentedControl];
-    
-    
-    
-//    OptionsViewController *optionsController = [[OptionsViewController alloc] init];
-//    optionsController.gridView = gmGridView;
-//    optionsController.contentSizeForViewInPopover = CGSizeMake(400, 500);
-//    
-//    _optionsNav = [[UINavigationController alloc] initWithRootViewController:optionsController];
-//    
-//    if (INTERFACE_IS_PHONE)
-//    {
-//        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(optionsDoneAction)];
-//        optionsController.navigationItem.rightBarButtonItem = doneButton;
-//    }
 }
 
 -(void)back:(UIButton *)btn{
@@ -228,7 +162,6 @@
 {
     [super viewDidLoad];
     _gmGridView.mainSuperView = self.navigationController.view;
-    //[UIApplication sharedApplication].keyWindow.rootViewController.view;
     self.navigationController.navigationBarHidden = YES;
 }
 
@@ -271,6 +204,31 @@
     }
 }
 
+- (void)removeItem
+{
+    // Example: removing last item
+    if ([_currentData count] > 0)
+    {
+        NSInteger index = [_currentData count] - 1;
+        
+        [_gmGridView removeObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade | GMGridViewItemAnimationScroll];
+        [_currentData removeObjectAtIndex:index];
+    }
+}
+
+-(void)toEditMessage:(UIButton *)btn
+{
+    EditMessageViewController *editMessageViewController = [[EditMessageViewController alloc]init];
+    [self.navigationController pushViewController:editMessageViewController animated:YES];
+}
+
+
+-(void)setBIsEdit:(BOOL)bIsEdit {
+    _bIsEdit = bIsEdit;
+    [_gmGridView setEditing:_bIsEdit];
+    [_gmGridView reloadData];
+}
+
 //////////////////////////////////////////////////////////////
 #pragma mark 启动编辑功能
 //////////////////////////////////////////////////////////////
@@ -284,7 +242,7 @@
         if (editPwdStr.length > 0) {
             [self inputPassword];
         }else{
-            _bIsEdit = YES;
+            self.bIsEdit = YES;
             _toolBar.hidden = NO;
         }
     }
@@ -294,7 +252,7 @@
     RIButtonItem *confirmItem = [RIButtonItem item];
     confirmItem.label = @"确定";
     confirmItem.action = ^{
-        _bIsEdit = NO;
+        self.bIsEdit = NO;
         _toolBar.hidden = YES;
     };
     RIButtonItem *cancelItem = [RIButtonItem item];
@@ -308,8 +266,6 @@
 
 -(void)inputPassword
 {
-    
-    
     UIAlertView *alertView = nil;
     alertView = [[UIAlertView alloc] initWithTitle:@"输入密码"
                                            message:@"\n\n"
@@ -364,12 +320,12 @@
                                                                     relatePath:bgUuid
                                                                   resourceType:kResourceCacheTypeBackgroundImage];
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setObject:bgImageFilePath forKey:HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH];
+        [userDefaults setObject:bgImageFilePath forKey:MSG_PAGE_BACKGROUND_IMAGE_FILE_PATH];
+        [userDefaults synchronize];
         _bgView.image = image;
     }else{
         [[AutoDismissView instance] showInView:self.view title:@"修改失败" duration:1];
-    }
-    
+    }    
 }
 
 //////////////////////////////////////////////////////////////
@@ -401,36 +357,12 @@
 
 - (CGSize)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
-    if (INTERFACE_IS_PHONE)
-    {
-        if (UIInterfaceOrientationIsLandscape(orientation))
-        {
-            return CGSizeMake(170, 135);
-        }
-        else
-        {
-            return CGSizeMake(140, 110);
-        }
-    }
-    else
-    {
-        if (UIInterfaceOrientationIsLandscape(orientation))
-        {
-            return CGSizeMake(285, 205);
-        }
-        else
-        {
-            return CGSizeMake(230, 175);
-        }
-    }
+    return CGSizeMake(282, 263);
 }
 
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForItemAtIndex:(NSInteger)index
 {
-    //NSLog(@"Creating view indx %d", index);
-    
-    CGSize size = [self GMGridView:gridView sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
-    
+    //NSLog(@"Creating view indx %d", index);    
     GMGridViewCell *cell = [gridView dequeueReusableCell];
     
     if (!cell)
@@ -439,32 +371,20 @@
         cell.deleteButtonIcon = [UIImage imageNamed:@"close_x.png"];
         cell.deleteButtonOffset = CGPointMake(-15, -15);
         
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-        view.backgroundColor = [UIColor redColor];
-        view.layer.masksToBounds = NO;
-        view.layer.cornerRadius = 8;
-        cell.contentView = view;
+        MsgItem *msgItem = [[MsgItem alloc] initWithFrame:CGRectMake(0, 0, 282, 263)];
+        cell.contentView = msgItem;
     }
-    
-    [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:cell.contentView.bounds];
-    label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    label.text = (NSString *)[_currentData objectAtIndex:index];
-    label.textAlignment = UITextAlignmentCenter;
-    label.backgroundColor = [UIColor clearColor];
-    label.textColor = [UIColor blackColor];
-    label.highlightedTextColor = [UIColor whiteColor];
-    label.font = [UIFont boldSystemFontOfSize:20];
-    [cell.contentView addSubview:label];
-    
+    MsgItem *contentView = (MsgItem *)cell.contentView;
+    contentView.ivAutograph.image = [UIImage imageNamed:@"bg_autograph"];
+    contentView.btnAcclaim.ivBg.image = [UIImage imageNamed:@"bg_acclaim"];
+    contentView.btnAcclaim.lbCount.text = @"50";
     return cell;
 }
 
 
 - (BOOL)GMGridView:(GMGridView *)gridView canDeleteItemAtIndex:(NSInteger)index
 {
-    return YES; //index % 2 == 0;
+    return YES; 
 }
 
 //////////////////////////////////////////////////////////////
@@ -481,15 +401,31 @@
 - (void)GMGridViewDidTapOnEmptySpace:(GMGridView *)gridView
 {
     NSLog(@"Tap on empty space");
-    _toolBar.hidden = !_toolBar.hidden;
 }
 
 - (void)GMGridView:(GMGridView *)gridView processDeleteActionForItemAtIndex:(NSInteger)index
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure you want to delete this item?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
+
+    MessageBoardInfo *msgInfo = [_msgArray objectAtIndex:index];
+    UIAlertView *alertView = nil;
+    alertView = [[UIAlertView alloc] initWithTitle:@"确定要删除选择的项目?"
+                                           message:nil
+                                  cancelButtonItem:nil
+                                  otherButtonItems:nil];
     
-    [alert show];
-    
+    RIButtonItem *confirmItem = [RIButtonItem item];
+    confirmItem.label = @"确定";
+    confirmItem.action = ^{
+        [[MessageBoardManager instance] deleteMessageBoardForID:msgInfo.messageID];
+        
+        [_msgArray removeObjectAtIndex:index];
+        [_gmGridView removeObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade];
+    };
+    RIButtonItem *cancelItem = [RIButtonItem item];
+    cancelItem.label = @"取消";
+    [alertView addButtonItem:confirmItem];
+    [alertView addButtonItem:cancelItem];
+    [alertView show];
     _lastDeleteItemIndexAsked = index;
 }
 
@@ -556,27 +492,13 @@
 
 - (CGSize)GMGridView:(GMGridView *)gridView sizeInFullSizeForCell:(GMGridViewCell *)cell atIndex:(NSInteger)index inInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
-    if (INTERFACE_IS_PHONE)
+    if (UIInterfaceOrientationIsLandscape(orientation))
     {
-        if (UIInterfaceOrientationIsLandscape(orientation))
-        {
-            return CGSizeMake(320, 210);
-        }
-        else
-        {
-            return CGSizeMake(300, 310);
-        }
+        return CGSizeMake(700, 530);
     }
     else
     {
-        if (UIInterfaceOrientationIsLandscape(orientation))
-        {
-            return CGSizeMake(700, 530);
-        }
-        else
-        {
-            return CGSizeMake(600, 500);
-        }
+        return CGSizeMake(600, 500);
     }
 }
 
@@ -638,72 +560,6 @@
 - (void)GMGridView:(GMGridView *)gridView didEnterFullSizeForCell:(UIView *)cell
 {
     
-}
-
-
-//////////////////////////////////////////////////////////////
-#pragma mark private methods
-//////////////////////////////////////////////////////////////
-
-- (void)addMoreItem
-{
-    // Example: adding object at the last position
-    NSString *newItem = [NSString stringWithFormat:@"%d", (int)(arc4random() % 1000)];
-    
-    [_currentData addObject:newItem];
-    [_gmGridView insertObjectAtIndex:[_currentData count] - 1 withAnimation:GMGridViewItemAnimationFade | GMGridViewItemAnimationScroll];
-}
-
-- (void)removeItem
-{
-    // Example: removing last item
-    if ([_currentData count] > 0)
-    {
-        NSInteger index = [_currentData count] - 1;
-        
-        [_gmGridView removeObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade | GMGridViewItemAnimationScroll];
-        [_currentData removeObjectAtIndex:index];
-    }
-}
-
-- (void)refreshItem
-{
-    // Example: reloading last item
-    if ([_currentData count] > 0)
-    {
-        int index = [_currentData count] - 1;
-        
-        NSString *newMessage = [NSString stringWithFormat:@"%d", (arc4random() % 1000)];
-        
-        [_currentData replaceObjectAtIndex:index withObject:newMessage];
-        [_gmGridView reloadObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade | GMGridViewItemAnimationScroll];
-    }
-}
-
-- (void)presentInfo
-{
-    NSString *info = @"Long-press an item and its color will change; letting you know that you can now move it around. \n\nUsing two fingers, pinch/drag/rotate an item; zoom it enough and you will enter the fullsize mode";
-    
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Info"
-                                                        message:info
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-    
-    [alertView show];
-}
-
-//- (void)dataSetChange:(UISegmentedControl *)control
-//{
-//    _currentData = ([control selectedSegmentIndex] == 0) ? _data : _data2;
-//    
-//    [_gmGridView reloadData];
-//}
-
--(void)toEditMessage:(UIButton *)btn
-{
-    EditMessageViewController *editMessageViewController = [[EditMessageViewController alloc]init];
-    [self.navigationController pushViewController:editMessageViewController animated:YES];
 }
 
 
