@@ -63,7 +63,7 @@
 		6D60502817539F49000635F3 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D60502017539F49000635F3 /* FMDatabasePool.m */; };
 		6D60502917539F49000635F3 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D60502217539F49000635F3 /* FMDatabaseQueue.m */; };
 		6D60502B17539F49000635F3 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D60502517539F49000635F3 /* FMResultSet.m */; };
-		6D6B4CAB179AD9BC00459767 /* 拍照.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D6B4CAA179AD9BB00459767 /* 拍照.png */; };
+		6D6B4CAB179AD9BC00459767 /* pickPhoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D6B4CAA179AD9BB00459767 /* pickPhoto.png */; };
 		6D8D34DB17550C29003F9E9E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D34DA17550C29003F9E9E /* AppDelegate.m */; };
 		6D8D34E217550D9A003F9E9E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D34E117550D9A003F9E9E /* MainViewController.m */; };
 		6D917D5217509D7E00263F64 /* BaseDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D917CFD17509D7E00263F64 /* BaseDatabase.m */; };
@@ -257,7 +257,7 @@
 		6D60502317539F49000635F3 /* fmdb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fmdb.m; sourceTree = "<group>"; };
 		6D60502417539F49000635F3 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		6D60502517539F49000635F3 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
-		6D6B4CAA179AD9BB00459767 /* 拍照.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "拍照.png"; path = "../src/UI/ViewController/拍照.png"; sourceTree = "<group>"; };
+		6D6B4CAA179AD9BB00459767 /* pickPhoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pickPhoto.png; path = ../src/UI/ViewController/pickPhoto.png; sourceTree = "<group>"; };
 		6D8D34D917550C29003F9E9E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6D8D34DA17550C29003F9E9E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6D8D34E017550D9A003F9E9E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -896,12 +896,9 @@
 		6DAC02DF175E2CCC00A3F015 /* res */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				6D6B4CAA179AD9BB00459767 /* 拍照.png */,
-=======
+				6D6B4CAA179AD9BB00459767 /* pickPhoto.png */,
 				6DB6E739179ADE0F00386A2D /* bg_acclaim.png */,
 				6DB6E737179ADDA900386A2D /* bg_autograph.png */,
->>>>>>> a84dc14f823a1a49c6d3ab0a0e0509d7405226c1
 				6DB6E727179A705A00386A2D /* Icon.png */,
 				6DB6E728179A705B00386A2D /* Icon@2x.png */,
 				6DB6E723179A6D3C00386A2D /* Default-Landscape~ipad.png */,
@@ -1106,12 +1103,9 @@
 				6DB6E72A179A705C00386A2D /* Icon@2x.png in Resources */,
 				CEC3E5E31797BEAA00055B09 /* headPortraits.jpg in Resources */,
 				6DE3854F179A302200E73101 /* background@2x.jpg in Resources */,
-<<<<<<< HEAD
-				6D6B4CAB179AD9BC00459767 /* 拍照.png in Resources */,
-=======
+				6D6B4CAB179AD9BC00459767 /* pickPhoto.png in Resources */,
 				6DB6E738179ADDA900386A2D /* bg_autograph.png in Resources */,
 				6DB6E73A179ADE0F00386A2D /* bg_acclaim.png in Resources */,
->>>>>>> a84dc14f823a1a49c6d3ab0a0e0509d7405226c1
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

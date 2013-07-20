@@ -68,7 +68,7 @@
     headPortraits = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     headPortraits.frame = CGRectMake(50, 160, 204, 143);
     headPortraits.contentMode = UIViewContentModeScaleToFill;
-    [headPortraits setBackgroundImage:[UIImage imageNamed:@"拍照.png"] forState:UIControlStateNormal];
+    [headPortraits setBackgroundImage:[UIImage imageNamed:@"pickPhoto.png"] forState:UIControlStateNormal];
     //headPortraits.imageView.image = [UIImage imageNamed:@"headPortraits.png"];
     [headPortraits addTarget:self action:@selector(pickImage:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:headPortraits];
