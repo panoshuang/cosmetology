@@ -84,7 +84,10 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *bgFilePath = [userDefaults stringForKey:HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH];
     UIImage *bgImage = [[ResourceCache instance] imageForCachePath:bgFilePath];
-    _bgView.image = bgImage;
+    if (bgImage) {
+        _bgView.image = bgImage;
+    }
+    _bgView.image = [UIImage imageNamed:@"background.jpg"];
     [self.view addSubview:_bgView];
     
     

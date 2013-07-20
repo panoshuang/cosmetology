@@ -113,6 +113,7 @@
 		6DCF1D32175AEAF200AB4423 /* SubCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF1D31175AEAF200AB4423 /* SubCatalogViewController.m */; };
 		6DCF1D35175AF06500AB4423 /* PasswordManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF1D34175AF06500AB4423 /* PasswordManagerViewController.m */; };
 		6DD8FA3017657EB200B2D81B /* page.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DD8FA2F17657EB200B2D81B /* page.png */; };
+		6DE3854F179A302200E73101 /* background@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6DE3854E179A302200E73101 /* background@2x.jpg */; };
 		CE71EFD31770149D00E1B420 /* MyPaletteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE71EFC91770149D00E1B420 /* MyPaletteViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CE71EFD41770149D00E1B420 /* MyPaletteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE71EFCA1770149D00E1B420 /* MyPaletteViewController.xib */; };
 		CE71EFD51770149D00E1B420 /* NICSignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE71EFCC1770149D00E1B420 /* NICSignatureView.m */; };
@@ -141,8 +142,7 @@
 		CEC3E5DF1797BC9700055B09 /* record_animate_13.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC3E5D11797BC9500055B09 /* record_animate_13.png */; };
 		CEC3E5E01797BC9700055B09 /* record_animate_14.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC3E5D21797BC9500055B09 /* record_animate_14.png */; };
 		CEC3E5E11797BC9700055B09 /* record_animate_01.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC3E5D31797BC9500055B09 /* record_animate_01.png */; };
-		CEC3E5E31797BEAA00055B09 /* headPortraits.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC3E5E21797BEA900055B09 /* headPortraits.png */; };
-		CEC3E5E51797D90B00055B09 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC3E5E41797D90A00055B09 /* background.png */; };
+		CEC3E5E31797BEAA00055B09 /* headPortraits.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEC3E5E21797BEA900055B09 /* headPortraits.jpg */; };
 		CEE9C1391777D93000F10404 /* VideoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9C1381777D93000F10404 /* VideoItem.m */; };
 		CEE9C13B1777DE2F00F10404 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE9C13A1777DE2F00F10404 /* MediaPlayer.framework */; };
 		CEE9C1771777E74300F10404 /* ss11_8.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CEE9C1321777D79900F10404 /* ss11_8.mp4 */; };
@@ -355,6 +355,7 @@
 		6DD8FA2F17657EB200B2D81B /* page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page.png; sourceTree = "<group>"; };
 		6DD8FA311765C0E000B2D81B /* ReflectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReflectionView.h; sourceTree = "<group>"; };
 		6DD8FA321765C0E000B2D81B /* ReflectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReflectionView.m; sourceTree = "<group>"; };
+		6DE3854E179A302200E73101 /* background@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "background@2x.jpg"; sourceTree = "<group>"; };
 		CE71EFC81770149D00E1B420 /* MyPaletteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPaletteViewController.h; sourceTree = "<group>"; };
 		CE71EFC91770149D00E1B420 /* MyPaletteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPaletteViewController.m; sourceTree = "<group>"; };
 		CE71EFCA1770149D00E1B420 /* MyPaletteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPaletteViewController.xib; sourceTree = "<group>"; };
@@ -394,8 +395,7 @@
 		CEC3E5D11797BC9500055B09 /* record_animate_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_13.png; sourceTree = "<group>"; };
 		CEC3E5D21797BC9500055B09 /* record_animate_14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_14.png; sourceTree = "<group>"; };
 		CEC3E5D31797BC9500055B09 /* record_animate_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_01.png; sourceTree = "<group>"; };
-		CEC3E5E21797BEA900055B09 /* headPortraits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headPortraits.png; sourceTree = "<group>"; };
-		CEC3E5E41797D90A00055B09 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		CEC3E5E21797BEA900055B09 /* headPortraits.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = headPortraits.jpg; sourceTree = "<group>"; };
 		CEE9C1311777D79900F10404 /* ss11_8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ss11_8.jpg; sourceTree = "<group>"; };
 		CEE9C1321777D79900F10404 /* ss11_8.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ss11_8.mp4; sourceTree = "<group>"; };
 		CEE9C1371777D93000F10404 /* VideoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoItem.h; sourceTree = "<group>"; };
@@ -895,8 +895,8 @@
 				6DAD0F5C1766082D00D37D08 /* test.png */,
 				6DD8FA2F17657EB200B2D81B /* page.png */,
 				6DAC02E5175E2CF100A3F015 /* close_x.png */,
-				CEC3E5E21797BEA900055B09 /* headPortraits.png */,
-				CEC3E5E41797D90A00055B09 /* background.png */,
+				CEC3E5E21797BEA900055B09 /* headPortraits.jpg */,
+				6DE3854E179A302200E73101 /* background@2x.jpg */,
 				6DAC02E0175E2CCC00A3F015 /* mainCatalog */,
 				631577CFC59D9BE2F3EE132F /* btn_photo_brower_toolbar_back_nomal@2x.png */,
 				631575E16B9F35B2C394F832 /* btn_photo_brower_toolbar_back_highted@2x.png */,
@@ -1074,6 +1074,8 @@
 				6DB6E726179A6D4100386A2D /* Default-Landscape~ipad@2x.png in Resources */,
 				6DB6E729179A705C00386A2D /* Icon.png in Resources */,
 				6DB6E72A179A705C00386A2D /* Icon@2x.png in Resources */,
+				CEC3E5E31797BEAA00055B09 /* headPortraits.jpg in Resources */,
+				6DE3854F179A302200E73101 /* background@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1239,7 +1241,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cosmetology/Cosmetology-Prefix.pch";
 				INFOPLIST_FILE = "Cosmetology/Cosmetology-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Cosmetology/src/Libs/VoiceConvert/lib\"",
@@ -1260,7 +1262,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cosmetology/Cosmetology-Prefix.pch";
 				INFOPLIST_FILE = "Cosmetology/Cosmetology-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Cosmetology/src/Libs/VoiceConvert/lib\"",

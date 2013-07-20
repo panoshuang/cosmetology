@@ -20,6 +20,8 @@
     NSString *popularityValue;
     MessageBoardInfo *messageBoardInfo;
     UIButton *popularityBtn;//人气
+    
+    UIImageView *_bgView;//背景图片
 }
 
 @end
@@ -44,7 +46,7 @@
         NSLog(@"%d",messageBoardInfo.popularity);
         
         //头像
-        headPortraits = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"headPortraits.png"]];
+        headPortraits = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"headPortraits.jpg"]];
         headPortraits.frame = CGRectMake(10, 54, 200, 200);
         headPortraits.contentMode = UIViewContentModeScaleToFill;
         [self.view addSubview:headPortraits];
@@ -75,7 +77,7 @@
         [self.view addSubview:playRecord];
         
         //签名
-        singeName = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"headPortraits.png"]];
+        singeName = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"headPortraits.jpg"]];
         singeName.frame = CGRectMake(600, 400, 300, 300);
         [self.view addSubview:singeName];
         
@@ -95,6 +97,19 @@
 -(void)loadView
 {
     [super loadView];
+    UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];
+    
+    mainView.backgroundColor=[UIColor whiteColor];
+    self.view = mainView;
+    _bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    //获取背景图片填充
+    //    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    //    NSString *bgFilePath = [userDefaults stringForKey:HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH];
+    //    UIImage *bgImage = [[ResourceCache instance] imageForCachePath:bgFilePath];
+    //    _bgView.image = bgImage;
+    
+    _bgView.image = [UIImage imageNamed:@"background.jpg"];
+    [self.view addSubview:_bgView];
     
 }
 
@@ -103,7 +118,7 @@
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = YES;
 	// Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.jpg"]];
     
         
 }
