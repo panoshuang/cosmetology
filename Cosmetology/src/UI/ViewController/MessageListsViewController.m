@@ -15,6 +15,9 @@
 #import "ResourceCache.h"
 #import "CommonUtil.h"
 #import "AutoDismissView.h"
+#import "PasswordManager.h"
+#import "RIButtonItem.h"
+#import "UIAlertView+Blocks.h"
 
 #define NUMBER_ITEMS_ON_LOAD 250
 #define NUMBER_ITEMS_ON_LOAD2 30
@@ -40,6 +43,9 @@
     
     UIImageView *_bgView;//背景图片
     UIPopoverController *_popController;
+    
+    UITapGestureRecognizer *_editGesture; //开启编辑的手势
+    BOOL _bIsEdit;
 }
 
 @end
@@ -62,7 +68,7 @@
         UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
                                                                                target:nil
                                                                                action:nil];
-        space.width = 750;
+        space.width = 10;
         
         UIBarButtonItem *bgButton = [[UIBarButtonItem alloc]initWithTitle:@"修改背景"
                                                                     style:UIBarButtonItemStyleDone
@@ -98,7 +104,7 @@
         
         
 //        _data = [[NSMutableArray alloc] init];
-//        
+//
 //        for (int i = 0; i < NUMBER_ITEMS_ON_LOAD; i ++)
 //        {
 //            [_data addObject:[NSString stringWithFormat:@"A %d", i]];
@@ -149,6 +155,17 @@
     }
     _bgView.image = [UIImage imageNamed:@"background.jpg"];
     [self.view addSubview:_bgView];
+    
+    //点击三次,启动编辑功能
+    UIView *editView = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 100,
+                                                                0,
+                                                                100,
+                                                                kToolBarHeight)];
+    editView.backgroundColor = [UIColor yellowColor];
+    [self.view addSubview:editView];
+    _editGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editGestureDidTap:)];
+    _editGesture.numberOfTapsRequired = 3;
+    [editView addGestureRecognizer:_editGesture];
     
     NSInteger spacing = INTERFACE_IS_PHONE ? 10 : 15;
     
@@ -223,6 +240,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    _toolBar.hidden = NO;
 }
 
 //////////////////////////////////////////////////////////////
@@ -252,6 +270,86 @@
         [_popController dismissPopoverAnimated:YES];
     }
 }
+
+//////////////////////////////////////////////////////////////
+#pragma mark 启动编辑功能
+//////////////////////////////////////////////////////////////
+
+-(void)editGestureDidTap:(UITapGestureRecognizer *)gesture{
+    if (_bIsEdit) {
+        [self cancelEdit];
+    }else{
+        //判断是否已经设置了密码,没有的话直接进入编辑模式,有的话要输入密码
+        NSString *editPwdStr = [[PasswordManager instance] passwordForKey:PWD_MAIN_CATALOG];
+        if (editPwdStr.length > 0) {
+            [self inputPassword];
+        }else{
+            _bIsEdit = YES;
+            _toolBar.hidden = NO;
+        }
+    }
+}
+
+-(void)cancelEdit{
+    RIButtonItem *confirmItem = [RIButtonItem item];
+    confirmItem.label = @"确定";
+    confirmItem.action = ^{
+        _bIsEdit = NO;
+        _toolBar.hidden = YES;
+    };
+    RIButtonItem *cancelItem = [RIButtonItem item];
+    cancelItem.label = @"取消";
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"是否要退出编辑模式"
+                                                        message:nil
+                                               cancelButtonItem:cancelItem
+                                               otherButtonItems:confirmItem, nil];
+    [alertView show];
+}
+
+-(void)inputPassword
+{
+    
+    
+    UIAlertView *alertView = nil;
+    alertView = [[UIAlertView alloc] initWithTitle:@"输入密码"
+                                           message:@"\n\n"
+                                  cancelButtonItem:nil
+                                  otherButtonItems:nil];
+    
+    UITextField *txt1 = [[UITextField alloc]initWithFrame:CGRectMake(12, 40, 260, 40)];
+    txt1.font = [UIFont boldSystemFontOfSize:18];
+    txt1.layer.cornerRadius = 6;
+    txt1.layer.masksToBounds = YES;
+    txt1.secureTextEntry = YES;
+    txt1.backgroundColor = [UIColor whiteColor];
+    txt1.backgroundColor = [UIColor whiteColor];
+    txt1.tag = 1000;
+    [alertView addSubview:txt1];
+    
+    RIButtonItem *confirmItem = [RIButtonItem item];
+    confirmItem.label = @"确定";
+    confirmItem.action = ^{
+        UITextField *textField = (UITextField *)[alertView viewWithTag:1000];
+        DDetailLog(@"textField is %@",textField.text);
+        //判断输入的密码是否正确
+        NSString *editPwdStr = [[PasswordManager instance] passwordForKey:PWD_MAIN_CATALOG];
+        if([editPwdStr isEqualToString:textField.text]){
+            _bIsEdit = YES;
+            _toolBar.hidden = NO;
+        }else{
+            [[AutoDismissView instance] showInView:self.view
+                                             title:@"密码错误"
+                                          duration:1];
+        }
+    };
+    RIButtonItem *cancelItem = [RIButtonItem item];
+    cancelItem.label = @"取消";
+    [alertView addButtonItem:cancelItem];
+    [alertView addButtonItem:confirmItem];
+    [alertView show];
+    
+}
+
 
 #pragma mark UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker
@@ -345,7 +443,6 @@
         view.backgroundColor = [UIColor redColor];
         view.layer.masksToBounds = NO;
         view.layer.cornerRadius = 8;
-        
         cell.contentView = view;
     }
     
