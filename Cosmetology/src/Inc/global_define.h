@@ -72,6 +72,11 @@
 
 #define kBottomBarHeight                      46    //评论回复页面等的底部工具栏高度
 
+#define kFontSystemSize12                     [UIFont systemFontOfSize:12] 
+#define kFontSystemSize14                     [UIFont systemFontOfSize:14] 
+#define kFontSystemSize16                     [UIFont systemFontOfSize:16] 
+#define kFontSystemSize18                     [UIFont systemFontOfSize:18] 
+
 
 
 //系统客户id

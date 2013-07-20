@@ -75,8 +75,7 @@
 -(void)loadView{
     [super loadView];
     self.navigationController.navigationBarHidden = YES;
-    UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];
-    
+    UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];    
     mainView.backgroundColor=[UIColor whiteColor];
     self.view = mainView;
     
@@ -478,6 +477,7 @@
         _experienceViewController = [[ExperienceViewController alloc] init];
         _experienceViewController.delegate = self;
         _experienceViewController.mainDelegate = self;
+        _experienceViewController.bIsEdit = _bIsEdit;
         viewController = _experienceViewController;
 
 
@@ -485,6 +485,7 @@
         _subCatalogViewController = [[SubCatalogViewController alloc] initWithMainProductInfo:productInfo];
         _subCatalogViewController.delegate = self;
         _subCatalogViewController.mainDelegate = self;
+        _subCatalogViewController.bIsEdit = _bIsEdit;
         viewController = _subCatalogViewController;
     }
 

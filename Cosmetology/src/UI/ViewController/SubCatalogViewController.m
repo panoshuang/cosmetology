@@ -380,6 +380,7 @@
         
         SubCatalogItem *mainCatalogItem = [[SubCatalogItem alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
         mainCatalogItem.delegate = cell;
+        mainCatalogItem.ivBg.image = [UIImage imageNamed:self.mainProductInfo.subItemBtnImageName];
         cell.contentView = mainCatalogItem;
         
     }
