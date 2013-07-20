@@ -11,6 +11,13 @@
 
 @interface MessageListsViewController : UIViewController{
     UIToolbar *_toolBar;
+    UIView *_editTapView ;
+    int _productId;
 }
+
+@property (nonatomic) BOOL bIsEdit;
+@property (nonatomic) int productId;
+
+-(id)initWithProductId:(int)aId;
 
 @end

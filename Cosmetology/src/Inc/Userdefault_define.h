@@ -12,5 +12,6 @@
 
 #pragma mark - 图片相关
 #define HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH @"homePageBackgroundImageFilePath" //主页的背景图片
+#define MSG_PAGE_BACKGROUND_IMAGE_FILE_PATH  @"msgPageBackgroundImageFilePath"  //留言页面的背景图片
 
 

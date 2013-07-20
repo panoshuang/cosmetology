@@ -69,6 +69,17 @@ static BOOL isProsecutingPhoto = NO;
     _stringURL = [[NSBundle mainBundle] pathForResource:@"ss11_8" ofType:@"mp4"];
     //_stringURL = ;
     NSLog(@"stringURL is %@",_stringURL);
+    
+//    NSString *bgUuid = [CommonUtil uuid];
+//    NSString *vedioFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_stringURL, 1)
+//                                                                relatePath:bgUuid
+//                                                              resourceType:kResourceCacheTypeBackgroundImage];
+//    
+//    if (vedioFilePath.length == 0) {
+//        ALERT_MSG(@"保存失败", nil, @"确定");
+//        return;
+//    }
+//
 
     //把navigatorController的delegate设置为自己,用于在显示本页面时候设置全屏
     // self.navigationController.delegate = self;
