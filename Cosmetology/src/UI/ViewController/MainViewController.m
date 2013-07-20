@@ -48,7 +48,7 @@
 
 @implementation MainViewController
 
-@synthesize item;
+//@synthesize item;
 
 -(id)init{
     self = [super init];

@@ -197,7 +197,7 @@ static BOOL isProsecutingPhoto = NO;
 
 -(void)videoBtnClicked:(UIButton *)button{
     NSLog(@"stringURL is %@",_stringURL);
-    _videoURL = [NSURL fileURLWithPath:_stringURL];
+    _videoURL = [NSURL fileURLWithPath:_stringURL isDirectory:NO];
     NSLog(@"videoURL is %@",_videoURL);
     if (_videoURL == nil) {
         UIAlertView *errorMsg = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"视频地址为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
@@ -207,6 +207,8 @@ static BOOL isProsecutingPhoto = NO;
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(exitFullScreen:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
     moviePlayer = [[MPMoviePlayerController alloc]initWithContentURL:_videoURL];
+    [moviePlayer prepareToPlay];
+    moviePlayer.shouldAutoplay = YES;
     _moviePlayState = MPMoviePlaybackStateStopped;
     [moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
     [moviePlayer.view setFrame:self.view.bounds];
