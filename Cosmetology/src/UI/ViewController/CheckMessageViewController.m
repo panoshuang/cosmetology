@@ -74,7 +74,7 @@
     }
     headPortraits = [[UIImageView alloc]initWithImage:protraitImage];
     headPortraits.contentMode = UIViewContentModeCenter;
-    headPortraits.frame = CGRectMake(10, 54, 200, 200);
+    headPortraits.frame = CGRectMake(60, 160, 204, 143);
     headPortraits.contentMode = UIViewContentModeScaleToFill;
     [self.view addSubview:headPortraits];
     

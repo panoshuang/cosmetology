@@ -38,7 +38,6 @@
 -(void)segmentColor;
 -(void)segmentWidth;
 //=====================
--(IBAction)callCame;
 -(IBAction)captureScreen;
 @end
 

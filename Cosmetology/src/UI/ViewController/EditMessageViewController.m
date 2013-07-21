@@ -170,7 +170,7 @@
 
 -(void)singeName:(UIButton *)btn
 {
-    MyPaletteViewController *myPaletteViewController = [[MyPaletteViewController alloc]initWithNibName:@"MyPaletteViewController" bundle:[NSBundle mainBundle]];
+    MyPaletteViewController *myPaletteViewController = [[MyPaletteViewController alloc]init];
     [self.navigationController pushViewController:myPaletteViewController animated:YES];
 }
 
