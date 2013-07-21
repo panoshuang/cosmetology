@@ -97,6 +97,8 @@
     _catalogCarousel.delegate = self;
     _catalogCarousel.dataSource = self;
     _catalogCarousel.type = iCarouselTypeCoverFlow2;
+    _catalogCarousel.scrollSpeed = 0;
+    _catalogCarousel.decelerationRate = 1;
     [self.view addSubview:_catalogCarousel];
     
     _toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
@@ -391,11 +393,11 @@
     return view;
 }
 
-- (NSUInteger)numberOfPlaceholdersInCarousel:(iCarousel *)carousel
-{
-    //note: placeholder views are only displayed on some carousels if wrapping is disabled
-    return 2;
-}
+//- (NSUInteger)numberOfPlaceholdersInCarousel:(iCarousel *)carousel
+//{
+//    //note: placeholder views are only displayed on some carousels if wrapping is disabled
+//    return 2;
+//}
 
 - (UIView *)carousel:(iCarousel *)carousel placeholderViewAtIndex:(NSUInteger)index reusingView:(UIView *)view
 {
@@ -434,43 +436,43 @@
     return view;
 }
 
-- (CATransform3D)carousel:(iCarousel *)_carousel itemTransformForOffset:(CGFloat)offset baseTransform:(CATransform3D)transform
-{
-    //implement 'flip3D' style carousel
-    transform = CATransform3DRotate(transform, M_PI / 4.0f, 0.0f, 1.0f, 0.0f);
-    return CATransform3DTranslate(transform, 0.0f, 0.0f, offset * _catalogCarousel.itemWidth);
-}
-
-- (CGFloat)carousel:(iCarousel *)_carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value
-{
-    //customize carousel display
-    switch (option)
-    {
-        case iCarouselOptionWrap:
-        {
-            //normally you would hard-code this to YES or NO
-            return _bIsWrap;
-        }
-        case iCarouselOptionSpacing:
-        {
-            //add a bit of spacing between the item views
-            return value * 1.05f;
-        }
-        case iCarouselOptionFadeMax:
-        {
-            if (_catalogCarousel.type == iCarouselTypeCustom)
-            {
-                //set opacity based on distance from camera
-                return 0.0f;
-            }
-            return value;
-        }
-        default:
-        {
-            return value;
-        }
-    }
-}
+//- (CATransform3D)carousel:(iCarousel *)_carousel itemTransformForOffset:(CGFloat)offset baseTransform:(CATransform3D)transform
+//{
+//    //implement 'flip3D' style carousel
+//    transform = CATransform3DRotate(transform, M_PI / 4.0f, 0.0f, 1.0f, 0.0f);
+//    return CATransform3DTranslate(transform, 0.0f, 0.0f, offset * _catalogCarousel.itemWidth);
+//}
+//
+//- (CGFloat)carousel:(iCarousel *)_carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value
+//{
+//    //customize carousel display
+//    switch (option)
+//    {
+//        case iCarouselOptionWrap:
+//        {
+//            //normally you would hard-code this to YES or NO
+//            return _bIsWrap;
+//        }
+//        case iCarouselOptionSpacing:
+//        {
+//            //add a bit of spacing between the item views
+//            return value * 1.05f;
+//        }
+//        case iCarouselOptionFadeMax:
+//        {
+//            if (_catalogCarousel.type == iCarouselTypeCustom)
+//            {
+//                //set opacity based on distance from camera
+//                return 0.0f;
+//            }
+//            return value;
+//        }
+//        default:
+//        {
+//            return value;
+//        }
+//    }
+//}
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index{
     DDetailLog(@"");
