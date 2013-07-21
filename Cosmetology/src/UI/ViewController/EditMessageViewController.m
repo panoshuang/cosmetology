@@ -85,7 +85,7 @@
     
     //头像
     headPortraits = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    headPortraits.frame = CGRectMake(50, 160, 204, 143);
+    headPortraits.frame = CGRectMake(60, 160, 204, 143);
     headPortraits.contentMode = UIViewContentModeScaleToFill;
     [headPortraits setBackgroundImage:[UIImage imageNamed:@"pickPhoto.png"] forState:UIControlStateNormal];
     //headPortraits.imageView.image = [UIImage imageNamed:@"headPortraits.png"];
@@ -93,25 +93,33 @@
     [self.view addSubview:headPortraits];
     
     //留言编辑
-    UIFont *font = [UIFont fontWithName:@"Helvetica" size:24];
-    UILabel *messagelabel = [[UILabel alloc]initWithFrame:CGRectMake(220, 10, 130, 30)];
+    UIFont *font = [UIFont fontWithName:@"Courier-Oblique" size:24];
+    UILabel *messagelabel = [[UILabel alloc]initWithFrame:CGRectMake(250, 55, 130, 30)];
     messagelabel.text = @"我的留言:";
+    messagelabel.backgroundColor = [UIColor clearColor];
     [messagelabel setFont:font];
-    [self.view addSubview:messagelabel];
-    messageEditTextView = [[UITextView alloc]initWithFrame:CGRectMake(330, 10, 600, 200)];
+    
+    messageEditTextView = [[UITextView alloc]initWithFrame:CGRectMake(45, 85, 540, 220)];
     messageEditTextView.delegate = self;
     messageEditTextView.contentMode = UIViewContentModeScaleToFill;
-    messageEditTextView.backgroundColor = [UIColor yellowColor];
-    
+    messageEditTextView.backgroundColor = [UIColor clearColor];
     [messageEditTextView setFont:font];
-    [self.view addSubview:messageEditTextView];
+    
+    UIImageView *messageImageView = [[UIImageView alloc]initWithFrame:CGRectMake(300, 10, 637, 372)];
+    messageImageView.image = [UIImage imageNamed:@"messageBoard.png"];
+    messageImageView.userInteractionEnabled = YES;
+    
+    [messageImageView addSubview:messagelabel];
+    [messageImageView addSubview:messageEditTextView];
+    
     
     //OK按钮
     OKBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    OKBtn.frame = CGRectMake(950, 10, 50, 50);
+    OKBtn.frame = CGRectMake(940, 20, 50, 50);
     
     [OKBtn setTitle:@"OK" forState:UIControlStateNormal];
     [OKBtn addTarget:self action:@selector(saveMessage:) forControlEvents:UIControlEventTouchUpInside];
+    OKBtn.backgroundColor = [UIColor clearColor];
     [self.view addSubview:OKBtn];
     
     //录音图标
@@ -137,10 +145,13 @@
     
     //签名
     singeName = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    singeName.frame = CGRectMake(600, 400, 300, 300);
+    singeName.frame = CGRectMake(294, 349, 529, 322);
+    singeName.backgroundColor = [UIColor yellowColor];
+    [singeName setImage:[UIImage imageNamed:@"singeName.png"] forState:UIControlStateNormal];
     [singeName addTarget:self action:@selector(singeName:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:singeName];
+    [self.view addSubview:messageImageView];
     
     //初始化留言板信息
     messageBoardInfo = [[MessageBoardInfo alloc]init];
@@ -148,15 +159,14 @@
     messageBoardInfo.messageRecord = @"录音路劲";
     messageBoardInfo.headPortraits = @"头像路劲";
     messageBoardInfo.singeName = @"签名路径";
-    messageBoardInfo.popularity = 10000;
-    messageBoardInfo.subProductID = 2;
+    messageBoardInfo.popularity = 0;
+    messageBoardInfo.subProductID = _subProductID;
 
 }
 
 
 -(void)singeName:(UIButton *)btn
 {
-    //TODO:签名
     MyPaletteViewController *myPaletteViewController = [[MyPaletteViewController alloc]initWithNibName:@"MyPaletteViewController" bundle:[NSBundle mainBundle]];
     [self.navigationController pushViewController:myPaletteViewController animated:YES];
 }

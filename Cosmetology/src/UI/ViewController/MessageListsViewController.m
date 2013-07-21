@@ -31,7 +31,7 @@
 #pragma mark ViewController (privates methods)
 //////////////////////////////////////////////////////////////
 
-@interface MessageListsViewController ()<GMGridViewDataSource, GMGridViewSortingDelegate, GMGridViewTransformationDelegate, GMGridViewActionDelegate>
+@interface MessageListsViewController ()<GMGridViewDataSource, GMGridViewSortingDelegate, GMGridViewTransformationDelegate, GMGridViewActionDelegate,MessageBoardViewControllerDelegate>
 {
     __gm_weak GMGridView *_gmGridView;
     UINavigationController *_optionsNav;
@@ -562,6 +562,12 @@
     
 }
 
+#pragma mark - MessageBoardViewControllerDelegate
+
+-(void)saveMessage:(MessageBoardInfo *)aMsg forSubProductID:(NSInteger)subProductID{
+    [_msgArray addObject:aMsg];
+    [_gmGridView insertObjectAtIndex:_msgArray.count - 1 animated:YES];
+}
 
 - (void)didReceiveMemoryWarning
 {
