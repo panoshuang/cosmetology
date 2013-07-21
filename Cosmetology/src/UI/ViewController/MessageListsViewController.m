@@ -396,7 +396,9 @@
 - (void)GMGridView:(GMGridView *)gridView didTapOnItemAtIndex:(NSInteger)position
 {
     NSLog(@"Did tap at index %d", position);
+    MessageBoardInfo *msgInfo = [_msgArray objectAtIndex:position];    
     CheckMessageViewController *checkMessageViewController = [[CheckMessageViewController alloc]init];
+    checkMessageViewController.messageBoardInfo = msgInfo;
     [self.navigationController pushViewController:checkMessageViewController animated:YES];
 }
 

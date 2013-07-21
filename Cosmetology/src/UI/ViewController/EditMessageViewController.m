@@ -419,6 +419,7 @@
         ALERT_MSG(@"保存失败", nil, @"确定");
         return;
     }
+    _messageBoardInfo.headPortraits = headPortraitsFilePath;
     [picker dismissViewControllerAnimated:YES completion:^{}];
     
 }
