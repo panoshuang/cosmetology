@@ -86,8 +86,10 @@
     UIImage *bgImage = [[ResourceCache instance] imageForCachePath:bgFilePath];
     if (bgImage) {
         _bgView.image = bgImage;
+    }else{
+        _bgView.image = [UIImage imageNamed:@"Default-Landscape~ipad.png"];
     }
-    _bgView.image = [UIImage imageNamed:@"background.jpg"];
+    
     [self.view addSubview:_bgView];
     
     

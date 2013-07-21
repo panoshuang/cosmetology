@@ -98,6 +98,8 @@
 		6DAABD58179B83D300D4DFFC /* microphone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAABD52179B83D300D4DFFC /* microphone4@2x.png */; };
 		6DAABD59179B83D300D4DFFC /* microphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAABD53179B83D300D4DFFC /* microphone5@2x.png */; };
 		6DAABD5A179B8C4500D4DFFC /* MicroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAABD4C179B839600D4DFFC /* MicroView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DAABD5D179BA0D100D4DFFC /* bg_sub_product.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6DAABD5C179BA0D000D4DFFC /* bg_sub_product.jpg */; };
+		6DAABD60179BA0EC00D4DFFC /* bg_exp_product.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6DAABD5F179BA0EC00D4DFFC /* bg_exp_product.jpg */; };
 		6DAC02D8175E166F00A3F015 /* MainCatalogGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC02D7175E166F00A3F015 /* MainCatalogGridViewCell.m */; };
 		6DAC02E3175E2CCC00A3F015 /* bg_main_catalog@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAC02E1175E2CCC00A3F015 /* bg_main_catalog@2x.png */; };
 		6DAC02E4175E2CCC00A3F015 /* bg_main_catalog_item.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAC02E2175E2CCC00A3F015 /* bg_main_catalog_item.png */; };
@@ -343,6 +345,8 @@
 		6DAABD51179B83D300D4DFFC /* microphone3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "microphone3@2x.png"; sourceTree = "<group>"; };
 		6DAABD52179B83D300D4DFFC /* microphone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "microphone4@2x.png"; sourceTree = "<group>"; };
 		6DAABD53179B83D300D4DFFC /* microphone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "microphone5@2x.png"; sourceTree = "<group>"; };
+		6DAABD5C179BA0D000D4DFFC /* bg_sub_product.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_sub_product.jpg; sourceTree = "<group>"; };
+		6DAABD5F179BA0EC00D4DFFC /* bg_exp_product.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_exp_product.jpg; sourceTree = "<group>"; };
 		6DAC02D6175E166F00A3F015 /* MainCatalogGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainCatalogGridViewCell.h; path = Cosmetology/src/UI/View/MainCatalogGridViewCell.h; sourceTree = SOURCE_ROOT; };
 		6DAC02D7175E166F00A3F015 /* MainCatalogGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainCatalogGridViewCell.m; path = Cosmetology/src/UI/View/MainCatalogGridViewCell.m; sourceTree = SOURCE_ROOT; };
 		6DAC02E1175E2CCC00A3F015 /* bg_main_catalog@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_main_catalog@2x.png"; sourceTree = "<group>"; };
@@ -919,6 +923,8 @@
 		6DAC02DF175E2CCC00A3F015 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				6DAABD5C179BA0D000D4DFFC /* bg_sub_product.jpg */,
+				6DAABD5F179BA0EC00D4DFFC /* bg_exp_product.jpg */,
 				6DA7456E179B8A5E00E0482D /* popularity.png */,
 				6DA7456A179B7CF000E0482D /* messageBoard.png */,
 				6DA7456B179B7CF000E0482D /* singeName.png */,
@@ -1147,6 +1153,8 @@
 				6DAABD57179B83D300D4DFFC /* microphone3@2x.png in Resources */,
 				6DAABD58179B83D300D4DFFC /* microphone4@2x.png in Resources */,
 				6DAABD59179B83D300D4DFFC /* microphone5@2x.png in Resources */,
+				6DAABD5D179BA0D100D4DFFC /* bg_sub_product.jpg in Resources */,
+				6DAABD60179BA0EC00D4DFFC /* bg_exp_product.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

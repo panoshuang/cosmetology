@@ -89,7 +89,12 @@
     [self.view addGestureRecognizer:tapGesture];
 
     _ivBg = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    _ivBg.image = [[ResourceCache instance] imageForCachePath:self.experienceInfo.bgImageFile];
+    UIImage *image = [[ResourceCache instance] imageForCachePath:self.experienceInfo.bgImageFile];
+    if (image) {
+        _ivBg.image = image;
+    }else{
+        _ivBg.image = [UIImage imageNamed:@"bg_exp_product"];
+    }
     [self.view addSubview:_ivBg];
     
     
