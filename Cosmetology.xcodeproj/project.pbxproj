@@ -86,6 +86,9 @@
 		6D99107C1765727B003C7C12 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D99107B1765727B003C7C12 /* iCarousel.m */; };
 		6DA2C68117675AC60098F911 /* AddSubCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA2C68017675AC60098F911 /* AddSubCatalogViewController.m */; };
 		6DA2C68717675D4C0098F911 /* SubProductInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA2C68617675D4C0098F911 /* SubProductInfo.m */; };
+		6DA7456C179B7CF000E0482D /* messageBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA7456A179B7CF000E0482D /* messageBoard.png */; };
+		6DA7456D179B7CF000E0482D /* singeName.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA7456B179B7CF000E0482D /* singeName.png */; };
+		6DA7456F179B8A5E00E0482D /* popularity.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA7456E179B8A5E00E0482D /* popularity.png */; };
 		6DAA1BA6178920B100518FC3 /* PasswordEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAA1BA5178920B100518FC3 /* PasswordEditViewController.m */; };
 		6DAA1BA9178923A900518FC3 /* PasswordEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAA1BA81789236700518FC3 /* PasswordEditView.m */; };
 		6DAC02D8175E166F00A3F015 /* MainCatalogGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC02D7175E166F00A3F015 /* MainCatalogGridViewCell.m */; };
@@ -317,6 +320,9 @@
 		6DA2C68017675AC60098F911 /* AddSubCatalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSubCatalogViewController.m; sourceTree = "<group>"; };
 		6DA2C68517675D4C0098F911 /* SubProductInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubProductInfo.h; sourceTree = "<group>"; };
 		6DA2C68617675D4C0098F911 /* SubProductInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubProductInfo.m; sourceTree = "<group>"; };
+		6DA7456A179B7CF000E0482D /* messageBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = messageBoard.png; sourceTree = "<group>"; };
+		6DA7456B179B7CF000E0482D /* singeName.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = singeName.png; sourceTree = "<group>"; };
+		6DA7456E179B8A5E00E0482D /* popularity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popularity.png; sourceTree = "<group>"; };
 		6DAA1BA4178920B000518FC3 /* PasswordEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordEditViewController.h; sourceTree = "<group>"; };
 		6DAA1BA5178920B100518FC3 /* PasswordEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordEditViewController.m; sourceTree = "<group>"; };
 		6DAA1BA71789236700518FC3 /* PasswordEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasswordEditView.h; sourceTree = "<group>"; };
@@ -896,6 +902,9 @@
 		6DAC02DF175E2CCC00A3F015 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				6DA7456E179B8A5E00E0482D /* popularity.png */,
+				6DA7456A179B7CF000E0482D /* messageBoard.png */,
+				6DA7456B179B7CF000E0482D /* singeName.png */,
 				6D6B4CAA179AD9BB00459767 /* pickPhoto.png */,
 				6DB6E739179ADE0F00386A2D /* bg_acclaim.png */,
 				6DB6E737179ADDA900386A2D /* bg_autograph.png */,
@@ -1106,6 +1115,9 @@
 				6D6B4CAB179AD9BC00459767 /* pickPhoto.png in Resources */,
 				6DB6E738179ADDA900386A2D /* bg_autograph.png in Resources */,
 				6DB6E73A179ADE0F00386A2D /* bg_acclaim.png in Resources */,
+				6DA7456C179B7CF000E0482D /* messageBoard.png in Resources */,
+				6DA7456D179B7CF000E0482D /* singeName.png in Resources */,
+				6DA7456F179B8A5E00E0482D /* popularity.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

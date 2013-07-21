@@ -9,6 +9,7 @@
 #import "CheckMessageViewController.h"
 #import "MessageBoardInfo.h"
 #import "MessageBoardManager.h"
+#import "AcclaimButton.h"
 
 @interface CheckMessageViewController ()
 {
@@ -19,9 +20,10 @@
     UIImageView *singeName;//签名
     NSString *popularityValue;
     MessageBoardInfo *messageBoardInfo;
-    UIButton *popularityBtn;//人气
     
     UIImageView *_bgView;//背景图片
+    
+    AcclaimButton *popularityBtn;//人气
 }
 
 @end
@@ -51,23 +53,31 @@
         headPortraits.contentMode = UIViewContentModeScaleToFill;
         [self.view addSubview:headPortraits];
         
-        //留言展示
-        UIFont *font = [UIFont fontWithName:@"Helvetica" size:24];
-        UILabel *messagelabel = [[UILabel alloc]initWithFrame:CGRectMake(220, 54, 130, 30)];
+        UIFont *font = [UIFont fontWithName:@"Courier-Oblique" size:24];
+        UILabel *messagelabel = [[UILabel alloc]initWithFrame:CGRectMake(250, 70, 130, 30)];
         messagelabel.text = @"我的留言:";
+        messagelabel.backgroundColor = [UIColor clearColor];
         [messagelabel setFont:font];
-        [self.view addSubview:messagelabel];
         
-        messageTextView = [[UITextView alloc]initWithFrame:CGRectMake(330, 54, 600, 200)];
+        messageTextView = [[UITextView alloc]initWithFrame:CGRectMake(45, 100, 540, 220)];
         messageTextView.editable = NO;
         messageTextView.text = messageBoardInfo.messageContent;
         messageTextView.contentMode = UIViewContentModeScaleToFill;
         messageTextView.backgroundColor = [UIColor yellowColor];
-        
         [messageTextView setFont:font];
-        [self.view addSubview:messageTextView];
         
+        UIImageView *messageImageView = [[UIImageView alloc]initWithFrame:CGRectMake(300, 50, 637, 372)];
+        messageImageView.image = [UIImage imageNamed:@"messageBoard.png"];
+        messageImageView.userInteractionEnabled = YES;
         
+        [messageImageView addSubview:messagelabel];
+        [messageImageView addSubview:messageTextView];
+        
+        //签名
+        singeName = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"singeName.png"]];
+        singeName.frame = CGRectMake(294, 389, 529, 322);
+        [self.view addSubview:singeName];
+        [self.view addSubview:messageImageView];
         
         //播放录音
         playRecord= [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -76,18 +86,24 @@
         [playRecord addTarget:self action:@selector(playRecord:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:playRecord];
         
-        //签名
-        singeName = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"headPortraits.jpg"]];
-        singeName.frame = CGRectMake(600, 400, 300, 300);
-        [self.view addSubview:singeName];
+
         
         //赞人气
-        popularityBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        popularityBtn.frame = CGRectMake(50, 500, 180, 30);
-        NSLog(@"%d",messageBoardInfo.popularity);
-        popularityValue = [NSString stringWithFormat:@"人气:%d",messageBoardInfo.popularity];
-        [popularityBtn setTitle:popularityValue forState:UIControlStateNormal];
+        popularityBtn = [[AcclaimButton alloc]initWithFrame:CGRectMake(64, 270, 230, 45)];
+        //popularityBtn.frame = CGRectMake(64, 270, 230, 45);
         [popularityBtn addTarget:self action:@selector(onAddPopularity:) forControlEvents:UIControlEventTouchUpInside];
+        
+        //popularityValue = [NSString stringWithFormat:@"人气:%d",messageBoardInfo.popularity];
+        
+        //[popularityBtn setTitle:popularityValue forState:UIControlStateNormal];
+        
+//        popularityBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//        popularityBtn.frame = CGRectMake(64, 270, 230, 45);
+//        [popularityBtn setImage:[UIImage imageNamed:@"popularity.png"] forState:UIControlStateNormal];
+//        NSLog(@"%d",messageBoardInfo.popularity);
+//        popularityValue = [NSString stringWithFormat:@"人气:%d",messageBoardInfo.popularity];
+//        [popularityBtn setTitle:popularityValue forState:UIControlStateNormal];
+//        [popularityBtn addTarget:self action:@selector(onAddPopularity:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:popularityBtn];
 
     }
@@ -131,7 +147,7 @@
    //TODO:增加人气
     popularityValue = [NSString stringWithFormat:@"人气:%d",(messageBoardInfo.popularity + 1)];
     messageBoardInfo.popularity += 1;
-    [popularityBtn setTitle:popularityValue forState:UIControlStateNormal];
+    //[popularityBtn setTitle:popularityValue forState:UIControlStateNormal];
     [[MessageBoardManager instance] updateMessageBoard:messageBoardInfo];
     
 }

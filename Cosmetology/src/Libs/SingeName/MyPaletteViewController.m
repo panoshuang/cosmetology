@@ -14,7 +14,7 @@
 @synthesize labelColor;
 
 -(IBAction)cancel{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 -(IBAction)myPalttealllineclear
 {
