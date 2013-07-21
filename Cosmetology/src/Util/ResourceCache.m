@@ -87,6 +87,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ResourceCache)
     }
 }
 
+-(NSString *)filePathForMediaRelatePath:(NSString *)relatePath resourceType:(EnumResourceCacheType)cacheType{
+        NSString *absolutePath = [[self resourceCachePathForCachePath:cacheType] stringByAppendingPathComponent:relatePath];
+    return absolutePath;
+}
+
 //通过绝对路径名获取图片
 -(UIImage *)imageForCachePath:(NSString *)path{
     NSData *data = [NSData dataWithContentsOfFile:path];

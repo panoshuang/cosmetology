@@ -91,6 +91,13 @@
 		6DA7456F179B8A5E00E0482D /* popularity.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA7456E179B8A5E00E0482D /* popularity.png */; };
 		6DAA1BA6178920B100518FC3 /* PasswordEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAA1BA5178920B100518FC3 /* PasswordEditViewController.m */; };
 		6DAA1BA9178923A900518FC3 /* PasswordEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAA1BA81789236700518FC3 /* PasswordEditView.m */; };
+		6DAABD54179B83D300D4DFFC /* microphone0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAABD4E179B83D300D4DFFC /* microphone0@2x.png */; };
+		6DAABD55179B83D300D4DFFC /* microphone1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAABD4F179B83D300D4DFFC /* microphone1@2x.png */; };
+		6DAABD56179B83D300D4DFFC /* microphone2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAABD50179B83D300D4DFFC /* microphone2@2x.png */; };
+		6DAABD57179B83D300D4DFFC /* microphone3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAABD51179B83D300D4DFFC /* microphone3@2x.png */; };
+		6DAABD58179B83D300D4DFFC /* microphone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAABD52179B83D300D4DFFC /* microphone4@2x.png */; };
+		6DAABD59179B83D300D4DFFC /* microphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAABD53179B83D300D4DFFC /* microphone5@2x.png */; };
+		6DAABD5A179B8C4500D4DFFC /* MicroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAABD4C179B839600D4DFFC /* MicroView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6DAC02D8175E166F00A3F015 /* MainCatalogGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC02D7175E166F00A3F015 /* MainCatalogGridViewCell.m */; };
 		6DAC02E3175E2CCC00A3F015 /* bg_main_catalog@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAC02E1175E2CCC00A3F015 /* bg_main_catalog@2x.png */; };
 		6DAC02E4175E2CCC00A3F015 /* bg_main_catalog_item.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAC02E2175E2CCC00A3F015 /* bg_main_catalog_item.png */; };
@@ -328,6 +335,14 @@
 		6DAA1BA71789236700518FC3 /* PasswordEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasswordEditView.h; sourceTree = "<group>"; };
 		6DAA1BA81789236700518FC3 /* PasswordEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PasswordEditView.m; sourceTree = "<group>"; };
 		6DAA5966175B068800140A80 /* MainDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainDelegate.h; sourceTree = "<group>"; };
+		6DAABD4B179B839600D4DFFC /* MicroView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MicroView.h; sourceTree = "<group>"; };
+		6DAABD4C179B839600D4DFFC /* MicroView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MicroView.m; sourceTree = "<group>"; };
+		6DAABD4E179B83D300D4DFFC /* microphone0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "microphone0@2x.png"; sourceTree = "<group>"; };
+		6DAABD4F179B83D300D4DFFC /* microphone1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "microphone1@2x.png"; sourceTree = "<group>"; };
+		6DAABD50179B83D300D4DFFC /* microphone2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "microphone2@2x.png"; sourceTree = "<group>"; };
+		6DAABD51179B83D300D4DFFC /* microphone3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "microphone3@2x.png"; sourceTree = "<group>"; };
+		6DAABD52179B83D300D4DFFC /* microphone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "microphone4@2x.png"; sourceTree = "<group>"; };
+		6DAABD53179B83D300D4DFFC /* microphone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "microphone5@2x.png"; sourceTree = "<group>"; };
 		6DAC02D6175E166F00A3F015 /* MainCatalogGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainCatalogGridViewCell.h; path = Cosmetology/src/UI/View/MainCatalogGridViewCell.h; sourceTree = SOURCE_ROOT; };
 		6DAC02D7175E166F00A3F015 /* MainCatalogGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainCatalogGridViewCell.m; path = Cosmetology/src/UI/View/MainCatalogGridViewCell.m; sourceTree = SOURCE_ROOT; };
 		6DAC02E1175E2CCC00A3F015 /* bg_main_catalog@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_main_catalog@2x.png"; sourceTree = "<group>"; };
@@ -704,6 +719,8 @@
 		6D917D5017509D7E00263F64 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				6DAABD4B179B839600D4DFFC /* MicroView.h */,
+				6DAABD4C179B839600D4DFFC /* MicroView.m */,
 				6DAA1BA71789236700518FC3 /* PasswordEditView.h */,
 				6DAA1BA81789236700518FC3 /* PasswordEditView.m */,
 				6D4F7B02178820E000B3EB01 /* AutoDismissView.h */,
@@ -905,6 +922,12 @@
 				6DA7456E179B8A5E00E0482D /* popularity.png */,
 				6DA7456A179B7CF000E0482D /* messageBoard.png */,
 				6DA7456B179B7CF000E0482D /* singeName.png */,
+				6DAABD4E179B83D300D4DFFC /* microphone0@2x.png */,
+				6DAABD4F179B83D300D4DFFC /* microphone1@2x.png */,
+				6DAABD50179B83D300D4DFFC /* microphone2@2x.png */,
+				6DAABD51179B83D300D4DFFC /* microphone3@2x.png */,
+				6DAABD52179B83D300D4DFFC /* microphone4@2x.png */,
+				6DAABD53179B83D300D4DFFC /* microphone5@2x.png */,
 				6D6B4CAA179AD9BB00459767 /* pickPhoto.png */,
 				6DB6E739179ADE0F00386A2D /* bg_acclaim.png */,
 				6DB6E737179ADDA900386A2D /* bg_autograph.png */,
@@ -1118,6 +1141,12 @@
 				6DA7456C179B7CF000E0482D /* messageBoard.png in Resources */,
 				6DA7456D179B7CF000E0482D /* singeName.png in Resources */,
 				6DA7456F179B8A5E00E0482D /* popularity.png in Resources */,
+				6DAABD54179B83D300D4DFFC /* microphone0@2x.png in Resources */,
+				6DAABD55179B83D300D4DFFC /* microphone1@2x.png in Resources */,
+				6DAABD56179B83D300D4DFFC /* microphone2@2x.png in Resources */,
+				6DAABD57179B83D300D4DFFC /* microphone3@2x.png in Resources */,
+				6DAABD58179B83D300D4DFFC /* microphone4@2x.png in Resources */,
+				6DAABD59179B83D300D4DFFC /* microphone5@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1128,6 +1157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DAABD5A179B8C4500D4DFFC /* MicroView.m in Sources */,
 				6DAA1BA9178923A900518FC3 /* PasswordEditView.m in Sources */,
 				6D4F7B041788214F00B3EB01 /* AutoDismissView.m in Sources */,
 				6DAD0F5A1765C52600D37D08 /* ReflectionView.m in Sources */,

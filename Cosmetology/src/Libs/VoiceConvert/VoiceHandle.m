@@ -25,6 +25,18 @@
 @synthesize curConvertAmrToWavFilePathDes;
 @synthesize levelTimer;
 
+//把分贝为单位的声音装换成0-5个级别
++(int) levelForVolume:(CGFloat)decibels{
+    //ios默认的录音分贝范围为:-160.0-0  ,这里为了录音时候更加明显的显示波动而做了范围缩小,-75-0之前
+    //如果小于-75会默认等于-75 ,在这个范围内划分5个等级
+    CGFloat calculateDecibels = decibels;
+    if (decibels < -75){
+        calculateDecibels = -75;
+    }
+    
+    return 5 - abs((int)(calculateDecibels/(75/5)));
+}
+
 
 -(id)init{
     self = [super init];

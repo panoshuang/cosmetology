@@ -11,8 +11,13 @@
 #import "CheckMessageViewController.h"
 #import "MessageBoardInfo.h"
 #import "MessageBoardManager.h"
+#import "VoiceHandle.h"
+#import "MicroView.h"
+#import "CommonUtil.h"
+#import "ResourceCache.h"
+#import "AutoDismissView.h"
 
-@interface EditMessageViewController ()
+@interface EditMessageViewController ()<VoiceHandleDelegate>
 {
     UIButton *headPortraits;//头像
     UITextView *messageEditTextView;//留言编辑
@@ -30,7 +35,19 @@
     AVAudioPlayer *avPlay;
     
     UIImageView *_bgView;//背景图片
+    
+   VoiceHandle *_voiceHandle;
+    MicroView *_microView;
+    NSString *_recordWavFilePath;
+    NSTimer  *_recordTimer;
+    NSTimeInterval _beginRecordAudioInterval; //开始录音时间
+    NSTimeInterval _endRecordAudioInterval; //结束录音时间
+    
 }
+
+@property (nonatomic,strong) MicroView *microView;
+@property (nonatomic,strong) NSString *recordWavFilePath;
+@property (nonatomic,strong) NSTimer  *recordTimer;
 
 @end
 
@@ -38,6 +55,8 @@
 
 @synthesize delegate = _delegate;
 @synthesize subProductID = _subProductID;
+@synthesize microView = _microView;
+@synthesize recordWavFilePath = _recordWavFilePath;
 
 -(void)loadView{
     UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];
@@ -114,7 +133,7 @@
     [record setTitle:@"我有话说" forState:UIControlStateNormal];
     [record addTarget:self action:@selector(btnDown:) forControlEvents:UIControlEventTouchDown];
     [record addTarget:self action:@selector(btnUp:) forControlEvents:UIControlEventTouchUpInside];
-    [record addTarget:self action:@selector(btnDragUp:) forControlEvents:UIControlEventTouchDown];
+    [record addTarget:self action:@selector(btnDragUp:) forControlEvents:UIControlEventTouchDragOutside];
     [self.view addSubview:record];
     
     //播放留言
@@ -148,10 +167,8 @@
 
 -(void)singeName:(UIButton *)btn
 {
-    //进入签名
-    MyPaletteViewController *myPaletteViewController = [[MyPaletteViewController alloc]init];
-    [self presentViewController:myPaletteViewController animated:YES completion:^{}];
-    //[self.navigationController pushViewController:myPaletteViewController animated:YES];
+    MyPaletteViewController *myPaletteViewController = [[MyPaletteViewController alloc]initWithNibName:@"MyPaletteViewController" bundle:[NSBundle mainBundle]];
+    [self.navigationController pushViewController:myPaletteViewController animated:YES];
 }
 
 
@@ -189,6 +206,21 @@
 -(void)record:(UIButton *)btn
 {
     //TODO:录音功能
+    //开始录音
+    if (_voiceHandle == nil){
+        _voiceHandle = [[VoiceHandle alloc] init];
+        _voiceHandle.delegate = self;
+    }    
+    //缓存使用MD5算法去生成文件名,所以在这里只能生成url后让缓存生成文件名作为保存地址
+    NSString *uuid = [[CommonUtil uuid] stringByAppendingPathExtension:@"wav"];
+    NSString *recordWavUrl = [[ResourceCache instance] filePathForMediaRelatePath:uuid resourceType:kResourceCacheTypeAudio];
+    self.recordWavFilePath = recordWavUrl;
+    _voiceHandle.curRecordFilePath = self.recordWavFilePath;
+    [_voiceHandle startRecord];
+    //显示录音图标
+    MicroView *tmpMicroView = [[MicroView alloc] init];
+    self.microView = tmpMicroView;
+    [tmpMicroView showMicroViewAtView:self.view];
 }
 
 -(void)playRecord:(UIButton *)btn{
@@ -205,26 +237,21 @@
 - (IBAction)btnDown:(id)sender
 {
     //创建录音文件，准备录音
-    if ([recorder prepareToRecord]) {
-        //开始
-        [recorder record];
-    }
-    //设置定时检测
-    timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(detectionVoice) userInfo:nil repeats:YES];
+    [self record:sender];
 }
 - (IBAction)btnUp:(id)sender
 {
-    double cTime = recorder.currentTime;
-    if (cTime > 2) {//如果录制时间<2 不发送
-        NSLog(@"发出去");
-    }else {
-        //删除记录的文件
-        [recorder deleteRecording];
-        //删除存储的
-    }
-    [recorder stop];
-    [timer invalidate];
+    //做停止延迟处理,延迟0.2秒,解决最后一个字被截断
+    [self performSelector:@selector(delayHandleEndTouchButton) withObject:nil afterDelay:.2];
 }
+
+-(void)delayHandleEndTouchButton{
+    //取消禁用页面其他ui的用户响应
+    [_microView removeFromSuperview];
+    self.microView = nil;
+    [_voiceHandle stopRecord];
+}
+
 - (IBAction)btnDragUp:(id)sender
 {
     //删除录制文件
@@ -306,6 +333,61 @@
 {
     [recordImageView setImage:[UIImage imageNamed:@"record_animate_01.png"]];
 }
+
+#pragma mark - 声音处理VoiceHandle的delegate回调
+
+-(void)voiceHandleDidStartRecord:(VoiceHandle *)aVoiceHandle error:(NSError *)error{
+    if (error == nil){
+        //记录录音时间
+        _beginRecordAudioInterval = [[NSDate date] timeIntervalSince1970];
+        DDetailLog(@"beginRecordAudioInterval %f",_beginRecordAudioInterval);
+        
+    } else{
+        ALERT_MSG(@"录音失败", nil, @"确定");
+    }
+}
+
+-(void)voiceHandleDidStopRecord:(VoiceHandle *)aVoiceHandle error:(NSError *)error{
+    //结束录音
+    DDetailLog(@"isOnMainThread %d",[NSThread currentThread].isMainThread);
+    _endRecordAudioInterval = [[NSDate date] timeIntervalSince1970];
+    DDetailLog(@"endRecordAudioInterval %f",_endRecordAudioInterval);
+    double recordDuration = (_endRecordAudioInterval-_beginRecordAudioInterval);
+    //判断录音时间,过短则丢弃该录音(最短不能少于1s),否则进行把录音转成amr文件并且发送出去
+    if (recordDuration >= 1){
+        //TODO:处理录音成功
+    } else {
+        [[AutoDismissView instance] showInView:self.view
+                                         title:@"时间过短"
+                                      duration:.7];
+        
+    }
+}
+
+//音量大小,单位为分贝
+-(void)voiceHandleDidRecordVolumeLevelChange:(VoiceHandle *)aVoiceHandle level:(CGFloat)decibels{
+    //刷新录音音量
+    [_microView setVolumeLevel:[VoiceHandle levelForVolume:decibels]];
+}
+
+- (void)voiceHandleDidStartPlay:(VoiceHandle *)aVoiceHandle wavFilePath:(NSString *)wavFilePath error:(NSError *)error{
+    
+}
+
+//音频播放完毕
+- (void)voiceHandleDidStopPlay:(VoiceHandle *)aVoiceHandle wavFilePath:(NSString *)wavFilePath error:(NSError *)error{
+    DDetailLog(@"音频播放完成");
+}
+
+//录音文件转码成amr文件结束回调
+- (void)voiceHandleDidConvertWavToAmrVoiceHandle:(VoiceHandle *)aVoiceHandle wavFilePath:(NSString *)wavFilePath amrFilePath:(NSString *)amrFilePath error:(NSError *)error{
+
+}
+
+-(void)voiceHandleDidConvertAmrToWav:(VoiceHandle *)aVoiceHandle amrFilePath:(NSString *)amrFilePath wavFilePath:(NSString *)wavFilePath error:(NSError *)error{
+    [aVoiceHandle playVoice:wavFilePath];
+}
+
 
 
 @end
