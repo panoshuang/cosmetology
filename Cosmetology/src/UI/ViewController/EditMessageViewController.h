@@ -13,7 +13,7 @@
 #import "MessageBoardInfo.h"
 
 @protocol messageBoardViewControllerDelegate; 
-@interface EditMessageViewController : UIViewController<UITextViewDelegate,AVAudioRecorderDelegate>
+@interface EditMessageViewController : UIViewController<UITextViewDelegate,AVAudioRecorderDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     __weak id _delegate;
     NSInteger _subProductID;

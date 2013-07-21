@@ -43,6 +43,8 @@
     NSTimeInterval _beginRecordAudioInterval; //开始录音时间
     NSTimeInterval _endRecordAudioInterval; //结束录音时间
     
+    UIImage *headPortraitsImage;//头像图片
+    
 }
 
 @property (nonatomic,strong) MicroView *microView;
@@ -87,7 +89,8 @@
     headPortraits = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     headPortraits.frame = CGRectMake(60, 160, 204, 143);
     headPortraits.contentMode = UIViewContentModeScaleToFill;
-    [headPortraits setBackgroundImage:[UIImage imageNamed:@"pickPhoto.png"] forState:UIControlStateNormal];
+    headPortraitsImage = [UIImage imageNamed:@"pickPhoto.png"];
+    [headPortraits setBackgroundImage:headPortraitsImage forState:UIControlStateNormal];
     //headPortraits.imageView.image = [UIImage imageNamed:@"headPortraits.png"];
     [headPortraits addTarget:self action:@selector(pickImage:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:headPortraits];
@@ -189,6 +192,20 @@
 -(void)pickImage:(UIButton *)btn
 {
     //TODO:拍照
+    //指定图片来源
+	UIImagePickerControllerSourceType sourceType=UIImagePickerControllerSourceTypeCamera;
+	//判断如果摄像机不能用图片来源与图片库
+	if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+	{
+		sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
+	}
+	UIImagePickerController *picker=[[UIImagePickerController alloc] init];
+	picker.delegate= self;
+	//前后摄像机
+	//picker.cameraDevice=UIImagePickerControllerCameraDeviceFront;
+	picker.allowsEditing=YES;
+	picker.sourceType=sourceType;
+	[self presentModalViewController:picker animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -387,6 +404,25 @@
 -(void)voiceHandleDidConvertAmrToWav:(VoiceHandle *)aVoiceHandle amrFilePath:(NSString *)amrFilePath wavFilePath:(NSString *)wavFilePath error:(NSError *)error{
     [aVoiceHandle playVoice:wavFilePath];
 }
+
+#pragma mark UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    DDetailLog(@"%@",info);
+    NSString *headPortraitsUuid = [CommonUtil uuid];
+    NSString *headPortraitsFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation([info objectForKey:UIImagePickerControllerOriginalImage], 1)
+                                                                relatePath:[headPortraitsUuid stringByAppendingPathExtension:@"JPEG"]
+                                                              resourceType:kResourceCacheTypeUserPortrait];
+    DDetailLog(@"%@",[info objectForKey:UIImagePickerControllerOriginalImage])
+    headPortraitsImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    [headPortraits setBackgroundImage:headPortraitsImage forState:UIControlStateNormal];
+    if (headPortraitsFilePath.length == 0) {
+        ALERT_MSG(@"保存失败", nil, @"确定");
+        return;
+    }
+    [picker dismissViewControllerAnimated:YES completion:^{}];
+    
+}
+
 
 
 
