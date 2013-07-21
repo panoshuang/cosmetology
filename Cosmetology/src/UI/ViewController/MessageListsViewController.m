@@ -31,14 +31,13 @@
 #pragma mark ViewController (privates methods)
 //////////////////////////////////////////////////////////////
 
-@interface MessageListsViewController ()<GMGridViewDataSource, GMGridViewSortingDelegate, GMGridViewTransformationDelegate, GMGridViewActionDelegate>
+@interface MessageListsViewController ()<GMGridViewDataSource, GMGridViewSortingDelegate, GMGridViewTransformationDelegate, GMGridViewActionDelegate,MessageBoardViewControllerDelegate>
 {
     __gm_weak GMGridView *_gmGridView;
     UINavigationController *_optionsNav;
     UIPopoverController *_optionsPopOver;
     
     NSMutableArray *_msgArray;
-    __gm_weak NSMutableArray *_currentData;
     NSInteger _lastDeleteItemIndexAsked;
     MessageBoardInfo *messageBoardInfo;
     
@@ -61,6 +60,7 @@
 {
     if ((self =[super init]))
     {
+        _productId = aId;
         _msgArray = [[NSMutableArray alloc] init];
         messageBoardInfo = [[MessageBoardInfo alloc]init];
         [self loadData];
@@ -207,18 +207,20 @@
 - (void)removeItem
 {
     // Example: removing last item
-    if ([_currentData count] > 0)
+    if ([_msgArray count] > 0)
     {
-        NSInteger index = [_currentData count] - 1;
+        NSInteger index = [_msgArray count] - 1;
         
         [_gmGridView removeObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade | GMGridViewItemAnimationScroll];
-        [_currentData removeObjectAtIndex:index];
+        [_msgArray removeObjectAtIndex:index];
     }
 }
 
 -(void)toEditMessage:(UIButton *)btn
 {
     EditMessageViewController *editMessageViewController = [[EditMessageViewController alloc]init];
+    editMessageViewController.subProductID = _productId;
+    editMessageViewController.delegate = self;
     [self.navigationController pushViewController:editMessageViewController animated:YES];
 }
 
@@ -352,7 +354,7 @@
 
 - (NSInteger)numberOfItemsInGMGridView:(GMGridView *)gridView
 {
-    return [_currentData count];
+    return [_msgArray count];
 }
 
 - (CGSize)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation
@@ -433,7 +435,7 @@
 {
     if (buttonIndex == 1)
     {
-        [_currentData removeObjectAtIndex:_lastDeleteItemIndexAsked];
+        [_msgArray removeObjectAtIndex:_lastDeleteItemIndexAsked];
         [_gmGridView removeObjectAtIndex:_lastDeleteItemIndexAsked withAnimation:GMGridViewItemAnimationFade];
     }
 }
@@ -475,14 +477,14 @@
 
 - (void)GMGridView:(GMGridView *)gridView moveItemAtIndex:(NSInteger)oldIndex toIndex:(NSInteger)newIndex
 {
-    NSObject *object = [_currentData objectAtIndex:oldIndex];
-    [_currentData removeObject:object];
-    [_currentData insertObject:object atIndex:newIndex];
+    NSObject *object = [_msgArray objectAtIndex:oldIndex];
+    [_msgArray removeObject:object];
+    [_msgArray insertObject:object atIndex:newIndex];
 }
 
 - (void)GMGridView:(GMGridView *)gridView exchangeItemAtIndex:(NSInteger)index1 withItemAtIndex:(NSInteger)index2
 {
-    [_currentData exchangeObjectAtIndex:index1 withObjectAtIndex:index2];
+    [_msgArray exchangeObjectAtIndex:index1 withObjectAtIndex:index2];
 }
 
 
@@ -562,6 +564,12 @@
     
 }
 
+#pragma mark - MessageBoardViewControllerDelegate
+
+-(void)saveMessage:(MessageBoardInfo *)aMsg forSubProductID:(NSInteger)subProductID{
+    [_msgArray addObject:aMsg];
+    [_gmGridView insertObjectAtIndex:_msgArray.count - 1 animated:YES];
+}
 
 - (void)didReceiveMemoryWarning
 {

@@ -12,20 +12,19 @@
 #import "SubProductInfo.h"
 #import "MessageBoardInfo.h"
 
-@protocol messageBoardViewControllerDelegate; 
+@protocol MessageBoardViewControllerDelegate; 
 @interface EditMessageViewController : UIViewController<UITextViewDelegate,AVAudioRecorderDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
-    __weak id _delegate;
+    __weak id<MessageBoardViewControllerDelegate> _delegate;
     NSInteger _subProductID;
-    MessageBoardInfo *_messageBoardInfo;
 }
 
-@property(nonatomic, weak)id<messageBoardViewControllerDelegate> delegate;
+@property(nonatomic, weak)id<MessageBoardViewControllerDelegate> delegate;
 @property(nonatomic)NSInteger subProductID;
 
 @end
 
-@protocol messageBoardViewControllerDelegate <NSObject>
+@protocol MessageBoardViewControllerDelegate <NSObject>
 
 -(void)saveMessage:(MessageBoardInfo *)messageBoardInfo forSubProductID:(NSInteger)subProductID;
 
