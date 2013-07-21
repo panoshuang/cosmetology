@@ -14,7 +14,16 @@
 @synthesize mainProductID;
 @synthesize name;
 @synthesize enable;
-
 @synthesize index;
 @synthesize priceImageFilePath;
+@synthesize vedioURL;
+
+
+-(id)init{
+    self = [super init];
+    if (self) {
+        vedioURL = @"";
+    }
+    return self;
+}
 @end

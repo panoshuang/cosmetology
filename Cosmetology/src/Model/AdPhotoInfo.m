@@ -12,4 +12,9 @@
 @implementation AdPhotoInfo {
 
 }
+
+@synthesize photoId;
+@synthesize subProductId;
+@synthesize index;
+@synthesize imageFilePath;
 @end

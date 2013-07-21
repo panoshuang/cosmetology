@@ -25,6 +25,7 @@
 #define SUB_PRODUCT_INFO_TABLE_NAME                     @"name"
 #define SUB_PRODUCT_INFO_TABLE_ENABLE                   @"enable"
 #define SUB_PRODUCT_INFO_TABLE_INDEX                    @"sortIndex"
+#define SUB_PRODUCT_INFO_TABLE_VEDIO                    @"vedio"
 
 #pragma mark - AdPhotoInfo表
 #define AD_PHOTO_INFO_TABLE_TABLE_NAME                  @"adPhotoInfo"

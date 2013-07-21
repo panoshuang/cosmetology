@@ -12,6 +12,10 @@
 @synthesize Segment;
 @synthesize labelLoanshift;
 @synthesize labelColor;
+
+-(IBAction)cancel{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 -(IBAction)myPalttealllineclear
 {
 	[(Palette*)self.view myalllineclear];
@@ -214,8 +218,6 @@
 	{
 		[temp setAlpha:1.0];
 	}
-	
-	
 }
 
 -(IBAction)callCame

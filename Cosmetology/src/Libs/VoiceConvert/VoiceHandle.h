@@ -39,6 +39,9 @@
 @property(nonatomic, copy) NSString *curConvertAmrToWavFilePathDes;
 @property(nonatomic, retain) NSTimer *levelTimer;
 
+//把分贝为单位的声音装换成0-5个级别
++(int) levelForVolume:(CGFloat)decibels;
+
 
 -(void)startRecord;
 

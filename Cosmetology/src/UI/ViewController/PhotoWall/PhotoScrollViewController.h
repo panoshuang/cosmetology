@@ -13,7 +13,7 @@
 @protocol PhotoScrollViewControllerDelegate;
 
 
-@interface PhotoScrollViewController : KTPhotoScrollViewController <UIAlertViewDelegate, UINavigationControllerDelegate,  UINavigationControllerDelegate,
+@interface PhotoScrollViewController : KTPhotoScrollViewController <UIAlertViewDelegate, UINavigationControllerDelegate,  UINavigationControllerDelegate,UIImagePickerControllerDelegate,
         MHImagePickerMutilSelectorDelegate>
 {
     BOOL _bIsEdit;

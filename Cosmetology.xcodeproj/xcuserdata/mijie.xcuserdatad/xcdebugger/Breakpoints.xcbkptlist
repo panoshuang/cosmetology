@@ -2,28 +2,4 @@
 <Bucket
    type = "1"
    version = "1.0">
-   <FileBreakpoints>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Cosmetology/src/UI/ViewController/PhotoWall/PhotoScrollViewController.m"
-         timestampString = "395999479.211339"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "201"
-         endingLineNumber = "201"
-         landmarkName = "-likePhotoBtnClick:"
-         landmarkType = "5">
-      </FileBreakpoint>
-   </FileBreakpoints>
-   <ExceptionBreakpoints>
-      <ExceptionBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         scope = "0"
-         stopOnStyle = "0">
-      </ExceptionBreakpoint>
-   </ExceptionBreakpoints>
 </Bucket>

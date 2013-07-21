@@ -33,6 +33,7 @@
 -(IBAction)myPalttealllineclear;
 -(IBAction)LineFinallyRemove;
 -(IBAction)myRubberSeraser;
+-(IBAction)cancel;
 
 -(void)segmentColor;
 -(void)segmentWidth;
