@@ -25,7 +25,7 @@
     UIButton *record;//录音
     UIButton *playRecord;//播放录音
     UIButton *singeName;//签名
-    MessageBoardInfo *messageBoardInfo;//留言板信息
+    MessageBoardInfo *_messageBoardInfo;//留言板信息
     
     //录音功能
     AVAudioRecorder *recorder;
@@ -154,13 +154,13 @@
     [self.view addSubview:messageImageView];
     
     //初始化留言板信息
-    messageBoardInfo = [[MessageBoardInfo alloc]init];
-    messageBoardInfo.messageContent = nil;
-    messageBoardInfo.messageRecord = @"录音路劲";
-    messageBoardInfo.headPortraits = @"头像路劲";
-    messageBoardInfo.singeName = @"签名路径";
-    messageBoardInfo.popularity = 0;
-    messageBoardInfo.subProductID = _subProductID;
+    _messageBoardInfo = [[MessageBoardInfo alloc]init];
+    _messageBoardInfo.messageContent = nil;
+    _messageBoardInfo.messageRecord = @"录音路劲";
+    _messageBoardInfo.headPortraits = @"头像路劲";
+    _messageBoardInfo.singeName = @"签名路径";
+    _messageBoardInfo.popularity = 0;
+    _messageBoardInfo.subProductID = _subProductID;
 
 }
 
@@ -175,8 +175,8 @@
 
 -(void)saveMessage:(UIButton *)btn
 {
-    messageBoardInfo.messageContent = messageEditTextView.text;
-    [[MessageBoardManager instance] addMessageBoard:messageBoardInfo];
+    _messageBoardInfo.messageContent = messageEditTextView.text;
+    [[MessageBoardManager instance] addMessageBoard:_messageBoardInfo];
     //TODO:
     [messageEditTextView resignFirstResponder];
     if ([_delegate respondsToSelector:@selector(saveMessage:forSubProductID:)]) {

@@ -17,7 +17,6 @@
 {
     __weak id<MessageBoardViewControllerDelegate> _delegate;
     NSInteger _subProductID;
-    MessageBoardInfo *_messageBoardInfo;
 }
 
 @property(nonatomic, weak)id<MessageBoardViewControllerDelegate> delegate;

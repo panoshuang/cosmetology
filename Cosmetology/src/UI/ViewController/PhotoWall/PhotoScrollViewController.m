@@ -338,7 +338,7 @@ static BOOL isProsecutingPhoto = NO;
 //    [alertView show];
 
     //TODO: 此处该成查看留言列表
-    MessageListsViewController *messageListsViewController = [[MessageListsViewController alloc]init];
+    MessageListsViewController *messageListsViewController = [[MessageListsViewController alloc]initWithProductId:_subProductID];
     [self.navigationController pushViewController:messageListsViewController animated:YES];
     DDetailLog(@"留言列表按钮");
 }
