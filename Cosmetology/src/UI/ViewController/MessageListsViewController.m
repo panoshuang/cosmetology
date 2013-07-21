@@ -130,7 +130,7 @@
                                                                 0,
                                                                 100,
                                                                 kToolBarHeight)];
-    _editTapView.backgroundColor = [UIColor yellowColor];
+    _editTapView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_editTapView];
     _editGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editGestureDidTap:)];
     _editGesture.numberOfTapsRequired = 3;
@@ -404,6 +404,7 @@
 
 - (void)GMGridViewDidTapOnEmptySpace:(GMGridView *)gridView
 {
+    _toolBar.hidden = !_toolBar.hidden;
     NSLog(@"Tap on empty space");
 }
 
