@@ -387,6 +387,12 @@ static BOOL isProsecutingPhoto = NO;
     photoInfo.vedioFilePath = vedioFilePath;
     [[AdPhotoManager instance] updateAdPhoto:photoInfo];
     
+    //显示播放按钮
+    KTPhotoView *photoView = [photoViews_ objectAtIndex:currentIndex_];
+    if (photoView && [photoViews_ isKindOfClass:[KTPhotoView class]]) {
+        [photoView showOrHideVedioBtn:YES];
+    }
+    
 //    SubProductInfo *subProductInfo = [[SubCatalogManager instance] subProductInfoForProductID:_subProductID];
 //    subProductInfo.vedioURL = vedioFilePath;
 //    DDetailLog(@"%@",subProductInfo.vedioURL);
