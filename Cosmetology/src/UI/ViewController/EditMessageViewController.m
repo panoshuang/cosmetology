@@ -7,7 +7,6 @@
 //
 
 #import "EditMessageViewController.h"
-#import "MyPaletteViewController.h"
 #import "CheckMessageViewController.h"
 #import "MessageBoardInfo.h"
 #import "MessageBoardManager.h"
@@ -44,6 +43,7 @@
     NSTimeInterval _endRecordAudioInterval; //结束录音时间
     
     UIImage *headPortraitsImage;//头像图片
+    UIImage *singeNameImage;//签名图片
     
 }
 
@@ -171,6 +171,7 @@
 -(void)singeName:(UIButton *)btn
 {
     MyPaletteViewController *myPaletteViewController = [[MyPaletteViewController alloc]init];
+    myPaletteViewController.delegate =self;
     [self.navigationController pushViewController:myPaletteViewController animated:YES];
 }
 
@@ -178,7 +179,30 @@
 
 -(void)saveMessage:(UIButton *)btn
 {
+    //保存头像到缓存
+    NSString *headPortraitsUuid = [CommonUtil uuid];
+    NSString *headPortraitsFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(headPortraitsImage, 1)
+                                                                      relatePath:[headPortraitsUuid stringByAppendingPathExtension:@"JPEG"]
+                                                                    resourceType:kResourceCacheTypeUserPortrait];
+    if (headPortraitsFilePath.length == 0) {
+        ALERT_MSG(@"保存失败", nil, @"确定");
+        return;
+    }
+    
+    //保存签名到缓存
+    NSString *bgUuid = [CommonUtil uuid];
+    NSString *singeNameImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(singeNameImage, 1)
+                                                                       relatePath:bgUuid
+                                                                     resourceType:kResourceCacheTypeUserAutograph];
+    
+    if (singeNameImageFilePath.length == 0) {
+        ALERT_MSG(@"保存失败", nil, @"确定");
+        return;
+    }
+    
+    _messageBoardInfo.headPortraits = headPortraitsFilePath;
     _messageBoardInfo.messageContent = messageEditTextView.text;
+    _messageBoardInfo.singeName = singeNameImageFilePath;
     [[MessageBoardManager instance] addMessageBoard:_messageBoardInfo];
     //TODO:
     [messageEditTextView resignFirstResponder];
@@ -407,21 +431,18 @@
 
 #pragma mark UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    DDetailLog(@"%@",info);
-    NSString *headPortraitsUuid = [CommonUtil uuid];
-    NSString *headPortraitsFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation([info objectForKey:UIImagePickerControllerOriginalImage], 1)
-                                                                relatePath:[headPortraitsUuid stringByAppendingPathExtension:@"JPEG"]
-                                                              resourceType:kResourceCacheTypeUserPortrait];
-    DDetailLog(@"%@",[info objectForKey:UIImagePickerControllerOriginalImage])
+    DDetailLog(@"%@",[info objectForKey:UIImagePickerControllerOriginalImage]);
     headPortraitsImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    [headPortraits setBackgroundImage:headPortraitsImage forState:UIControlStateNormal];
-    if (headPortraitsFilePath.length == 0) {
-        ALERT_MSG(@"保存失败", nil, @"确定");
-        return;
-    }
-    _messageBoardInfo.headPortraits = headPortraitsFilePath;
+    [headPortraits setImage:headPortraitsImage forState:UIControlStateNormal];
+    DDetailLog(@"%@",info);
     [picker dismissViewControllerAnimated:YES completion:^{}];
     
+}
+
+#pragma mark MyPaletteViewControllerDelegate
+-(void)setSingeNameImage:(UIImage *)img{
+    singeNameImage = img;
+    [singeName setImage:singeNameImage forState:UIControlStateNormal];
 }
 
 

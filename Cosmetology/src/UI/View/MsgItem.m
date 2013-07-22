@@ -14,6 +14,7 @@
 @synthesize viContentBg = _viContentBg;
 @synthesize ivAutograph = _ivAutograph;
 @synthesize btnAcclaim = _btnAcclaim;
+@synthesize headPortraits = _headPortraits;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -24,7 +25,9 @@
         _viContentBg.layer.borderColor = [UIColor yellowColor].CGColor;
         _viContentBg.layer.borderWidth = 1;
         _ivAutograph = [[UIImageView alloc] initWithFrame:CGRectZero];
+        _headPortraits = [[UIImageView alloc] initWithFrame:CGRectZero];
         _btnAcclaim = [[AcclaimButton alloc] initWithFrame:CGRectZero];
+        [_ivAutograph addSubview:_headPortraits];
         [self addSubview:_viContentBg];
         [self addSubview:_ivAutograph];
         [self addSubview:_btnAcclaim];
@@ -40,6 +43,8 @@
     _viContentBg.frame = contentBgFrame;
     CGRect autographFrame = CGRectMake(5, 5, contentBgFrame.size.width - 10, contentBgFrame.size.height - 10);
     _ivAutograph.frame = autographFrame;
+    CGRect headPortraitsFrame = CGRectMake(autographFrame.size.width - 40, 5, 40, 30);
+    _headPortraits.frame = headPortraitsFrame;
 }
 
 /*

@@ -7,6 +7,7 @@
 //
 
 #import "MyPaletteViewController.h"
+#import "EditMessageViewController.h"
 
 @implementation MyPaletteViewController
 @synthesize Segment;
@@ -218,6 +219,11 @@
 	{
 		[temp setAlpha:1.0];
 	}
+    if ([_delegate respondsToSelector:@selector(setSingeNameImage:)]) {
+        [_delegate setSingeNameImage:image];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 //******************************************************************************************
 /*
@@ -245,6 +251,10 @@
 {
 	
     [super viewDidLoad];
+    UIImageView *bgImageView = [[UIImageView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
+    bgImageView.image = [UIImage imageNamed:@"singeName.png"];
+    //[self.view addSubview:bgImageView];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"singeName.png"]];
 }
 
 /*
