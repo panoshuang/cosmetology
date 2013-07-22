@@ -13,8 +13,10 @@
 
 }
 
-@synthesize photoId;
-@synthesize subProductId;
-@synthesize index;
-@synthesize imageFilePath;
+@synthesize photoId = _photoId;
+@synthesize subProductId = _subProductId;
+@synthesize index = _index;
+@synthesize imageFilePath = _imageFilePath;
+@synthesize hadVedio = _hadVedio;
+@synthesize vedioFilePath = _vedioFilePath;
 @end

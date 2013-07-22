@@ -25,6 +25,8 @@
 - (void)imageAtIndex:(NSInteger)index photoView:(KTPhotoView *)photoView;
 - (void)thumbImageAtIndex:(NSInteger)index thumbView:(KTThumbView *)thumbView;
 
+- (BOOL)isVedioItemAtIndex:(NSInteger)index;
+
 - (void)deleteImageAtIndex:(NSInteger)index;
 - (void)exportImageAtIndex:(NSInteger)index;
 

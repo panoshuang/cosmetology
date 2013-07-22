@@ -19,6 +19,7 @@
 #import "PriceViewController.h"
 #import "MessageListsViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "KTPhotoView.h"
 
 
 #define BTN_LIKE_TAG   1001
@@ -246,6 +247,21 @@ static BOOL isProsecutingPhoto = NO;
 
 }
 
+-(void)playVedio:(UIButton *)vedioBtn{
+    KTPhotoView *photoView = (KTPhotoView *)vedioBtn.superview;
+    AdPhotoInfo *photoInfo = [[(PhotoBrowserDataSource *)dataSource_ photoList] objectAtIndex:photoView.index];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(exitFullScreen:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+    NSURL *url = [NSURL fileURLWithPath:photoInfo.vedioFilePath isDirectory:NO];
+    moviePlayer = [[MPMoviePlayerController alloc]initWithContentURL:url];
+    [moviePlayer prepareToPlay];
+    moviePlayer.shouldAutoplay = YES;
+    _moviePlayState = MPMoviePlaybackStateStopped;
+    [moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
+    [moviePlayer.view setFrame:self.view.bounds];
+    [self.view addSubview:moviePlayer.view];
+    
+}
+
 -(void)exitFullScreen:(NSNotification *)notification
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
@@ -365,11 +381,17 @@ static BOOL isProsecutingPhoto = NO;
         return;
     }
     
-    SubProductInfo *subProductInfo = [[SubCatalogManager instance] subProductInfoForProductID:_subProductID];
-    subProductInfo.vedioURL = vedioFilePath;
-    DDetailLog(@"%@",subProductInfo.vedioURL);
-    SubCatalogManager *subCatalogManager = [SubCatalogManager instance];
-    [subCatalogManager updateSubCatalog:subProductInfo];
+    //获取广告实体,插入视频
+    AdPhotoInfo *photoInfo = [[(PhotoBrowserDataSource *)dataSource_ photoList] objectAtIndex:currentIndex_];
+    photoInfo.hadVedio = YES;
+    photoInfo.vedioFilePath = vedioFilePath;
+    [[AdPhotoManager instance] updateAdPhoto:photoInfo];
+    
+//    SubProductInfo *subProductInfo = [[SubCatalogManager instance] subProductInfoForProductID:_subProductID];
+//    subProductInfo.vedioURL = vedioFilePath;
+//    DDetailLog(@"%@",subProductInfo.vedioURL);
+//    SubCatalogManager *subCatalogManager = [SubCatalogManager instance];
+//    [subCatalogManager updateSubCatalog:subProductInfo];
 
 }
 

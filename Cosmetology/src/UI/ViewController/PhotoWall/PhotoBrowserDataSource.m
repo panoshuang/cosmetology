@@ -52,6 +52,11 @@
 
 }
 
+- (BOOL)isVedioItemAtIndex:(NSInteger)index{
+    AdPhotoInfo *photoInfo = [arrPhoto objectAtIndex:index];
+    return photoInfo.hadVedio;
+}
+
 - (void)thumbImageAtIndex:(NSInteger)index thumbView:(KTThumbView *)thumbView
 {
     AdPhotoInfo *photoInfo = [arrPhoto objectAtIndex:index];
