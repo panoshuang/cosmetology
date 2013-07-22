@@ -21,12 +21,16 @@
     UIView *progressBackgroundView;
     UIProgressView *progressBar;
     UILabel * progressLabel;
+    UIButton *vedioBtn;
+    BOOL isShowVedioBtn;
     BOOL isImageShoulFill;
+    
 }
 
 
 @property (nonatomic, weak) KTPhotoScrollViewController *scroller;
 @property (nonatomic, assign) NSInteger index;
+@property (nonatomic,strong) UIButton *vedioBtn;
 
 - (void)setImage:(UIImage *)newImage;
 - (void)turnOffZoom;
@@ -37,4 +41,6 @@
 - (void)restoreCenterPoint:(CGPoint)oldCenter scale:(CGFloat)oldScale;
 
 - (void)setImageWithURL:(NSString *)urlStr placeholderImage:(UIImage *)placeholder;
+
+-(void)showOrHideVedioBtn:(BOOL)isShow;
 @end

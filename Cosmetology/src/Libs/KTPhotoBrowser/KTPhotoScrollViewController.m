@@ -301,6 +301,10 @@ const CGFloat ktkDefaultTitlebarHeight         = 46;
     [nextButton_ setEnabled:(currentIndex_ < photoCount_ - 1)];
 }
 
+-(void)playVedio:(UIButton *)vedioBtn{
+    
+}
+
 
 #pragma mark -
 #pragma mark Frame calculations
@@ -345,6 +349,7 @@ const CGFloat ktkDefaultTitlebarHeight         = 46;
         // Load the photo view.
         CGRect frame = [self frameForPageAtIndex:index];
         KTPhotoView *photoView = [[KTPhotoView alloc] initWithFrame:frame];
+        [photoView.vedioBtn addTarget:self action:@selector(play) forControlEvents:<#(UIControlEvents)#>]
         [photoView setScroller:self];
         [photoView setIndex:index];
         [photoView setBackgroundColor:[UIColor clearColor]];
@@ -361,6 +366,13 @@ const CGFloat ktkDefaultTitlebarHeight         = 46;
             {
                 [dataSource_ imageAtIndex:index photoView:photoView];
             }
+            
+            //设置是否是显示播放按钮
+            if ([dataSource_ respondsToSelector:@selector(isVedioItemAtIndex:)]) {
+                [photoView showOrHideVedioBtn:[dataSource_ isVedioItemAtIndex:index]];
+            }
+            
+            
         }
 
         [scrollView_ addSubview:photoView];
