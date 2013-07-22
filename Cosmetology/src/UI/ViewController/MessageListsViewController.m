@@ -377,9 +377,20 @@
         cell.contentView = msgItem;
     }
     MsgItem *contentView = (MsgItem *)cell.contentView;
-    contentView.ivAutograph.image = [UIImage imageNamed:@"bg_autograph"];
+    MessageBoardInfo *messageBoardinfoTemp = [_msgArray objectAtIndex:index];
+    
+    UIImage *singeNameImage = [[ResourceCache instance] imageForCachePath:messageBoardinfoTemp.singeName];
+    if (!singeNameImage) {
+        singeNameImage  = [UIImage imageNamed:@"singeName"];
+    }
+    UIImage *protraitImage = [[ResourceCache instance] imageForCachePath:messageBoardinfoTemp.headPortraits];
+    if (!protraitImage) {
+        protraitImage  = [UIImage imageNamed:@"pickPhoto"];
+    }
+    contentView.ivAutograph.image = singeNameImage;
+    contentView.headPortraits.image = protraitImage;
     contentView.btnAcclaim.ivBg.image = [UIImage imageNamed:@"bg_acclaim"];
-    contentView.btnAcclaim.lbCount.text = @"50";
+    contentView.btnAcclaim.lbCount.text = [NSString stringWithFormat:@"%d",messageBoardinfoTemp.popularity];
     return cell;
 }
 

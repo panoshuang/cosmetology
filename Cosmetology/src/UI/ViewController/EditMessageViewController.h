@@ -11,9 +11,10 @@
 #import <AVFoundation/AVFoundation.h>
 #import "SubProductInfo.h"
 #import "MessageBoardInfo.h"
+#import "MyPaletteViewController.h"
 
 @protocol MessageBoardViewControllerDelegate; 
-@interface EditMessageViewController : UIViewController<UITextViewDelegate,AVAudioRecorderDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface EditMessageViewController : UIViewController<UITextViewDelegate,AVAudioRecorderDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MyPaletteViewControllerDelegate>
 {
     __weak id<MessageBoardViewControllerDelegate> _delegate;
     NSInteger _subProductID;

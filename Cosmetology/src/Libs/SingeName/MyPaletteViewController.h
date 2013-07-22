@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Palette.h"
 #import <QuartzCore/QuartzCore.h>
+
+@protocol MyPaletteViewControllerDelegate;
+
 @interface MyPaletteViewController : UIViewController 
 <UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
@@ -23,10 +26,12 @@
 	
 	UISegmentedControl* WidthButton;
 	UISegmentedControl* ColorButton;
+    __weak id<MyPaletteViewControllerDelegate> _delegate;
 }
 @property int Segment;
 @property (nonatomic,retain)IBOutlet UILabel* labelColor;
 @property (nonatomic,retain)IBOutlet UILabel* labelLoanshift;
+@property (nonatomic,weak) id<MyPaletteViewControllerDelegate> delegate;
 
 -(IBAction)myAllColor;
 -(IBAction)myAllWidth;
@@ -39,5 +44,11 @@
 -(void)segmentWidth;
 //=====================
 -(IBAction)captureScreen;
+@end
+
+@protocol MyPaletteViewControllerDelegate <NSObject>
+
+-(void)setSingeNameImage:(UIImage *)img;
+
 @end
 

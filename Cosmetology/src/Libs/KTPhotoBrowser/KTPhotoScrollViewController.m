@@ -349,7 +349,7 @@ const CGFloat ktkDefaultTitlebarHeight         = 46;
         // Load the photo view.
         CGRect frame = [self frameForPageAtIndex:index];
         KTPhotoView *photoView = [[KTPhotoView alloc] initWithFrame:frame];
-        [photoView.vedioBtn addTarget:self action:@selector(play) forControlEvents:<#(UIControlEvents)#>]
+        [photoView.vedioBtn addTarget:self action:@selector(playVedio:) forControlEvents:UIControlEventTouchUpInside];
         [photoView setScroller:self];
         [photoView setIndex:index];
         [photoView setBackgroundColor:[UIColor clearColor]];

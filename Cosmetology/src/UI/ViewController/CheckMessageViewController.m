@@ -94,12 +94,15 @@
     UIImageView *messageImageView = [[UIImageView alloc]initWithFrame:CGRectMake(300, 50, 637, 372)];
     messageImageView.image = [UIImage imageNamed:@"messageBoard.png"];
     messageImageView.userInteractionEnabled = YES;
-    
     [messageImageView addSubview:messagelabel];
     [messageImageView addSubview:messageTextView];
     
-    //签名
-    singeName = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"singeName.png"]];
+    //显示签名
+    UIImage *singeNameImage = [[ResourceCache instance] imageForCachePath:_messageBoardInfo.singeName];
+    if (!singeNameImage) {
+        singeNameImage  = [UIImage imageNamed:@"singeName"];
+    }
+    singeName = [[UIImageView alloc]initWithImage:singeNameImage];
     singeName.frame = CGRectMake(294, 389, 529, 322);
     [self.view addSubview:singeName];
     [self.view addSubview:messageImageView];
