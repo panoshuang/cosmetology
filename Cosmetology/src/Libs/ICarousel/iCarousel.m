@@ -2167,13 +2167,16 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
             default:
             {
                 CGFloat translation = (_vertical? [panGesture translationInView:self].y: [panGesture translationInView:self].x) - _previousTranslation;
-                CGFloat factor = .35f; //modify huangsp,解决手指拖动过快
-//                CGFloat factor = 1.0f;
-//                if (!_wrapEnabled && _bounces)
-//                {
-//                    factor = 1.0f - fminf(fabsf(_scrollOffset - [self clampedOffset:_scrollOffset]), _bounceDistance) / _bounceDistance;
-//                }
                 
+                CGFloat factor = 1.0f;
+                if (!_wrapEnabled && _bounces)
+                {
+                    factor = 1.0f - fminf(fabsf(_scrollOffset - [self clampedOffset:_scrollOffset]), _bounceDistance) / _bounceDistance;
+                }
+                if (_type == iCarouselTypeCoverFlow2) {
+                     factor = .35f; //modify huangsp,解决手指拖动过快
+                }
+
                 _previousTranslation = _vertical? [panGesture translationInView:self].y: [panGesture translationInView:self].x;
                 _startVelocity = -(_vertical? [panGesture velocityInView:self].y: [panGesture velocityInView:self].x) * factor * _scrollSpeed / _itemWidth;
                 _scrollOffset -= translation * factor * _offsetMultiplier / _itemWidth;
