@@ -48,7 +48,7 @@
 
 @implementation MainViewController
 
-@synthesize item;
+//@synthesize item;
 
 -(id)init{
     self = [super init];
@@ -75,8 +75,7 @@
 -(void)loadView{
     [super loadView];
     self.navigationController.navigationBarHidden = YES;
-    UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];
-    
+    UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];    
     mainView.backgroundColor=[UIColor whiteColor];
     self.view = mainView;
     
@@ -85,7 +84,12 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *bgFilePath = [userDefaults stringForKey:HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH];
     UIImage *bgImage = [[ResourceCache instance] imageForCachePath:bgFilePath];
-    _bgView.image = bgImage;
+    if (bgImage) {
+        _bgView.image = bgImage;
+    }else{
+        _bgView.image = [UIImage imageNamed:@"Default-Landscape~ipad.png"];
+    }
+    
     [self.view addSubview:_bgView];
     
     
@@ -93,6 +97,8 @@
     _catalogCarousel.delegate = self;
     _catalogCarousel.dataSource = self;
     _catalogCarousel.type = iCarouselTypeCoverFlow2;
+    _catalogCarousel.scrollSpeed = 0;
+    _catalogCarousel.decelerationRate = 1;
     [self.view addSubview:_catalogCarousel];
     
     _toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
@@ -387,11 +393,11 @@
     return view;
 }
 
-- (NSUInteger)numberOfPlaceholdersInCarousel:(iCarousel *)carousel
-{
-    //note: placeholder views are only displayed on some carousels if wrapping is disabled
-    return 2;
-}
+//- (NSUInteger)numberOfPlaceholdersInCarousel:(iCarousel *)carousel
+//{
+//    //note: placeholder views are only displayed on some carousels if wrapping is disabled
+//    return 2;
+//}
 
 - (UIView *)carousel:(iCarousel *)carousel placeholderViewAtIndex:(NSUInteger)index reusingView:(UIView *)view
 {
@@ -430,43 +436,43 @@
     return view;
 }
 
-- (CATransform3D)carousel:(iCarousel *)_carousel itemTransformForOffset:(CGFloat)offset baseTransform:(CATransform3D)transform
-{
-    //implement 'flip3D' style carousel
-    transform = CATransform3DRotate(transform, M_PI / 4.0f, 0.0f, 1.0f, 0.0f);
-    return CATransform3DTranslate(transform, 0.0f, 0.0f, offset * _catalogCarousel.itemWidth);
-}
-
-- (CGFloat)carousel:(iCarousel *)_carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value
-{
-    //customize carousel display
-    switch (option)
-    {
-        case iCarouselOptionWrap:
-        {
-            //normally you would hard-code this to YES or NO
-            return _bIsWrap;
-        }
-        case iCarouselOptionSpacing:
-        {
-            //add a bit of spacing between the item views
-            return value * 1.05f;
-        }
-        case iCarouselOptionFadeMax:
-        {
-            if (_catalogCarousel.type == iCarouselTypeCustom)
-            {
-                //set opacity based on distance from camera
-                return 0.0f;
-            }
-            return value;
-        }
-        default:
-        {
-            return value;
-        }
-    }
-}
+//- (CATransform3D)carousel:(iCarousel *)_carousel itemTransformForOffset:(CGFloat)offset baseTransform:(CATransform3D)transform
+//{
+//    //implement 'flip3D' style carousel
+//    transform = CATransform3DRotate(transform, M_PI / 4.0f, 0.0f, 1.0f, 0.0f);
+//    return CATransform3DTranslate(transform, 0.0f, 0.0f, offset * _catalogCarousel.itemWidth);
+//}
+//
+//- (CGFloat)carousel:(iCarousel *)_carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value
+//{
+//    //customize carousel display
+//    switch (option)
+//    {
+//        case iCarouselOptionWrap:
+//        {
+//            //normally you would hard-code this to YES or NO
+//            return _bIsWrap;
+//        }
+//        case iCarouselOptionSpacing:
+//        {
+//            //add a bit of spacing between the item views
+//            return value * 1.05f;
+//        }
+//        case iCarouselOptionFadeMax:
+//        {
+//            if (_catalogCarousel.type == iCarouselTypeCustom)
+//            {
+//                //set opacity based on distance from camera
+//                return 0.0f;
+//            }
+//            return value;
+//        }
+//        default:
+//        {
+//            return value;
+//        }
+//    }
+//}
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index{
     DDetailLog(@"");
@@ -478,6 +484,7 @@
         _experienceViewController = [[ExperienceViewController alloc] init];
         _experienceViewController.delegate = self;
         _experienceViewController.mainDelegate = self;
+        _experienceViewController.bIsEdit = _bIsEdit;
         viewController = _experienceViewController;
 
 
@@ -485,6 +492,7 @@
         _subCatalogViewController = [[SubCatalogViewController alloc] initWithMainProductInfo:productInfo];
         _subCatalogViewController.delegate = self;
         _subCatalogViewController.mainDelegate = self;
+        _subCatalogViewController.bIsEdit = _bIsEdit;
         viewController = _subCatalogViewController;
     }
 

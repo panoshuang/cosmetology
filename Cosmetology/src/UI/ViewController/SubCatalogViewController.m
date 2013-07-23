@@ -113,7 +113,12 @@
     
     
     _ivBg = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    _ivBg.image = [[ResourceCache instance] imageForCachePath:self.mainProductInfo.bgImageFile];
+    UIImage *image = [[ResourceCache instance] imageForCachePath:self.mainProductInfo.bgImageFile];
+    if (image) {
+        _ivBg.image = image;
+    }else{
+        _ivBg.image = [UIImage imageNamed:@"bg_sub_product"];
+    }
     [self.view addSubview:_ivBg];
     
     _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, kToolBarHeight)];
@@ -380,6 +385,7 @@
         
         SubCatalogItem *mainCatalogItem = [[SubCatalogItem alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
         mainCatalogItem.delegate = cell;
+        mainCatalogItem.ivBg.image = [UIImage imageNamed:self.mainProductInfo.subItemBtnImageName];
         cell.contentView = mainCatalogItem;
         
     }

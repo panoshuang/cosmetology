@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "MainDelegate.h"
-#import "VideoItem.h"
+//#import "VideoItem.h"
 
 @interface MainViewController : UIViewController<MainDelegate>
 
-@property(nonatomic,strong)VideoItem *item;
+//@property(nonatomic,strong)VideoItem *item;
 
 @end

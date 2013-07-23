@@ -67,9 +67,9 @@
 
 -(void)loadCatalog{
     if(_bIsEdit){
-        [_catalogArray addObjectsFromArray:[[SubCatalogManager instance] allSubProductInfo]];
+        [_catalogArray addObjectsFromArray:[[SubCatalogManager instance] allSubProductInfoForMainProductID:self.experienceInfo.productID]];
     }else{
-        [_catalogArray addObjectsFromArray:[[SubCatalogManager instance] allEnableProductInfo]];
+        [_catalogArray addObjectsFromArray:[[SubCatalogManager instance] allEnableProductInfoForMainProductID:self.experienceInfo.productID]];
     }
 }
 
@@ -89,7 +89,12 @@
     [self.view addGestureRecognizer:tapGesture];
 
     _ivBg = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    _ivBg.image = [[ResourceCache instance] imageForCachePath:self.experienceInfo.bgImageFile];
+    UIImage *image = [[ResourceCache instance] imageForCachePath:self.experienceInfo.bgImageFile];
+    if (image) {
+        _ivBg.image = image;
+    }else{
+        _ivBg.image = [UIImage imageNamed:@"bg_exp_product"];
+    }
     [self.view addSubview:_ivBg];
     
     

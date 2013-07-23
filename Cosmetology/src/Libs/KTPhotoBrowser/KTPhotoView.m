@@ -23,6 +23,7 @@
 
 @synthesize scroller = scroller_;
 @synthesize index = index_;
+@synthesize vedioBtn;
 
 - (void)dealloc 
 {
@@ -48,6 +49,13 @@
    imageView_ = [[UIImageView alloc] initWithFrame:frame];
    [imageView_ setContentMode:UIViewContentModeScaleAspectFill];
    [self addSubview:imageView_];
+    
+    //创建视频播放按钮
+    vedioBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [vedioBtn setTitle:@"播放视屏" forState:UIControlStateNormal];
+    vedioBtn.frame = CGRectMake(0, 0, 100, 100);
+    vedioBtn.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+    [self addSubview:vedioBtn];
 }
 
 
@@ -56,6 +64,15 @@
     [progressBackgroundView removeFromSuperview];
     progressBackgroundView = nil;
    [imageView_ setImage:newImage];
+}
+
+-(void)showOrHideVedioBtn:(BOOL)isShow{
+    isShowVedioBtn = isShow;
+    if (isShowVedioBtn) {
+        vedioBtn.hidden = NO;
+    }else{
+        vedioBtn.hidden = YES;
+    }
 }
 
 -(void)setImageViewFrame{

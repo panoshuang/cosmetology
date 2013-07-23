@@ -7,11 +7,16 @@
 //
 
 #import "MyPaletteViewController.h"
+#import "EditMessageViewController.h"
 
 @implementation MyPaletteViewController
 @synthesize Segment;
 @synthesize labelLoanshift;
 @synthesize labelColor;
+
+-(IBAction)cancel{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 -(IBAction)myPalttealllineclear
 {
 	[(Palette*)self.view myalllineclear];
@@ -214,73 +219,11 @@
 	{
 		[temp setAlpha:1.0];
 	}
-	
-	
-}
-
--(IBAction)callCame
-{
-	//指定图片来源
-	UIImagePickerControllerSourceType sourceType=UIImagePickerControllerSourceTypeCamera;
-	//判断如果摄像机不能用图片来源与图片库
-	if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-	{
-		sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
-	}
-	UIImagePickerController *picker=[[UIImagePickerController alloc] init];
-	picker.delegate=self;
-	//前后摄像机
-	//picker.cameraDevice=UIImagePickerControllerCameraDeviceFront;
-	picker.allowsEditing=YES;
-	picker.sourceType=sourceType;
-	[self presentModalViewController:picker animated:YES];
-	[picker release];
-}
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-	//返回原来界面
-	[picker dismissModalViewControllerAnimated:YES];
-	//
-	UIImage* image=[[info objectForKey:UIImagePickerControllerEditedImage] retain];
-	//延时
-	[self performSelector:@selector(saveImage:) withObject:image afterDelay:0.5];
-	
-}
-//按取消键时
--(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-	[picker dismissModalViewControllerAnimated:YES];
-}
-//保存图片
--(void)saveImage:(id)sender
-{
-	
-	if (pickImage!=nil)
-	{
-		[pickImage removeFromSuperview];
-		[pickImage initWithImage:sender];
-		pickImage.frame=CGRectMake(40, 40, 200, 200);
-
-		[self.view insertSubview:pickImage atIndex:2];
-		//[self.view sendSubviewToBack:pickImage];//添加到最后一层
-		//self.view.backgroundColor=[UIColor clearColor];
-		//self.view.alpha=0;
-		//[self.view addSubview:pickImage];
-	
-		
-		
-	}
-	else 
-	{
-		pickImage=[[UIImageView alloc] initWithImage:sender];
-		pickImage.frame=CGRectMake(40, 40, 200, 200);
-		
-		[self.view insertSubview:pickImage atIndex:2];
-		//[self.view sendSubviewToBack:pickImage];//添加到最后一层
-		//self.view.backgroundColor=[UIColor clearColor];
-		//self.view.alpha=0;
-		///[self.view addSubview:pickImage];
-	}
+    if ([_delegate respondsToSelector:@selector(setSingeNameImage:)]) {
+        [_delegate setSingeNameImage:image];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 //******************************************************************************************
 /*
@@ -303,10 +246,15 @@
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+
 - (void)viewDidLoad 
 {
 	
     [super viewDidLoad];
+    UIImageView *bgImageView = [[UIImageView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
+    bgImageView.image = [UIImage imageNamed:@"singeName.png"];
+    //[self.view addSubview:bgImageView];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"singeName.png"]];
 }
 
 /*

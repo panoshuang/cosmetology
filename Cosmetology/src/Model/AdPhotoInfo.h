@@ -14,9 +14,13 @@
     int _subProductId;
     int _index;
     NSString *_imageFilePath; //图片保存在缓存
+    BOOL _hadVedio;
+    NSString *_vedioFilePath;
 }
 @property(nonatomic) int photoId;
 @property(nonatomic) int subProductId;
 @property(nonatomic) int index;
-@property(nonatomic, copy) NSString *imageFilePath;
+@property(nonatomic, strong) NSString *imageFilePath;
+@property(nonatomic) BOOL hadVedio;
+@property(nonatomic,strong) NSString *vedioFilePath;
 @end

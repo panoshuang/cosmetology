@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-
+@class MessageBoardInfo;
 @interface CheckMessageViewController : UIViewController
+
+@property(nonatomic,strong) MessageBoardInfo *messageBoardInfo;
 
 @end

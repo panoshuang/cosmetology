@@ -12,4 +12,21 @@
 @implementation AdPhotoInfo {
 
 }
+
+
+
+@synthesize photoId = _photoId;
+@synthesize subProductId = _subProductId;
+@synthesize index = _index;
+@synthesize imageFilePath = _imageFilePath;
+@synthesize hadVedio = _hadVedio;
+@synthesize vedioFilePath = _vedioFilePath;
+
+-(id)init{
+    self = [super init];
+    if (self) {
+        _vedioFilePath = @"";
+    }
+    return self;
+}
 @end

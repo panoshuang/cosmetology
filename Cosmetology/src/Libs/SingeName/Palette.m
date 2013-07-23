@@ -12,16 +12,17 @@
 @implementation Palette
 @synthesize x;
 @synthesize y;
-- (id)initWithFrame:(CGRect)frame {
-    
-	NSLog(@"initwithframe");
-    self = [super initWithFrame:frame];
+
+-(id)initWithCoder:(NSCoder *)aDecoder{
+    self = [super initWithCoder:aDecoder];
     if (self) {
-        // Initialization code.
+        myallline=[[NSMutableArray alloc] initWithCapacity:10];
+		myallColor=[[NSMutableArray alloc] initWithCapacity:10];
+		myallwidth=[[NSMutableArray alloc] initWithCapacity:10];
     }
     return self;
-	
 }
+
 -(void)IntsegmentColor
 {
 	switch (Intsegmentcolor)
@@ -79,14 +80,7 @@
 	//设置画线的连接处　拐点圆滑
 	CGContextSetLineJoin(context, kCGLineJoinRound);
 	//第一次时候个myallline开辟空间
-	static BOOL allline=NO;
-	if (allline==NO)
-	{
-		myallline=[[NSMutableArray alloc] initWithCapacity:10];
-		myallColor=[[NSMutableArray alloc] initWithCapacity:10];
-		myallwidth=[[NSMutableArray alloc] initWithCapacity:10];
-		allline=YES;
-	}
+		
 	//画之前线
 	if ([myallline count]>0)
 	{

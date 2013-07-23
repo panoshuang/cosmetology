@@ -8,14 +8,18 @@
 
 #import "PhotoScrollViewController.h"
 #import "AdPhotoInfo.h"
+#import "SubProductInfo.h"
 #import "PhotoBrowserDataSource.h"
 #import "UIColor+Extra.h"
 #import "MHImagePickerMutilSelector.h"
 #import "CommonUtil.h"
 #import "ResourceCache.h"
 #import "AdPhotoManager.h"
+#import "SubCatalogManager.h"
 #import "PriceViewController.h"
 #import "MessageListsViewController.h"
+#import <MobileCoreServices/MobileCoreServices.h>
+#import "KTPhotoView.h"
 
 
 #define BTN_LIKE_TAG   1001
@@ -31,7 +35,6 @@ static BOOL isProsecutingPhoto = NO;
 @interface PhotoScrollViewController (){
     //视频
     MPMoviePlayerController *moviePlayer;
-    NSString *_stringURL;
     NSURL *_videoURL;
     int _moviePlayState;
 }
@@ -63,12 +66,6 @@ static BOOL isProsecutingPhoto = NO;
 - (void)loadView
 {
     [super loadView];
-    
-    //视频
-    _stringURL = nil;
-    _stringURL = [[NSBundle mainBundle] pathForResource:@"ss11_8" ofType:@"mp4"];
-    //_stringURL = ;
-    NSLog(@"stringURL is %@",_stringURL);
 
     //把navigatorController的delegate设置为自己,用于在显示本页面时候设置全屏
     // self.navigationController.delegate = self;
@@ -83,6 +80,13 @@ static BOOL isProsecutingPhoto = NO;
     self.toolbar.frame = CGRectMake(0, self.view.bounds.size.height - kPhotoBrowerToolBarHight, self.view.bounds.size.width, kPhotoBrowerToolBarHight);
     if (_bIsEdit)
     {
+        UIButton *pickVedio = [UIButton buttonWithType:UIButtonTypeCustom];
+        [pickVedio setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
+        [pickVedio setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
+        [pickVedio addTarget:self action:@selector(pickVedioBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        pickVedio.tag       = BTN_COMMENT_TAG;
+        [buttonArray addObject:pickVedio];
+        
         UIButton *videoButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [videoButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
         [videoButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
@@ -195,9 +199,36 @@ static BOOL isProsecutingPhoto = NO;
 //    }
 }
 
+-(void)pickVedioBtnClicked:(UIButton *)sender{
+    
+    if(![_popController isPopoverVisible])
+    {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.contentSizeForViewInPopover = CGSizeMake(320, 480);
+        picker.delegate = self;
+        [picker setAllowsEditing:NO];
+        picker.modalTransitionStyle          = UIModalTransitionStyleCoverVertical;
+        picker.mediaTypes = [[NSArray alloc] initWithObjects:(NSString *)kUTTypeMovie, nil];
+        if (!_popController)
+        {
+            _popController = [[UIPopoverController alloc] initWithContentViewController:picker];
+        }
+        
+        [_popController presentPopoverFromRect:[sender convertRect:sender.bounds toView:self.view]
+                                        inView:self.view
+                      permittedArrowDirections:UIPopoverArrowDirectionUp
+                                      animated:YES];
+    }
+    else
+    {
+        [_popController dismissPopoverAnimated:YES];
+    }
+}
+
 -(void)videoBtnClicked:(UIButton *)button{
-    NSLog(@"stringURL is %@",_stringURL);
-    _videoURL = [NSURL fileURLWithPath:_stringURL];
+    
+    SubProductInfo *subProductInfo = [[SubCatalogManager instance] subProductInfoForProductID:_subProductID];
+    _videoURL = [NSURL fileURLWithPath:subProductInfo.vedioURL isDirectory:NO];
     NSLog(@"videoURL is %@",_videoURL);
     if (_videoURL == nil) {
         UIAlertView *errorMsg = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"视频地址为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
@@ -207,11 +238,28 @@ static BOOL isProsecutingPhoto = NO;
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(exitFullScreen:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
     moviePlayer = [[MPMoviePlayerController alloc]initWithContentURL:_videoURL];
+    [moviePlayer prepareToPlay];
+    moviePlayer.shouldAutoplay = YES;
     _moviePlayState = MPMoviePlaybackStateStopped;
     [moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
     [moviePlayer.view setFrame:self.view.bounds];
     [self.view addSubview:moviePlayer.view];
 
+}
+
+-(void)playVedio:(UIButton *)vedioBtn{
+    KTPhotoView *photoView = (KTPhotoView *)vedioBtn.superview;
+    AdPhotoInfo *photoInfo = [[(PhotoBrowserDataSource *)dataSource_ photoList] objectAtIndex:photoView.index];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(exitFullScreen:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+    NSURL *url = [NSURL fileURLWithPath:photoInfo.vedioFilePath isDirectory:NO];
+    moviePlayer = [[MPMoviePlayerController alloc]initWithContentURL:url];
+    [moviePlayer prepareToPlay];
+    moviePlayer.shouldAutoplay = YES;
+    _moviePlayState = MPMoviePlaybackStateStopped;
+    [moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
+    [moviePlayer.view setFrame:self.view.bounds];
+    [self.view addSubview:moviePlayer.view];
+    
 }
 
 -(void)exitFullScreen:(NSNotification *)notification
@@ -236,7 +284,7 @@ static BOOL isProsecutingPhoto = NO;
         case MPMovieFinishReasonPlaybackError:
         {
             NSLog(@"An error was encountered during playback");
-            UIAlertView *errorMsg = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"未找到视频" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            UIAlertView *errorMsg = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"视频播放出错" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
             [errorMsg show];
             break;
         }
@@ -306,7 +354,7 @@ static BOOL isProsecutingPhoto = NO;
 //    [alertView show];
 
     //TODO: 此处该成查看留言列表
-    MessageListsViewController *messageListsViewController = [[MessageListsViewController alloc]init];
+    MessageListsViewController *messageListsViewController = [[MessageListsViewController alloc]initWithProductId:_subProductID];
     [self.navigationController pushViewController:messageListsViewController animated:YES];
     DDetailLog(@"留言列表按钮");
 }
@@ -314,6 +362,43 @@ static BOOL isProsecutingPhoto = NO;
 -(void)priceBtnClicked:(UIButton *)btn{
     PriceViewController *priceViewController = [[PriceViewController alloc] initWithSubProductID:_subProductID];
     [self.navigationController pushViewController:priceViewController animated:YES];
+}
+
+
+#pragma mark UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    [_popController dismissPopoverAnimated:YES];
+    DDetailLog(@"info is %@",info);
+    NSURL *vedioURL = [info objectForKey:UIImagePickerControllerMediaURL];
+    NSData *vedioData = [NSData dataWithContentsOfURL:vedioURL];
+    NSString *bgUuid = [CommonUtil uuid];
+    NSString *vedioFilePath = [[ResourceCache instance] saveResourceData:vedioData
+                                                                relatePath:[bgUuid stringByAppendingPathExtension:@"MP4"]
+                                                              resourceType:kResourceCacheTypeVedio];
+    
+    if (vedioFilePath.length == 0) {
+        ALERT_MSG(@"保存失败", nil, @"确定");
+        return;
+    }
+    
+    //获取广告实体,插入视频
+    AdPhotoInfo *photoInfo = [[(PhotoBrowserDataSource *)dataSource_ photoList] objectAtIndex:currentIndex_];
+    photoInfo.hadVedio = YES;
+    photoInfo.vedioFilePath = vedioFilePath;
+    [[AdPhotoManager instance] updateAdPhoto:photoInfo];
+    
+    //显示播放按钮
+    KTPhotoView *photoView = [photoViews_ objectAtIndex:currentIndex_];
+    if (photoView && [photoViews_ isKindOfClass:[KTPhotoView class]]) {
+        [photoView showOrHideVedioBtn:YES];
+    }
+    
+//    SubProductInfo *subProductInfo = [[SubCatalogManager instance] subProductInfoForProductID:_subProductID];
+//    subProductInfo.vedioURL = vedioFilePath;
+//    DDetailLog(@"%@",subProductInfo.vedioURL);
+//    SubCatalogManager *subCatalogManager = [SubCatalogManager instance];
+//    [subCatalogManager updateSubCatalog:subProductInfo];
+
 }
 
 

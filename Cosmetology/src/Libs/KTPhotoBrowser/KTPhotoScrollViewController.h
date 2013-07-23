@@ -89,4 +89,7 @@
 - (void)trashPhoto;
 
 - (void)exportPhoto;
+
+//播放视屏
+-(void)playVedio:(UIButton *)vedioBtn;
 @end

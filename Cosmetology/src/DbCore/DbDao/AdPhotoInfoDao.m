@@ -22,13 +22,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AdPhotoInfoDao)
     NSString *sqlStr = [NSString stringWithFormat:@"INSERT INTO "AD_PHOTO_INFO_TABLE_TABLE_NAME" ("
             AD_PHOTO_INFO_TABLE_SUB_PRODUCT_ID","
             AD_PHOTO_INFO_TABLE_INDEX","
-            AD_PHOTO_INFO_TABLE_IMAGE_FILE_PATH""
-            ")""VALUES(?,?,?)"
+            AD_PHOTO_INFO_TABLE_IMAGE_FILE_PATH","
+            AD_PHOTO_INFO_TABLE_HAD_VEDIO","
+            AD_PHOTO_INFO_TABLE_VIDIO_FILE_PATH""
+            ")""VALUES(?,?,?,?,?)"
 
     ];
     NSArray *argArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:adPhotoInfo.subProductId],
                                                   [NSNumber numberWithInteger:adPhotoInfo.index],
                                                   adPhotoInfo.imageFilePath,
+                                                  [NSNumber numberWithInt:adPhotoInfo.hadVedio],
+                                                  adPhotoInfo.vedioFilePath,
                                                   nil];
     __block int productID = NSNotFound;
     [[[BaseDatabase instance] fmDbQueue] inDatabase:^(FMDatabase *db) {
@@ -61,12 +65,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AdPhotoInfoDao)
     NSString *sqlStr = [NSString stringWithFormat:@"UPDATE "AD_PHOTO_INFO_TABLE_TABLE_NAME" SET "
             AD_PHOTO_INFO_TABLE_SUB_PRODUCT_ID"=?,"
             AD_PHOTO_INFO_TABLE_INDEX"=?,"
-            AD_PHOTO_INFO_TABLE_IMAGE_FILE_PATH"=?"
+            AD_PHOTO_INFO_TABLE_IMAGE_FILE_PATH"=?,"
+            AD_PHOTO_INFO_TABLE_HAD_VEDIO"=?,"
+            AD_PHOTO_INFO_TABLE_VIDIO_FILE_PATH"=?"
             " WHERE "AD_PHOTO_INFO_TABLE_PHOTO_ID"=?"];
     NSArray *argArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:adPhotoInfo.subProductId],
                                                   [NSNumber numberWithInteger:adPhotoInfo.index],
                                                   adPhotoInfo.imageFilePath,
-                                                  [NSNumber numberWithInt:adPhotoInfo.photoId],nil];
+                                                  [NSNumber numberWithInt:adPhotoInfo.hadVedio],
+                                                  adPhotoInfo.vedioFilePath,
+                                                  [NSNumber numberWithInt:adPhotoInfo.photoId],
+                         nil];
     __block BOOL isSuccess;
     [[[BaseDatabase instance] fmDbQueue] inDatabase:^(FMDatabase *db) {
         isSuccess = [db executeUpdate:sqlStr withArgumentsInArray:argArray];
@@ -111,6 +120,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AdPhotoInfoDao)
     adPhotoInfo.subProductId = [resultSet intForColumn:AD_PHOTO_INFO_TABLE_SUB_PRODUCT_ID];
     adPhotoInfo.imageFilePath = [resultSet stringForColumn:AD_PHOTO_INFO_TABLE_IMAGE_FILE_PATH];
     adPhotoInfo.index = [resultSet intForColumn:AD_PHOTO_INFO_TABLE_INDEX];
+    adPhotoInfo.hadVedio = [resultSet boolForColumn:AD_PHOTO_INFO_TABLE_HAD_VEDIO];
+    adPhotoInfo.vedioFilePath = [resultSet stringForColumn:AD_PHOTO_INFO_TABLE_VIDIO_FILE_PATH];
     return adPhotoInfo;
 }
 @end

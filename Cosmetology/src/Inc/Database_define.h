@@ -25,13 +25,16 @@
 #define SUB_PRODUCT_INFO_TABLE_NAME                     @"name"
 #define SUB_PRODUCT_INFO_TABLE_ENABLE                   @"enable"
 #define SUB_PRODUCT_INFO_TABLE_INDEX                    @"sortIndex"
+#define SUB_PRODUCT_INFO_TABLE_VEDIO                    @"vedio"
 
 #pragma mark - AdPhotoInfo表
 #define AD_PHOTO_INFO_TABLE_TABLE_NAME                  @"adPhotoInfo"
 #define AD_PHOTO_INFO_TABLE_PHOTO_ID                    @"photoID"
 #define AD_PHOTO_INFO_TABLE_SUB_PRODUCT_ID              @"subProductID"
 #define AD_PHOTO_INFO_TABLE_INDEX                       @"sortIndex"
-#define AD_PHOTO_INFO_TABLE_IMAGE_FILE_PATH             @"imageFilePath"
+#define AD_PHOTO_INFO_TABLE_IMAGE_FILE_PATH              @"imageFilePath"
+#define AD_PHOTO_INFO_TABLE_HAD_VEDIO                   @"hadVedio"
+#define AD_PHOTO_INFO_TABLE_VIDIO_FILE_PATH             @"vedioFilePath"
 
 #pragma mark - MessageBoardInfo表
 #define MESSAGE_BOARD_INFO_TABLE_TABLE_NAME             @"messageBoardInfo"
