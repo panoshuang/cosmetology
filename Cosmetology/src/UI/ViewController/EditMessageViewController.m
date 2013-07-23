@@ -18,9 +18,10 @@
 
 @interface EditMessageViewController ()<VoiceHandleDelegate>
 {
-    UIButton *headPortraits;//头像
+    UIButton *takePhotoBtn;//照相
     UITextView *messageEditTextView;//留言编辑
     UIButton *OKBtn;//OK按钮
+    UIButton *backBtn;//返回按钮
     UIButton *record;//录音
     UIButton *playRecord;//播放录音
     UIButton *singeName;//签名
@@ -42,6 +43,7 @@
     NSTimeInterval _beginRecordAudioInterval; //开始录音时间
     NSTimeInterval _endRecordAudioInterval; //结束录音时间
     
+    UIImageView *headImageView;//头像
     UIImage *headPortraitsImage;//头像图片
     UIImage *singeNameImage;//签名图片
     
@@ -85,30 +87,34 @@
     
     //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.jpg"]];
     
+    //照相
+    takePhotoBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    takePhotoBtn.frame = CGRectMake(100, 414, 89, 89);
+    [takePhotoBtn setBackgroundImage:[UIImage imageNamed:@"takePhoto.png"] forState:UIControlStateNormal];
+    [takePhotoBtn addTarget:self action:@selector(pickImage:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:takePhotoBtn];
+    
     //头像
-    headPortraits = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    headPortraits.frame = CGRectMake(60, 160, 204, 143);
-    headPortraits.contentMode = UIViewContentModeScaleToFill;
+    headImageView = [[UIImageView alloc]initWithFrame:CGRectMake(200, 410, 130, 93)];
     headPortraitsImage = [UIImage imageNamed:@"pickPhoto.png"];
-    [headPortraits setBackgroundImage:headPortraitsImage forState:UIControlStateNormal];
-    //headPortraits.imageView.image = [UIImage imageNamed:@"headPortraits.png"];
-    [headPortraits addTarget:self action:@selector(pickImage:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:headPortraits];
+    headImageView.contentMode = UIViewContentModeScaleAspectFit;
+    headImageView.image = headPortraitsImage;
+    [self.view addSubview:headImageView];
     
     //留言编辑
     UIFont *font = [UIFont fontWithName:@"Courier-Oblique" size:24];
-    UILabel *messagelabel = [[UILabel alloc]initWithFrame:CGRectMake(250, 55, 130, 30)];
+    UILabel *messagelabel = [[UILabel alloc]initWithFrame:CGRectMake(380, 55, 130, 30)];
     messagelabel.text = @"我的留言:";
     messagelabel.backgroundColor = [UIColor clearColor];
     [messagelabel setFont:font];
     
-    messageEditTextView = [[UITextView alloc]initWithFrame:CGRectMake(45, 85, 540, 220)];
+    messageEditTextView = [[UITextView alloc]initWithFrame:CGRectMake(80, 85, 710, 220)];
     messageEditTextView.delegate = self;
     messageEditTextView.contentMode = UIViewContentModeScaleToFill;
     messageEditTextView.backgroundColor = [UIColor clearColor];
     [messageEditTextView setFont:font];
     
-    UIImageView *messageImageView = [[UIImageView alloc]initWithFrame:CGRectMake(300, 10, 637, 372)];
+    UIImageView *messageImageView = [[UIImageView alloc]initWithFrame:CGRectMake(93, 18, 869, 372)];
     messageImageView.image = [UIImage imageNamed:@"messageBoard.png"];
     messageImageView.userInteractionEnabled = YES;
     
@@ -116,24 +122,32 @@
     [messageImageView addSubview:messageEditTextView];
     
     
-    //OK按钮
+    //保存按钮
     OKBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    OKBtn.frame = CGRectMake(940, 20, 50, 50);
-    
-    [OKBtn setTitle:@"OK" forState:UIControlStateNormal];
+    OKBtn.frame = CGRectMake(329, 716, 104, 52);
+    [OKBtn setBackgroundImage:[UIImage imageNamed:@"save.png"] forState:UIControlStateNormal];
     [OKBtn addTarget:self action:@selector(saveMessage:) forControlEvents:UIControlEventTouchUpInside];
-    OKBtn.backgroundColor = [UIColor clearColor];
     [self.view addSubview:OKBtn];
     
+    //返回按钮
+    backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    backBtn.frame = CGRectMake(625, 710, 120, 67);
+    //[backBtn setImage:[UIImage imageNamed:@"save.png"] forState:UIControlStateNormal];
+    [backBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    //backBtn.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:backBtn];
+    
     //录音图标
-    recordImageView = [[UIImageView alloc]initWithFrame:CGRectMake(60, 380, 75, 111)];
-    recordImageView.image = [UIImage imageNamed:@"record_animate_01.png"];
+    recordImageView = [[UIImageView alloc]initWithFrame:CGRectMake(200, 525, 115, 178)];
+    recordImageView.image = [UIImage imageNamed:@"recordImage.png"];
     [self.view addSubview:recordImageView];
     
     //录音
     record = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    record.frame = CGRectMake(10, 500, 80, 40);
-    [record setTitle:@"我有话说" forState:UIControlStateNormal];
+    record.frame = CGRectMake(100, 535, 89, 89);
+    //[record setTitle:@"我有话说" forState:UIControlStateNormal];
+    [record setBackgroundImage:[UIImage imageNamed:@"record.png"] forState:UIControlStateNormal];
     [record addTarget:self action:@selector(btnDown:) forControlEvents:UIControlEventTouchDown];
     [record addTarget:self action:@selector(btnUp:) forControlEvents:UIControlEventTouchUpInside];
     [record addTarget:self action:@selector(btnDragUp:) forControlEvents:UIControlEventTouchDragOutside];
@@ -141,16 +155,16 @@
     
     //播放留言
     playRecord = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    playRecord.frame = CGRectMake(100, 500, 80, 40);
-    [playRecord setTitle:@"播放留言" forState:UIControlStateNormal];
+    playRecord.frame = CGRectMake(100, 620, 89, 89);
+    //[playRecord setTitle:@"播放留言" forState:UIControlStateNormal];
+    [playRecord setBackgroundImage:[UIImage imageNamed:@"playRecord.png"] forState:UIControlStateNormal];
     [playRecord addTarget:self action:@selector(playRecord:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:playRecord];
     
     //签名
     singeName = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    singeName.frame = CGRectMake(294, 349, 529, 322);
-    singeName.backgroundColor = [UIColor yellowColor];
-    [singeName setImage:[UIImage imageNamed:@"singeName.png"] forState:UIControlStateNormal];
+    singeName.frame = CGRectMake(374, 369, 497, 302);
+    [singeName setBackgroundImage:[UIImage imageNamed:@"singe.png"] forState:UIControlStateNormal];
     [singeName addTarget:self action:@selector(singeName:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:singeName];
@@ -210,6 +224,10 @@
         [_delegate saveMessage:_messageBoardInfo forSubProductID:_subProductID];
     }
     
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)back:(UIButton *)btn{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -433,7 +451,8 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     DDetailLog(@"%@",[info objectForKey:UIImagePickerControllerOriginalImage]);
     headPortraitsImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    [headPortraits setImage:headPortraitsImage forState:UIControlStateNormal];
+    headImageView.image = headPortraitsImage;
+    //[headPortraits setImage:headPortraitsImage forState:UIControlStateNormal];
     DDetailLog(@"%@",info);
     [picker dismissViewControllerAnimated:YES completion:^{}];
     
