@@ -171,7 +171,6 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event 
 {
 
-    DDetailLog(@"%@", self);
    UITouch *touch = [touches anyObject];
    
    if ([touch view] == self) {
@@ -188,7 +187,6 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    DDetailLog(@"%@", self);
    UITouch *touch = [touches anyObject];
    isImageShoulFill = NO;
    if ([touch view] == self) {

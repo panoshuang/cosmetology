@@ -220,6 +220,10 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    if (_bIsEdit) {
+        [_gmGridView setEditing:_bIsEdit];
+        [_gmGridView reloadData];
+    }
 
 }
 
@@ -423,7 +427,7 @@
                                                             initWithDataSource:dataSource
                                                             andStartWithPhotoAtIndex:0];
     //TODO:把编辑设置是,以后需要修改
-    photoScrollViewController.bIsEdit = YES;
+    photoScrollViewController.bIsEdit = _bIsEdit;
     photoScrollViewController.subProductID = subProductInfo.productID;
     [self.mainDelegate mainPushViewController:photoScrollViewController animated:YES];
 }
