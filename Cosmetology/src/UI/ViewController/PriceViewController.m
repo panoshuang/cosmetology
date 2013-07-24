@@ -118,7 +118,8 @@
 }
 
 -(void)goToMessageList:(UIButton *)btn{
-    MessageListsViewController *messageListsViewController = [[MessageListsViewController alloc]init];
+    MessageListsViewController *messageListsViewController = [[MessageListsViewController alloc]initWithProductId:_subProductID];
+    DDetailLog(@"%d",_subProductID);
     [self.navigationController pushViewController:messageListsViewController animated:YES];
 }
 

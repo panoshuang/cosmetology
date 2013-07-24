@@ -63,6 +63,7 @@
 		6D60502817539F49000635F3 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D60502017539F49000635F3 /* FMDatabasePool.m */; };
 		6D60502917539F49000635F3 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D60502217539F49000635F3 /* FMDatabaseQueue.m */; };
 		6D60502B17539F49000635F3 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D60502517539F49000635F3 /* FMResultSet.m */; };
+		6D63A9AE17A01035008C8C2D /* FXLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D63A9AD17A00EBE008C8C2D /* FXLabel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6D8D34DB17550C29003F9E9E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D34DA17550C29003F9E9E /* AppDelegate.m */; };
 		6D8D34E217550D9A003F9E9E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D34E117550D9A003F9E9E /* MainViewController.m */; };
 		6D917D5217509D7E00263F64 /* BaseDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D917CFD17509D7E00263F64 /* BaseDatabase.m */; };
@@ -283,6 +284,8 @@
 		6D60502317539F49000635F3 /* fmdb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fmdb.m; sourceTree = "<group>"; };
 		6D60502417539F49000635F3 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		6D60502517539F49000635F3 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		6D63A9AC17A00EBE008C8C2D /* FXLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FXLabel.h; sourceTree = "<group>"; };
+		6D63A9AD17A00EBE008C8C2D /* FXLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FXLabel.m; sourceTree = "<group>"; };
 		6D8D34D917550C29003F9E9E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6D8D34DA17550C29003F9E9E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6D8D34E017550D9A003F9E9E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -628,6 +631,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		6D63A9AB17A00E92008C8C2D /* LabelType */ = {
+			isa = PBXGroup;
+			children = (
+				6D63A9AC17A00EBE008C8C2D /* FXLabel.h */,
+				6D63A9AD17A00EBE008C8C2D /* FXLabel.m */,
+			);
+			path = LabelType;
+			sourceTree = "<group>";
+		};
 		6D8D34D817550C11003F9E9E /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -728,6 +740,7 @@
 		6D917D4E17509D7E00263F64 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				6D63A9AB17A00E92008C8C2D /* LabelType */,
 				CE71EFC71770149D00E1B420 /* SingeName */,
 				6D9910791765727B003C7C12 /* ICarousel */,
 				6D917DC11750A20100263F64 /* VoiceConvert */,
@@ -1220,6 +1233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D63A9AE17A01035008C8C2D /* FXLabel.m in Sources */,
 				6DAABD5A179B8C4500D4DFFC /* MicroView.m in Sources */,
 				6DAA1BA9178923A900518FC3 /* PasswordEditView.m in Sources */,
 				6D4F7B041788214F00B3EB01 /* AutoDismissView.m in Sources */,

@@ -355,12 +355,14 @@ static BOOL isProsecutingPhoto = NO;
 
     //TODO: 此处该成查看留言列表
     MessageListsViewController *messageListsViewController = [[MessageListsViewController alloc]initWithProductId:_subProductID];
+    DDetailLog(@"%d",_subProductID);
     [self.navigationController pushViewController:messageListsViewController animated:YES];
     DDetailLog(@"留言列表按钮");
 }
 
 -(void)priceBtnClicked:(UIButton *)btn{
     PriceViewController *priceViewController = [[PriceViewController alloc] initWithSubProductID:_subProductID];
+    DDetailLog(@"%d",_subProductID);
     [self.navigationController pushViewController:priceViewController animated:YES];
 }
 
