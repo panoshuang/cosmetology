@@ -20,6 +20,7 @@
 #import "UIAlertView+Blocks.h"
 #import "MsgGridViewCell.h"
 #import "MsgItem.h"
+#import "MainViewController.h"
 
 #define NUMBER_ITEMS_ON_LOAD 250
 #define NUMBER_ITEMS_ON_LOAD2 30
@@ -46,6 +47,8 @@
     
     UITapGestureRecognizer *_editGesture; //开启编辑的手势
     BOOL _bIsEdit;
+    
+    UIButton *editBgBtn;//修改背景
 }
 
 @end
@@ -78,6 +81,10 @@
 #pragma mark controller events
 //////////////////////////////////////////////////////////////
 
+-(void)viewWillAppear:(BOOL)animated{
+   
+}
+
 - (void)loadView
 {
     [super loadView];
@@ -93,35 +100,39 @@
     if (bgImage) {
         _bgView.image = bgImage;
     }
-    _bgView.image = [UIImage imageNamed:@"background.jpg"];
+    _bgView.image = [UIImage imageNamed:@"bgMessageLists.jpg"];
     [self.view addSubview:_bgView];
+
+    //修改背景
+    editBgBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    editBgBtn.frame = CGRectMake(50, 705, 180, 67);
+    editBgBtn.hidden = NO;
+    [editBgBtn setBackgroundImage:[UIImage imageNamed:@"editBgBtn.png"] forState:UIControlStateNormal];
+    [editBgBtn addTarget:self action:@selector(showEditBgView:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:editBgBtn];
+
+    //我也要留言按钮
+    UIButton *editMessageBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    editMessageBtn.frame = CGRectMake(250, 705, 180, 67);
+    [editMessageBtn setBackgroundImage:[UIImage imageNamed:@"editMessage.png"] forState:UIControlStateNormal];
+    [editMessageBtn addTarget:self action:@selector(toEditMessage:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:editMessageBtn];
     
-    _toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 1024, 44)];
-    [self.view addSubview:_toolBar];
+    //主菜单按钮
+    UIButton *mainMeunBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    mainMeunBtn.frame = CGRectMake(500, 705, 120, 67);
+    //[backBtn setImage:[UIImage imageNamed:@"save.png"] forState:UIControlStateNormal];
+    [mainMeunBtn setBackgroundImage:[UIImage imageNamed:@"bgMainMeun.png"] forState:UIControlStateNormal];
+    [mainMeunBtn addTarget:self action:@selector(goToMainMeun:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:mainMeunBtn];
     
-    
-    UIBarButtonItem *back = [[UIBarButtonItem alloc]initWithTitle:@"返回"
-                                                            style:UIBarButtonItemStyleDone
-                                                           target:self
-                                                           action:@selector(back:)];
-    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                                                           target:nil
-                                                                           action:nil];
-    space.width = 10;
-    
-    UIBarButtonItem *bgButton = [[UIBarButtonItem alloc]initWithTitle:@"修改背景"
-                                                                style:UIBarButtonItemStyleDone
-                                                               target:self
-                                                               action:@selector(showEditBgView:)];
-    
-    UIBarButtonItem *space1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                                                            target:nil
-                                                                            action:nil];
-    space1.width = 10;
-    UIBarButtonItem *editMessageBtn = [[UIBarButtonItem alloc]initWithTitle:@"我也要留言"
-                                                                      style:UIBarButtonItemStyleDone target:self
-                                                                     action:@selector(toEditMessage:)];
-    _toolBar.items = [NSArray arrayWithObjects:back,space1,bgButton, space,editMessageBtn,nil];
+    //返回按钮
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    backBtn.frame = CGRectMake(700, 705, 120, 67);
+    //[backBtn setImage:[UIImage imageNamed:@"save.png"] forState:UIControlStateNormal];
+    [backBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backBtn];
     
     
     
@@ -154,6 +165,11 @@
     [_gmGridView reloadData];
 }
 
+-(void)goToMainMeun:(UIButton *)btn{
+    MainViewController *mainViewController = [[MainViewController alloc]init];
+    [self.navigationController pushViewController:mainViewController animated:YES];
+}
+
 -(void)back:(UIButton *)btn{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -173,13 +189,12 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    _toolBar.hidden = NO;
 }
 
 //////////////////////////////////////////////////////////////
 #pragma mark 切换背景
 //////////////////////////////////////////////////////////////
--(void)showEditBgView:(UIBarButtonItem *)sender{
+-(void)showEditBgView:(UIButton *)sender{
     if(![_popController isPopoverVisible])
     {
         if (!_popController)
@@ -245,7 +260,6 @@
             [self inputPassword];
         }else{
             self.bIsEdit = YES;
-            _toolBar.hidden = NO;
         }
     }
 }
@@ -255,7 +269,6 @@
     confirmItem.label = @"确定";
     confirmItem.action = ^{
         self.bIsEdit = NO;
-        _toolBar.hidden = YES;
     };
     RIButtonItem *cancelItem = [RIButtonItem item];
     cancelItem.label = @"取消";
@@ -293,7 +306,6 @@
         NSString *editPwdStr = [[PasswordManager instance] passwordForKey:PWD_MAIN_CATALOG];
         if([editPwdStr isEqualToString:textField.text]){
             _bIsEdit = YES;
-            _toolBar.hidden = NO;
         }else{
             [[AutoDismissView instance] showInView:self.view
                                              title:@"密码错误"
@@ -389,7 +401,7 @@
     }
     contentView.ivAutograph.image = singeNameImage;
     contentView.headPortraits.image = protraitImage;
-    contentView.btnAcclaim.ivBg.image = [UIImage imageNamed:@"bg_acclaim"];
+    contentView.btnAcclaim.ivBg.image = [UIImage imageNamed:@"bgacclaim.png"];
     contentView.btnAcclaim.lbCount.text = [NSString stringWithFormat:@"%d",messageBoardinfoTemp.popularity];
     return cell;
 }
@@ -415,7 +427,6 @@
 
 - (void)GMGridViewDidTapOnEmptySpace:(GMGridView *)gridView
 {
-    _toolBar.hidden = !_toolBar.hidden;
     NSLog(@"Tap on empty space");
 }
 

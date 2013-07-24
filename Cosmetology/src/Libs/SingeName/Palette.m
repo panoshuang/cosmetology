@@ -79,7 +79,6 @@
 	CGContextSetLineCap(context, kCGLineCapRound);
 	//设置画线的连接处　拐点圆滑
 	CGContextSetLineJoin(context, kCGLineJoinRound);
-	//第一次时候个myallline开辟空间
 		
 	//画之前线
 	if ([myallline count]>0)

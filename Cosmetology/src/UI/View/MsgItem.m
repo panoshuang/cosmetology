@@ -37,13 +37,13 @@
 
 -(void)layoutSubviews{
     [super layoutSubviews];
-    CGRect acclaimFrame = CGRectMake(20, self.bounds.size.height - 45, 230, 45);
+    CGRect acclaimFrame = CGRectMake(20, self.bounds.size.height - 71, 153, 71);
     _btnAcclaim.frame = acclaimFrame;
     CGRect contentBgFrame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height - 5 -acclaimFrame.size.height);
     _viContentBg.frame = contentBgFrame;
     CGRect autographFrame = CGRectMake(5, 5, contentBgFrame.size.width - 10, contentBgFrame.size.height - 10);
     _ivAutograph.frame = autographFrame;
-    CGRect headPortraitsFrame = CGRectMake(autographFrame.size.width - 40, 5, 40, 30);
+    CGRect headPortraitsFrame = CGRectMake(autographFrame.size.width - 40, 0, 40, 30);
     _headPortraits.frame = headPortraitsFrame;
 }
 

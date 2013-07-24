@@ -254,7 +254,7 @@
     UIImageView *bgImageView = [[UIImageView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
     bgImageView.image = [UIImage imageNamed:@"singeName.png"];
     //[self.view addSubview:bgImageView];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"singeName.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgSingeName.jpg"]];
 }
 
 /*

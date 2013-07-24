@@ -32,8 +32,9 @@
     [super layoutSubviews];
     _ivBg.frame = self.bounds;
     
-    CGRect labelFrame = CGRectMake(127, 15, self.bounds.size.width - 127 - kCommonSpaceBig, self.bounds.size.height - 20);
+    CGRect labelFrame = CGRectMake(60, 33, self.bounds.size.width - 60 - kCommonSpaceBig, self.bounds.size.height - 40);
     _lbCount.frame = labelFrame;
+    _lbCount.textAlignment = NSTextAlignmentCenter;
 }
 
 /*

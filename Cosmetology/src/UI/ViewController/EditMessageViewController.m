@@ -31,7 +31,7 @@
     AVAudioRecorder *recorder;
     NSTimer *timer;
     NSURL *urlPlay;
-    UIImageView *recordImageView;
+    UIImageView *recordImageView;//录音图标
     AVAudioPlayer *avPlay;
     
     UIImageView *_bgView;//背景图片
@@ -74,7 +74,7 @@
 //    UIImage *bgImage = [[ResourceCache instance] imageForCachePath:bgFilePath];
 //    _bgView.image = bgImage;
     
-    _bgView.image = [UIImage imageNamed:@"background.jpg"];
+    _bgView.image = [UIImage imageNamed:@"bgEditMessage.jpg"];
     [self.view addSubview:_bgView];
 
 }
@@ -94,11 +94,12 @@
     [takePhotoBtn addTarget:self action:@selector(pickImage:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:takePhotoBtn];
     
-    //头像
+    //显示头像
     headImageView = [[UIImageView alloc]initWithFrame:CGRectMake(200, 410, 130, 93)];
-    headPortraitsImage = [UIImage imageNamed:@"pickPhoto.png"];
+    UIImage *headImage = [UIImage imageNamed:@"pickPhoto.png"];
     headImageView.contentMode = UIViewContentModeScaleAspectFit;
-    headImageView.image = headPortraitsImage;
+    headImageView.image = headImage;
+    headImageView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:headImageView];
     
     //留言编辑
@@ -117,25 +118,22 @@
     UIImageView *messageImageView = [[UIImageView alloc]initWithFrame:CGRectMake(93, 18, 869, 372)];
     messageImageView.image = [UIImage imageNamed:@"messageBoard.png"];
     messageImageView.userInteractionEnabled = YES;
-    
     [messageImageView addSubview:messagelabel];
     [messageImageView addSubview:messageEditTextView];
     
     
     //保存按钮
     OKBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    OKBtn.frame = CGRectMake(329, 716, 104, 52);
+    OKBtn.frame = CGRectMake(329, 705, 120, 67);
     [OKBtn setBackgroundImage:[UIImage imageNamed:@"save.png"] forState:UIControlStateNormal];
     [OKBtn addTarget:self action:@selector(saveMessage:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:OKBtn];
     
     //返回按钮
     backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    backBtn.frame = CGRectMake(625, 710, 120, 67);
-    //[backBtn setImage:[UIImage imageNamed:@"save.png"] forState:UIControlStateNormal];
+    backBtn.frame = CGRectMake(625, 705, 120, 67);
     [backBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    //backBtn.backgroundColor = [UIColor clearColor];
     [self.view addSubview:backBtn];
     
     //录音图标
@@ -156,7 +154,6 @@
     //播放留言
     playRecord = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     playRecord.frame = CGRectMake(100, 620, 89, 89);
-    //[playRecord setTitle:@"播放留言" forState:UIControlStateNormal];
     [playRecord setBackgroundImage:[UIImage imageNamed:@"playRecord.png"] forState:UIControlStateNormal];
     [playRecord addTarget:self action:@selector(playRecord:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:playRecord];
@@ -198,11 +195,6 @@
     NSString *headPortraitsFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(headPortraitsImage, 1)
                                                                       relatePath:[headPortraitsUuid stringByAppendingPathExtension:@"JPEG"]
                                                                     resourceType:kResourceCacheTypeUserPortrait];
-    if (headPortraitsFilePath.length == 0) {
-        ALERT_MSG(@"保存失败", nil, @"确定");
-        return;
-    }
-    
     //保存签名到缓存
     NSString *bgUuid = [CommonUtil uuid];
     NSString *singeNameImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(singeNameImage, 1)
@@ -452,7 +444,6 @@
     DDetailLog(@"%@",[info objectForKey:UIImagePickerControllerOriginalImage]);
     headPortraitsImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     headImageView.image = headPortraitsImage;
-    //[headPortraits setImage:headPortraitsImage forState:UIControlStateNormal];
     DDetailLog(@"%@",info);
     [picker dismissViewControllerAnimated:YES completion:^{}];
     

@@ -10,7 +10,6 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface MessageListsViewController : UIViewController{
-    UIToolbar *_toolBar;
     UIView *_editTapView ;
     int _productId;
 }

@@ -11,10 +11,11 @@
 #import "MessageBoardManager.h"
 #import "AcclaimButton.h"
 #import "ResourceCache.h"
+#import "EditMessageViewController.h"
 
 @interface CheckMessageViewController ()
 {
-    UIToolbar *_toolBar;
+    
     UIImageView *headPortraits;//头像
     UITextView *messageTextView;//留言展示
     UIButton *playRecord;//播放录音
@@ -55,43 +56,48 @@
     //    UIImage *bgImage = [[ResourceCache instance] imageForCachePath:bgFilePath];
     //    _bgView.image = bgImage;
     
-    _bgView.image = [UIImage imageNamed:@"background.jpg"];
+    _bgView.image = [UIImage imageNamed:@"bgCheckMessage.jpg"];
     [self.view addSubview:_bgView];
     
-    _toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 1024, 44)];
-    [self.view addSubview:_toolBar];
-    _toolBar.hidden = NO;
+    //我也要留言按钮
+    UIButton *editMessageBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    editMessageBtn.frame = CGRectMake(329, 705, 180, 67);
+    [editMessageBtn setBackgroundImage:[UIImage imageNamed:@"editMessage.png"] forState:UIControlStateNormal];
+    [editMessageBtn addTarget:self action:@selector(toEditMessageBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:editMessageBtn];
     
-    UIBarButtonItem *back = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(back:)];
-    _toolBar.items = [NSArray arrayWithObjects:back,nil];
-    // Custom initialization
-    //messageBoardInfo.headPortraits = [UIImage imageNamed:@"headPortraits.png"];
+    //返回按钮
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    backBtn.frame = CGRectMake(625, 705, 120, 67);
+    //[backBtn setImage:[UIImage imageNamed:@"save.png"] forState:UIControlStateNormal];
+    [backBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backBtn];
     
-    //头像
+    //显示头像
     UIImage *protraitImage = [[ResourceCache instance] imageForCachePath:_messageBoardInfo.headPortraits];
     if (!protraitImage) {
-        protraitImage  = [UIImage imageNamed:@"pickPhoto"];
+        protraitImage  = [UIImage imageNamed:@"pickPhoto.png"];
     }
-    headPortraits = [[UIImageView alloc]initWithImage:protraitImage];
-    headPortraits.contentMode = UIViewContentModeCenter;
-    headPortraits.frame = CGRectMake(60, 160, 204, 143);
-    headPortraits.contentMode = UIViewContentModeScaleToFill;
+    headPortraits = [[UIImageView alloc]initWithFrame:CGRectMake(40, 410, 220, 160)];
+    headPortraits.image = protraitImage;
+    headPortraits.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:headPortraits];
     
     UIFont *font = [UIFont fontWithName:@"Courier-Oblique" size:24];
-    UILabel *messagelabel = [[UILabel alloc]initWithFrame:CGRectMake(250, 70, 130, 30)];
+    UILabel *messagelabel = [[UILabel alloc]initWithFrame:CGRectMake(380, 55, 130, 30)];
     messagelabel.text = @"我的留言:";
     messagelabel.backgroundColor = [UIColor clearColor];
     [messagelabel setFont:font];
     
-    messageTextView = [[UITextView alloc]initWithFrame:CGRectMake(45, 100, 540, 220)];
+    messageTextView = [[UITextView alloc]initWithFrame:CGRectMake(80, 85, 710, 220)];
     messageTextView.editable = NO;
     messageTextView.text = _messageBoardInfo.messageContent;
     messageTextView.contentMode = UIViewContentModeScaleToFill;
     messageTextView.backgroundColor = [UIColor clearColor];
     [messageTextView setFont:font];
     
-    UIImageView *messageImageView = [[UIImageView alloc]initWithFrame:CGRectMake(300, 50, 637, 372)];
+    UIImageView *messageImageView = [[UIImageView alloc]initWithFrame:CGRectMake(93, 18, 869, 372)];
     messageImageView.image = [UIImage imageNamed:@"messageBoard.png"];
     messageImageView.userInteractionEnabled = YES;
     [messageImageView addSubview:messagelabel];
@@ -103,21 +109,30 @@
         singeNameImage  = [UIImage imageNamed:@"singeName"];
     }
     singeName = [[UIImageView alloc]initWithImage:singeNameImage];
-    singeName.frame = CGRectMake(294, 389, 529, 322);
+    singeName.frame = CGRectMake(374, 369, 497, 302);
     [self.view addSubview:singeName];
     [self.view addSubview:messageImageView];
     
+    //录音图标
+    UIImageView *recordImageView = [[UIImageView alloc]initWithFrame:CGRectMake(260, 440, 115, 178)];
+    recordImageView.image = [UIImage imageNamed:@"recordImage.png"];
+    [self.view addSubview:recordImageView];
+    
     //播放录音
     playRecord= [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    playRecord.frame = CGRectMake(10, 400, 150, 50);
-    [playRecord setTitle:@"播放留言" forState:UIControlStateNormal];
+    playRecord.frame = CGRectMake(260, 600, 89, 89);
+    //[playRecord setTitle:@"播放留言" forState:UIControlStateNormal];
+    [playRecord setBackgroundImage:[UIImage imageNamed:@"listenRecord.png"] forState:UIControlStateNormal];
     [playRecord addTarget:self action:@selector(playRecord:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:playRecord];
     
     
     
     //赞人气
-    popularityBtn = [[AcclaimButton alloc]initWithFrame:CGRectMake(64, 270, 230, 45)];
+    popularityBtn = [[AcclaimButton alloc]initWithFrame:CGRectMake(50, 580, 153, 71)];
+    popularityBtn.ivBg.image = [UIImage imageNamed:@"bgacclaim.png"];
+    //[popularityBtn setBackgroundColor:[UIColor redColor]];
+    //[popularityBtn setIvBg:[UIImage imageNamed:@"popularity.png"]];
     [popularityBtn addTarget:self action:@selector(onAddPopularity:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:popularityBtn];
     
@@ -133,9 +148,15 @@
         
 }
 
+-(void)toEditMessageBtn:(UIButton *)btn{
+    EditMessageViewController *editMessageViewController = [[EditMessageViewController alloc]init];
+    [self.navigationController pushViewController:editMessageViewController animated:YES];
+}
 -(void)back:(UIButton *)btn{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
 
 -(void)onAddPopularity:(UIButton *)btn{
    //TODO:增加人气
