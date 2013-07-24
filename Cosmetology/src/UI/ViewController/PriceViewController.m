@@ -18,6 +18,8 @@
 #import "SubCatalogManager.h"
 #import "SubProductInfo.h"
 #import "MessageListsViewController.h"
+#import "MainViewController.h"
+#import "MessageListsViewController.h"
 
 
 @implementation PriceViewController {
@@ -90,28 +92,43 @@
     _editGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editGestureDidTap:)];
     _editGesture.numberOfTapsRequired = 3;
     [_editTapView addGestureRecognizer:_editGesture];
+    
+    //留言簿按钮
+    UIButton *editMessageBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    editMessageBtn.frame = CGRectMake(250, 705, 180, 67);
+    [editMessageBtn setBackgroundImage:[UIImage imageNamed:@"bgMessageListBtn@2x.png"] forState:UIControlStateNormal];
+    [editMessageBtn addTarget:self action:@selector(goToMessageList:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:editMessageBtn];
+    
+    //主菜单按钮
+    UIButton *mainMeunBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    mainMeunBtn.frame = CGRectMake(500, 705, 120, 67);
+    //[backBtn setImage:[UIImage imageNamed:@"save.png"] forState:UIControlStateNormal];
+    [mainMeunBtn setBackgroundImage:[UIImage imageNamed:@"bgMainMeun.png"] forState:UIControlStateNormal];
+    [mainMeunBtn addTarget:self action:@selector(goToMainMeun:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:mainMeunBtn];
+    
+    //返回按钮
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    backBtn.frame = CGRectMake(700, 705, 120, 67);
+    //[backBtn setImage:[UIImage imageNamed:@"save.png"] forState:UIControlStateNormal];
+    [backBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backBtn];
+}
 
-    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0,
-            self.view.bounds.size.height - 44,
-            self.view.bounds.size.width,
-            44)];
+-(void)goToMessageList:(UIButton *)btn{
+    MessageListsViewController *messageListsViewController = [[MessageListsViewController alloc]init];
+    [self.navigationController pushViewController:messageListsViewController animated:YES];
+}
 
-    UIBarButtonItem *backToMainViewItem = [[UIBarButtonItem alloc] initWithTitle:@"主菜单"
-                                                                           style:UIBarButtonItemStyleDone
-                                                                          target:self
-                                                                          action:@selector(backToMainItemClicked:)];
+-(void)goToMainMeun:(UIButton *)btn{
+    MainViewController *mainViewController = [[MainViewController alloc]init];
+    [self.navigationController pushViewController:mainViewController animated:YES];
+}
 
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"上一步"
-                                                                 style:UIBarButtonItemStyleDone
-                                                                target:self
-                                                                action:@selector(backItemClicked:)];
-    UIBarButtonItem *msgItem = [[UIBarButtonItem alloc] initWithTitle:@"留言榜"
-                                                                style:UIBarButtonItemStyleDone
-                                                               target:self
-                                                               action:@selector(msgItemClicked:)];
-    toolbar.items = [NSArray arrayWithObjects:backToMainViewItem,backItem,msgItem, nil];
-    [self.view addSubview:toolbar];
-
+-(void)back:(UIButton *)btn{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)editGestureDidTap:(UITapGestureRecognizer *)gesture{
@@ -186,21 +203,6 @@
     [alertView addButtonItem:confirmItem];
     [alertView show];
     
-}
-
-
--(void)backToMainItemClicked:(UIBarButtonItem *)item{
-
-}
-
--(void)backItemClicked:(UIBarButtonItem *)item{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
--(void)msgItemClicked:(UIBarButtonItem *)item{
-    MessageListsViewController *messageListsViewController = [[MessageListsViewController alloc]init];
-    [self.navigationController pushViewController:messageListsViewController animated:YES];
-    DDetailLog(@"留言列表按钮");
 }
 
 -(void)editBg:(UIBarButtonItem *)sender{

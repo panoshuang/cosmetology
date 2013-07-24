@@ -143,7 +143,7 @@
 		CE55A53E179F89ED0026C20C /* editMessage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE55A53D179F89ED0026C20C /* editMessage@2x.png */; };
 		CE55A540179F89FB0026C20C /* bgMainMeun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE55A53F179F89FB0026C20C /* bgMainMeun@2x.png */; };
 		CE55A542179F8A100026C20C /* 至尊价.png in Resources */ = {isa = PBXBuildFile; fileRef = CE55A541179F8A100026C20C /* 至尊价.png */; };
-		CE55A544179F8A160026C20C /* 留言簿.png in Resources */ = {isa = PBXBuildFile; fileRef = CE55A543179F8A160026C20C /* 留言簿.png */; };
+		CE55A544179F8A160026C20C /* bgMessageListBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE55A543179F8A160026C20C /* bgMessageListBtn@2x.png */; };
 		CE55A549179FA5070026C20C /* bgEditMessage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE55A545179FA5060026C20C /* bgEditMessage@2x.jpg */; };
 		CE55A54A179FA5070026C20C /* bgMessageLists@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE55A546179FA5060026C20C /* bgMessageLists@2x.jpg */; };
 		CE55A54B179FA5070026C20C /* save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE55A547179FA5060026C20C /* save@2x.png */; };
@@ -422,7 +422,7 @@
 		CE55A53D179F89ED0026C20C /* editMessage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "editMessage@2x.png"; sourceTree = "<group>"; };
 		CE55A53F179F89FB0026C20C /* bgMainMeun@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgMainMeun@2x.png"; sourceTree = "<group>"; };
 		CE55A541179F8A100026C20C /* 至尊价.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "至尊价.png"; sourceTree = "<group>"; };
-		CE55A543179F8A160026C20C /* 留言簿.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "留言簿.png"; sourceTree = "<group>"; };
+		CE55A543179F8A160026C20C /* bgMessageListBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgMessageListBtn@2x.png"; sourceTree = "<group>"; };
 		CE55A545179FA5060026C20C /* bgEditMessage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bgEditMessage@2x.jpg"; sourceTree = "<group>"; };
 		CE55A546179FA5060026C20C /* bgMessageLists@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bgMessageLists@2x.jpg"; sourceTree = "<group>"; };
 		CE55A547179FA5060026C20C /* save@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "save@2x.png"; sourceTree = "<group>"; };
@@ -956,7 +956,7 @@
 				CE55A546179FA5060026C20C /* bgMessageLists@2x.jpg */,
 				CE55A547179FA5060026C20C /* save@2x.png */,
 				CE55A548179FA5070026C20C /* bgCheckMessage@2x.jpg */,
-				CE55A543179F8A160026C20C /* 留言簿.png */,
+				CE55A543179F8A160026C20C /* bgMessageListBtn@2x.png */,
 				CE55A541179F8A100026C20C /* 至尊价.png */,
 				CE55A53F179F89FB0026C20C /* bgMainMeun@2x.png */,
 				CE55A53D179F89ED0026C20C /* editMessage@2x.png */,
@@ -1204,7 +1204,7 @@
 				CE55A53E179F89ED0026C20C /* editMessage@2x.png in Resources */,
 				CE55A540179F89FB0026C20C /* bgMainMeun@2x.png in Resources */,
 				CE55A542179F8A100026C20C /* 至尊价.png in Resources */,
-				CE55A544179F8A160026C20C /* 留言簿.png in Resources */,
+				CE55A544179F8A160026C20C /* bgMessageListBtn@2x.png in Resources */,
 				CE55A549179FA5070026C20C /* bgEditMessage@2x.jpg in Resources */,
 				CE55A54A179FA5070026C20C /* bgMessageLists@2x.jpg in Resources */,
 				CE55A54B179FA5070026C20C /* save@2x.png in Resources */,
