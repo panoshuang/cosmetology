@@ -10,7 +10,6 @@
 #import "SubProductInfo.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MainProductInfo.h"
-#import "GMGridView.h"
 #import "MainCatalogGridViewCell.h"
 #import "SubCatalogItem.h"
 #import "global_define.h"
@@ -25,14 +24,19 @@
 #import "AutoDismissView.h"
 #import "CommonUtil.h"
 #import "ResourceCache.h"
+#import "iCarousel.h"
 
-#define ITEM_SPACE 30
+#define NUMBER_OF_VISIBLE_ITEMS 50
+#define ITEM_SPACING 400.0f
+#define INCLUDE_PLACEHOLDERS YES
 
-@interface ExperienceViewController()<GMGridViewDataSource, GMGridViewSortingDelegate, GMGridViewTransformationDelegate, GMGridViewActionDelegate,MainCatalogGridViewCellDelegate,UIAlertViewDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate>
+@interface ExperienceViewController()<UIAlertViewDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate,iCarouselDataSource,
+iCarouselDelegate>
 {
     UIPopoverController *_popController;
     UIImageView *_ivBg;
     UIToolbar *_toolbar;
+    iCarousel *_catalogCarousel;
     NSMutableArray *_catalogArray;
     NSInteger _lastDeleteItemIndexAsked;
     NSString *_newProductName;
@@ -125,22 +129,14 @@
     _editGesture.numberOfTapsRequired = 3;
     [_editTapView addGestureRecognizer:_editGesture];
 
-    NSInteger spacing = ITEM_SPACE;
-    CGRect gridViewFrame = CGRectMake(98, 240, 785, 370);
-    GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:gridViewFrame];
-    gmGridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    gmGridView.backgroundColor = [UIColor clearColor];
-    _gmGridView = gmGridView;
-    _gmGridView.style = GMGridViewStyleSwap;
-    _gmGridView.layer.masksToBounds = YES;
-    _gmGridView.itemSpacing = spacing;
-    _gmGridView.minEdgeInsets = UIEdgeInsetsMake(25, 25, 0, 0);
-    _gmGridView.centerGrid = NO;
-    _gmGridView.actionDelegate = self;
-    _gmGridView.sortingDelegate = self;
-    _gmGridView.transformDelegate = self;
-    _gmGridView.dataSource = self;
-    [self.view addSubview:_gmGridView];
+
+    _catalogCarousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, kToolBarHeight, self.view.bounds.size.width, self.view.bounds.size.height - kToolBarHeight)];
+    _catalogCarousel.delegate = self;
+    _catalogCarousel.dataSource = self;
+    _catalogCarousel.type = iCarouselTypeRotary;
+//    _catalogCarousel.scrollSpeed = 50;
+//    _catalogCarousel.decelerationRate = 10;
+    [self.view addSubview:_catalogCarousel];
 }
 
 -(void)addSubCatalogItem
@@ -150,18 +146,6 @@
     addSubCatalogViewController.delegate = self;
     [_mainDelegate mainPushViewController:addSubCatalogViewController animated:YES];
 }
-
-
-//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-//{
-//    if (buttonIndex == 1) {
-//        DDetailLog(@"111111")
-//    }
-//    if (buttonIndex == 0) {
-//        DDetailLog(@"00000");
-//    }
-//}
-
 
 - (void)viewDidLoad
 {
@@ -173,7 +157,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    _gmGridView = nil;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -188,8 +171,6 @@
 
 -(void)setBIsEdit:(BOOL)bIsEdit {
     _bIsEdit = bIsEdit;
-    [_gmGridView setEditing:_bIsEdit];
-    [_gmGridView reloadData];
 }
 
 -(void)onBgTap:(UITapGestureRecognizer *)gesture{
@@ -200,16 +181,6 @@
     }completion:^(BOOL complete){
         [self.view removeFromSuperview];
     }];
-//
-    
-    
-//    UIView *testView = [[UIView alloc] initWithFrame:CGRectZero];
-//    [self.view addSubview:testView];
-//    testView.backgroundColor = [UIColor orangeColor];
-//    [UIView animateWithDuration:2
-//                     animations:^{
-//                         testView.frame = self.view.bounds;
-//                     }completion:NULL];
 }
 
 -(void)editGestureDidTap:(UITapGestureRecognizer *)gesture{
@@ -329,359 +300,96 @@
 }
 
 
-//////////////////////////////////////////////////////////////
-#pragma mark GMGridViewDataSource
-//////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark iCarousel methods
 
-- (NSInteger)numberOfItemsInGMGridView:(GMGridView *)gridView
+- (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
-    return [_catalogArray count];
+    return 10;
 }
 
-- (CGSize)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation
+- (NSUInteger)numberOfVisibleItemsInCarousel:(iCarousel *)carousel
 {
-    if (_bIsEdit) {
-        return CGSizeMake(230, 80);
-    }else{
-        return CGSizeMake(230, 52);
-    }
+    //limit the number of items views loaded concurrently (for performance reasons)
+    //this also affects the appearance of circular-type carousels
+    return NUMBER_OF_VISIBLE_ITEMS;
 }
 
-- (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForItemAtIndex:(NSInteger)index
+- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view
 {
-    //NSLog(@"Creating view indx %d", index);
+	
+	//create new view if no view is available for recycling
+	if (view == nil)
+	{
+		view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page.png"]];
+        view.frame = CGRectMake(0, 0, 300, 500);
+        view.backgroundColor = [UIColor redColor];
+	}
 
-    CGSize size = [self GMGridView:gridView sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
-
-
-    MainCatalogGridViewCell *cell = (MainCatalogGridViewCell *)[gridView dequeueReusableCell];
-
-    if (!cell)
-    {
-        cell = [[MainCatalogGridViewCell alloc] init];
-        cell.delegate = self;
-        cell.deleteButtonIcon = [UIImage imageNamed:@"close_x.png"];
-        cell.deleteButtonOffset = CGPointMake(-15, -15);
-
-        SubCatalogItem *mainCatalogItem = [[SubCatalogItem alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-        mainCatalogItem.delegate = cell;
-        cell.contentView = mainCatalogItem;
-
-    }
-    MainProductInfo *productInfo = [_catalogArray objectAtIndex:index];
-    SubCatalogItem *contentItem = (SubCatalogItem *)cell.contentView;
-    contentItem.lbName.text = productInfo.name;
-    [contentItem setEdit:_bIsEdit];
-    [contentItem.swEdit setSelected:productInfo.enable];
-
-//    [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-//    UIButton *contentBtn = (UIButton *)cell.contentView;
-//     [contentBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-//    contentBtn.backgroundColor = [UIColor greenColor];
-//    [contentBtn setTitle:productInfo.name forState:UIControlStateNormal];
-//    NSLog(@"%@",productInfo.name);
-//    UILabel *label = [[UILabel alloc] initWithFrame:cell.contentView.bounds];
-//    label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//    label.text = productInfo.name;
-//    label.textAlignment = UITextAlignmentCenter;
-//    label.backgroundColor = [UIColor clearColor];
-//    label.textColor = [UIColor blackColor];
-//    label.highlightedTextColor = [UIColor whiteColor];
-//    label.font = [UIFont boldSystemFontOfSize:20];
-//    [cell.contentView addSubview:label];
-
-//    [cell setEditing:YES animated:NO];
-
-    return cell;
+	
+    //set label
+	
+	return view;
 }
 
-
-- (BOOL)GMGridView:(GMGridView *)gridView canDeleteItemAtIndex:(NSInteger)index
+- (NSUInteger)numberOfPlaceholdersInCarousel:(iCarousel *)carousel
 {
-    return YES; //index % 2 == 0;
+	//note: placeholder views are only displayed on some carousels if wrapping is disabled
+	return  0;
 }
 
-//////////////////////////////////////////////////////////////
-#pragma mark GMGridViewActionDelegate
-//////////////////////////////////////////////////////////////
+//- (UIView *)carousel:(iCarousel *)carousel placeholderViewAtIndex:(NSUInteger)index reusingView:(UIView *)view
+//{
+//	UILabel *label = nil;
+//	
+//	//create new view if no view is available for recycling
+//	if (view == nil)
+//	{
+//		view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page.png"]];
+//		label = [[UILabel alloc] initWithFrame:view.bounds];
+//		label.backgroundColor = [UIColor clearColor];
+//		label.textAlignment = UITextAlignmentCenter;
+//		label.font = [label.font fontWithSize:50.0f];
+//		[view addSubview:label];
+//	}
+//	else
+//	{
+//		label = [[view subviews] lastObject];
+//	}
+//	
+//    //set label
+//	label.text = (index == 0)? @"[": @"]";
+//	
+//	return view;
+//}
 
-- (void)GMGridView:(GMGridView *)gridView didTapOnItemAtIndex:(NSInteger)position
+- (CGFloat)carouselItemWidth:(iCarousel *)carousel
 {
-    NSLog(@"Did tap at index %d", position);
-    //重新提交
-
-    SubProductInfo *subProductInfo = [_catalogArray objectAtIndex:position];
-    
-    //跳转到广告页面
-    PhotoBrowserDataSource *dataSource = [[PhotoBrowserDataSource alloc] init];
-    NSMutableArray *adPhotoArray = [NSMutableArray arrayWithArray:[[AdPhotoManager instance] allAdPhotoInfoForSubProductID:subProductInfo.productID]];
-    [dataSource setPhotoList:adPhotoArray];
-    PhotoScrollViewController *photoScrollViewController = [[PhotoScrollViewController alloc]
-            initWithDataSource:dataSource
-      andStartWithPhotoAtIndex:0];
-    //TODO:把编辑设置是,以后需要修改
-    photoScrollViewController.bIsEdit = YES;
-    photoScrollViewController.subProductID = subProductInfo.productID;
-    [self.mainDelegate mainPushViewController:photoScrollViewController animated:YES];
+    //usually this should be slightly wider than the item views
+    return ITEM_SPACING;
 }
 
-- (void)GMGridViewDidTapOnEmptySpace:(GMGridView *)gridView
-{
-    NSLog(@"Tap on empty space");
-}
+//- (CGFloat)carousel:(iCarousel *)carousel itemAlphaForOffset:(CGFloat)offset
+//{
+//	//set opacity based on distance from camera
+//    return 1.0f - fminf(fmaxf(offset, 0.0f), 1.0f);
+//}
+//
+//- (CATransform3D)carousel:(iCarousel *)_carousel itemTransformForOffset:(CGFloat)offset baseTransform:(CATransform3D)transform
+//{
+//    //implement 'flip3D' style carousel
+//    transform = CATransform3DRotate(transform, M_PI / 8.0f, 0.0f, 1.0f, 0.0f);
+//    return CATransform3DTranslate(transform, 0.0f, 0.0f, offset * _carousel.itemWidth);
+//}
 
-- (void)GMGridView:(GMGridView *)gridView processDeleteActionForItemAtIndex:(NSInteger)index
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure you want to delete this item?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
-
-    [alert show];
-
-    _lastDeleteItemIndexAsked = index;
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    _passWord = [[NSString alloc]init];
-    _newProductName = [[NSString alloc]init];
-    if (buttonIndex == 1)
-    {
-        [_catalogArray removeObjectAtIndex:_lastDeleteItemIndexAsked];
-        [_gmGridView removeObjectAtIndex:_lastDeleteItemIndexAsked withAnimation:GMGridViewItemAnimationFade];
-        DDetailLog(@"111111");
-        if (!_bIsEdit) {
-            _bIsEdit = YES;
-            _gmGridView.editing = YES;
-        }
-        DDetailLog(@"%@",_newProductName);
-        DDetailLog(@"%@",_passWord);
-    }
-    if (buttonIndex == 0) {
-        DDetailLog(@"00000");
-    }
-    [_gmGridView reloadData];
-}
-
-//////////////////////////////////////////////////////////////
-#pragma mark GMGridViewSortingDelegate
-//////////////////////////////////////////////////////////////
-
-- (void)GMGridView:(GMGridView *)gridView didStartMovingCell:(GMGridViewCell *)cell
-{
-    [UIView animateWithDuration:0.3
-                          delay:0
-                        options:UIViewAnimationOptionAllowUserInteraction
-                     animations:^{
-                         cell.contentView.layer.cornerRadius = 4;
-                         cell.contentView.layer.masksToBounds = YES;
-                         cell.contentView.backgroundColor = [UIColor orangeColor];
-                         cell.contentView.layer.shadowOpacity = 0.7;
-                     }
-                     completion:nil
-    ];
-}
-
-- (void)GMGridView:(GMGridView *)gridView didEndMovingCell:(GMGridViewCell *)cell
-{
-    [UIView animateWithDuration:0.3
-                          delay:0
-                        options:UIViewAnimationOptionAllowUserInteraction
-                     animations:^{
-                         cell.contentView.layer.cornerRadius = 0;
-                         cell.contentView.layer.masksToBounds = NO;
-                         cell.contentView.backgroundColor = [UIColor clearColor];
-                         cell.contentView.layer.shadowOpacity = 0;
-                         cell.highlighted = NO;
-                         
-                     }
-                     completion:nil
-    ];
-}
-
-- (BOOL)GMGridView:(GMGridView *)gridView shouldAllowShakingBehaviorWhenMovingCell:(GMGridViewCell *)cell atIndex:(NSInteger)index
-{
-    return NO;
-}
-
-- (void)GMGridView:(GMGridView *)gridView moveItemAtIndex:(NSInteger)oldIndex toIndex:(NSInteger)newIndex
-{
-    NSObject *object = [_catalogArray objectAtIndex:oldIndex];
-    [_catalogArray removeObject:object];
-    [_catalogArray insertObject:object atIndex:newIndex];
-}
-
-- (void)GMGridView:(GMGridView *)gridView exchangeItemAtIndex:(NSInteger)index1 withItemAtIndex:(NSInteger)index2
-{
-    [_catalogArray exchangeObjectAtIndex:index1 withObjectAtIndex:index2];
-}
+//- (BOOL)carouselShouldWrap:(iCarousel *)carousel
+//{
+//    return NO;
+//}
 
 
-//////////////////////////////////////////////////////////////
-#pragma mark DraggableGridViewTransformingDelegate
-//////////////////////////////////////////////////////////////
-
-- (CGSize)GMGridView:(GMGridView *)gridView sizeInFullSizeForCell:(GMGridViewCell *)cell atIndex:(NSInteger)index inInterfaceOrientation:(UIInterfaceOrientation)orientation
-{
-
-    if (UIInterfaceOrientationIsLandscape(orientation))
-    {
-        return CGSizeMake(700, 530);
-    }
-    else
-    {
-        return CGSizeMake(600, 500);
-    }
-}
-
-- (UIView *)GMGridView:(GMGridView *)gridView fullSizeViewForCell:(GMGridViewCell *)cell atIndex:(NSInteger)index
-{
-    UIView *fullView = [[UIView alloc] init];
-    fullView.backgroundColor = [UIColor yellowColor];
-    fullView.layer.masksToBounds = NO;
-    fullView.layer.cornerRadius = 8;
-
-    CGSize size = [self GMGridView:gridView sizeInFullSizeForCell:cell atIndex:index inInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
-    fullView.bounds = CGRectMake(0, 0, size.width, size.height);
-
-    UILabel *label = [[UILabel alloc] initWithFrame:fullView.bounds];
-    label.text = [NSString stringWithFormat:@"Fullscreen View for cell at index %d", index];
-    label.textAlignment = UITextAlignmentCenter;
-    label.backgroundColor = [UIColor clearColor];
-    label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 
 
-    label.font = [UIFont boldSystemFontOfSize:20];
-
-    [fullView addSubview:label];
-
-
-    return fullView;
-}
-
-- (void)GMGridView:(GMGridView *)gridView didStartTransformingCell:(GMGridViewCell *)cell
-{
-    [UIView animateWithDuration:0.5
-                          delay:0
-                        options:UIViewAnimationOptionAllowUserInteraction
-                     animations:^{
-                         cell.contentView.backgroundColor = [UIColor clearColor];
-                         cell.contentView.layer.shadowOpacity = 0.7;
-                     }
-                     completion:nil];
-}
-
-- (void)GMGridView:(GMGridView *)gridView didEndTransformingCell:(GMGridViewCell *)cell
-{
-    [UIView animateWithDuration:0.5
-                          delay:0
-                        options:UIViewAnimationOptionAllowUserInteraction
-                     animations:^{
-                         cell.contentView.backgroundColor = [UIColor clearColor];
-                         cell.contentView.layer.shadowOpacity = 0;
-                     }
-                     completion:nil];
-}
-
-- (void)GMGridView:(GMGridView *)gridView didEnterFullSizeForCell:(UIView *)cell
-{
-
-}
-
-
-#pragma mark -  MainCatalogGridViewCellDelegate
-
--(void)mainCatalogGridViewCellDidSwitch:(MainCatalogGridViewCell *)cell value:(BOOL)isOpen{
-    DDetailLog(@"");
-    int index = [_gmGridView positionForItemSubview:cell];
-    DDetailLog(@"indxe : %d",index);
-}
-
-- (void)subCatalogGridViewCellDidEditName:(MainCatalogGridViewCell *)cell {
-    DDetailLog(@"delegate call...");
-    UIAlertView *alert1 = [[UIAlertView alloc]
-            initWithTitle:NSLocalizedString(@"输入新项目名", nil)
-                  message:NSLocalizedString(@"\n", nil)
-                 delegate:self
-        cancelButtonTitle:@"取消"
-        otherButtonTitles:@"确认",
-                          nil];
-    alert1.delegate = self;
-    UITextField *txt1 = [[UITextField alloc]initWithFrame:CGRectMake(12, 40, 260, 40)];
-    txt1.font = [UIFont boldSystemFontOfSize:18];
-    txt1.layer.cornerRadius = 6;
-    txt1.layer.masksToBounds = YES;
-    txt1.secureTextEntry = YES;
-    txt1.delegate = self;
-    txt1.backgroundColor = [UIColor whiteColor];
-    [alert1 addSubview:txt1];
-    [alert1 show];
-}
-
-#pragma mark -  AddSubCatalogViewControllerDelegate
-
--(void)addSubCatalogViewController:(AddSubCatalogViewController *)addSubCatalogViewController didSaveCatalog:(SubProductInfo *)subProductInfo{
-    [_catalogArray addObject:subProductInfo];
-    [_gmGridView insertObjectAtIndex:_catalogArray.count - 1 animated:YES];
-}
-
-#pragma mark UIImagePickerControllerDelegate
-- (void)imagePickerController:(UIImagePickerController *)picker
-        didFinishPickingImage:(UIImage *)image
-                  editingInfo:(NSDictionary *)editingInfo
-{
-    [_popController dismissPopoverAnimated:YES];
-    if (image) {
-        //生成图片的uuid,保存到缓存
-        NSString *bgUuid = [CommonUtil uuid];
-        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
-                                                                    relatePath:bgUuid
-                                                                  resourceType:kResourceCacheTypeBackgroundImage];
-        self.experienceInfo.bgImageFile = bgImageFilePath;
-        [[MainCatalogManager instance] updateMainCatalog:self.experienceInfo];
-        _ivBg.image = image;
-    }else{
-        [[AutoDismissView instance] showInView:self.view title:@"修改失败" duration:1];
-    }
-    
-}
-
-//////////////////////////////////////////////////////////////
-#pragma mark private methods
-//////////////////////////////////////////////////////////////
-
-- (void)addMoreItem
-{
-    // Example: adding object at the last position
-    NSString *newItem = [NSString stringWithFormat:@"%d", (int)(arc4random() % 1000)];
-
-    [_catalogArray addObject:newItem];
-    [_gmGridView insertObjectAtIndex:[_catalogArray count] - 1 withAnimation:GMGridViewItemAnimationFade | GMGridViewItemAnimationScroll];
-}
-
-- (void)removeItem
-{
-    // Example: removing last item
-    if ([_catalogArray count] > 0)
-    {
-        NSInteger index = [_catalogArray count] - 1;
-
-        [_gmGridView removeObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade | GMGridViewItemAnimationScroll];
-        [_catalogArray removeObjectAtIndex:index];
-    }
-}
-
-- (void)refreshItem
-{
-    // Example: reloading last item
-    if ([_catalogArray count] > 0)
-    {
-        int index = [_catalogArray count] - 1;
-
-        NSString *newMessage = [NSString stringWithFormat:@"%d", (arc4random() % 1000)];
-
-        [_catalogArray replaceObjectAtIndex:index withObject:newMessage];
-        [_gmGridView reloadObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade | GMGridViewItemAnimationScroll];
-    }
-}
 
 
 
