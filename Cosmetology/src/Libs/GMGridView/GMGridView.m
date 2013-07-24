@@ -489,14 +489,15 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
     
     if (gestureRecognizer == _tapGesture) 
     {
-        if (self.editing && self.disableEditOnEmptySpaceTap) {
-            CGPoint locationTouch = [_tapGesture locationInView:self];
-            NSInteger position = [self.layoutStrategy itemPositionFromLocation:locationTouch];
-            
-            valid = (position == GMGV_INVALID_POSITION);
-        } else {
-            valid = !isScrolling && !self.isEditing && ![_longPressGesture hasRecognizedValidGesture];
-        }
+        //edit by huangsp ,取消编辑模式下不能点击
+//        if (self.editing && self.disableEditOnEmptySpaceTap) {
+//            CGPoint locationTouch = [_tapGesture locationInView:self];
+//            NSInteger position = [self.layoutStrategy itemPositionFromLocation:locationTouch];
+//            
+//            valid = (position == GMGV_INVALID_POSITION);
+//        } else {
+//            valid = !isScrolling && !self.isEditing && ![_longPressGesture hasRecognizedValidGesture];
+//        }
     }
     else if (gestureRecognizer == _longPressGesture)
     {
@@ -1148,6 +1149,27 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
         if (!self.editing) {
             [self cellForItemAtIndex:position].highlighted = NO;
             [self.actionDelegate GMGridView:self didTapOnItemAtIndex:position];
+        }else{
+            //判断是否是在点击操作区域,是的话不让处理
+            GMGridViewCell *cell = [self cellForItemAtIndex:position];
+            BOOL isTouchAtControl = NO;
+            NSArray *subViewArray = cell.contentView.subviews;
+            for (UIView *subView in subViewArray) {
+                CGPoint locationInSubView = [tapGesture locationInView:subView];
+                if (CGRectContainsPoint(subView.frame, locationInSubView)) {
+                    DDetailLog(@"subview :%@",subView);
+                    if ([subView isKindOfClass:[UIControl class]]) {
+                        isTouchAtControl = YES;
+                        break;
+                    }else{
+                        
+                    }
+                }
+            }
+            if (isTouchAtControl == NO) {
+                [self cellForItemAtIndex:position].highlighted = NO;
+                [self.actionDelegate GMGridView:self didTapOnItemAtIndex:position];
+            }
         }
     }
     else

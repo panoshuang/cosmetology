@@ -181,6 +181,14 @@ static BOOL isProsecutingPhoto = NO;
     
 }
 
+-(void)setBIsEdit:(BOOL)isEdit{
+    _bIsEdit = isEdit;
+    if (isEdit) {
+        [self showChrome];
+        [self cancelChromeDisplayTimer];
+    }
+}
+
 - (void)back:(UIButton *)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -212,6 +220,8 @@ static BOOL isProsecutingPhoto = NO;
         if (!_popController)
         {
             _popController = [[UIPopoverController alloc] initWithContentViewController:picker];
+        }else{
+            [_popController setContentViewController:picker];
         }
         
         [_popController presentPopoverFromRect:[sender convertRect:sender.bounds toView:self.view]
@@ -334,6 +344,8 @@ static BOOL isProsecutingPhoto = NO;
         if (!_popController)
         {
             _popController = [[UIPopoverController alloc] initWithContentViewController:picker];
+        }else{
+            [_popController setContentViewController:picker];
         }
 
         [_popController presentPopoverFromRect:[sender convertRect:sender.bounds toView:self.view]
@@ -389,7 +401,7 @@ static BOOL isProsecutingPhoto = NO;
     
     //显示播放按钮
     KTPhotoView *photoView = [photoViews_ objectAtIndex:currentIndex_];
-    if (photoView && [photoViews_ isKindOfClass:[KTPhotoView class]]) {
+    if (photoView && [photoView isKindOfClass:[KTPhotoView class]]) {
         [photoView showOrHideVedioBtn:YES];
     }
     
