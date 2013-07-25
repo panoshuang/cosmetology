@@ -23,6 +23,7 @@
 #import "AutoDismissView.h"
 #import "CommonUtil.h"
 #import "ResourceCache.h"
+#import "FXLabel.h"
 
 @interface MainViewController ()<SubCatalogViewControllerDelegate,iCarouselDataSource,
         iCarouselDelegate,AddMainCatalogViewControllerDelegate, ExperienceViewControllerDelegate,
@@ -359,19 +360,29 @@
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view
 {
-    UILabel *label = nil;
+    FXLabel *label = nil;
     
     //create new view if no view is available for recycling
     if (view == nil)
     {
         
-        view = [[MainCatalogItem alloc] initWithFrame:CGRectMake(0, 0, 400.0f, 300.0f)];
+        view = [[MainCatalogItem alloc] initWithFrame:CGRectMake(0, 0, 300.0f, 530.0f)];
         view.backgroundColor = [UIColor blueColor];
         ((MainCatalogItem *)view).ivBg.image = [UIImage imageNamed:@"test.png"];
         view.contentMode = UIViewContentModeScaleAspectFill;
-        label = [[UILabel alloc] initWithFrame:view.bounds];
+        label = [[FXLabel alloc] initWithFrame:view.bounds];
+        label.shadowColor = [UIColor blackColor];
+        label.shadowOffset = CGSizeZero;
+        label.shadowBlur = 20.0f;
+        label.innerShadowColor = [UIColor yellowColor];
+        label.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
+        label.gradientStartColor = [UIColor redColor];
+        label.gradientEndColor = [UIColor yellowColor];
+        label.gradientStartPoint = CGPointMake(0.0f, 0.5f);
+        label.gradientEndPoint = CGPointMake(1.0f, 0.5f);
+        label.oversampling = 2;
         label.backgroundColor = [UIColor clearColor];
-        label.textAlignment = UITextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentCenter;
         label.font = [label.font fontWithSize:50];
         label.tag = 1;
         [view addSubview:label];

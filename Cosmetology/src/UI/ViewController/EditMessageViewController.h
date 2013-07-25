@@ -14,7 +14,7 @@
 #import "MyPaletteViewController.h"
 
 @protocol MessageBoardViewControllerDelegate; 
-@interface EditMessageViewController : UIViewController<UITextViewDelegate,AVAudioRecorderDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MyPaletteViewControllerDelegate>
+@interface EditMessageViewController : UIViewController<UITextViewDelegate,AVAudioRecorderDelegate,MyPaletteViewControllerDelegate>
 {
     __weak id<MessageBoardViewControllerDelegate> _delegate;
     NSInteger _subProductID;
@@ -22,6 +22,7 @@
 
 @property(nonatomic, weak)id<MessageBoardViewControllerDelegate> delegate;
 @property(nonatomic)NSInteger subProductID;
+@property (nonatomic) BOOL bIsEdit;
 
 @end
 

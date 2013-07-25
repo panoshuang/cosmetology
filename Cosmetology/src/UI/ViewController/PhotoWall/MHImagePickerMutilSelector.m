@@ -216,9 +216,11 @@
 
 -(void)dealloc
 {
+    DDetailLog(@"1");
     [delegate release],delegate=nil;
     [pics release];
     [imagePicker release],imagePicker=nil;
+    DDetailLog(@"2");
     [super dealloc];
 }
 

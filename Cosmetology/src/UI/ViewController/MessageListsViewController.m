@@ -106,7 +106,7 @@
     //修改背景
     editBgBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     editBgBtn.frame = CGRectMake(50, 705, 180, 67);
-    editBgBtn.hidden = NO;
+    editBgBtn.hidden = YES;
     [editBgBtn setBackgroundImage:[UIImage imageNamed:@"editBgBtn.png"] forState:UIControlStateNormal];
     [editBgBtn addTarget:self action:@selector(showEditBgView:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:editBgBtn];
@@ -148,9 +148,10 @@
     [_editTapView addGestureRecognizer:_editGesture];
     
     NSInteger spacing = 15;    
-    GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:CGRectMake(0, 44, self.view.bounds.size.width - 50, self.view.bounds.size.height - 90)];
+    GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:CGRectMake(0, 44, self.view.bounds.size.width - 50, self.view.bounds.size.height - 100)];
     gmGridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     gmGridView.backgroundColor = [UIColor clearColor];
+    gmGridView.layer.masksToBounds = YES;
     [self.view addSubview:gmGridView];
     _gmGridView = gmGridView;
     
@@ -207,8 +208,7 @@
         controller.allowsEditing = NO;
         controller.delegate = self;
         _popController=[[UIPopoverController alloc] initWithContentViewController:controller];
-        UIView *itemView = [sender valueForKey:@"view"];
-        [_popController presentPopoverFromRect:itemView.frame
+        [_popController presentPopoverFromRect:sender.frame
                                         inView:self.view
                       permittedArrowDirections:UIPopoverArrowDirectionUp
                                       animated:YES];
@@ -235,6 +235,7 @@
 {
     EditMessageViewController *editMessageViewController = [[EditMessageViewController alloc]init];
     editMessageViewController.subProductID = _productId;
+    DDetailLog(@"%d",_productId);
     editMessageViewController.delegate = self;
     [self.navigationController pushViewController:editMessageViewController animated:YES];
 }
@@ -253,6 +254,7 @@
 -(void)editGestureDidTap:(UITapGestureRecognizer *)gesture{
     if (_bIsEdit) {
         [self cancelEdit];
+        editBgBtn.hidden = YES;
     }else{
         //判断是否已经设置了密码,没有的话直接进入编辑模式,有的话要输入密码
         NSString *editPwdStr = [[PasswordManager instance] passwordForKey:PWD_MAIN_CATALOG];
@@ -260,6 +262,7 @@
             [self inputPassword];
         }else{
             self.bIsEdit = YES;
+            editBgBtn.hidden = NO;
         }
     }
 }
@@ -269,9 +272,13 @@
     confirmItem.label = @"确定";
     confirmItem.action = ^{
         self.bIsEdit = NO;
+        //editBgBtn.hidden = YES;
     };
     RIButtonItem *cancelItem = [RIButtonItem item];
     cancelItem.label = @"取消";
+    cancelItem.action = ^{
+        editBgBtn.hidden = NO;
+    };
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"是否要退出编辑模式"
                                                         message:nil
                                                cancelButtonItem:cancelItem
