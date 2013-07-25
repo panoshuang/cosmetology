@@ -19,24 +19,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/EditMessageViewController.m"
-         timestampString = "396285062.365718"
+         timestampString = "396371934.806793"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "458"
-         endingLineNumber = "458"
-         landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
-         landmarkType = "5">
+         startingLineNumber = "623"
+         endingLineNumber = "623"
+         landmarkName = "@implementation EditMessageViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/EditMessageViewController.m"
-         timestampString = "396285062.365718"
+         timestampString = "396371478.86745"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "236"
-         endingLineNumber = "236"
+         startingLineNumber = "272"
+         endingLineNumber = "272"
          landmarkName = "-pickImage:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -45,25 +45,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/EditMessageViewController.m"
-         timestampString = "396285062.365718"
+         timestampString = "396371478.86745"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "233"
-         endingLineNumber = "233"
-         landmarkName = "@implementation EditMessageViewController"
-         landmarkType = "3">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Cosmetology/src/UI/ViewController/MessageListsViewController.m"
-         timestampString = "396197722.520268"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "584"
-         endingLineNumber = "584"
-         landmarkName = "-saveMessage:forSubProductID:"
+         startingLineNumber = "269"
+         endingLineNumber = "269"
+         landmarkName = "-pickImage:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -71,12 +58,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/MessageListsViewController.m"
-         timestampString = "396197722.520268"
+         timestampString = "396371756.913535"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "411"
-         endingLineNumber = "411"
-         landmarkName = "-GMGridView:didTapOnItemAtIndex:"
+         startingLineNumber = "591"
+         endingLineNumber = "591"
+         landmarkName = "-GMGridView:didEndTransformingCell:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cosmetology/src/UI/ViewController/MessageListsViewController.m"
+         timestampString = "396371756.913535"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "418"
+         endingLineNumber = "418"
+         landmarkName = "-GMGridView:canDeleteItemAtIndex:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -188,11 +188,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/EditMessageViewController.m"
-         timestampString = "396283831.207752"
+         timestampString = "396371478.86745"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "80"
-         endingLineNumber = "80"
+         startingLineNumber = "109"
+         endingLineNumber = "109"
          landmarkName = "-loadView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -201,11 +201,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/EditMessageViewController.m"
-         timestampString = "396283831.207752"
+         timestampString = "396371478.86745"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "64"
-         endingLineNumber = "64"
+         startingLineNumber = "73"
+         endingLineNumber = "73"
          landmarkName = "@implementation EditMessageViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -214,11 +214,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/EditMessageViewController.m"
-         timestampString = "396283831.207752"
+         timestampString = "396371478.86745"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "65"
-         endingLineNumber = "65"
+         startingLineNumber = "74"
+         endingLineNumber = "74"
          landmarkName = "-loadView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -253,13 +253,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/EditMessageViewController.m"
-         timestampString = "396285062.365718"
+         timestampString = "396371934.806793"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "462"
-         endingLineNumber = "462"
-         landmarkName = "-setSingeNameImage:"
-         landmarkType = "5">
+         startingLineNumber = "627"
+         endingLineNumber = "627"
+         landmarkName = "@implementation EditMessageViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -304,6 +304,7 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
+<<<<<<< HEAD
          filePath = "Cosmetology/src/Libs/KTPhotoBrowser/KTPhotoScrollViewController.m"
          timestampString = "396459401.644981"
          startingColumnNumber = "9223372036854775807"
@@ -311,12 +312,35 @@
          startingLineNumber = "602"
          endingLineNumber = "602"
          landmarkName = "-showChrome"
+=======
+         filePath = "Cosmetology/src/UI/ViewController/PhotoWall/PhotoScrollViewController.m"
+         timestampString = "396367525.929264"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "358"
+         endingLineNumber = "358"
+         landmarkName = "-messageListBtnClicked:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
+         filePath = "Cosmetology/src/UI/ViewController/PhotoWall/PhotoScrollViewController.m"
+         timestampString = "396367573.068113"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "365"
+         endingLineNumber = "365"
+         landmarkName = "-priceBtnClicked:"
+>>>>>>> c35932efc6f0e5473ce559e8e56d92987ff1a1ce
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+<<<<<<< HEAD
          filePath = "Cosmetology/src/Libs/KTPhotoBrowser/KTPhotoScrollViewController.m"
          timestampString = "396459401.644981"
          startingColumnNumber = "9223372036854775807"
@@ -324,12 +348,22 @@
          startingLineNumber = "591"
          endingLineNumber = "591"
          landmarkName = "-hideChrome"
+=======
+         filePath = "Cosmetology/src/UI/ViewController/PriceViewController.m"
+         timestampString = "396367630.176885"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "122"
+         endingLineNumber = "122"
+         landmarkName = "-goToMessageList:"
+>>>>>>> c35932efc6f0e5473ce559e8e56d92987ff1a1ce
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
+<<<<<<< HEAD
          filePath = "Cosmetology/src/Libs/KTPhotoBrowser/KTPhotoScrollViewController.m"
          timestampString = "396459401.644981"
          startingColumnNumber = "9223372036854775807"
@@ -337,12 +371,22 @@
          startingLineNumber = "584"
          endingLineNumber = "584"
          landmarkName = "-toggleChrome:"
+=======
+         filePath = "Cosmetology/src/UI/ViewController/MessageListsViewController.m"
+         timestampString = "396370304.569087"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "238"
+         endingLineNumber = "238"
+         landmarkName = "-toEditMessage:"
+>>>>>>> c35932efc6f0e5473ce559e8e56d92987ff1a1ce
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
+<<<<<<< HEAD
          filePath = "Cosmetology/src/Libs/KTPhotoBrowser/KTPhotoScrollViewController.m"
          timestampString = "396459401.644981"
          startingColumnNumber = "9223372036854775807"
@@ -350,6 +394,28 @@
          startingLineNumber = "607"
          endingLineNumber = "607"
          landmarkName = "-startChromeDisplayTimer"
+=======
+         filePath = "Cosmetology/src/UI/ViewController/EditMessageViewController.m"
+         timestampString = "396372178.497847"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "602"
+         endingLineNumber = "602"
+         landmarkName = "-imagePickerController:didFinishPickingImage:editingInfo:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cosmetology/src/UI/ViewController/MessageListsViewController.m"
+         timestampString = "396372282.493318"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "332"
+         endingLineNumber = "332"
+         landmarkName = "-imagePickerController:didFinishPickingImage:editingInfo:"
+>>>>>>> c35932efc6f0e5473ce559e8e56d92987ff1a1ce
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
