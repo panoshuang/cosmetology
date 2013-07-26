@@ -25,6 +25,7 @@
 #import "CommonUtil.h"
 #import "ResourceCache.h"
 #import "iCarousel.h"
+#import "FXLabel.h"
 
 #define NUMBER_OF_VISIBLE_ITEMS 50
 #define ITEM_SPACING 400.0f
@@ -317,14 +318,35 @@ iCarouselDelegate>
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view
 {
-	
+	FXLabel *label = nil;
 	//create new view if no view is available for recycling
 	if (view == nil)
 	{
 		view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page.png"]];
         view.frame = CGRectMake(0, 0, 300, 500);
         view.backgroundColor = [UIColor redColor];
+        label = [[FXLabel alloc] initWithFrame:CGRectMake(0, -55, 300.0f, 50.0f)];
+        label.shadowColor = [UIColor blackColor];
+        label.shadowOffset = CGSizeZero;
+        label.shadowBlur = 20.0f;
+        label.innerShadowColor = [UIColor yellowColor];
+        label.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
+        label.gradientStartColor = [UIColor redColor];
+        label.gradientEndColor = [UIColor yellowColor];
+        label.gradientStartPoint = CGPointMake(0.0f, 0.5f);
+        label.gradientEndPoint = CGPointMake(1.0f, 0.5f);
+        label.oversampling = 2;
+        label.backgroundColor = [UIColor clearColor];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = [label.font fontWithSize:50];
+        label.tag = 1;
+        label.text = @"测试数据";
+        [view addSubview:label];
+
 	}
+    else{
+       label = (FXLabel *)[view viewWithTag:1];
+    }
 
 	
     //set label

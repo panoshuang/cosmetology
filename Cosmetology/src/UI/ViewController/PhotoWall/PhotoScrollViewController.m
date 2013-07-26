@@ -92,7 +92,7 @@ static BOOL isProsecutingPhoto = NO;
         [videoButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
         [videoButton addTarget:self action:@selector(videoBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         videoButton.tag       = BTN_COMMENT_TAG;
-        [buttonArray addObject:videoButton];
+        //[buttonArray addObject:videoButton];
         
         UIButton *priceButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];

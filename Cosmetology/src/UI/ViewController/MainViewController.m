@@ -386,7 +386,7 @@
     else
     {
         //get a reference to the label in the recycled view
-        label = (UILabel *)[view viewWithTag:1];
+        label = (FXLabel *)[view viewWithTag:1];
     }
     
     //set item label
@@ -422,7 +422,7 @@
         
         label = [[UILabel alloc] initWithFrame:view.bounds];
         label.backgroundColor = [UIColor clearColor];
-        label.textAlignment = UITextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentCenter;
         label.font = [label.font fontWithSize:50.0f];
         label.tag = 1;
         [view addSubview:label];

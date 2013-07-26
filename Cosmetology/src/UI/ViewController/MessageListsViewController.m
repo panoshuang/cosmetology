@@ -400,7 +400,7 @@
     
     UIImage *singeNameImage = [[ResourceCache instance] imageForCachePath:messageBoardinfoTemp.singeName];
     if (!singeNameImage) {
-        singeNameImage  = [UIImage imageNamed:@"singeName"];
+        singeNameImage  = [UIImage imageNamed:@"singe"];
     }
     UIImage *protraitImage = [[ResourceCache instance] imageForCachePath:messageBoardinfoTemp.headPortraits];
     if (!protraitImage) {

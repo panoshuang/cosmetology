@@ -138,7 +138,7 @@
     //显示签名
     UIImage *singeNameImage = [[ResourceCache instance] imageForCachePath:_messageBoardInfo.singeName];
     if (!singeNameImage) {
-        singeNameImage  = [UIImage imageNamed:@"singeName"];
+        singeNameImage  = [UIImage imageNamed:@"singe.png"];
     }
     singeName = [[UIImageView alloc]initWithImage:singeNameImage];
     singeName.frame = CGRectMake(374, 369, 497, 302);
