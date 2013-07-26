@@ -304,6 +304,15 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
+<<<<<<< HEAD
+         filePath = "Cosmetology/src/Libs/KTPhotoBrowser/KTPhotoScrollViewController.m"
+         timestampString = "396459401.644981"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "602"
+         endingLineNumber = "602"
+         landmarkName = "-showChrome"
+=======
          filePath = "Cosmetology/src/UI/ViewController/PhotoWall/PhotoScrollViewController.m"
          timestampString = "396367525.929264"
          startingColumnNumber = "9223372036854775807"
@@ -324,12 +333,22 @@
          startingLineNumber = "365"
          endingLineNumber = "365"
          landmarkName = "-priceBtnClicked:"
+>>>>>>> c35932efc6f0e5473ce559e8e56d92987ff1a1ce
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
+<<<<<<< HEAD
+         filePath = "Cosmetology/src/Libs/KTPhotoBrowser/KTPhotoScrollViewController.m"
+         timestampString = "396459401.644981"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "591"
+         endingLineNumber = "591"
+         landmarkName = "-hideChrome"
+=======
          filePath = "Cosmetology/src/UI/ViewController/PriceViewController.m"
          timestampString = "396367630.176885"
          startingColumnNumber = "9223372036854775807"
@@ -337,12 +356,22 @@
          startingLineNumber = "122"
          endingLineNumber = "122"
          landmarkName = "-goToMessageList:"
+>>>>>>> c35932efc6f0e5473ce559e8e56d92987ff1a1ce
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
+<<<<<<< HEAD
+         filePath = "Cosmetology/src/Libs/KTPhotoBrowser/KTPhotoScrollViewController.m"
+         timestampString = "396459401.644981"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "584"
+         endingLineNumber = "584"
+         landmarkName = "-toggleChrome:"
+=======
          filePath = "Cosmetology/src/UI/ViewController/MessageListsViewController.m"
          timestampString = "396370304.569087"
          startingColumnNumber = "9223372036854775807"
@@ -350,12 +379,22 @@
          startingLineNumber = "238"
          endingLineNumber = "238"
          landmarkName = "-toEditMessage:"
+>>>>>>> c35932efc6f0e5473ce559e8e56d92987ff1a1ce
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
+<<<<<<< HEAD
+         filePath = "Cosmetology/src/Libs/KTPhotoBrowser/KTPhotoScrollViewController.m"
+         timestampString = "396459401.644981"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "607"
+         endingLineNumber = "607"
+         landmarkName = "-startChromeDisplayTimer"
+=======
          filePath = "Cosmetology/src/UI/ViewController/EditMessageViewController.m"
          timestampString = "396372178.497847"
          startingColumnNumber = "9223372036854775807"
@@ -376,6 +415,7 @@
          startingLineNumber = "332"
          endingLineNumber = "332"
          landmarkName = "-imagePickerController:didFinishPickingImage:editingInfo:"
+>>>>>>> c35932efc6f0e5473ce559e8e56d92987ff1a1ce
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

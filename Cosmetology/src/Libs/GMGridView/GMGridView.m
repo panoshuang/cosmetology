@@ -1152,14 +1152,13 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
         }else{
             //判断是否是在点击操作区域,是的话不让处理
             GMGridViewCell *cell = [self cellForItemAtIndex:position];
-            BOOL isTouchAtControl = NO;
+            BOOL isTouchAtControl = YES;
             NSArray *subViewArray = cell.contentView.subviews;
             for (UIView *subView in subViewArray) {
                 CGPoint locationInSubView = [tapGesture locationInView:subView];
                 if (CGRectContainsPoint(subView.frame, locationInSubView)) {
-                    DDetailLog(@"subview :%@",subView);
-                    if ([subView isKindOfClass:[UIControl class]]) {
-                        isTouchAtControl = YES;
+                    if ([subView isKindOfClass:[UIView class]]) {
+                        isTouchAtControl = NO;
                         break;
                     }else{
                         

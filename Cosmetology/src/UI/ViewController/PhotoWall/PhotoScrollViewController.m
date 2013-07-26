@@ -101,12 +101,12 @@ static BOOL isProsecutingPhoto = NO;
         priceButton.tag       = BTN_COMMENT_TAG;
         [buttonArray addObject:priceButton];
 
-        UIButton *commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [commentButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
-        [commentButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
-        [commentButton addTarget:self action:@selector(addBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-        commentButton.tag       = BTN_COMMENT_TAG;
-        [buttonArray addObject:commentButton];
+        UIButton *addPhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [addPhotoButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
+        [addPhotoButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
+        [addPhotoButton addTarget:self action:@selector(addBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        addPhotoButton.tag       = BTN_COMMENT_TAG;
+        [buttonArray addObject:addPhotoButton];
 
         UIButton *messageListButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [messageListButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
@@ -114,6 +114,7 @@ static BOOL isProsecutingPhoto = NO;
         [messageListButton addTarget:self action:@selector(messageListBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         messageListButton.tag = BTN_DEL_TAG;
         [buttonArray addObject:messageListButton];
+<<<<<<< HEAD
     //}
     //else
     //{
@@ -139,8 +140,30 @@ static BOOL isProsecutingPhoto = NO;
 //        reportButton.tag = BTN_REPORT_TAG;
 //        [buttonArray addObject:reportButton];
     //}
+=======
+    }
+    else
+    {        
+        UIButton *priceButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
+        [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
+        [priceButton addTarget:self action:@selector(priceBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        priceButton.tag       = BTN_COMMENT_TAG;
+        [buttonArray addObject:priceButton];
+        
+        UIButton *messageListButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [messageListButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
+        [messageListButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
+        [messageListButton addTarget:self action:@selector(messageListBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        messageListButton.tag = BTN_DEL_TAG;
+        [buttonArray addObject:messageListButton];
+    }
+>>>>>>> f432f94ec63765e4f3d6d76d0c4c9b6a6b00dbae
 
     self.toolbar.buttonArray = buttonArray;
+    if (_bIsEdit) {
+        self.isShowChromeAlways = YES;
+    }
     [self showChrome];
     self.hidesBottomBarWhenPushed = NO;
 }
@@ -183,9 +206,9 @@ static BOOL isProsecutingPhoto = NO;
 
 -(void)setBIsEdit:(BOOL)isEdit{
     _bIsEdit = isEdit;
-    if (isEdit) {
+    if (_bIsEdit) {
+        self.isShowChromeAlways = YES;
         [self showChrome];
-        [self cancelChromeDisplayTimer];
     }
 }
 

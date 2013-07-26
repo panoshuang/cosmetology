@@ -26,6 +26,7 @@ const CGFloat ktkDefaultTitlebarHeight         = 46;
 @synthesize statusbarHidden = statusbarHidden_;
 @synthesize toolbar = toolbar_;
 @synthesize titleBar = titlebar_;
+@synthesize isShowChromeAlways = isShowChromeAlways_;
 
 - (void)dealloc
 {
@@ -244,7 +245,10 @@ const CGFloat ktkDefaultTitlebarHeight         = 46;
 
     [self setTitleWithCurrentPhotoIndex];
     [self toggleNavButtons];
-    [self startChromeDisplayTimer];
+    if (!isShowChromeAlways_) {
+        [self startChromeDisplayTimer];
+    }
+    
 
     self.view.backgroundColor = [UIColor blackColor];
     scrollView_.backgroundColor = [UIColor blackColor];
@@ -575,11 +579,12 @@ const CGFloat ktkDefaultTitlebarHeight         = 46;
         [UIView commitAnimations];
     }
 
-    if (!isChromeHidden_)
+    if (!isChromeHidden_ && !isShowChromeAlways_)
     {
         [self startChromeDisplayTimer];
     }
 }
+
 
 - (void)hideChrome
 {
@@ -593,6 +598,7 @@ const CGFloat ktkDefaultTitlebarHeight         = 46;
 
 - (void)showChrome
 {
+    DDetailLog(@"");
     [self toggleChrome:NO];
 }
 
@@ -607,8 +613,10 @@ const CGFloat ktkDefaultTitlebarHeight         = 46;
 
 - (void)cancelChromeDisplayTimer
 {
+    
     if (chromeHideTimer_)
     {
+        DDetailLog(@"");
         [chromeHideTimer_ invalidate];
         chromeHideTimer_ = nil;
     }

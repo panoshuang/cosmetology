@@ -35,6 +35,8 @@
     BOOL statusbarHidden_; // Determines if statusbar is hidden at initial load. In other words, statusbar remains hidden when toggling chrome.
     BOOL isChromeHidden_;
     // BOOL rotationInProgress_;
+    
+    BOOL isShowChromeAlways_;
 
     BOOL viewDidAppearOnce_;
     BOOL navbarWasTranslucent_;
@@ -43,19 +45,20 @@
 
     UIBarButtonItem *nextButton_;
     UIBarButtonItem *previousButton_;
+
 }
 
 @property (nonatomic, assign) UIStatusBarStyle               statusBarStyle;
 @property (nonatomic, assign, getter=isStatusbarHidden) BOOL statusbarHidden;
 @property (nonatomic, readonly) KTPhotoScrollToolBar  *toolbar;
 @property (nonatomic, readonly) KTPhotoScrollTitleBar *titleBar;
+@property (nonatomic, assign) BOOL isShowChromeAlways;
 
 - (id)initWithDataSource:(id <KTPhotoBrowserDataSource>)dataSource andStartWithPhotoAtIndex:(NSUInteger)index;
 
 - (void)setScrollViewContentSize;
 
 - (void)toggleChromeDisplay;
-
 
 - (void)deleteCurrentPhoto;
 
