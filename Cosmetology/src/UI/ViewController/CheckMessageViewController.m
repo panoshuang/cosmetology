@@ -12,6 +12,11 @@
 #import "AcclaimButton.h"
 #import "ResourceCache.h"
 #import "EditMessageViewController.h"
+#import "AutoDismissView.h"
+#import "RIButtonItem.h"
+#import "PasswordManager.h"
+#import "UIAlertView+Blocks.h"
+#import "CommonUtil.h"
 
 @interface CheckMessageViewController ()
 {
@@ -25,6 +30,12 @@
     
     AcclaimButton *popularityBtn;//人气
     MessageBoardInfo *_messageBoardInfo;
+    
+    UIPopoverController *_popController;
+    UIView *_editTapView;
+    UITapGestureRecognizer *_editGesture; //开启编辑的手势
+    BOOL _bIsEdit;
+    UIButton *editBgBtn;//修改背景
 }
 
 @end
@@ -32,6 +43,7 @@
 @implementation CheckMessageViewController
 
 @synthesize messageBoardInfo = _messageBoardInfo;
+@synthesize bIsEdit = _bIsEdit;
 
 - (id)init
 {
@@ -51,13 +63,33 @@
     self.view = mainView;
     _bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     //获取背景图片填充
-    //    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    //    NSString *bgFilePath = [userDefaults stringForKey:HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH];
-    //    UIImage *bgImage = [[ResourceCache instance] imageForCachePath:bgFilePath];
-    //    _bgView.image = bgImage;
-    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *bgFilePath = [userDefaults stringForKey:HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH];
+    UIImage *bgImage = [[ResourceCache instance] imageForCachePath:bgFilePath];
+    if (bgImage) {
+        _bgView.image = bgImage;
+    }
     _bgView.image = [UIImage imageNamed:@"bgCheckMessage.jpg"];
     [self.view addSubview:_bgView];
+    
+    //修改背景
+    editBgBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    editBgBtn.frame = CGRectMake(50, 705, 180, 67);
+    editBgBtn.hidden = YES;
+    [editBgBtn setBackgroundImage:[UIImage imageNamed:@"editBgBtn.png"] forState:UIControlStateNormal];
+    [editBgBtn addTarget:self action:@selector(showEditBgView:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:editBgBtn];
+    
+    //点击三次,启动编辑功能
+    _editTapView = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 100,
+                                                            0,
+                                                            100,
+                                                            kToolBarHeight)];
+    _editTapView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:_editTapView];
+    _editGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editGestureDidTap:)];
+    _editGesture.numberOfTapsRequired = 3;
+    [_editTapView addGestureRecognizer:_editGesture];
     
     //我也要留言按钮
     UIButton *editMessageBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -178,6 +210,138 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+//////////////////////////////////////////////////////////////
+#pragma mark 启动编辑功能
+//////////////////////////////////////////////////////////////
+
+-(void)editGestureDidTap:(UITapGestureRecognizer *)gesture{
+    if (_bIsEdit) {
+        [self cancelEdit];
+        editBgBtn.hidden = YES;
+    }else{
+        //判断是否已经设置了密码,没有的话直接进入编辑模式,有的话要输入密码
+        NSString *editPwdStr = [[PasswordManager instance] passwordForKey:PWD_MAIN_CATALOG];
+        if (editPwdStr.length > 0) {
+            [self inputPassword];
+        }else{
+            self.bIsEdit = YES;
+            editBgBtn.hidden = NO;
+        }
+    }
+}
+
+-(void)cancelEdit{
+    RIButtonItem *confirmItem = [RIButtonItem item];
+    confirmItem.label = @"确定";
+    confirmItem.action = ^{
+        self.bIsEdit = NO;
+        //editBgBtn.hidden = YES;
+    };
+    RIButtonItem *cancelItem = [RIButtonItem item];
+    cancelItem.label = @"取消";
+    cancelItem.action = ^{
+        editBgBtn.hidden = NO;
+    };
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"是否要退出编辑模式"
+                                                        message:nil
+                                               cancelButtonItem:cancelItem
+                                               otherButtonItems:confirmItem, nil];
+    [alertView show];
+}
+
+-(void)inputPassword
+{
+    UIAlertView *alertView = nil;
+    alertView = [[UIAlertView alloc] initWithTitle:@"输入密码"
+                                           message:@"\n\n"
+                                  cancelButtonItem:nil
+                                  otherButtonItems:nil];
+    
+    UITextField *txt1 = [[UITextField alloc]initWithFrame:CGRectMake(12, 40, 260, 40)];
+    txt1.font = [UIFont boldSystemFontOfSize:18];
+    txt1.layer.cornerRadius = 6;
+    txt1.layer.masksToBounds = YES;
+    txt1.secureTextEntry = YES;
+    txt1.backgroundColor = [UIColor whiteColor];
+    txt1.backgroundColor = [UIColor whiteColor];
+    txt1.tag = 1000;
+    [alertView addSubview:txt1];
+    
+    RIButtonItem *confirmItem = [RIButtonItem item];
+    confirmItem.label = @"确定";
+    confirmItem.action = ^{
+        UITextField *textField = (UITextField *)[alertView viewWithTag:1000];
+        DDetailLog(@"textField is %@",textField.text);
+        //判断输入的密码是否正确
+        NSString *editPwdStr = [[PasswordManager instance] passwordForKey:PWD_MAIN_CATALOG];
+        if([editPwdStr isEqualToString:textField.text]){
+            _bIsEdit = YES;
+        }else{
+            [[AutoDismissView instance] showInView:self.view
+                                             title:@"密码错误"
+                                          duration:1];
+        }
+    };
+    RIButtonItem *cancelItem = [RIButtonItem item];
+    cancelItem.label = @"取消";
+    [alertView addButtonItem:cancelItem];
+    [alertView addButtonItem:confirmItem];
+    [alertView show];
+    
+}
+
+
+#pragma mark UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker
+        didFinishPickingImage:(UIImage *)image
+                  editingInfo:(NSDictionary *)editingInfo
+{
+    [_popController dismissPopoverAnimated:YES];
+    if (image) {
+        //生成图片的uuid,保存到缓存
+        NSString *bgUuid = [CommonUtil uuid];
+        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+                                                                    relatePath:bgUuid
+                                                                  resourceType:kResourceCacheTypeBackgroundImage];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:bgImageFilePath forKey:MSG_PAGE_BACKGROUND_IMAGE_FILE_PATH];
+        [userDefaults synchronize];
+        _bgView.image = image;
+    }else{
+        [[AutoDismissView instance] showInView:self.view title:@"修改失败" duration:1];
+    }
+}
+
+//////////////////////////////////////////////////////////////
+#pragma mark 切换背景
+//////////////////////////////////////////////////////////////
+-(void)showEditBgView:(UIButton *)sender{
+    if(![_popController isPopoverVisible])
+    {
+        if (!_popController)
+        {
+            _popController = nil;
+        }
+        
+        UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+        controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        controller.allowsEditing = NO;
+        controller.delegate = self;
+        _popController=[[UIPopoverController alloc] initWithContentViewController:controller];
+        [_popController presentPopoverFromRect:sender.frame
+                                        inView:self.view
+                      permittedArrowDirections:UIPopoverArrowDirectionUp
+                                      animated:YES];
+    }
+    else
+    {
+        [_popController dismissPopoverAnimated:YES];
+    }
+}
+
+
+
 
 
 @end

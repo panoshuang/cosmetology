@@ -38,12 +38,8 @@
     UITapGestureRecognizer *_editGesture; //开启编辑的手势
     BOOL _bIsEdit;
     BOOL _bIsWrap;
-    NSMutableArray *_catalogArray;
-    
-    
+    NSMutableArray *_catalogArray;   
 }
-
-
 
 @end
 
@@ -370,7 +366,7 @@
         view.backgroundColor = [UIColor blueColor];
         ((MainCatalogItem *)view).ivBg.image = [UIImage imageNamed:@"test.png"];
         view.contentMode = UIViewContentModeScaleAspectFill;
-        label = [[FXLabel alloc] initWithFrame:view.bounds];
+        label = [[FXLabel alloc] initWithFrame:CGRectMake(0, -55, 300.0f, 50.0f)];
         label.shadowColor = [UIColor blackColor];
         label.shadowOffset = CGSizeZero;
         label.shadowBlur = 20.0f;

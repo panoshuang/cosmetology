@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/MainViewController.m"
-         timestampString = "393732077.040958"
+         timestampString = "396497820.546877"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "65"
-         endingLineNumber = "65"
+         startingLineNumber = "61"
+         endingLineNumber = "61"
          landmarkName = "-init"
          landmarkType = "5">
       </FileBreakpoint>
@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/CheckMessageViewController.m"
-         timestampString = "396330721.957789"
+         timestampString = "396497177.380153"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "45"
-         endingLineNumber = "45"
+         startingLineNumber = "57"
+         endingLineNumber = "57"
          landmarkName = "-loadView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -125,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/CheckMessageViewController.m"
-         timestampString = "396341691.301128"
+         timestampString = "396497177.380153"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "151"
-         endingLineNumber = "151"
+         startingLineNumber = "183"
+         endingLineNumber = "183"
          landmarkName = "-toEditMessageBtn:"
          landmarkType = "5">
       </FileBreakpoint>

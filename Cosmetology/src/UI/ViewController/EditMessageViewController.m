@@ -91,6 +91,7 @@
     editBgBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     editBgBtn.frame = CGRectMake(50, 705, 180, 67);
     editBgBtn.hidden = YES;
+    editBgBtn.tag = 1000;
     [editBgBtn setBackgroundImage:[UIImage imageNamed:@"editBgBtn.png"] forState:UIControlStateNormal];
     [editBgBtn addTarget:self action:@selector(showEditBgView:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:editBgBtn];
@@ -105,7 +106,6 @@
     _editGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editGestureDidTap:)];
     _editGesture.numberOfTapsRequired = 3;
     [_editTapView addGestureRecognizer:_editGesture];
-
 }
 
 - (void)viewDidLoad
@@ -477,13 +477,52 @@
 
 #pragma mark UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    DDetailLog(@"%@",[info objectForKey:UIImagePickerControllerOriginalImage]);
-    headPortraitsImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    headImageView.image = headPortraitsImage;
-    DDetailLog(@"%@",info);
-    [picker dismissViewControllerAnimated:YES completion:^{}];
+    if (editBgBtn.tag == 1000) {
+        [_popController dismissPopoverAnimated:YES];
+        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        if (image) {
+            //生成图片的uuid,保存到缓存
+            NSString *bgUuid = [CommonUtil uuid];
+            NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+                                                                        relatePath:bgUuid
+                                                                      resourceType:kResourceCacheTypeBackgroundImage];
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:bgImageFilePath forKey:MSG_PAGE_BACKGROUND_IMAGE_FILE_PATH];
+            [userDefaults synchronize];
+            _bgView.image = image;
+        }else{
+            [[AutoDismissView instance] showInView:self.view title:@"修改失败" duration:1];
+        }
+
+    }
+    else{
+        DDetailLog(@"%@",[info objectForKey:UIImagePickerControllerOriginalImage]);
+        headPortraitsImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+        headImageView.image = headPortraitsImage;
+        DDetailLog(@"%@",info);
+        [picker dismissViewControllerAnimated:YES completion:^{}];
+    }
+    
     
 }
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+    [_popController dismissPopoverAnimated:YES];
+    if (image) {
+        //生成图片的uuid,保存到缓存
+        NSString *bgUuid = [CommonUtil uuid];
+        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+                                                                    relatePath:bgUuid
+                                                                  resourceType:kResourceCacheTypeBackgroundImage];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:bgImageFilePath forKey:MSG_PAGE_BACKGROUND_IMAGE_FILE_PATH];
+        [userDefaults synchronize];
+        _bgView.image = image;
+    }else{
+        [[AutoDismissView instance] showInView:self.view title:@"修改失败" duration:1];
+    }
+}
+
 
 #pragma mark MyPaletteViewControllerDelegate
 -(void)setSingeNameImage:(UIImage *)img{
@@ -598,26 +637,6 @@
 }
 
 
-#pragma mark UIImagePickerControllerDelegate
-- (void)imagePickerController:(UIImagePickerController *)picker
-        didFinishPickingImage:(UIImage *)image
-                  editingInfo:(NSDictionary *)editingInfo
-{
-    [_popController dismissPopoverAnimated:YES];
-    if (image) {
-        //生成图片的uuid,保存到缓存
-        NSString *bgUuid = [CommonUtil uuid];
-        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
-                                                                    relatePath:bgUuid
-                                                                  resourceType:kResourceCacheTypeBackgroundImage];
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setObject:bgImageFilePath forKey:MSG_PAGE_BACKGROUND_IMAGE_FILE_PATH];
-        [userDefaults synchronize];
-        _bgView.image = image;
-    }else{
-        [[AutoDismissView instance] showInView:self.view title:@"修改失败" duration:1];
-    }
-}
 
 
 

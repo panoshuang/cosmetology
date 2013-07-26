@@ -78,8 +78,8 @@ static BOOL isProsecutingPhoto = NO;
 
     // 设置底部工具栏
     self.toolbar.frame = CGRectMake(0, self.view.bounds.size.height - kPhotoBrowerToolBarHight, self.view.bounds.size.width, kPhotoBrowerToolBarHight);
-    //if (_bIsEdit)
-    //{
+    if (_bIsEdit)
+    {
         UIButton *pickVedio = [UIButton buttonWithType:UIButtonTypeCustom];
         [pickVedio setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
         [pickVedio setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
@@ -114,33 +114,6 @@ static BOOL isProsecutingPhoto = NO;
         [messageListButton addTarget:self action:@selector(messageListBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         messageListButton.tag = BTN_DEL_TAG;
         [buttonArray addObject:messageListButton];
-<<<<<<< HEAD
-    //}
-    //else
-    //{
-        //self.toolbar.hidden = YES;
-//        UIButton *likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [likeButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_like_nomal.png"] forState:UIControlStateNormal];
-//        [likeButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_like_highted.png"] forState:UIControlStateHighlighted];
-//        [likeButton addTarget:self action:@selector(likePhotoBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-//        likeButton.tag = BTN_LIKE_TAG;
-//        [buttonArray addObject:likeButton];
-//
-//        UIButton *commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [commentButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_comment_nomal.png"] forState:UIControlStateNormal];
-//        [commentButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_comment_highted.png"] forState:UIControlStateHighlighted];
-//        [commentButton addTarget:self action:@selector(commentPhotoBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-//        commentButton.tag = BTN_COMMENT_TAG;
-//        [buttonArray addObject:commentButton];
-//
-//        UIButton *reportButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [reportButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
-//        [reportButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
-//        [reportButton addTarget:self action:@selector(reportBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-//        reportButton.tag = BTN_REPORT_TAG;
-//        [buttonArray addObject:reportButton];
-    //}
-=======
     }
     else
     {        
@@ -158,7 +131,6 @@ static BOOL isProsecutingPhoto = NO;
         messageListButton.tag = BTN_DEL_TAG;
         [buttonArray addObject:messageListButton];
     }
->>>>>>> f432f94ec63765e4f3d6d76d0c4c9b6a6b00dbae
 
     self.toolbar.buttonArray = buttonArray;
     if (_bIsEdit) {

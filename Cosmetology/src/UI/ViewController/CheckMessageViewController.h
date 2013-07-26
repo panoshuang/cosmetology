@@ -12,5 +12,6 @@
 @interface CheckMessageViewController : UIViewController
 
 @property(nonatomic,strong) MessageBoardInfo *messageBoardInfo;
+@property (nonatomic) BOOL bIsEdit;
 
 @end
