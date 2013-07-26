@@ -78,8 +78,8 @@ static BOOL isProsecutingPhoto = NO;
 
     // 设置底部工具栏
     self.toolbar.frame = CGRectMake(0, self.view.bounds.size.height - kPhotoBrowerToolBarHight, self.view.bounds.size.width, kPhotoBrowerToolBarHight);
-    if (_bIsEdit)
-    {
+    //if (_bIsEdit)
+    //{
         UIButton *pickVedio = [UIButton buttonWithType:UIButtonTypeCustom];
         [pickVedio setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
         [pickVedio setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
@@ -114,10 +114,10 @@ static BOOL isProsecutingPhoto = NO;
         [messageListButton addTarget:self action:@selector(messageListBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         messageListButton.tag = BTN_DEL_TAG;
         [buttonArray addObject:messageListButton];
-    }
-    else
-    {
-        self.toolbar.hidden = YES;
+    //}
+    //else
+    //{
+        //self.toolbar.hidden = YES;
 //        UIButton *likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //        [likeButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_like_nomal.png"] forState:UIControlStateNormal];
 //        [likeButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_like_highted.png"] forState:UIControlStateHighlighted];
@@ -138,7 +138,7 @@ static BOOL isProsecutingPhoto = NO;
 //        [reportButton addTarget:self action:@selector(reportBtnClick:) forControlEvents:UIControlEventTouchUpInside];
 //        reportButton.tag = BTN_REPORT_TAG;
 //        [buttonArray addObject:reportButton];
-    }
+    //}
 
     self.toolbar.buttonArray = buttonArray;
     [self showChrome];
