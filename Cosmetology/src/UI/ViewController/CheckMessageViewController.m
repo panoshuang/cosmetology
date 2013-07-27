@@ -17,6 +17,7 @@
 #import "PasswordManager.h"
 #import "UIAlertView+Blocks.h"
 #import "CommonUtil.h"
+#import "VoiceHandle.h"
 
 @interface CheckMessageViewController ()
 {
@@ -36,6 +37,8 @@
     UITapGestureRecognizer *_editGesture; //开启编辑的手势
     BOOL _bIsEdit;
     UIButton *editBgBtn;//修改背景
+    
+    VoiceHandle *_voiceHandle;
 }
 
 @end
@@ -165,7 +168,8 @@
     popularityBtn.ivBg.image = [UIImage imageNamed:@"bgacclaim.png"];
     //[popularityBtn setBackgroundColor:[UIColor redColor]];
     //[popularityBtn setIvBg:[UIImage imageNamed:@"popularity.png"]];
-    [popularityBtn addTarget:self action:@selector(onAddPopularity:) forControlEvents:UIControlEventTouchUpInside];
+    [popularityBtn addTarget:self action:@selector(onAcclaimClick:) forControlEvents:UIControlEventTouchUpInside];
+    [popularityBtn.lbCount setText:[NSString stringWithFormat:@"%d",_messageBoardInfo.popularity]];
     [self.view addSubview:popularityBtn];
     
 }
@@ -189,20 +193,45 @@
 }
 
 
-
--(void)onAddPopularity:(UIButton *)btn{
-   //TODO:增加人气
-    popularityValue = [NSString stringWithFormat:@"人气:%d",(_messageBoardInfo.popularity + 1)];
-    _messageBoardInfo.popularity += 1;
-    //[popularityBtn setTitle:popularityValue forState:UIControlStateNormal];
-    [[MessageBoardManager instance] updateMessageBoard:_messageBoardInfo];
-    
-}
-
-
 -(void)playRecord:(UIButton *)btn
 {
-    //TODO:播放留言
+    if (_voiceHandle == nil){
+        _voiceHandle = [[VoiceHandle alloc] init];
+//        _voiceHandle.delegate = self;
+    }
+    if (_messageBoardInfo.messageRecord.length == 0) {
+        [[AutoDismissView instance] showInView:self.view title:@"没有录音" duration:1];
+        return;
+    }
+    [_voiceHandle playVoice:_messageBoardInfo.messageRecord];
+}
+
+-(void)onAcclaimClick:(AcclaimButton *)btn{
+    _messageBoardInfo.popularity += 1;
+    [[MessageBoardManager instance] updateMessageBoard:_messageBoardInfo];
+    [popularityBtn.lbCount setText:[NSString stringWithFormat:@"%d",_messageBoardInfo.popularity]];
+    [self showIncrementTipsView];
+}
+
+-(void)showIncrementTipsView{
+    UILabel *incrementTipsLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - 100)/2, self.view.bounds.size.height - kBottomBarHeight - 100, 100, 100)];
+    incrementTipsLabel.backgroundColor = [UIColor clearColor];
+    incrementTipsLabel.text = @"+1";
+    incrementTipsLabel.font = [UIFont boldSystemFontOfSize:40];
+    incrementTipsLabel.textColor = [UIColor colorWithRed:0xff/255. green:0x2e/255. blue:0x55/255. alpha:1];
+    incrementTipsLabel.textAlignment = UITextAlignmentCenter;
+    incrementTipsLabel.shadowOffset = CGSizeMake(5, 5);
+    incrementTipsLabel.alpha = 0;
+    [self.view addSubview:incrementTipsLabel];
+    
+    [UIView animateWithDuration:1 animations:^{
+        CGRect frame = incrementTipsLabel.frame;
+        frame.origin.y = (self.view.bounds.size.height - 100)/2;
+        incrementTipsLabel.frame = frame;
+        incrementTipsLabel.alpha = 1;
+    } completion:^(BOOL complete){
+        [incrementTipsLabel removeFromSuperview];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -340,7 +369,21 @@
     }
 }
 
-SHOULD_AUTOROTATA_TO_INTERFACE_ORIENTATION_LANDSCAPE
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    
+    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight );
+    
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationLandscapeLeft|UIInterfaceOrientationLandscapeRight;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return YES;
+}
 
 
 

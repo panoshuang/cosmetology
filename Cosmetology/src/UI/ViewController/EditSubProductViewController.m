@@ -124,7 +124,7 @@
 }
 
 -(void)enableProduct:(UISwitch *)sw{
-    _subProductInfo.enable = _swEnable.state;
+    _subProductInfo.enable = _swEnable.isOn;
 }
 
 -(void)save{
