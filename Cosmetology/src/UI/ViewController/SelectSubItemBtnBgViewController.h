@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TypeDef.h"
 
 @protocol SelectSubItemBtnBgViewControllerDelegate;
 
@@ -18,6 +19,6 @@
 
 @protocol SelectSubItemBtnBgViewControllerDelegate <NSObject>
 
--(void)selectSubItemBtnBgViewController:(SelectSubItemBtnBgViewController *)controller didSelectImageName:(NSString *)imageName;
+-(void)selectSubItemBtnBgViewController:(SelectSubItemBtnBgViewController *)controller didSelectImageName:(NSString *)imageName colorType:(EnumSubBtnColorType)colorType;
 
 @end

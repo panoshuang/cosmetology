@@ -16,6 +16,7 @@
 #define MAIN_PRODUCT_INFO_BG_IMAGE_FILE                 @"bgImageFile"
 #define MAIN_PRODUCT_INFO_PREVIEW_IMAGE_FILE            @"previewImageFile"
 #define MAIN_PRODUCT_INFO_SUB_ITEM_BTN_IMAGE_NAME       @"subItemBtnImageName"
+#define MAIN_PRODDUCT_INFO_SUB_ITEM_BTN_COLOR_TYPE      @"subItemBtnColorType"
 #define MAIN_PRODUCT_INFO_CREATE_AT                     @"createAt" //创建时间,不在实体中记录
 
 #pragma mark - SubProductInfo表
@@ -25,7 +26,8 @@
 #define SUB_PRODUCT_INFO_TABLE_NAME                     @"name"
 #define SUB_PRODUCT_INFO_TABLE_ENABLE                   @"enable"
 #define SUB_PRODUCT_INFO_TABLE_INDEX                    @"sortIndex"
-#define SUB_PRODUCT_INFO_TABLE_VEDIO                    @"vedio"
+#define SUB_PRODUCT_INFO_TABLE_PRICE_IMAGE_FILE         @"priceImageFile"
+#define SUB_PRODUCT_INFO_TABLE_PREVIEW_FILE             @"previewImageFile"
 
 #pragma mark - AdPhotoInfo表
 #define AD_PHOTO_INFO_TABLE_TABLE_NAME                  @"adPhotoInfo"

@@ -6,6 +6,7 @@
 
 
 #import <Foundation/Foundation.h>
+#import "TypeDef.h"
 
 
 @interface MainProductInfo : NSObject
@@ -17,6 +18,7 @@
     NSString *bgImageFile; //背景图片
     NSString *previewImageFile; //预览图片
     NSString *subItemBtnImageName; //子产品的按钮图片
+    EnumSubBtnColorType colorType;
 }
 @property(nonatomic) int productID;
 @property(nonatomic, copy) NSString *name;
@@ -25,6 +27,7 @@
 @property(nonatomic,strong) NSString *bgImageFile;
 @property(nonatomic,strong) NSString *previewImageFile;
 @property(nonatomic,strong) NSString *subItemBtnImageName;
+@property(nonatomic) EnumSubBtnColorType colorType;
 
 
 @end

@@ -21,15 +21,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SubProductInfoDao)
             SUB_PRODUCT_INFO_TABLE_NAME","
             SUB_PRODUCT_INFO_TABLE_ENABLE","
             SUB_PRODUCT_INFO_TABLE_INDEX","
-            SUB_PRODUCT_INFO_TABLE_VEDIO""
-            ")""VALUES(?,?,?,?,?)"
+            SUB_PRODUCT_INFO_TABLE_PRICE_IMAGE_FILE","
+            SUB_PRODUCT_INFO_TABLE_PREVIEW_FILE""            
+            ")""VALUES(?,?,?,?,?,?)"
 
     ];
     NSArray *argArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:subProductInfo.mainProductID],
                                                   subProductInfo.name,
                                                   [NSNumber numberWithInteger:subProductInfo.enable],
                                                   [NSNumber numberWithInt:subProductInfo.index],
-                                                  subProductInfo.vedioURL,
+                                                  subProductInfo.priceImageFilePath,
+                                                  subProductInfo.previewImageFilePath,
                                                   nil];
     __block int productID = NSNotFound;
     [[[BaseDatabase instance] fmDbQueue] inDatabase:^(FMDatabase *db) {
@@ -64,13 +66,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SubProductInfoDao)
             SUB_PRODUCT_INFO_TABLE_NAME"=?,"
             SUB_PRODUCT_INFO_TABLE_ENABLE"=?,"
             SUB_PRODUCT_INFO_TABLE_INDEX"=?,"
-            SUB_PRODUCT_INFO_TABLE_VEDIO"=?"
+            SUB_PRODUCT_INFO_TABLE_PRICE_IMAGE_FILE"=?,"
+            SUB_PRODUCT_INFO_TABLE_PREVIEW_FILE"=?"
             " WHERE "SUB_PRODUCT_INFO_TABLE_PRODUCT_ID"=?"];
     NSArray *argArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:subProductInfo.mainProductID],
                                                   subProductInfo.name,
                                                   [NSNumber numberWithInteger:subProductInfo.enable],
                                                   [NSNumber numberWithInt:subProductInfo.index],
-                                                  subProductInfo.vedioURL,
+                         subProductInfo.priceImageFilePath,
+                         subProductInfo.previewImageFilePath,
                                                   [NSNumber numberWithInt:subProductInfo.productID],nil];
     __block BOOL isSuccess;
     [[[BaseDatabase instance] fmDbQueue] inDatabase:^(FMDatabase *db) {
@@ -175,7 +179,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SubProductInfoDao)
     subProductInfo.name = [resultSet stringForColumn:SUB_PRODUCT_INFO_TABLE_NAME];
     subProductInfo.enable = [resultSet boolForColumn:MAIN_PRODUCT_INFO_ENABLE];
     subProductInfo.index = [resultSet intForColumn:MAIN_PRODUCT_INFO_INDEX];
-    subProductInfo.vedioURL = [resultSet stringForColumn:SUB_PRODUCT_INFO_TABLE_VEDIO];
+    subProductInfo.priceImageFilePath = [resultSet stringForColumn:SUB_PRODUCT_INFO_TABLE_PRICE_IMAGE_FILE];
+    subProductInfo.previewImageFilePath = [resultSet stringForColumn:SUB_PRODUCT_INFO_TABLE_PREVIEW_FILE];
     return subProductInfo;
 }
 

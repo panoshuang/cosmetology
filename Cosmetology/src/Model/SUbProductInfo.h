@@ -16,7 +16,7 @@
     BOOL enable;
     int index;
     NSString *priceImageFilePath; //报价图片路径
-    NSString *vedioURL;//视频路径
+    NSString *previewImageFilePath;//预览图片路径
 }
 
 @property(nonatomic)int productID;
@@ -25,5 +25,5 @@
 @property(nonatomic)BOOL enable;
 @property(nonatomic) int index;
 @property(nonatomic,strong) NSString *priceImageFilePath;
-@property(nonatomic,strong) NSString *vedioURL;
+@property(nonatomic,strong) NSString *previewImageFilePath;
 @end

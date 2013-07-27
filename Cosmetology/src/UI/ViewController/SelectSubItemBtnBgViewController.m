@@ -23,11 +23,12 @@
     self = [super init];
     if (self) {
         _imageArray = [[NSMutableArray alloc] init];
-        [_imageArray addObject:@"btn_sub_item_brown"];
-        [_imageArray addObject:@"btn_sub_item_green"];
-        [_imageArray addObject:@"btn_sub_item_orange"];
-        [_imageArray addObject:@"btn_sub_item_purple"];
-        [_imageArray addObject:@"btn_sub_item_light_purple"];
+        [_imageArray addObject:@"btn_sub_item_0"];
+        [_imageArray addObject:@"btn_sub_item_1"];
+        [_imageArray addObject:@"btn_sub_item_2"];
+        [_imageArray addObject:@"btn_sub_item_3"];
+        [_imageArray addObject:@"btn_sub_item_4"];
+        [_imageArray addObject:@"btn_sub_item_5"];
     }
     return self;
 }
@@ -78,7 +79,15 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *imageName = [_imageArray objectAtIndex:indexPath.row];
-    [_delegate selectSubItemBtnBgViewController:self didSelectImageName:imageName];
+    EnumSubBtnColorType colorType;
+    if (indexPath.row < 4) {
+        colorType = kSubItemBtnColorGold;
+    }else if(indexPath.row == 4){
+        colorType = kSubItemBtnColorBlack;
+    }else {
+        colorType = kSubItemBtnColorWhite;
+    }
+    [_delegate selectSubItemBtnBgViewController:self didSelectImageName:imageName colorType:colorType];
 }
 
 @end

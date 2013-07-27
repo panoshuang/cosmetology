@@ -22,19 +22,21 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ResourceCache)
     BOOL result0 = [FileUtil createPathWithRelativeToDocFilePath:IMAGE_CACHE_PATH_BACKGROUND];
     //创建主页产品图片
     BOOL result1 = [FileUtil createPathWithRelativeToDocFilePath:IMAGE_CACHE_PATH_MAIN_CATALOG];
+    //创建子主页产品图片
+    BOOL result2 = [FileUtil createPathWithRelativeToDocFilePath:IMAGE_CACHE_PATH_SUB_CATALOG];
     //创建广告图片
-    BOOL result2  = [FileUtil createPathWithRelativeToDocFilePath:IMAGE_CACHE_PATH_AD];
+    BOOL result3  = [FileUtil createPathWithRelativeToDocFilePath:IMAGE_CACHE_PATH_AD];
     //创建留言签名图片缓存目录
-    BOOL result3  = [FileUtil createPathWithRelativeToDocFilePath:IMAGE_CACHE_PATH_MSG_USER_AUTOGRAPH];
+    BOOL result4  = [FileUtil createPathWithRelativeToDocFilePath:IMAGE_CACHE_PATH_MSG_USER_AUTOGRAPH];
     //创建留言用户头像缓存目录
-    BOOL result4  = [FileUtil createPathWithRelativeToDocFilePath:IMAGE_CACHE_PATH_MSG_USER_PORTRAIT];
+    BOOL result5  = [FileUtil createPathWithRelativeToDocFilePath:IMAGE_CACHE_PATH_MSG_USER_PORTRAIT];
     //创建音频缓存目录
-    BOOL result5  = [FileUtil createPathWithRelativeToDocFilePath:AUDIO_CACHE_PATH];
+    BOOL result6  = [FileUtil createPathWithRelativeToDocFilePath:AUDIO_CACHE_PATH];
     //创建视频缓存目录
-    BOOL result6  = [FileUtil createPathWithRelativeToDocFilePath:VEDIO_CACHE_PATH];
+    BOOL result7  = [FileUtil createPathWithRelativeToDocFilePath:VEDIO_CACHE_PATH];
     //创建价格缓存目录
-    BOOL result7 = [FileUtil createPathWithRelativeToDocFilePath:IMAGE_CACHE_PATH_PRICE];
-    return result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7;
+    BOOL result8 = [FileUtil createPathWithRelativeToDocFilePath:IMAGE_CACHE_PATH_PRICE];
+    return result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8;
 }
 
 -(NSString*)resourceCachePathForCachePath:(EnumResourceCacheType)cacheType{
@@ -45,6 +47,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ResourceCache)
             break;
         case kResourceCacheTypeMainCatalogPreviewImage:
             path = [path stringByAppendingPathComponent:IMAGE_CACHE_PATH_MAIN_CATALOG];
+            break;
+        case kResourceCacheTypeSubCatalogPreviewImage:
+            path = [path stringByAppendingPathComponent:IMAGE_CACHE_PATH_SUB_CATALOG];
             break;
         case kResourceCacheTypeAdImage:
             path = [path stringByAppendingPathComponent:IMAGE_CACHE_PATH_AD];
@@ -101,6 +106,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ResourceCache)
 
 //通过绝对路径删除资源
 -(BOOL)deleteResourceForPath:(NSString *)path{
+    if (path.length == 0) {
+        return NO;
+    }
     return [FileUtil deleteFileWithAbsoluteFilePath:path];
 }
 

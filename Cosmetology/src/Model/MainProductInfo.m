@@ -18,6 +18,7 @@
 @synthesize bgImageFile;
 @synthesize previewImageFile;
 @synthesize subItemBtnImageName;
+@synthesize colorType;
 
 -(id)init{
     self = [super init];

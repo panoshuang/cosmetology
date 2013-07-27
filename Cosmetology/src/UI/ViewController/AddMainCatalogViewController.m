@@ -38,6 +38,7 @@
     MainProductInfo *_mainProductInfo;
     BOOL _bIsEdit;
     BOOL _bIsProductEnable;
+    EnumSubBtnColorType _colorType;
 }
 
 @end
@@ -251,6 +252,7 @@
         _mainProductInfo.bgImageFile = bgImageFilePath;
         _mainProductInfo.previewImageFile = previewImageFilePath;
         _mainProductInfo.subItemBtnImageName = _strSubItemBtnBgName;
+        _mainProductInfo.colorType = _colorType;
         //获取合适index
         int index = [[MainCatalogManager instance] indexForNewCatalog];
         _mainProductInfo.index = index;
@@ -311,6 +313,7 @@
 }
 
 -(void)selectPhoto:(UIButton *)btn{
+    [_tfName resignFirstResponder];
 	UIImagePickerController *controller = [[UIImagePickerController alloc] init];
 	controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 	controller.allowsEditing = NO;
@@ -323,6 +326,7 @@
 }
 
 -(void)selectPreviewPhoto:(UIButton *)btn{
+    [_tfName resignFirstResponder];
     [_popController dismissPopoverAnimated:NO];
     UIImagePickerController *controller = [[UIImagePickerController alloc] init];
 	controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -337,6 +341,7 @@
 
 
 -(void)selectSubItemBgPhoto:(UIButton *)btn{
+    [_tfName resignFirstResponder];
     [_popController dismissPopoverAnimated:NO];
     SelectSubItemBtnBgViewController *controller = [[SelectSubItemBtnBgViewController alloc] init];
     controller.delegate = self;
@@ -380,12 +385,13 @@
 
 #pragma mark - SelectSubItemBtnBgViewControllerDelegate
 
--(void)selectSubItemBtnBgViewController:(SelectSubItemBtnBgViewController *)controller didSelectImageName:(NSString *)imageName{
+-(void)selectSubItemBtnBgViewController:(SelectSubItemBtnBgViewController *)controller didSelectImageName:(NSString *)imageName colorType:(EnumSubBtnColorType)colorType{
     DDetailLog(@"imageName : %@",imageName);
     [_popController dismissPopoverAnimated:YES];
     _ivSubItemBtnBg.image = [UIImage imageNamed:imageName];
     _imageSubItemBtnBg = [UIImage imageNamed:imageName];
     _strSubItemBtnBgName = imageName;
+    _colorType = colorType;
 }
 
 @end

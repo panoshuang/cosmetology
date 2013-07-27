@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FXLabel.h"
 
 @protocol MainCatalogItemDelegate;
 
 @interface SubCatalogItem : UIView
 
 @property (nonatomic, strong) UIImageView *ivBg;
-@property (nonatomic ,strong) UILabel  *lbName;
+@property (nonatomic ,strong) FXLabel  *lbName;
 @property (nonatomic ,strong) UISwitch *swEdit;
 @property (nonatomic ,strong) UIButton *btnEdit;
 @property (nonatomic )   BOOL      bIsEdit;
