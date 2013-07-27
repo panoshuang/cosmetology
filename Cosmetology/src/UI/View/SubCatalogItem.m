@@ -81,7 +81,7 @@
 
 -(void)switchValueChange:(UISwitch *)sw{
     if ([_delegate respondsToSelector:@selector(mainCatalogItemDidSwitch:value:)]) {
-        [_delegate mainCatalogItemDidSwitch:self value:sw.state];
+        [_delegate mainCatalogItemDidSwitch:self value:sw.isOn];
     }
 }
 

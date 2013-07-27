@@ -126,7 +126,7 @@
     [self.view addSubview:lbEnableTips];
 
     _swEnable = [[UISwitch alloc] init];
-    [_swEnable setOn:YES];
+    [_swEnable setOn:_bIsProductEnable];
     CGRect swFrame = _swEnable.frame;
     swFrame.origin.x = lbEnableTips.frame.origin.x + lbEnableTips.frame.size.width + kCommonSpace;
     swFrame.origin.y = lbEnableTips.frame.origin.y;
@@ -203,7 +203,7 @@
 }
 
 -(void)enableProduct:(UISwitch *)sw{
-    _bIsProductEnable = _swEnable.state;
+    _bIsProductEnable = _swEnable.isOn;
 }
 
 -(void)save{
@@ -303,7 +303,7 @@
         if (_imageSubItemBtnBg != nil) {
             _mainProductInfo.subItemBtnImageName = _strSubItemBtnBgName;
         }
-
+        _mainProductInfo.enable = _bIsProductEnable;
         [[MainCatalogManager instance] updateMainCatalog:_mainProductInfo];
 
         if ([_delegate respondsToSelector:@selector(addMainCatalogViewController:didUpdateCatalog:)]) {

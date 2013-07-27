@@ -113,10 +113,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SubProductInfoDao)
     return resultArray;
 }
 
--(NSArray *)allSubProductInfoForMainProductID:(int)mainProductID{
+-(NSArray *)allEnableProductInfoForMainProductID:(int)mainProductID{
     __block NSMutableArray *resultArray = [NSMutableArray array] ;
     NSString *sqlStr = [NSString stringWithFormat:@"select * from "SUB_PRODUCT_INFO_TABLE_TABLE_NAME
-            " WHERE "SUB_PRODUCT_INFO_TABLE_MAIN_PRODUCT_ID"=? AND" SUB_PRODUCT_INFO_TABLE_ENABLE
+            " WHERE "SUB_PRODUCT_INFO_TABLE_MAIN_PRODUCT_ID"=? AND "SUB_PRODUCT_INFO_TABLE_ENABLE
             " =? ORDER BY "SUB_PRODUCT_INFO_TABLE_INDEX" ASC"];
     [[BaseDatabase instance].fmDbQueue inDatabase:^(FMDatabase *db) {
         FMResultSet *resultSet = [db executeQuery:sqlStr,[NSNumber numberWithInt:mainProductID],[NSNumber numberWithInt:1]];
@@ -129,7 +129,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SubProductInfoDao)
     return resultArray;
 }
 
--(NSArray *)allEnableProductInfoForMainProductID:(int)mainProductID{
+-(NSArray *)allSubProductInfoForMainProductID:(int)mainProductID{
     __block NSMutableArray *resultArray = [NSMutableArray array] ;
     NSString *sqlStr = [NSString stringWithFormat:@"select * from "SUB_PRODUCT_INFO_TABLE_TABLE_NAME
             " WHERE "SUB_PRODUCT_INFO_TABLE_MAIN_PRODUCT_ID"=? "

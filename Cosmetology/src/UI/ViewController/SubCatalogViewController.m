@@ -69,7 +69,6 @@
     self = [super init];
     if (self) {
         _catalogArray = [[NSMutableArray alloc] init];
-        [self loadCatalog];
     }
     return self;
 }
@@ -79,7 +78,6 @@
     if (self) {
         _mainProductInfo = aMainProductInfo;
         _catalogArray = [[NSMutableArray alloc] init];
-        [self loadCatalog];
     }
 
     return self;
@@ -239,6 +237,8 @@
 
 -(void)setBIsEdit:(BOOL)bIsEdit {
     _bIsEdit = bIsEdit;
+    [_catalogArray removeAllObjects];
+    [self loadCatalog];
     [_gmGridView setEditing:_bIsEdit];
     [_gmGridView reloadData];
 }
@@ -478,7 +478,7 @@
         contentItem.lbName.textAlignment = NSTextAlignmentCenter;
     }
     [contentItem setEdit:_bIsEdit];
-    [contentItem.swEdit setSelected:productInfo.enable];
+    [contentItem.swEdit setOn:productInfo.enable];
     
     return cell;
 }
@@ -701,6 +701,9 @@
 -(void)mainCatalogGridViewCellDidSwitch:(MainCatalogGridViewCell *)cell value:(BOOL)isOpen{
     DDetailLog(@"");
     int index = [_gmGridView positionForItemSubview:cell];
+    SubProductInfo *productInfo = [_catalogArray objectAtIndex:index];
+    productInfo.enable = isOpen;
+    [[SubCatalogManager instance] updateSubCatalog:productInfo];
     DDetailLog(@"indxe : %d",index);
 }
 

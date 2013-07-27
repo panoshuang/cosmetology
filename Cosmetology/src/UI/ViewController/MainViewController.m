@@ -58,12 +58,19 @@
         
         _bIsWrap = YES;
         _catalogArray = [[NSMutableArray alloc] initWithCapacity:10];
-        [_catalogArray addObjectsFromArray:[[MainCatalogManager instance] allEnableProductInfo]];
-        
+        [self loadData];
         
         
     }
     return self;
+}
+
+-(void)loadData{
+    if (_bIsEdit) {
+         [_catalogArray addObjectsFromArray:[[MainCatalogManager instance] allMainProductInfo]];
+    }else{
+          [_catalogArray addObjectsFromArray:[[MainCatalogManager instance] allEnableProductInfo]];
+    }
 }
 
 
@@ -268,6 +275,9 @@
         }else{
             _bIsEdit = YES;
             _toolBar.hidden = NO;
+            [_catalogArray removeAllObjects];
+            [self loadData];
+            [_catalogCarousel reloadData];
         }
     }
 }
@@ -278,6 +288,9 @@
     confirmItem.action = ^{
         _bIsEdit = NO;
         _toolBar.hidden = YES;
+        [_catalogArray removeAllObjects];
+        [self loadData];
+        [_catalogCarousel reloadData];
     };
     RIButtonItem *cancelItem = [RIButtonItem item];
     cancelItem.label = @"取消";
@@ -317,6 +330,9 @@
         if([editPwdStr isEqualToString:textField.text]){
             _bIsEdit = YES;
             _toolBar.hidden = NO;
+            [_catalogArray removeAllObjects];
+            [self loadData];
+            [_catalogCarousel reloadData];
         }else{
             [[AutoDismissView instance] showInView:self.view
                                              title:@"密码错误"

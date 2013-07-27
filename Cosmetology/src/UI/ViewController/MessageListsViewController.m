@@ -396,7 +396,7 @@
 #pragma mark orientation management
 //////////////////////////////////////////////////////////////
 
-SHOULD_AUTOROTATA_TO_INTERFACE_ORIENTATION_LANDSCAPE
+
 
 
 //////////////////////////////////////////////////////////////
@@ -641,6 +641,22 @@ SHOULD_AUTOROTATA_TO_INTERFACE_ORIENTATION_LANDSCAPE
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    
+    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight );
+    
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationLandscapeLeft|UIInterfaceOrientationLandscapeRight;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return YES;
 }
 
 
