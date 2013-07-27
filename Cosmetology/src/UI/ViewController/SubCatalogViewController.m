@@ -363,7 +363,7 @@
 }
 
 -(void)back:(UIButton *)btn{
-    [UIView animateWithDuration:2 animations:^{
+    [UIView animateWithDuration:.5 animations:^{
         self.view.userInteractionEnabled = NO;
         self.view.alpha = 0;
     }completion:^(BOOL complete){
