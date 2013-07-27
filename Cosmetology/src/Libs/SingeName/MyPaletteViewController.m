@@ -320,4 +320,6 @@
 {
 	//NSLog(@"touches Canelled");
 }
+
+SHOULD_AUTOROTATA_TO_INTERFACE_ORIENTATION_LANDSCAPE
 @end

@@ -364,6 +364,26 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
     }
 }
 
+#pragma mark UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker
+        didFinishPickingImage:(UIImage *)image
+                  editingInfo:(NSDictionary *)editingInfo
+{
+    [_popController dismissPopoverAnimated:YES];
+    if (image) {
+        //生成图片的uuid,保存到缓存
+        NSString *bgUuid = [CommonUtil uuid];
+        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+                                                                    relatePath:bgUuid
+                                                                  resourceType:kResourceCacheTypeBackgroundImage];
+        _experienceInfo.bgImageFile = bgImageFilePath;
+        [[MainCatalogManager instance] updateMainCatalog:_experienceInfo];
+        _ivBg.image = image;
+    }else{
+        [[AutoDismissView instance] showInView:self.view title:@"修改失败" duration:1];
+    }
+}
+
 
 #pragma mark -
 #pragma mark iCarousel methods
@@ -473,6 +493,9 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
                                                             andStartWithPhotoAtIndex:0];
     photoScrollViewController.bIsEdit = _bIsEdit;
     photoScrollViewController.subProductID = subProductInfo.productID;
+    if (adPhotoArray.count == 0 && _bIsEdit == NO) {
+        photoScrollViewController.isShowChromeAlways = YES;
+    }
     [self.mainDelegate mainPushViewController:photoScrollViewController animated:YES];
 }
 

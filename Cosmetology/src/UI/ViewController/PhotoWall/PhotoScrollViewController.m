@@ -397,7 +397,7 @@ static BOOL isProsecutingPhoto = NO;
     };
     RIButtonItem *cancelItem = [RIButtonItem item];
     cancelItem.label = @"取消";
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"是否要退出编辑模式"
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"是否要删除当前广告"
                                                         message:nil
                                                cancelButtonItem:cancelItem
                                                otherButtonItems:confirmItem, nil];

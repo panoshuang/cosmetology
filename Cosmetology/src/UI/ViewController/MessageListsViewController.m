@@ -396,10 +396,7 @@
 #pragma mark orientation management
 //////////////////////////////////////////////////////////////
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return YES;
-}
+SHOULD_AUTOROTATA_TO_INTERFACE_ORIENTATION_LANDSCAPE
 
 
 //////////////////////////////////////////////////////////////
@@ -532,7 +529,7 @@
                           delay:0
                         options:UIViewAnimationOptionAllowUserInteraction
                      animations:^{
-                         cell.contentView.backgroundColor = [UIColor redColor];
+                         cell.contentView.backgroundColor = [UIColor clearColor];
                          cell.contentView.layer.shadowOpacity = 0;
                      }
                      completion:nil
@@ -645,5 +642,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 @end

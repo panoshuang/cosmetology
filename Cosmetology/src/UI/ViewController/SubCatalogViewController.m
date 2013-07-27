@@ -371,6 +371,26 @@
     }];
 }
 
+#pragma mark UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker
+        didFinishPickingImage:(UIImage *)image
+                  editingInfo:(NSDictionary *)editingInfo
+{
+    [_popController dismissPopoverAnimated:YES];
+    if (image) {
+        //生成图片的uuid,保存到缓存
+        NSString *bgUuid = [CommonUtil uuid];
+        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+                                                                    relatePath:bgUuid
+                                                                  resourceType:kResourceCacheTypeBackgroundImage];
+        _mainProductInfo.bgImageFile = bgImageFilePath;
+        [[MainCatalogManager instance] updateMainCatalog:_mainProductInfo];
+        _ivBg.image = image;
+    }else{
+        [[AutoDismissView instance] showInView:self.view title:@"修改失败" duration:1];
+    }
+}
+
 
 //////////////////////////////////////////////////////////////
 #pragma mark GMGridViewDataSource
