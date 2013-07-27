@@ -327,6 +327,41 @@
     
 }
 
+-(void)onAcclaimClick:(AcclaimButton *)btn{
+    NSUInteger tag = btn.tag;
+    NSUInteger index = tag - 1;
+    MessageBoardInfo *msgInfo = [_msgArray objectAtIndex:index];
+    msgInfo.popularity += 1;
+    [[MessageBoardManager instance] updateMessageBoard:msgInfo];
+    GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:index];
+    if (cell) {
+        MsgItem *msgItem = (MsgItem *)cell.contentView;
+        msgItem.btnAcclaim.lbCount.text = [NSString stringWithFormat:@"%d",msgInfo.popularity];
+    }
+    [self showIncrementTipsView];
+}
+
+-(void)showIncrementTipsView{
+    UILabel *incrementTipsLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - 100)/2, self.view.bounds.size.height - kBottomBarHeight - 100, 100, 100)];
+    incrementTipsLabel.backgroundColor = [UIColor clearColor];
+    incrementTipsLabel.text = @"+1";
+    incrementTipsLabel.font = [UIFont boldSystemFontOfSize:40];
+    incrementTipsLabel.textColor = [UIColor colorWithRed:0xff/255. green:0x2e/255. blue:0x55/255. alpha:1];
+    incrementTipsLabel.textAlignment = UITextAlignmentCenter;
+    incrementTipsLabel.shadowOffset = CGSizeMake(5, 5);
+    incrementTipsLabel.alpha = 0;
+    [self.view addSubview:incrementTipsLabel];
+    
+    [UIView animateWithDuration:1 animations:^{
+        CGRect frame = incrementTipsLabel.frame;
+        frame.origin.y = (self.view.bounds.size.height - 100)/2;
+        incrementTipsLabel.frame = frame;
+        incrementTipsLabel.alpha = 1;
+    } completion:^(BOOL complete){
+        [incrementTipsLabel removeFromSuperview];
+    }];
+}
+
 
 #pragma mark UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker
@@ -361,10 +396,7 @@
 #pragma mark orientation management
 //////////////////////////////////////////////////////////////
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return YES;
-}
+SHOULD_AUTOROTATA_TO_INTERFACE_ORIENTATION_LANDSCAPE
 
 
 //////////////////////////////////////////////////////////////
@@ -394,8 +426,10 @@
         
         MsgItem *msgItem = [[MsgItem alloc] initWithFrame:CGRectMake(0, 0, 282, 263)];
         cell.contentView = msgItem;
+        [msgItem.btnAcclaim addTarget:self action:@selector(onAcclaimClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     MsgItem *contentView = (MsgItem *)cell.contentView;
+    contentView.btnAcclaim.tag = index+1;//;
     MessageBoardInfo *messageBoardinfoTemp = [_msgArray objectAtIndex:index];
     
     UIImage *singeNameImage = [[ResourceCache instance] imageForCachePath:messageBoardinfoTemp.singeName];
@@ -495,7 +529,7 @@
                           delay:0
                         options:UIViewAnimationOptionAllowUserInteraction
                      animations:^{
-                         cell.contentView.backgroundColor = [UIColor redColor];
+                         cell.contentView.backgroundColor = [UIColor clearColor];
                          cell.contentView.layer.shadowOpacity = 0;
                      }
                      completion:nil
@@ -608,5 +642,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 @end

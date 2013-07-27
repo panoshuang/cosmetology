@@ -80,7 +80,7 @@
                                                                       _lbName.frame.origin.y,
                                                                       100,
                                                                       _lbName.frame.size.height)] ;
-    lbEnableTips.text = @"开始产品";
+    lbEnableTips.text = @"启/禁产品";
     lbEnableTips.backgroundColor = [UIColor clearColor];
     lbEnableTips.font = FONT_SIZE;
     [self.view addSubview:lbEnableTips];

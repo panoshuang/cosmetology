@@ -120,12 +120,13 @@
             _lbName.frame.origin.y,
             100,
             _lbName.frame.size.height)] ;
-    lbEnableTips.text = @"开始产品";
+    lbEnableTips.text = @"启/禁产品";
     lbEnableTips.backgroundColor = [UIColor clearColor];
     lbEnableTips.font = FONT_SIZE;
     [self.view addSubview:lbEnableTips];
 
     _swEnable = [[UISwitch alloc] init];
+    [_swEnable setOn:YES];
     CGRect swFrame = _swEnable.frame;
     swFrame.origin.x = lbEnableTips.frame.origin.x + lbEnableTips.frame.size.width + kCommonSpace;
     swFrame.origin.y = lbEnableTips.frame.origin.y;

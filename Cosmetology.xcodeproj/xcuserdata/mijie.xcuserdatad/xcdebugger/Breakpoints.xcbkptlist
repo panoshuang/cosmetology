@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/ExperienceViewController.m"
-         timestampString = "396590651.775507"
+         timestampString = "396606544.73114"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "419"
-         endingLineNumber = "419"
+         startingLineNumber = "439"
+         endingLineNumber = "439"
          landmarkName = "-carousel:viewForItemAtIndex:reusingView:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/ExperienceViewController.m"
-         timestampString = "396590651.775507"
+         timestampString = "396607460.859189"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "501"
-         endingLineNumber = "501"
+         startingLineNumber = "524"
+         endingLineNumber = "524"
          landmarkName = "-addSubCatalogViewController:didSaveCatalog:"
          landmarkType = "5">
       </FileBreakpoint>

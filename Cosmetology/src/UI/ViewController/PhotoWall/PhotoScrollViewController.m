@@ -121,7 +121,7 @@ static BOOL isProsecutingPhoto = NO;
             UIButton *priceButton = [UIButton buttonWithType:UIButtonTypeCustom];
             //        [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
             //        [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
-            [priceButton setTitle:@"报价" forState:UIControlStateNormal];
+            [priceButton setTitle:@"至尊价" forState:UIControlStateNormal];
             [priceButton addTarget:self action:@selector(priceBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
             priceButton.tag       = BTN_COMMENT_TAG;
             [buttonArray addObject:priceButton];
@@ -397,7 +397,7 @@ static BOOL isProsecutingPhoto = NO;
     };
     RIButtonItem *cancelItem = [RIButtonItem item];
     cancelItem.label = @"取消";
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"是否要退出编辑模式"
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"是否要删除当前广告"
                                                         message:nil
                                                cancelButtonItem:cancelItem
                                                otherButtonItems:confirmItem, nil];
