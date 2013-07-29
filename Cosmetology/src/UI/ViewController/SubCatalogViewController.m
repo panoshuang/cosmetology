@@ -653,7 +653,7 @@
     
     UILabel *label = [[UILabel alloc] initWithFrame:fullView.bounds];
     label.text = [NSString stringWithFormat:@"Fullscreen View for cell at index %d", index];
-    label.textAlignment = UITextAlignmentCenter;
+    label.textAlignment = NSTextAlignmentCenter;
     label.backgroundColor = [UIColor clearColor];
     label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
@@ -749,6 +749,19 @@
 -(void)addSubCatalogViewController:(AddSubCatalogViewController *)addSubCatalogViewController didSaveCatalog:(SubProductInfo *)subProductInfo{
     [_catalogArray addObject:subProductInfo];
     [_gmGridView insertObjectAtIndex:_catalogArray.count - 1 animated:YES];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
 }
 
 

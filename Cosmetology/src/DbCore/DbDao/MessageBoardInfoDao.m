@@ -83,6 +83,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MessageBoardInfoDao)
                          [NSNumber numberWithInteger:messageBoardInfo.popularity],
                          [NSNumber numberWithInteger:messageBoardInfo.subProductID],
                          [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]],
+                         [NSNumber numberWithInt:messageBoardInfo.messageID],
                          nil];
     __block BOOL isSuccess;
     [[[BaseDatabase instance] fmDbQueue] inDatabase:^(FMDatabase *db) {

@@ -196,12 +196,7 @@ static BOOL isProsecutingPhoto = NO;
 
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    
-    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight );
-    
-}
+
 
 -(void)setBIsEdit:(BOOL)isEdit{
     _bIsEdit = isEdit;
@@ -495,6 +490,19 @@ static BOOL isProsecutingPhoto = NO;
     [self setScrollViewContentSize];
     [self setCurrentIndex:currentIndex_];
     [_popController dismissPopoverAnimated:YES];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
 }
 
 @end

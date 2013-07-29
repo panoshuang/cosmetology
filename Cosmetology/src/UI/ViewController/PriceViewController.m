@@ -252,6 +252,17 @@
 }
 
 
-SHOULD_AUTOROTATA_TO_INTERFACE_ORIENTATION_LANDSCAPE
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
 
 @end
