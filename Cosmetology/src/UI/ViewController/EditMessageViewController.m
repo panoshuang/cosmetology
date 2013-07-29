@@ -246,7 +246,7 @@
         return;
     }
     
-    [[MessageBoardManager instance] addMessageBoard:_messageBoardInfo];
+    _messageBoardInfo.messageID = [[MessageBoardManager instance] addMessageBoard:_messageBoardInfo];
     //TODO:
     [messageEditTextView resignFirstResponder];
     if ([_delegate respondsToSelector:@selector(saveMessage:forSubProductID:)]) {
@@ -276,6 +276,7 @@
 	//picker.cameraDevice=UIImagePickerControllerCameraDeviceFront;
 	picker.allowsEditing=YES;
 	picker.sourceType=sourceType;
+    picker.view.tag = 1000;
 	[self presentModalViewController:picker animated:YES];
 }
 
@@ -486,9 +487,36 @@
 
 #pragma mark UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    if (editBgBtn.tag == 1000) {
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    if (picker.view.tag == 1000) {
+        
+        headPortraitsImage = image;
+        headImageView.image = headPortraitsImage;
+        DDetailLog(@"%@",info);
+    }
+    else if(picker.view.tag == 10000){
+        if (image) {
+            //生成图片的uuid,保存到缓存
+            NSString *bgUuid = [CommonUtil uuid];
+            NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+                                                                        relatePath:bgUuid
+                                                                      resourceType:kResourceCacheTypeBackgroundImage];
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:bgImageFilePath forKey:MSG_PAGE_BACKGROUND_IMAGE_FILE_PATH];
+            [userDefaults synchronize];
+            _bgView.image = image;
+        }else{
+            [[AutoDismissView instance] showInView:self.view title:@"修改失败" duration:1];
+        }
         [_popController dismissPopoverAnimated:YES];
-        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    }
+    
+    [picker dismissViewControllerAnimated:YES completion:^{}];
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+    [_popController dismissPopoverAnimated:YES];
+    if (picker.view.tag = 10000) {
         if (image) {
             //生成图片的uuid,保存到缓存
             NSString *bgUuid = [CommonUtil uuid];
@@ -504,32 +532,7 @@
         }
 
     }
-    else{
-        DDetailLog(@"%@",[info objectForKey:UIImagePickerControllerOriginalImage]);
-        headPortraitsImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-        headImageView.image = headPortraitsImage;
-        DDetailLog(@"%@",info);
-        [picker dismissViewControllerAnimated:YES completion:^{}];
-    }
     
-    
-}
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
-{
-    [_popController dismissPopoverAnimated:YES];
-    if (image) {
-        //生成图片的uuid,保存到缓存
-        NSString *bgUuid = [CommonUtil uuid];
-        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
-                                                                    relatePath:bgUuid
-                                                                  resourceType:kResourceCacheTypeBackgroundImage];
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setObject:bgImageFilePath forKey:MSG_PAGE_BACKGROUND_IMAGE_FILE_PATH];
-        [userDefaults synchronize];
-        _bgView.image = image;
-    }else{
-        [[AutoDismissView instance] showInView:self.view title:@"修改失败" duration:1];
-    }
 }
 
 
@@ -604,10 +607,12 @@
         NSString *editPwdStr = [[PasswordManager instance] passwordForKey:PWD_MAIN_CATALOG];
         if([editPwdStr isEqualToString:textField.text]){
             _bIsEdit = YES;
+            editBgBtn.hidden = NO;
         }else{
             [[AutoDismissView instance] showInView:self.view
                                              title:@"密码错误"
                                           duration:1];
+            editBgBtn.hidden = YES;
         }
     };
     RIButtonItem *cancelItem = [RIButtonItem item];
@@ -633,6 +638,7 @@
         controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         controller.allowsEditing = NO;
         controller.delegate = self;
+        controller.view.tag = 10000;
         _popController=[[UIPopoverController alloc] initWithContentViewController:controller];
         [_popController presentPopoverFromRect:sender.frame
                                         inView:self.view

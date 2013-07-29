@@ -211,6 +211,7 @@
     [[MessageBoardManager instance] updateMessageBoard:_messageBoardInfo];
     [popularityBtn.lbCount setText:[NSString stringWithFormat:@"%d",_messageBoardInfo.popularity]];
     [self showIncrementTipsView];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_CHECK_MSG_ACCLAIM object:_messageBoardInfo];
 }
 
 -(void)showIncrementTipsView{
@@ -306,6 +307,7 @@
         NSString *editPwdStr = [[PasswordManager instance] passwordForKey:PWD_MAIN_CATALOG];
         if([editPwdStr isEqualToString:textField.text]){
             _bIsEdit = YES;
+            editBgBtn.hidden = NO;
         }else{
             [[AutoDismissView instance] showInView:self.view
                                              title:@"密码错误"

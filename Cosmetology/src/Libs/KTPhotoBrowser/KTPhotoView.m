@@ -52,8 +52,8 @@
     
     //创建视频播放按钮
     vedioBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [vedioBtn setTitle:@"播放视屏" forState:UIControlStateNormal];
-    vedioBtn.frame = CGRectMake(0, 0, 100, 100);
+    [vedioBtn setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
+    vedioBtn.frame = CGRectMake(0, 0, 128, 128);
     vedioBtn.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     [self addSubview:vedioBtn];
 }

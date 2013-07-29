@@ -34,12 +34,51 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/EditMessageViewController.m"
-         timestampString = "396610070.45302"
+         timestampString = "396801880.74831"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "316"
-         endingLineNumber = "316"
+         startingLineNumber = "317"
+         endingLineNumber = "317"
          landmarkName = "-playRecord:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cosmetology/src/UI/ViewController/EditMessageViewController.m"
+         timestampString = "396802985.218995"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "491"
+         endingLineNumber = "491"
+         landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cosmetology/src/UI/ViewController/EditMessageViewController.m"
+         timestampString = "396803118.91417"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "519"
+         endingLineNumber = "519"
+         landmarkName = "-imagePickerController:didFinishPickingImage:editingInfo:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cosmetology/src/UI/ViewController/EditMessageViewController.m"
+         timestampString = "396802986.0663"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "497"
+         endingLineNumber = "497"
+         landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

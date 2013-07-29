@@ -285,12 +285,14 @@ static BOOL isProsecutingPhoto = NO;
     _moviePlayState = MPMoviePlaybackStateStopped;
     [moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
     [moviePlayer.view setFrame:self.view.bounds];
+    [UIApplication sharedApplication].statusBarHidden = YES;
     [self.view addSubview:moviePlayer.view];
     
 }
 
 -(void)exitFullScreen:(NSNotification *)notification
 {
+    [UIApplication sharedApplication].statusBarHidden = YES;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
     
     NSNumber *reason = [[notification userInfo]objectForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey];
