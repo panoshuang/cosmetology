@@ -380,7 +380,7 @@
         
         view = [[MainCatalogItem alloc] initWithFrame:CGRectMake(0, 0, 300.0f, 530.0f)];
         view.backgroundColor = [UIColor blueColor];
-        ((MainCatalogItem *)view).ivBg.image = [UIImage imageNamed:@"test.png"];
+        //((MainCatalogItem *)view).ivBg.image = [UIImage imageNamed:@"test.jpg"];
         view.contentMode = UIViewContentModeScaleAspectFill;
         label = [[FXLabel alloc] initWithFrame:CGRectMake(0, -55, 300.0f, 50.0f)];
         label.shadowColor = [UIColor blackColor];
@@ -412,7 +412,15 @@
     //in the wrong place in the carousel
     MainProductInfo *productInfo = [_catalogArray objectAtIndex:index];
     label.text = productInfo.name;
+    //获取背景图片填充
     
+    UIImage *bgImage = [[ResourceCache instance] imageForCachePath:productInfo.previewImageFile];
+    if (bgImage == nil) {
+        ((MainCatalogItem *)view).ivBg.image = [UIImage imageNamed:@"test.jpg"];
+    }
+    else{
+        ((MainCatalogItem *)view).ivBg.image = bgImage;
+    }
     return view;
 }
 

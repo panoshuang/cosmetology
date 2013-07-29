@@ -100,12 +100,22 @@
     [_btnPhoto addTarget:self action:@selector(selectPhoto:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btnPhoto];
     
+    UILabel *imgFrame = [[UILabel alloc]initWithFrame:CGRectMake(_lbName.frame.origin.x,
+                                                                 _lbName.frame.origin.y + _lbName.frame.size.height + kCommonSpace *2 + 40,
+                                                                 120,
+                                                                 30)];
+    imgFrame.text = @"尺寸:600*1000";
+    imgFrame.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:imgFrame];
+
+    
     _ivPriview = [[UIImageView alloc] initWithFrame:CGRectMake(_btnPhoto.frame.origin.x + _btnPhoto.frame.size.width + 2 *kCommonSpace,
                                                                _btnPhoto.frame.origin.y,
                                                                500,
                                                                500 * (768/1024.0))];
     [self.view addSubview:_ivPriview];
     
+       
 
 }
 
