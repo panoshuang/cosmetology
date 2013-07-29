@@ -381,7 +381,7 @@
 
 - (BOOL)shouldAutorotate
 {
-    return YES;
+    return NO;
 }
 
 #pragma mark UIImagePickerControllerDelegate
