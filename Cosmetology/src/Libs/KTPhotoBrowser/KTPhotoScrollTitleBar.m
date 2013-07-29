@@ -29,7 +29,7 @@
         lbTitle = [[UILabel alloc] initWithFrame:self.bounds];
         lbTitle.backgroundColor = [UIColor clearColor];
         lbTitle.textColor = [UIColor whiteColor];
-        lbTitle.textAlignment = UITextAlignmentCenter;
+        lbTitle.textAlignment = NSTextAlignmentCenter;
         lbTitle.font = [UIFont boldSystemFontOfSize:20];
         lbTitle.text = @"";
         [self addSubview:lbTitle];

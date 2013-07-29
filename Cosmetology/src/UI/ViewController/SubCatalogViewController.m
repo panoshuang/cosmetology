@@ -653,7 +653,7 @@
     
     UILabel *label = [[UILabel alloc] initWithFrame:fullView.bounds];
     label.text = [NSString stringWithFormat:@"Fullscreen View for cell at index %d", index];
-    label.textAlignment = UITextAlignmentCenter;
+    label.textAlignment = NSTextAlignmentCenter;
     label.backgroundColor = [UIColor clearColor];
     label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     

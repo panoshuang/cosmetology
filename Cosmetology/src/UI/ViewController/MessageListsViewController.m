@@ -347,7 +347,7 @@
     incrementTipsLabel.text = @"+1";
     incrementTipsLabel.font = [UIFont boldSystemFontOfSize:40];
     incrementTipsLabel.textColor = [UIColor colorWithRed:0xff/255. green:0x2e/255. blue:0x55/255. alpha:1];
-    incrementTipsLabel.textAlignment = UITextAlignmentCenter;
+    incrementTipsLabel.textAlignment = NSTextAlignmentCenter;
     incrementTipsLabel.shadowOffset = CGSizeMake(5, 5);
     incrementTipsLabel.alpha = 0;
     [self.view addSubview:incrementTipsLabel];
@@ -582,7 +582,7 @@
     
     UILabel *label = [[UILabel alloc] initWithFrame:fullView.bounds];
     label.text = [NSString stringWithFormat:@"Fullscreen View for cell at index %d", index];
-    label.textAlignment = UITextAlignmentCenter;
+    label.textAlignment = NSTextAlignmentCenter;
     label.backgroundColor = [UIColor clearColor];
     label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
