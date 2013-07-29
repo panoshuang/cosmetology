@@ -31,7 +31,7 @@
         _ivBg = [[UIImageView alloc] initWithFrame:CGRectZero];
         _ivBg.image = [UIImage imageNamed:@"bg_main_catalog.png"];
         _lbName = [[FXLabel alloc] initWithFrame:CGRectZero];
-        _lbName.textAlignment = UITextAlignmentCenter;
+        _lbName.textAlignment = NSTextAlignmentCenter;
         _lbName.font = [UIFont systemFontOfSize:30];
         _lbName.backgroundColor = [UIColor clearColor];
         _swEdit = [[UISwitch alloc] initWithFrame:CGRectZero];

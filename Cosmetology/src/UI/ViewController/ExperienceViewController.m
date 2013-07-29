@@ -90,17 +90,13 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
     UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];
     mainView.backgroundColor=[UIColor whiteColor];
     self.view = mainView;
-//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onBgTap:)];
-//    tapGesture.delegate = self;
-//    tapGesture.numberOfTapsRequired = 2;
-//    [self.view addGestureRecognizer:tapGesture];
 
     _ivBg = [[UIImageView alloc] initWithFrame:self.view.bounds];
     UIImage *image = [[ResourceCache instance] imageForCachePath:self.experienceInfo.bgImageFile];
     if (image) {
         _ivBg.image = image;
     }else{
-        _ivBg.image = [UIImage imageNamed:@"bg_exp_product"];
+        _ivBg.image = [UIImage imageNamed:@"Default-Landscape~ipad.png"];
     }
     [self.view addSubview:_ivBg];
     
