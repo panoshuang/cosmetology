@@ -220,6 +220,9 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
 
 -(void)setBIsEdit:(BOOL)bIsEdit {
     _bIsEdit = bIsEdit;
+    [_catalogArray removeAllObjects];
+    [self loadCatalog];
+    [_catalogCarousel reloadData];
 }
 
 -(void)onBgTap:(UITapGestureRecognizer *)gesture{
