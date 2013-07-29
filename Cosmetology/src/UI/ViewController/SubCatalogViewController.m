@@ -25,6 +25,8 @@
 #import "AdPhotoManager.h"
 #import "UIAlertView+Blocks.h"
 #import "PasswordManager.h"
+#import "SubProductInfo.h"
+#import "MainCatalogManager.h"
 
 
 #define ITEM_SPACE 30
@@ -67,7 +69,6 @@
     self = [super init];
     if (self) {
         _catalogArray = [[NSMutableArray alloc] init];
-        [self loadCatalog];
     }
     return self;
 }
@@ -77,7 +78,6 @@
     if (self) {
         _mainProductInfo = aMainProductInfo;
         _catalogArray = [[NSMutableArray alloc] init];
-        [self loadCatalog];
     }
 
     return self;
@@ -106,10 +106,10 @@
     UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];
     mainView.backgroundColor=[UIColor whiteColor];
     self.view = mainView;
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onBgTap:)];
-    tapGesture.numberOfTapsRequired = 2;
-    tapGesture.delegate = self;
-    [self.view addGestureRecognizer:tapGesture];
+//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onBgTap:)];
+//    tapGesture.numberOfTapsRequired = 2;
+//    tapGesture.delegate = self;
+//    [self.view addGestureRecognizer:tapGesture];
     
     
     _ivBg = [[UIImageView alloc] initWithFrame:self.view.bounds];
@@ -149,7 +149,7 @@
     [_editTapView addGestureRecognizer:_editGesture];
     
     NSInteger spacing = ITEM_SPACE;
-    CGRect gridViewFrame = CGRectMake(98, 240, 550, 370);
+    CGRect gridViewFrame = CGRectMake((1024 - 420)/2, 240, 420, 370);
     GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:gridViewFrame];
     gmGridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     gmGridView.backgroundColor = [UIColor clearColor];
@@ -158,7 +158,7 @@
     _gmGridView.layer.masksToBounds = YES;
     _gmGridView.style = GMGridViewStyleSwap;
     _gmGridView.itemSpacing = spacing;
-    _gmGridView.minEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
+    _gmGridView.minEdgeInsets = UIEdgeInsetsMake(10, 15, 0, 0);
     _gmGridView.centerGrid = NO;
     _gmGridView.actionDelegate = self;
     _gmGridView.sortingDelegate = self;
@@ -166,6 +166,14 @@
     _gmGridView.dataSource = self;
     [self.view addSubview:_gmGridView];
 //    [_gmGridView setEditing:YES animated:NO];
+    
+    //返回按钮
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    backBtn.frame = CGRectMake((1024 - 120)/2, 705, 120, 67);
+    //[backBtn setImage:[UIImage imageNamed:@"save.png"] forState:UIControlStateNormal];
+    [backBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backBtn];
     
 }
 
@@ -229,6 +237,8 @@
 
 -(void)setBIsEdit:(BOOL)bIsEdit {
     _bIsEdit = bIsEdit;
+    [_catalogArray removeAllObjects];
+    [self loadCatalog];
     [_gmGridView setEditing:_bIsEdit];
     [_gmGridView reloadData];
 }
@@ -352,6 +362,35 @@
     }];
 }
 
+-(void)back:(UIButton *)btn{
+    [UIView animateWithDuration:.5 animations:^{
+        self.view.userInteractionEnabled = NO;
+        self.view.alpha = 0;
+    }completion:^(BOOL complete){
+        [self.view removeFromSuperview];
+    }];
+}
+
+#pragma mark UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker
+        didFinishPickingImage:(UIImage *)image
+                  editingInfo:(NSDictionary *)editingInfo
+{
+    [_popController dismissPopoverAnimated:YES];
+    if (image) {
+        //生成图片的uuid,保存到缓存
+        NSString *bgUuid = [CommonUtil uuid];
+        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+                                                                    relatePath:bgUuid
+                                                                  resourceType:kResourceCacheTypeBackgroundImage];
+        _mainProductInfo.bgImageFile = bgImageFilePath;
+        [[MainCatalogManager instance] updateMainCatalog:_mainProductInfo];
+        _ivBg.image = image;
+    }else{
+        [[AutoDismissView instance] showInView:self.view title:@"修改失败" duration:1];
+    }
+}
+
 
 //////////////////////////////////////////////////////////////
 #pragma mark GMGridViewDataSource
@@ -365,9 +404,9 @@
 - (CGSize)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
     if (_bIsEdit) {
-        return CGSizeMake(230, 80);
+        return CGSizeMake(400, 97);
     }else{
-        return CGSizeMake(230, 52);
+        return CGSizeMake(400, 67);
     }
 }
 
@@ -393,11 +432,53 @@
         cell.contentView = mainCatalogItem;
         
     }
-    MainProductInfo *productInfo = [_catalogArray objectAtIndex:index];
+    SubProductInfo *productInfo = [_catalogArray objectAtIndex:index];
     SubCatalogItem *contentItem = (SubCatalogItem *)cell.contentView;
     contentItem.lbName.text = productInfo.name;
+    //设置名字颜色
+    if (_mainProductInfo.colorType == kSubItemBtnColorGold) {
+        contentItem.lbName.shadowColor = [UIColor blackColor];
+        contentItem.lbName.shadowOffset = CGSizeZero;
+        contentItem.lbName.shadowBlur = 20.0f;
+        contentItem.lbName.innerShadowColor = [UIColor yellowColor];
+        contentItem.lbName.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
+        contentItem.lbName.gradientStartColor = [UIColor redColor];
+        contentItem.lbName.gradientEndColor = [UIColor yellowColor];
+        contentItem.lbName.gradientStartPoint = CGPointMake(0.0f, 0.5f);
+        contentItem.lbName.gradientEndPoint = CGPointMake(1.0f, 0.5f);
+        contentItem.lbName.oversampling = 2;
+        contentItem.lbName.backgroundColor = [UIColor clearColor];
+        contentItem.lbName.textAlignment = NSTextAlignmentCenter;
+
+    }else if (_mainProductInfo.colorType == kSubItemBtnColorBlack){
+        contentItem.lbName.shadowColor = [UIColor blackColor];
+        contentItem.lbName.shadowOffset = CGSizeZero;
+        contentItem.lbName.shadowBlur = 20.0f;
+        contentItem.lbName.innerShadowColor = [UIColor blackColor];
+        contentItem.lbName.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
+        contentItem.lbName.gradientStartColor = [UIColor blackColor];
+        contentItem.lbName.gradientEndColor = [UIColor purpleColor];
+        contentItem.lbName.gradientStartPoint = CGPointMake(0.0f, 0.5f);
+        contentItem.lbName.gradientEndPoint = CGPointMake(1.0f, 0.5f);
+        contentItem.lbName.oversampling = 2;
+        contentItem.lbName.backgroundColor = [UIColor clearColor];
+        contentItem.lbName.textAlignment = NSTextAlignmentCenter;
+    }else{
+        contentItem.lbName.shadowColor = [UIColor blackColor];
+        contentItem.lbName.shadowOffset = CGSizeZero;
+        contentItem.lbName.shadowBlur = 20.0f;
+        contentItem.lbName.innerShadowColor = [UIColor yellowColor];
+        contentItem.lbName.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
+        contentItem.lbName.gradientStartColor = [UIColor whiteColor];
+        contentItem.lbName.gradientEndColor = [UIColor yellowColor];
+        contentItem.lbName.gradientStartPoint = CGPointMake(0.0f, 0.5f);
+        contentItem.lbName.gradientEndPoint = CGPointMake(1.0f, 0.5f);
+        contentItem.lbName.oversampling = 2;
+        contentItem.lbName.backgroundColor = [UIColor clearColor];
+        contentItem.lbName.textAlignment = NSTextAlignmentCenter;
+    }
     [contentItem setEdit:_bIsEdit];
-    [contentItem.swEdit setSelected:productInfo.enable];
+    [contentItem.swEdit setOn:productInfo.enable];
     
     return cell;
 }
@@ -414,9 +495,7 @@
 
 - (void)GMGridView:(GMGridView *)gridView didTapOnItemAtIndex:(NSInteger)position
 {
-    NSLog(@"Did tap at index %d", position);
-    //重新提交
-    
+    NSLog(@"Did tap at index %d", position);    
     SubProductInfo *subProductInfo = [_catalogArray objectAtIndex:position];
     
     //跳转到广告页面
@@ -426,9 +505,11 @@
     PhotoScrollViewController *photoScrollViewController = [[PhotoScrollViewController alloc]
                                                             initWithDataSource:dataSource
                                                             andStartWithPhotoAtIndex:0];
-    //TODO:把编辑设置是,以后需要修改
     photoScrollViewController.bIsEdit = _bIsEdit;
     photoScrollViewController.subProductID = subProductInfo.productID;
+    if (adPhotoArray.count == 0 && _bIsEdit == NO) {
+        photoScrollViewController.isShowChromeAlways = YES;
+    }
     [self.mainDelegate mainPushViewController:photoScrollViewController animated:YES];
 }
 
@@ -620,6 +701,9 @@
 -(void)mainCatalogGridViewCellDidSwitch:(MainCatalogGridViewCell *)cell value:(BOOL)isOpen{
     DDetailLog(@"");
     int index = [_gmGridView positionForItemSubview:cell];
+    SubProductInfo *productInfo = [_catalogArray objectAtIndex:index];
+    productInfo.enable = isOpen;
+    [[SubCatalogManager instance] updateSubCatalog:productInfo];
     DDetailLog(@"indxe : %d",index);
 }
 

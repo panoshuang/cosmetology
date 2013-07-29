@@ -20,7 +20,9 @@
 #import "MessageListsViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "KTPhotoView.h"
-
+#import "MainProductInfo.h"
+#import "MainCatalogManager.h"
+#import "UIAlertView+Blocks.h"
 
 #define BTN_LIKE_TAG   1001
 #define BTN_COMMENT_TAG 1002
@@ -81,52 +83,77 @@ static BOOL isProsecutingPhoto = NO;
     if (_bIsEdit)
     {
         UIButton *pickVedio = [UIButton buttonWithType:UIButtonTypeCustom];
-        [pickVedio setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
-        [pickVedio setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
+        [pickVedio setTitle:@"添加视频" forState:UIControlStateNormal];
+//        [pickVedio setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
+//        [pickVedio setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
         [pickVedio addTarget:self action:@selector(pickVedioBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         pickVedio.tag       = BTN_COMMENT_TAG;
         [buttonArray addObject:pickVedio];
         
-        UIButton *videoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [videoButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
-        [videoButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
-        [videoButton addTarget:self action:@selector(videoBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-        videoButton.tag       = BTN_COMMENT_TAG;
-        //[buttonArray addObject:videoButton];
-        
-        UIButton *priceButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
-        [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
-        [priceButton addTarget:self action:@selector(priceBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-        priceButton.tag       = BTN_COMMENT_TAG;
-        [buttonArray addObject:priceButton];
-
         UIButton *addPhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [addPhotoButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
-        [addPhotoButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
+        [addPhotoButton setTitle:@"添加照片" forState:UIControlStateNormal];
+//        [addPhotoButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
+//        [addPhotoButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
         [addPhotoButton addTarget:self action:@selector(addBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         addPhotoButton.tag       = BTN_COMMENT_TAG;
         [buttonArray addObject:addPhotoButton];
-
+        
+        
+        UIButton *deletePhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [deletePhotoButton setTitle:@"删除广告" forState:UIControlStateNormal];
+        //        [addPhotoButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
+        //        [addPhotoButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
+        [deletePhotoButton addTarget:self action:@selector(deleteBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        deletePhotoButton.tag       = BTN_COMMENT_TAG;
+        [buttonArray addObject:deletePhotoButton];
+        
+//        UIButton *videoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [videoButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
+//        [videoButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
+//        [videoButton addTarget:self action:@selector(videoBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+//        videoButton.tag       = BTN_COMMENT_TAG;
+        //[buttonArray addObject:videoButton];
+        
+        //判断是不是超值体验的广告,是的话不能添加报价页面
+        SubProductInfo *subProduct = [[SubCatalogManager instance] subProductInfoForProductID:_subProductID];
+        MainProductInfo *expProduct = [[MainCatalogManager instance] experienceCatalog];
+        if (subProduct.mainProductID != expProduct.productID) {
+            UIButton *priceButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            //        [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
+            //        [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
+            [priceButton setTitle:@"至尊价" forState:UIControlStateNormal];
+            [priceButton addTarget:self action:@selector(priceBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+            priceButton.tag       = BTN_COMMENT_TAG;
+            [buttonArray addObject:priceButton];
+        }
         UIButton *messageListButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [messageListButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
-        [messageListButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
+//        [messageListButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
+//        [messageListButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
+        [messageListButton setTitle:@"留言板" forState:UIControlStateNormal];
         [messageListButton addTarget:self action:@selector(messageListBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         messageListButton.tag = BTN_DEL_TAG;
         [buttonArray addObject:messageListButton];
     }
     else
-    {        
-        UIButton *priceButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
-        [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
-        [priceButton addTarget:self action:@selector(priceBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-        priceButton.tag       = BTN_COMMENT_TAG;
-        [buttonArray addObject:priceButton];
+    {
+        //判断是不是超值体验的广告,是的话不能添加报价页面
+        SubProductInfo *subProduct = [[SubCatalogManager instance] subProductInfoForProductID:_subProductID];
+        MainProductInfo *expProduct = [[MainCatalogManager instance] experienceCatalog];
+        if (subProduct.mainProductID != expProduct.productID) {
+            UIButton *priceButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            //        [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
+            //        [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
+            [priceButton setTitle:@"报价" forState:UIControlStateNormal];
+            [priceButton addTarget:self action:@selector(priceBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+            priceButton.tag       = BTN_COMMENT_TAG;
+            [buttonArray addObject:priceButton];
+        }
+
         
         UIButton *messageListButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [messageListButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
-        [messageListButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
+//        [messageListButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
+//        [messageListButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
+        [messageListButton setTitle:@"留言板" forState:UIControlStateNormal];
         [messageListButton addTarget:self action:@selector(messageListBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         messageListButton.tag = BTN_DEL_TAG;
         [buttonArray addObject:messageListButton];
@@ -232,23 +259,23 @@ static BOOL isProsecutingPhoto = NO;
 
 -(void)videoBtnClicked:(UIButton *)button{
     
-    SubProductInfo *subProductInfo = [[SubCatalogManager instance] subProductInfoForProductID:_subProductID];
-    _videoURL = [NSURL fileURLWithPath:subProductInfo.vedioURL isDirectory:NO];
-    NSLog(@"videoURL is %@",_videoURL);
-    if (_videoURL == nil) {
-        UIAlertView *errorMsg = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"视频地址为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [errorMsg show];
-        return;
-    }
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(exitFullScreen:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
-    moviePlayer = [[MPMoviePlayerController alloc]initWithContentURL:_videoURL];
-    [moviePlayer prepareToPlay];
-    moviePlayer.shouldAutoplay = YES;
-    _moviePlayState = MPMoviePlaybackStateStopped;
-    [moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
-    [moviePlayer.view setFrame:self.view.bounds];
-    [self.view addSubview:moviePlayer.view];
+//    SubProductInfo *subProductInfo = [[SubCatalogManager instance] subProductInfoForProductID:_subProductID];
+//    _videoURL = [NSURL fileURLWithPath:subProductInfo.vedioURL isDirectory:NO];
+//    NSLog(@"videoURL is %@",_videoURL);
+//    if (_videoURL == nil) {
+//        UIAlertView *errorMsg = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"视频地址为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//        [errorMsg show];
+//        return;
+//    }
+//    
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(exitFullScreen:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+//    moviePlayer = [[MPMoviePlayerController alloc]initWithContentURL:_videoURL];
+//    [moviePlayer prepareToPlay];
+//    moviePlayer.shouldAutoplay = YES;
+//    _moviePlayState = MPMoviePlaybackStateStopped;
+//    [moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
+//    [moviePlayer.view setFrame:self.view.bounds];
+//    [self.view addSubview:moviePlayer.view];
 
 }
 
@@ -352,6 +379,29 @@ static BOOL isProsecutingPhoto = NO;
     {
         [_popController dismissPopoverAnimated:YES];
     }
+}
+
+-(void)deleteBtnClicked:(UIButton *)sender{
+    RIButtonItem *confirmItem = [RIButtonItem item];
+    confirmItem.label = @"确定";
+    confirmItem.action = ^{
+        //删除数据库的广告
+        //获取广告实体,插入视频
+        AdPhotoInfo *photoInfo = [[(PhotoBrowserDataSource *)dataSource_ photoList] objectAtIndex:currentIndex_];
+        if (photoInfo) {
+            [[ResourceCache instance] deleteResourceForPath:photoInfo.imageFilePath];
+            [[ResourceCache instance] deleteResourceForPath:photoInfo.vedioFilePath];
+            [[AdPhotoManager instance] deleteAdPhotoForId:photoInfo.photoId];
+        }
+        [self deleteCurrentPhoto];
+    };
+    RIButtonItem *cancelItem = [RIButtonItem item];
+    cancelItem.label = @"取消";
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"是否要删除当前广告"
+                                                        message:nil
+                                               cancelButtonItem:cancelItem
+                                               otherButtonItems:confirmItem, nil];
+    [alertView show];
 }
 
 - (void)messageListBtnClicked:(UIButton *)sender

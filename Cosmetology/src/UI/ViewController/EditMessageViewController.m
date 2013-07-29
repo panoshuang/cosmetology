@@ -240,7 +240,8 @@
         _messageBoardInfo.messageContent = messageEditTextView.text;
     }
     //留言内容不能全部为空
-    if(singeNameImageFilePath.length == 0 &&  headPortraitsFilePath.length == 0 && messageEditTextView.text.length == 0){
+    if(headPortraitsFilePath.length == 0
+       && messageEditTextView.text.length == 0 && _messageBoardInfo.messageRecord.length == 0){
         ALERT_MSG(@"请输入您的留言", nil, @"确定");
         return;
     }
@@ -312,13 +313,14 @@
 
 -(void)playRecord:(UIButton *)btn{
     //TODO:播放录音
-    if (avPlay.playing) {
-        [avPlay stop];
+    if (_voiceHandle == nil){
+        _voiceHandle = [[VoiceHandle alloc] init];
+        _voiceHandle.delegate = self;
+    }
+    if (_messageBoardInfo.messageRecord.length == 0) {
         return;
     }
-    AVAudioPlayer *player = [[AVAudioPlayer alloc]initWithContentsOfURL:urlPlay error:nil];
-    avPlay = player;
-    [avPlay play];
+    [_voiceHandle playVoice:_messageBoardInfo.messageRecord];
 }
 
 - (IBAction)btnDown:(id)sender
@@ -424,6 +426,8 @@
 #pragma mark - 声音处理VoiceHandle的delegate回调
 
 -(void)voiceHandleDidStartRecord:(VoiceHandle *)aVoiceHandle error:(NSError *)error{
+    messageEditTextView.userInteractionEnabled = NO;
+    singeName.enabled = NO;
     if (error == nil){
         //记录录音时间
         _beginRecordAudioInterval = [[NSDate date] timeIntervalSince1970];
@@ -435,6 +439,8 @@
 }
 
 -(void)voiceHandleDidStopRecord:(VoiceHandle *)aVoiceHandle error:(NSError *)error{
+    messageEditTextView.userInteractionEnabled = YES;
+    singeName.enabled = YES;
     //结束录音
     DDetailLog(@"isOnMainThread %d",[NSThread currentThread].isMainThread);
     _endRecordAudioInterval = [[NSDate date] timeIntervalSince1970];
@@ -442,7 +448,10 @@
     double recordDuration = (_endRecordAudioInterval-_beginRecordAudioInterval);
     //判断录音时间,过短则丢弃该录音(最短不能少于1s),否则进行把录音转成amr文件并且发送出去
     if (recordDuration >= 1){
-        //TODO:处理录音成功
+        if (_messageBoardInfo.messageRecord.length > 0) {
+            [[ResourceCache instance] deleteResourceForPath:_messageBoardInfo.messageRecord];
+        }
+        _messageBoardInfo.messageRecord = self.recordWavFilePath;
     } else {
         [[AutoDismissView instance] showInView:self.view
                                          title:@"时间过短"
@@ -634,6 +643,22 @@
     {
         [_popController dismissPopoverAnimated:YES];
     }
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    
+    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight );
+    
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationLandscapeLeft|UIInterfaceOrientationLandscapeRight;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return YES;
 }
 
 

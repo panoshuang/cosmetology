@@ -18,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [NSThread sleepForTimeInterval:0.2];
+    [NSThread sleepForTimeInterval:2];
     //初始化数据库
     [BaseDatabase instance];
     //初始化图片缓存目录
@@ -67,7 +67,7 @@
 - (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
 {
     
-    return UIInterfaceOrientationMaskAll;    
+    return UIInterfaceOrientationMaskAll;
     
 }
 #endif

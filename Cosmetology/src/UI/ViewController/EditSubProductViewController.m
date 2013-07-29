@@ -1,60 +1,44 @@
 //
-//  AddSubCatalogViewController.m
+//  EditSubProductViewController.m
 //  Cosmetology
-//  @文件描述：添加子产品类别的ViewController
-//  Created by mijie on 13-6-11.
+//
+//  Created by mijie on 13-7-27.
 //  Copyright (c) 2013年 pengpai. All rights reserved.
 //
 
-#import "AddSubCatalogViewController.h"
-#import "SubProductInfo.h"
-#import "SubCatalogManager.h"
+#import "EditSubProductViewController.h"
 #import "ResourceCache.h"
 #import "CommonUtil.h"
+#import "SubCatalogManager.h"
 
+#define FONT_SIZE [UIFont systemFontOfSize:18]
 
-@interface AddSubCatalogViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
-{
+@interface EditSubProductViewController (){
     UILabel *_lbName;
     UITextField *_tfName;
     UIButton *_btnPhoto;
     UIImageView *_ivPriview;
+    UISwitch *_swEnable;
     UIPopoverController *_popController;
     UIImage *_imagePriview;
-    SubProductInfo *_subProductInfo;
+        BOOL _bIsProductEnable;
 }
 
 @end
 
-@implementation AddSubCatalogViewController
+@implementation EditSubProductViewController
 
+@synthesize subProductInfo = _subProductInfo;
 @synthesize delegate = _delegate;
 
-
-@synthesize mainCatalogId = _mainCatalogId;
-
--(id)init
+-(id)initWithSubProductInfo:(SubProductInfo *)aProduct;
 {
     self = [super init];
     if (self) {
-        
+        self.subProductInfo = aProduct;
     }
     return self;
 }
-
-- (id)initWithMainCatalogId:(int)aMainCatalogId {
-    self = [super init];
-    if (self) {
-        self.mainCatalogId = aMainCatalogId;
-    }
-
-    return self;
-}
-
-+ (id)controllerWithMainCatalogId:(int)aMainCatalogId {
-    return [[self alloc] initWithMainCatalogId:aMainCatalogId];
-}
-
 
 - (void)viewDidLoad
 {
@@ -89,7 +73,27 @@
                                                             400,
                                                             _lbName.frame.size.height)];
     _tfName.borderStyle = UITextBorderStyleRoundedRect;
+    _tfName.text = _subProductInfo.name;
     [self.view addSubview:_tfName];
+    
+    UILabel *lbEnableTips = [[UILabel alloc] initWithFrame:CGRectMake(_tfName.frame.origin.x + _tfName.frame.size.width + kCommonSpace,
+                                                                      _lbName.frame.origin.y,
+                                                                      100,
+                                                                      _lbName.frame.size.height)] ;
+    lbEnableTips.text = @"启/禁产品";
+    lbEnableTips.backgroundColor = [UIColor clearColor];
+    lbEnableTips.font = FONT_SIZE;
+    [self.view addSubview:lbEnableTips];
+    
+    _swEnable = [[UISwitch alloc] init];
+    CGRect swFrame = _swEnable.frame;
+    swFrame.origin.x = lbEnableTips.frame.origin.x + lbEnableTips.frame.size.width + kCommonSpace;
+    swFrame.origin.y = lbEnableTips.frame.origin.y;
+    _swEnable.frame = swFrame;
+    [_swEnable setOn:_subProductInfo.enable];
+    [_swEnable addTarget:self action:@selector(enableProduct:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:_swEnable];
+
     
     _btnPhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     _btnPhoto.frame = CGRectMake(_lbName.frame.origin.x,
@@ -104,8 +108,8 @@
                                                                _btnPhoto.frame.origin.y,
                                                                500,
                                                                500 * (768/1024.0))];
+    _ivPriview.image = [[ResourceCache instance] imageForCachePath:_subProductInfo.previewImageFilePath];
     [self.view addSubview:_ivPriview];
-    
 
 }
 
@@ -115,48 +119,50 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)back
-{
+-(void)back{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)save
-{
-    if (_tfName.text.length == 0) {
-        ALERT_MSG(@"名字不能为空", nil, @"确定");
-        return;
-    }
+-(void)enableProduct:(UISwitch *)sw{
+    _subProductInfo.enable = _swEnable.isOn;
+}
 
-    _subProductInfo = [[SubProductInfo alloc] init];
-    _subProductInfo.mainProductID = self.mainCatalogId;
-    _subProductInfo.name = _tfName.text;
-    int index = [SubCatalogManager instance].indexForNewCatalog;
-    _subProductInfo.index = index;
-    _subProductInfo.enable = YES;
-    if (_imagePriview != nil) {
-        //保存类别预览图片
-        NSString *previewUuid = [CommonUtil uuid];
-        NSString *previewImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imagePriview, 1)
-                                                                         relatePath:previewUuid
-                                                                       resourceType:kResourceCacheTypeSubCatalogPreviewImage];
-        
-        if (previewImageFilePath.length == 0) {
-            ALERT_MSG(@"保存失败", nil, @"确定");
+-(void)save{
+
+        if (_tfName.text.length == 0) {
+            ALERT_MSG(@"名字不能为空",nil , @"确定");
             return;
+        }else{
+            _subProductInfo.name = _tfName.text;
         }
-        _subProductInfo.previewImageFilePath = previewImageFilePath;
-    }
-     _subProductInfo.productID = [[SubCatalogManager instance] addSubCatalog:_subProductInfo];
+        if (_imagePriview != nil) {
+            [[ResourceCache instance] deleteResourceForPath:_subProductInfo.previewImageFilePath];
+            //保存类别预览图片
+            NSString *previewUuid = [CommonUtil uuid];
+            NSString *previewImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imagePriview, 1)
+                                                                             relatePath:previewUuid
+                                                                           resourceType:kResourceCacheTypeSubCatalogPreviewImage];
+            
+            if (previewImageFilePath.length == 0) {
+                ALERT_MSG(@"保存失败", nil, @"确定");
+                return;
+            }
+            _subProductInfo.previewImageFilePath = previewImageFilePath;
+        }
 
-    if ([_delegate respondsToSelector:@selector(addSubCatalogViewController:didSaveCatalog:)]) {
-        [_delegate addSubCatalogViewController:self didSaveCatalog:_subProductInfo];
-    }
+        
+        [[SubCatalogManager instance] updateSubCatalog:_subProductInfo];
+        
+        if ([_delegate respondsToSelector:@selector(editSubProductViewControllerDidSave:didUpdateCatalog:)]) {
+            [_delegate editSubProductViewControllerDidSave:self didUpdateCatalog:_subProductInfo];
+        }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)selectPhoto:(UIButton *)btn{
-    [_tfName resignFirstResponder];
-	UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+
+-(void)selectPreviewPhoto:(UIButton *)btn{
+    [_popController dismissPopoverAnimated:NO];
+    UIImagePickerController *controller = [[UIImagePickerController alloc] init];
 	controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 	controller.allowsEditing = NO;
 	controller.delegate = self;
@@ -172,9 +178,10 @@
                   editingInfo:(NSDictionary *)editingInfo
 {
     [_popController dismissPopoverAnimated:YES];
-    //TODO:生成图片名字,保存到图片文件中
     _ivPriview.image = image;
     _imagePriview = image;
+    
 }
+
 
 @end

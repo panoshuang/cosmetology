@@ -1147,11 +1147,34 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
     if (position != GMGV_INVALID_POSITION) 
     {
         if (!self.editing) {
-            [self cellForItemAtIndex:position].highlighted = NO;
-            [self.actionDelegate GMGridView:self didTapOnItemAtIndex:position];
+            //判断是否是点击了操作区域
+            GMGridViewCell *cell = [self cellForItemAtIndex:position];
+            BOOL isTouchAtControl = YES;
+            NSArray *subViewArray = cell.contentView.subviews;
+            for (UIView *subView in subViewArray) {
+                CGPoint locationInSubView = [tapGesture locationInView:subView];
+                if (CGRectContainsPoint(subView.frame, locationInSubView)) {
+                    if ([subView isKindOfClass:[UIView class]]) {
+                        isTouchAtControl = NO;
+                        break;
+                    }else{
+                        
+                    }
+                }
+            }
+            if (isTouchAtControl == NO) {
+                [self cellForItemAtIndex:position].highlighted = NO;
+                [self.actionDelegate GMGridView:self didTapOnItemAtIndex:position];
+            }
+            
         }else{
             //判断是否是在点击操作区域,是的话不让处理
             GMGridViewCell *cell = [self cellForItemAtIndex:position];
+            //判断是否是点击在删除按钮中
+            CGPoint locationDelBtn = [tapGesture locationInView:cell];
+            if (CGRectContainsPoint(cell.deleteButton.frame, locationDelBtn)) {
+                return;
+            }
             BOOL isTouchAtControl = YES;
             NSArray *subViewArray = cell.contentView.subviews;
             for (UIView *subView in subViewArray) {

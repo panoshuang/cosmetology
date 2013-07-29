@@ -16,13 +16,14 @@
 @synthesize enable;
 @synthesize index;
 @synthesize priceImageFilePath;
-@synthesize vedioURL;
+@synthesize previewImageFilePath;
 
 
 -(id)init{
     self = [super init];
     if (self) {
-        vedioURL = @"";
+        previewImageFilePath = @"";
+        priceImageFilePath = @"";
     }
     return self;
 }

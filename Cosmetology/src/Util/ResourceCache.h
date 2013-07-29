@@ -10,6 +10,7 @@
 
 #define IMAGE_CACHE_PATH_BACKGROUND @"background"
 #define IMAGE_CACHE_PATH_MAIN_CATALOG @"mainCatalog" //主产品代表图片目录
+#define IMAGE_CACHE_PATH_SUB_CATALOG  @"subCatalog" //子产品代表图片目录
 #define IMAGE_CACHE_PATH_AD  @"ad" //产品广告图片缓存目录
 #define IMAGE_CACHE_PATH_PRICE @"price" //报价图片缓存目录
 #define IMAGE_CACHE_PATH_MSG_USER_AUTOGRAPH @"autograph" //留言用户签名

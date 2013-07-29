@@ -52,7 +52,7 @@
     for (int i = 0; i < itemCount; i++)
     {
         UIButton *button = [buttonArray objectAtIndex:i];
-        button.frame = CGRectMake(fSpace * (i + 1) + kPhotoBrowerToolBarHight*i, 2, kPhotoBrowerToolBarHight, kPhotoBrowerToolBarHight);
+        button.frame = CGRectMake(fSpace * (i + 1) + kPhotoBrowerToolBarHight*i, 2, kPhotoBrowerToolBarHight * 2, kPhotoBrowerToolBarHight);
         [self addSubview:button];
     }
 }

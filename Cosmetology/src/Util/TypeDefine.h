@@ -9,6 +9,7 @@
 typedef enum _EnumResourceCacheType {
     kResourceCacheTypeBackgroundImage,
     kResourceCacheTypeMainCatalogPreviewImage,
+    kResourceCacheTypeSubCatalogPreviewImage,
     kResourceCacheTypeAdImage,
     kResourceCacheTypePriceImage,
     kResourceCacheTypeUserAutograph,

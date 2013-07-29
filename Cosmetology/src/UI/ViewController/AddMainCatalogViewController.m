@@ -38,6 +38,7 @@
     MainProductInfo *_mainProductInfo;
     BOOL _bIsEdit;
     BOOL _bIsProductEnable;
+    EnumSubBtnColorType _colorType;
 }
 
 @end
@@ -119,12 +120,13 @@
             _lbName.frame.origin.y,
             100,
             _lbName.frame.size.height)] ;
-    lbEnableTips.text = @"开始产品";
+    lbEnableTips.text = @"启/禁产品";
     lbEnableTips.backgroundColor = [UIColor clearColor];
     lbEnableTips.font = FONT_SIZE;
     [self.view addSubview:lbEnableTips];
 
     _swEnable = [[UISwitch alloc] init];
+    [_swEnable setOn:_bIsProductEnable];
     CGRect swFrame = _swEnable.frame;
     swFrame.origin.x = lbEnableTips.frame.origin.x + lbEnableTips.frame.size.width + kCommonSpace;
     swFrame.origin.y = lbEnableTips.frame.origin.y;
@@ -201,7 +203,7 @@
 }
 
 -(void)enableProduct:(UISwitch *)sw{
-    _bIsProductEnable = _swEnable.state;
+    _bIsProductEnable = _swEnable.isOn;
 }
 
 -(void)save{
@@ -251,6 +253,7 @@
         _mainProductInfo.bgImageFile = bgImageFilePath;
         _mainProductInfo.previewImageFile = previewImageFilePath;
         _mainProductInfo.subItemBtnImageName = _strSubItemBtnBgName;
+        _mainProductInfo.colorType = _colorType;
         //获取合适index
         int index = [[MainCatalogManager instance] indexForNewCatalog];
         _mainProductInfo.index = index;
@@ -300,7 +303,7 @@
         if (_imageSubItemBtnBg != nil) {
             _mainProductInfo.subItemBtnImageName = _strSubItemBtnBgName;
         }
-
+        _mainProductInfo.enable = _bIsProductEnable;
         [[MainCatalogManager instance] updateMainCatalog:_mainProductInfo];
 
         if ([_delegate respondsToSelector:@selector(addMainCatalogViewController:didUpdateCatalog:)]) {
@@ -311,6 +314,7 @@
 }
 
 -(void)selectPhoto:(UIButton *)btn{
+    [_tfName resignFirstResponder];
 	UIImagePickerController *controller = [[UIImagePickerController alloc] init];
 	controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 	controller.allowsEditing = NO;
@@ -323,6 +327,7 @@
 }
 
 -(void)selectPreviewPhoto:(UIButton *)btn{
+    [_tfName resignFirstResponder];
     [_popController dismissPopoverAnimated:NO];
     UIImagePickerController *controller = [[UIImagePickerController alloc] init];
 	controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -337,6 +342,7 @@
 
 
 -(void)selectSubItemBgPhoto:(UIButton *)btn{
+    [_tfName resignFirstResponder];
     [_popController dismissPopoverAnimated:NO];
     SelectSubItemBtnBgViewController *controller = [[SelectSubItemBtnBgViewController alloc] init];
     controller.delegate = self;
@@ -380,12 +386,13 @@
 
 #pragma mark - SelectSubItemBtnBgViewControllerDelegate
 
--(void)selectSubItemBtnBgViewController:(SelectSubItemBtnBgViewController *)controller didSelectImageName:(NSString *)imageName{
+-(void)selectSubItemBtnBgViewController:(SelectSubItemBtnBgViewController *)controller didSelectImageName:(NSString *)imageName colorType:(EnumSubBtnColorType)colorType{
     DDetailLog(@"imageName : %@",imageName);
     [_popController dismissPopoverAnimated:YES];
     _ivSubItemBtnBg.image = [UIImage imageNamed:imageName];
     _imageSubItemBtnBg = [UIImage imageNamed:imageName];
     _strSubItemBtnBgName = imageName;
+    _colorType = colorType;
 }
 
 @end

@@ -26,13 +26,15 @@
 #import "ResourceCache.h"
 #import "iCarousel.h"
 #import "FXLabel.h"
+#import "MainCatalogItem.h"
+#import "EditSubProductViewController.h"
 
-#define NUMBER_OF_VISIBLE_ITEMS 50
-#define ITEM_SPACING 400.0f
+#define NUMBER_OF_VISIBLE_ITEMS 10
+#define ITEM_SPACING 500.0f
 #define INCLUDE_PLACEHOLDERS YES
 
 @interface ExperienceViewController()<UIAlertViewDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate,iCarouselDataSource,
-iCarouselDelegate>
+iCarouselDelegate,EditSubProductViewControllerDelegate>
 {
     UIPopoverController *_popController;
     UIImageView *_ivBg;
@@ -88,10 +90,10 @@ iCarouselDelegate>
     UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];
     mainView.backgroundColor=[UIColor whiteColor];
     self.view = mainView;
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onBgTap:)];
-    tapGesture.delegate = self;
-    tapGesture.numberOfTapsRequired = 2;
-    [self.view addGestureRecognizer:tapGesture];
+//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onBgTap:)];
+//    tapGesture.delegate = self;
+//    tapGesture.numberOfTapsRequired = 2;
+//    [self.view addGestureRecognizer:tapGesture];
 
     _ivBg = [[UIImageView alloc] initWithFrame:self.view.bounds];
     UIImage *image = [[ResourceCache instance] imageForCachePath:self.experienceInfo.bgImageFile];
@@ -114,11 +116,23 @@ iCarouselDelegate>
                                                                 style:UIBarButtonItemStyleDone
                                                                target:self
                                                                action:@selector(addSubCatalogItem)];
+    UIBarButtonItem *deleteItem = [[UIBarButtonItem alloc] initWithTitle:@"删除"
+                                                                   style:UIBarButtonItemStyleDone
+                                                                  target:self
+                                                                  action:@selector(deleteCurCatalog)];
+    UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithTitle:@"修改"
+                                                                 style:UIBarButtonItemStyleDone
+                                                                target:self
+                                                                action:@selector(editCatalog)];
     UIBarButtonItem *editBgItem = [[UIBarButtonItem alloc] initWithTitle:@"修改背景"
                                                                    style:UIBarButtonItemStyleDone
                                                                   target:self
                                                                   action:@selector(editBg:)];
-    _toolbar.items = [NSArray arrayWithObjects:addItem,editBgItem, nil];
+    UIBarButtonItem *exitEditItem = [[UIBarButtonItem alloc] initWithTitle:@"退出编辑"
+                                                                     style:UIBarButtonItemStyleDone
+                                                                    target:self
+                                                                    action:@selector(cancelEdit)];
+    _toolbar.items = [NSArray arrayWithObjects:addItem,deleteItem,editItem,editBgItem,exitEditItem, nil];
     
     _editTapView = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 100,
                                                                 0,
@@ -138,6 +152,14 @@ iCarouselDelegate>
 //    _catalogCarousel.scrollSpeed = 50;
 //    _catalogCarousel.decelerationRate = 10;
     [self.view addSubview:_catalogCarousel];
+    
+    //返回按钮
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    backBtn.frame = CGRectMake((1024 - 120)/2, 705, 120, 67);
+    //[backBtn setImage:[UIImage imageNamed:@"save.png"] forState:UIControlStateNormal];
+    [backBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backBtn];
 }
 
 -(void)addSubCatalogItem
@@ -147,6 +169,36 @@ iCarouselDelegate>
     addSubCatalogViewController.delegate = self;
     [_mainDelegate mainPushViewController:addSubCatalogViewController animated:YES];
 }
+
+-(void)deleteCurCatalog{
+    DDetailLog(@"");
+
+        RIButtonItem *confirmItem = [RIButtonItem item];
+        confirmItem.label = @"确定";
+        confirmItem.action = ^{
+            int index = [_catalogCarousel currentItemIndex];
+            SubProductInfo *productInfo = [_catalogArray objectAtIndex:index];
+            //删除数据库中的分类
+            [[SubCatalogManager instance] deleteSubCatalogForId:productInfo.productID];
+            [_catalogArray removeObjectAtIndex:index];
+            [_catalogCarousel removeItemAtIndex:index animated:YES];
+        }   ;
+        RIButtonItem *cancelItem = [RIButtonItem item];
+        cancelItem.label = @"取消";
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"确定要删除当前的项目?"
+                                                            message:nil
+                                                   cancelButtonItem:cancelItem
+                                                   otherButtonItems:confirmItem, nil];
+        [alertView show];
+}
+
+-(void)editCatalog{
+    SubProductInfo *curProduct = [_catalogArray objectAtIndex:_catalogCarousel.currentItemIndex];
+    EditSubProductViewController *editCatalogViewController = [[EditSubProductViewController alloc] initWithSubProductInfo:curProduct];
+    editCatalogViewController.delegate = self;
+    [_mainDelegate mainPushViewController:editCatalogViewController animated:YES];
+}
+
 
 - (void)viewDidLoad
 {
@@ -256,6 +308,7 @@ iCarouselDelegate>
     [alertView addButtonItem:confirmItem];
     [alertView show];
     
+    
 }
 
 -(void)editBg:(UIBarButtonItem *)sender{
@@ -283,6 +336,17 @@ iCarouselDelegate>
     }
 }
 
+-(void)back:(UIButton *)btn{
+    [UIView animateWithDuration:.5 animations:^{
+        self.view.userInteractionEnabled = NO;
+        self.view.alpha = 0;
+    }completion:^(BOOL complete){
+        [self.view removeFromSuperview];
+    }];
+}
+
+
+
 #pragma mark - UIGestureRecognizerDelegate
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
@@ -300,13 +364,33 @@ iCarouselDelegate>
     }
 }
 
+#pragma mark UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker
+        didFinishPickingImage:(UIImage *)image
+                  editingInfo:(NSDictionary *)editingInfo
+{
+    [_popController dismissPopoverAnimated:YES];
+    if (image) {
+        //生成图片的uuid,保存到缓存
+        NSString *bgUuid = [CommonUtil uuid];
+        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+                                                                    relatePath:bgUuid
+                                                                  resourceType:kResourceCacheTypeBackgroundImage];
+        _experienceInfo.bgImageFile = bgImageFilePath;
+        [[MainCatalogManager instance] updateMainCatalog:_experienceInfo];
+        _ivBg.image = image;
+    }else{
+        [[AutoDismissView instance] showInView:self.view title:@"修改失败" duration:1];
+    }
+}
+
 
 #pragma mark -
 #pragma mark iCarousel methods
 
 - (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
-    return 10;
+    return _catalogArray.count;
 }
 
 - (NSUInteger)numberOfVisibleItemsInCarousel:(iCarousel *)carousel
@@ -318,13 +402,16 @@ iCarouselDelegate>
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view
 {
-	FXLabel *label = nil;
-	//create new view if no view is available for recycling
-	if (view == nil)
-	{
-		view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page.png"]];
-        view.frame = CGRectMake(0, 0, 300, 500);
-        view.backgroundColor = [UIColor redColor];
+    FXLabel *label = nil;
+    
+    //create new view if no view is available for recycling
+    if (view == nil)
+    {
+        
+        view = [[MainCatalogItem alloc] initWithFrame:CGRectMake(0, 0, 300.0f, 500.0f)];
+//        view.backgroundColor = [UIColor blueColor];
+        ((MainCatalogItem *)view).ivBg.image = [UIImage imageNamed:@"test.png"];
+        view.contentMode = UIViewContentModeScaleAspectFill;
         label = [[FXLabel alloc] initWithFrame:CGRectMake(0, -55, 300.0f, 50.0f)];
         label.shadowColor = [UIColor blackColor];
         label.shadowOffset = CGSizeZero;
@@ -340,13 +427,16 @@ iCarouselDelegate>
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [label.font fontWithSize:50];
         label.tag = 1;
-        label.text = @"测试数据";
         [view addSubview:label];
-
-	}
-    else{
-       label = (FXLabel *)[view viewWithTag:1];
     }
+    else
+    {
+        //get a reference to the label in the recycled view
+        label = (FXLabel *)[view viewWithTag:1];
+    }
+    
+    SubProductInfo *productInfo = [_catalogArray objectAtIndex:index];
+    label.text = productInfo.name;
 
 	
     //set label
@@ -391,6 +481,24 @@ iCarouselDelegate>
     return ITEM_SPACING;
 }
 
+- (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index{
+    SubProductInfo *subProductInfo = [_catalogArray objectAtIndex:index];
+    
+    //跳转到广告页面
+    PhotoBrowserDataSource *dataSource = [[PhotoBrowserDataSource alloc] init];
+    NSMutableArray *adPhotoArray = [NSMutableArray arrayWithArray:[[AdPhotoManager instance] allAdPhotoInfoForSubProductID:subProductInfo.productID]];
+    [dataSource setPhotoList:adPhotoArray];
+    PhotoScrollViewController *photoScrollViewController = [[PhotoScrollViewController alloc]
+                                                            initWithDataSource:dataSource
+                                                            andStartWithPhotoAtIndex:0];
+    photoScrollViewController.bIsEdit = _bIsEdit;
+    photoScrollViewController.subProductID = subProductInfo.productID;
+    if (adPhotoArray.count == 0 && _bIsEdit == NO) {
+        photoScrollViewController.isShowChromeAlways = YES;
+    }
+    [self.mainDelegate mainPushViewController:photoScrollViewController animated:YES];
+}
+
 //- (CGFloat)carousel:(iCarousel *)carousel itemAlphaForOffset:(CGFloat)offset
 //{
 //	//set opacity based on distance from camera
@@ -408,6 +516,24 @@ iCarouselDelegate>
 //{
 //    return NO;
 //}
+
+#pragma mark - AddSubCatalogViewControllerDelegate
+
+-(void)addSubCatalogViewController:(AddSubCatalogViewController *)addSubCatalogViewController didSaveCatalog:(SubProductInfo *)subProductInfo{
+    [_catalogArray addObject:subProductInfo];
+    [_catalogCarousel insertItemAtIndex:_catalogArray.count - 1 animated:YES];
+}
+
+#pragma mark - EditSubProductViewControllerDelegate 
+
+-(void)editSubProductViewControllerDidSave:(EditSubProductViewController *)editSubProductViewController didUpdateCatalog:(SubProductInfo *)subProduct{
+    int index = [_catalogArray indexOfObject:subProduct];
+    if(index != NSNotFound){
+        [_catalogCarousel reloadItemAtIndex:index animated:YES];
+    }
+}
+
+
 
 
 
