@@ -395,7 +395,7 @@
         label.oversampling = 2;
         label.backgroundColor = [UIColor clearColor];
         label.textAlignment = NSTextAlignmentCenter;
-        label.font = [label.font fontWithSize:50];
+        label.font = [label.font fontWithSize:45];
         label.tag = 1;
         [view addSubview:label];
     }

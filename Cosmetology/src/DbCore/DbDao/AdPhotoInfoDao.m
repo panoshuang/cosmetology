@@ -50,8 +50,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AdPhotoInfoDao)
 }
 
 - (BOOL)deleteAdPhotoForID:(int)adPhotoInfoID{
-    NSString *sqlStr = [NSString stringWithFormat:@"DELETE FROM "SUB_PRODUCT_INFO_TABLE_TABLE_NAME
-                                                  " WHERE "SUB_PRODUCT_INFO_TABLE_MAIN_PRODUCT_ID" =?"];
+    NSString *sqlStr = [NSString stringWithFormat:@"DELETE FROM "AD_PHOTO_INFO_TABLE_TABLE_NAME
+                                                  " WHERE "AD_PHOTO_INFO_TABLE_PHOTO_ID" =?"];
     __block BOOL isSuccess;
     [[[BaseDatabase instance] fmDbQueue] inDatabase:^(FMDatabase *db) {
         isSuccess = [db executeUpdate:sqlStr, [NSNumber numberWithInt:adPhotoInfoID]];

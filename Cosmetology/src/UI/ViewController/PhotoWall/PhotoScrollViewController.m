@@ -143,7 +143,7 @@ static BOOL isProsecutingPhoto = NO;
             UIButton *priceButton = [UIButton buttonWithType:UIButtonTypeCustom];
             //        [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
             //        [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
-            [priceButton setTitle:@"报价" forState:UIControlStateNormal];
+            [priceButton setTitle:@"至尊价" forState:UIControlStateNormal];
             [priceButton addTarget:self action:@selector(priceBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
             priceButton.tag       = BTN_COMMENT_TAG;
             [buttonArray addObject:priceButton];
@@ -333,17 +333,6 @@ static BOOL isProsecutingPhoto = NO;
     
 }
 
-
-- (void)commentPhotoBtnClick:(UIButton *)button
-{
-
-}
-
-- (void)reportBtnClick:(UIButton *)sender
-{
-
-}
-
 -(void)addBtnClicked:(UIButton *)sender{
 
     if(![_popController isPopoverVisible])
@@ -411,6 +400,7 @@ static BOOL isProsecutingPhoto = NO;
     MessageListsViewController *messageListsViewController = [[MessageListsViewController alloc]initWithProductId:_subProductID];
     DDetailLog(@"%d",_subProductID);
     [self.navigationController pushViewController:messageListsViewController animated:YES];
+    messageListsViewController.bIsEdit = _bIsEdit;
     DDetailLog(@"留言列表按钮");
 }
 

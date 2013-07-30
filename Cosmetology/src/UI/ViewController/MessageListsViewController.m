@@ -32,7 +32,7 @@
 #pragma mark ViewController (privates methods)
 //////////////////////////////////////////////////////////////
 
-@interface MessageListsViewController ()<GMGridViewDataSource, GMGridViewSortingDelegate, GMGridViewTransformationDelegate, GMGridViewActionDelegate,MessageBoardViewControllerDelegate>
+@interface MessageListsViewController ()<GMGridViewDataSource, GMGridViewSortingDelegate, GMGridViewTransformationDelegate, GMGridViewActionDelegate,MessageBoardViewControllerDelegate,CheckMessageViewControllerDelegate>
 {
     __gm_weak GMGridView *_gmGridView;
     UINavigationController *_optionsNav;
@@ -237,6 +237,7 @@
     editMessageViewController.subProductID = _productId;
     DDetailLog(@"%d",_productId);
     editMessageViewController.delegate = self;
+    editMessageViewController.bIsEdit = _bIsEdit;
     [self.navigationController pushViewController:editMessageViewController animated:YES];
 }
 
@@ -245,6 +246,7 @@
     _bIsEdit = bIsEdit;
     [_gmGridView setEditing:_bIsEdit];
     [_gmGridView reloadData];
+    editBgBtn.hidden = !_bIsEdit;
 }
 
 //////////////////////////////////////////////////////////////
@@ -254,7 +256,7 @@
 -(void)editGestureDidTap:(UITapGestureRecognizer *)gesture{
     if (_bIsEdit) {
         [self cancelEdit];
-        editBgBtn.hidden = YES;
+        
     }else{
         //判断是否已经设置了密码,没有的话直接进入编辑模式,有的话要输入密码
         NSString *editPwdStr = [[PasswordManager instance] passwordForKey:PWD_MAIN_CATALOG];
@@ -262,8 +264,6 @@
             [self inputPassword];
         }else{
             self.bIsEdit = YES;
-            editBgBtn.hidden = NO;
-            [_gmGridView setEditing:YES animated:NO];
         }
     }
 }
@@ -314,9 +314,7 @@
         //判断输入的密码是否正确
         NSString *editPwdStr = [[PasswordManager instance] passwordForKey:PWD_MAIN_CATALOG];
         if([editPwdStr isEqualToString:textField.text]){
-            _bIsEdit = YES;
-            editBgBtn.hidden = NO;
-            [_gmGridView setEditing:YES animated:NO];
+            self.bIsEdit = YES;
         }else{
             [[AutoDismissView instance] showInView:self.view
                                              title:@"密码错误"
@@ -333,17 +331,19 @@
 
 -(void)onAcclaimClick:(AcclaimButton *)btn{
     if (!_bIsEdit) {
-        NSUInteger tag = btn.tag;
-        NSUInteger index = tag - 1;
-        MessageBoardInfo *msgInfo = [_msgArray objectAtIndex:index];
-        msgInfo.popularity += 1;
-        [[MessageBoardManager instance] updateMessageBoard:msgInfo];
-        GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:index];
-        if (cell) {
-            MsgItem *msgItem = (MsgItem *)cell.contentView;
-            msgItem.btnAcclaim.lbCount.text = [NSString stringWithFormat:@"%d",msgInfo.popularity];
+        GMGridViewCell *cell = (GMGridViewCell *)(btn.superview.superview);
+        int index = [_gmGridView positionForItemSubview:cell];
+        if (index != NSNotFound) {
+            MessageBoardInfo *msgInfo = [_msgArray objectAtIndex:index];
+            msgInfo.popularity += 1;
+            [[MessageBoardManager instance] updateMessageBoard:msgInfo];
+            GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:index];
+            if (cell) {
+                MsgItem *msgItem = (MsgItem *)cell.contentView;
+                msgItem.btnAcclaim.lbCount.text = [NSString stringWithFormat:@"%d",msgInfo.popularity];
+            }
+            [self showIncrementTipsView];
         }
-        [self showIncrementTipsView];
     }
 }
 
@@ -435,7 +435,6 @@
         [msgItem.btnAcclaim addTarget:self action:@selector(onAcclaimClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     MsgItem *contentView = (MsgItem *)cell.contentView;
-    contentView.btnAcclaim.tag = index+1;//;
     MessageBoardInfo *messageBoardinfoTemp = [_msgArray objectAtIndex:index];
     
     UIImage *singeNameImage = [[ResourceCache instance] imageForCachePath:messageBoardinfoTemp.singeName];
@@ -469,6 +468,8 @@
     MessageBoardInfo *msgInfo = [_msgArray objectAtIndex:position];    
     CheckMessageViewController *checkMessageViewController = [[CheckMessageViewController alloc]init];
     checkMessageViewController.messageBoardInfo = msgInfo;
+    checkMessageViewController.delegate = self;
+    checkMessageViewController.bIsEdit = _bIsEdit;
     [self.navigationController pushViewController:checkMessageViewController animated:YES];
 }
 
@@ -639,7 +640,36 @@
 
 -(void)saveMessage:(MessageBoardInfo *)aMsg forSubProductID:(NSInteger)subProductID{
     [_msgArray insertObject:aMsg atIndex:0];
-    [_gmGridView insertObjectAtIndex:0 animated:YES];
+    [_gmGridView insertObjectAtIndex:0 animated:NO];
+}
+
+#pragma mark -  CheckMessageViewControllerDelegate
+
+-(BOOL)checkMessageCanDeleteMessageBoardInfo:(MessageBoardInfo *)msgInfo{
+    if ([_msgArray containsObject:msgInfo]) {
+        if ([_msgArray lastObject] == msgInfo) {
+            return NO;
+        }else{
+            return YES;
+        }
+    }
+    return NO;
+}
+
+-(void)checkMessageViewControllerDidDeleteMsg:(MessageBoardInfo *)msgInfo{
+    [[MessageBoardManager instance] deleteMessageBoardForID:msgInfo.messageID];
+    int index = [_msgArray indexOfObject:msgInfo];
+    [_msgArray removeObject:msgInfo];
+    [_gmGridView removeObjectAtIndex:index animated:NO];
+}
+
+-(MessageBoardInfo *)checkMessageViewControllerNextMsg:(MessageBoardInfo *)msgInfo{
+    int index = [_msgArray indexOfObject:msgInfo];
+    if (index < _msgArray.count - 1) {
+        return [_msgArray objectAtIndex:index + 1];
+    }else{
+        return nil;
+    }
 }
 
 - (void)didReceiveMemoryWarning

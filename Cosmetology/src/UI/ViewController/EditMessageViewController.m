@@ -90,7 +90,11 @@
     //修改背景
     editBgBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     editBgBtn.frame = CGRectMake(50, 705, 180, 67);
-    editBgBtn.hidden = YES;
+    if (_bIsEdit) {
+        editBgBtn.hidden = NO;
+    }else{
+        editBgBtn.hidden = YES;
+    }
     editBgBtn.tag = 1000;
     [editBgBtn setBackgroundImage:[UIImage imageNamed:@"editBgBtn.png"] forState:UIControlStateNormal];
     [editBgBtn addTarget:self action:@selector(showEditBgView:) forControlEvents:UIControlEventTouchUpInside];
