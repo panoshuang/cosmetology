@@ -67,7 +67,7 @@
         _msgArray = [[NSMutableArray alloc] init];
         messageBoardInfo = [[MessageBoardInfo alloc]init];
         [self loadData];
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAcclaimArrived:) name:NOTIFY_CHECK_MSG_ACCLAIM object:nil];
     }
     
     return self;
@@ -263,6 +263,7 @@
         }else{
             self.bIsEdit = YES;
             editBgBtn.hidden = NO;
+            [_gmGridView setEditing:YES animated:NO];
         }
     }
 }
@@ -272,6 +273,7 @@
     confirmItem.label = @"确定";
     confirmItem.action = ^{
         self.bIsEdit = NO;
+        [_gmGridView setEditing:NO animated:YES];
         //editBgBtn.hidden = YES;
     };
     RIButtonItem *cancelItem = [RIButtonItem item];
@@ -313,6 +315,8 @@
         NSString *editPwdStr = [[PasswordManager instance] passwordForKey:PWD_MAIN_CATALOG];
         if([editPwdStr isEqualToString:textField.text]){
             _bIsEdit = YES;
+            editBgBtn.hidden = NO;
+            [_gmGridView setEditing:YES animated:NO];
         }else{
             [[AutoDismissView instance] showInView:self.view
                                              title:@"密码错误"
@@ -328,17 +332,19 @@
 }
 
 -(void)onAcclaimClick:(AcclaimButton *)btn{
-    NSUInteger tag = btn.tag;
-    NSUInteger index = tag - 1;
-    MessageBoardInfo *msgInfo = [_msgArray objectAtIndex:index];
-    msgInfo.popularity += 1;
-    [[MessageBoardManager instance] updateMessageBoard:msgInfo];
-    GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:index];
-    if (cell) {
-        MsgItem *msgItem = (MsgItem *)cell.contentView;
-        msgItem.btnAcclaim.lbCount.text = [NSString stringWithFormat:@"%d",msgInfo.popularity];
+    if (!_bIsEdit) {
+        NSUInteger tag = btn.tag;
+        NSUInteger index = tag - 1;
+        MessageBoardInfo *msgInfo = [_msgArray objectAtIndex:index];
+        msgInfo.popularity += 1;
+        [[MessageBoardManager instance] updateMessageBoard:msgInfo];
+        GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:index];
+        if (cell) {
+            MsgItem *msgItem = (MsgItem *)cell.contentView;
+            msgItem.btnAcclaim.lbCount.text = [NSString stringWithFormat:@"%d",msgInfo.popularity];
+        }
+        [self showIncrementTipsView];
     }
-    [self showIncrementTipsView];
 }
 
 -(void)showIncrementTipsView{
@@ -484,8 +490,7 @@
     RIButtonItem *confirmItem = [RIButtonItem item];
     confirmItem.label = @"确定";
     confirmItem.action = ^{
-        [[MessageBoardManager instance] deleteMessageBoardForID:msgInfo.messageID];
-        
+        [[MessageBoardManager instance] deleteMessageBoardForID:msgInfo.messageID];        
         [_msgArray removeObjectAtIndex:index];
         [_gmGridView removeObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade];
     };
@@ -633,8 +638,8 @@
 #pragma mark - MessageBoardViewControllerDelegate
 
 -(void)saveMessage:(MessageBoardInfo *)aMsg forSubProductID:(NSInteger)subProductID{
-    [_msgArray addObject:aMsg];
-    [_gmGridView insertObjectAtIndex:_msgArray.count - 1 animated:YES];
+    [_msgArray insertObject:aMsg atIndex:0];
+    [_gmGridView insertObjectAtIndex:0 animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -643,20 +648,27 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    
-    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight );
-    
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
 -(NSUInteger)supportedInterfaceOrientations{
-    return UIInterfaceOrientationLandscapeLeft|UIInterfaceOrientationLandscapeRight;
+    return UIInterfaceOrientationMaskLandscape;
 }
 
 - (BOOL)shouldAutorotate
 {
-    return YES;
+    return NO;
+}
+
+-(void)onAcclaimArrived:(NSNotification *)notification{
+    MessageBoardInfo *msgInfo = notification.object;
+    if (msgInfo) {
+        int index = [_msgArray indexOfObject:msgInfo];
+        if (index != NSNotFound) {
+            [_gmGridView reloadObjectAtIndex:index animated:NO];
+        }
+    }
 }
 
 

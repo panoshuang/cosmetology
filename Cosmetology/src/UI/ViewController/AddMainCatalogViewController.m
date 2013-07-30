@@ -149,14 +149,30 @@
                                                                200)];
     [self.view addSubview:_ivBg];
     
+    UILabel *imgFrame = [[UILabel alloc]initWithFrame:CGRectMake(_btnBgPhoto.frame.origin.x + 130,
+                                                                _btnBgPhoto.frame.origin.y,
+                                                                150,
+                                                                 30)];
+    imgFrame.text = @"尺寸:2048*1536";
+    imgFrame.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:imgFrame];
+    
     _btnPreview = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    _btnPreview.frame = CGRectMake(_ivBg.frame.origin.x + _ivBg.frame.size.width + kCommonSpaceBig * 2,
+    _btnPreview.frame = CGRectMake(_ivBg.frame.origin.x + _ivBg.frame.size.width + kCommonSpaceBig * 2 + 50,
                                    _lbName.frame.origin.y + _lbName.frame.size.height + kCommonSpace *2 ,
                                    120,
                                    30);
     [_btnPreview setTitle:@"添加预览图片" forState:UIControlStateNormal];
     [_btnPreview addTarget:self action:@selector(selectPreviewPhoto:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btnPreview];
+    
+    UILabel *preViewImgFrame = [[UILabel alloc]initWithFrame:CGRectMake(_ivBg.frame.origin.x + _ivBg.frame.size.width + kCommonSpaceBig * 2 + 180,
+                                                                 _btnBgPhoto.frame.origin.y,
+                                                                 150,
+                                                                 30)];
+    preViewImgFrame.text = @"尺寸:600*1060";
+    preViewImgFrame.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:preViewImgFrame];
     
     _ivPreview = [[UIImageView alloc] initWithFrame:CGRectMake(_btnPreview.frame.origin.x,
                                                           _btnPreview.frame.origin.y + _btnPreview.frame.size.height + kCommonSpace,
@@ -165,11 +181,11 @@
     [self.view addSubview:_ivPreview];
     
     _btnSubItemBtnBg = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    _btnSubItemBtnBg.frame = CGRectMake(_ivPreview.frame.origin.x + _ivPreview.frame.size.width + kCommonSpaceBig * 2,
+    _btnSubItemBtnBg.frame = CGRectMake(_ivPreview.frame.origin.x + _ivPreview.frame.size.width + kCommonSpaceBig * 2 + 30,
                                    _lbName.frame.origin.y + _lbName.frame.size.height + kCommonSpace *2 ,
                                    120,
                                    30);
-    [_btnSubItemBtnBg setTitle:@"添加背景图片" forState:UIControlStateNormal];
+    [_btnSubItemBtnBg setTitle:@"添加按钮图片" forState:UIControlStateNormal];
     [_btnSubItemBtnBg addTarget:self action:@selector(selectSubItemBgPhoto:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btnSubItemBtnBg];
     
@@ -365,7 +381,7 @@
 
 - (BOOL)shouldAutorotate
 {
-    return YES;
+    return NO;
 }
 
 #pragma mark UIImagePickerControllerDelegate

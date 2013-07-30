@@ -220,6 +220,9 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
 
 -(void)setBIsEdit:(BOOL)bIsEdit {
     _bIsEdit = bIsEdit;
+    [_catalogArray removeAllObjects];
+    [self loadCatalog];
+    [_catalogCarousel reloadData];
 }
 
 -(void)onBgTap:(UITapGestureRecognizer *)gesture{
@@ -406,7 +409,7 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
         
         view = [[MainCatalogItem alloc] initWithFrame:CGRectMake(0, 0, 300.0f, 500.0f)];
 //        view.backgroundColor = [UIColor blueColor];
-        ((MainCatalogItem *)view).ivBg.image = [UIImage imageNamed:@"test.png"];
+        //((MainCatalogItem *)view).ivBg.image = [UIImage imageNamed:@"test2.jpg"];
         view.contentMode = UIViewContentModeScaleAspectFill;
         label = [[FXLabel alloc] initWithFrame:CGRectMake(0, -55, 300.0f, 50.0f)];
         label.shadowColor = [UIColor blackColor];
@@ -433,7 +436,15 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
     
     SubProductInfo *productInfo = [_catalogArray objectAtIndex:index];
     label.text = productInfo.name;
-
+    //获取背景图片填充
+    
+    UIImage *bgImage = [[ResourceCache instance] imageForCachePath:productInfo.previewImageFilePath];
+    if (bgImage == nil) {
+        ((MainCatalogItem *)view).ivBg.image = [UIImage imageNamed:@"test2.jpg"];
+    }
+    else{
+        ((MainCatalogItem *)view).ivBg.image = bgImage;
+    }
 	
     //set label
 	
@@ -527,6 +538,19 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
     if(index != NSNotFound){
         [_catalogCarousel reloadItemAtIndex:index animated:YES];
     }
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
 }
 
 

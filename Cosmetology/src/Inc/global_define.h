@@ -6,6 +6,7 @@
  *   2012/06/18  luzj        New
  *********************************************************************/
 
+#define NOTIFY_CHECK_MSG_ACCLAIM   @"NOTIFY_CHECK_MSG_ACCLAIM"
 
 #define kCompileTime               @"2012-09-29 A" // 编译的时间
 

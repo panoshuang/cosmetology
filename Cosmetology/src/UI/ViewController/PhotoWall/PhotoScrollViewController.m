@@ -196,12 +196,7 @@ static BOOL isProsecutingPhoto = NO;
 
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    
-    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight );
-    
-}
+
 
 -(void)setBIsEdit:(BOOL)isEdit{
     _bIsEdit = isEdit;
@@ -290,12 +285,14 @@ static BOOL isProsecutingPhoto = NO;
     _moviePlayState = MPMoviePlaybackStateStopped;
     [moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
     [moviePlayer.view setFrame:self.view.bounds];
+    [UIApplication sharedApplication].statusBarHidden = YES;
     [self.view addSubview:moviePlayer.view];
     
 }
 
 -(void)exitFullScreen:(NSNotification *)notification
 {
+    [UIApplication sharedApplication].statusBarHidden = YES;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
     
     NSNumber *reason = [[notification userInfo]objectForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey];
@@ -495,6 +492,19 @@ static BOOL isProsecutingPhoto = NO;
     [self setScrollViewContentSize];
     [self setCurrentIndex:currentIndex_];
     [_popController dismissPopoverAnimated:YES];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
 }
 
 @end
