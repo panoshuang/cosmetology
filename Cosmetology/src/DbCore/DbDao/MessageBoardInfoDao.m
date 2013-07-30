@@ -72,8 +72,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MessageBoardInfoDao)
                         MESSAGE_BOARD_INFO_TABLE_HEAD_PORTRAITS"=?,"
                         MESSAGE_BOARD_INFO_TABLE_SINGE_NAME"=?,"
                         MESSAGE_BOARD_INFO_TABLE_POPULARITY"=?,"
-                        MESSAGE_BOARD_INFO_TABLE_SUB_PRODUCT_ID"=?,"
-                        MESSAGE_BOARD_INFO_TABLE_CREATE_AT"=?"
+                        MESSAGE_BOARD_INFO_TABLE_SUB_PRODUCT_ID"=?"
                         " WHERE "MESSAGE_BOARD_INFO_TABLE_MESSAGE_ID"=?"];
     NSArray *argArray = [NSArray arrayWithObjects:
                          messageBoardInfo.messageContent,
@@ -82,7 +81,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MessageBoardInfoDao)
                          messageBoardInfo.singeName,
                          [NSNumber numberWithInteger:messageBoardInfo.popularity],
                          [NSNumber numberWithInteger:messageBoardInfo.subProductID],
-                         [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]],
                          [NSNumber numberWithInt:messageBoardInfo.messageID],
                          nil];
     __block BOOL isSuccess;

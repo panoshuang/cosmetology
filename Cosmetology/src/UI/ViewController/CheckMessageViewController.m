@@ -18,6 +18,7 @@
 #import "UIAlertView+Blocks.h"
 #import "CommonUtil.h"
 #import "VoiceHandle.h"
+#import "MessageListsViewController.h"
 
 @interface CheckMessageViewController ()
 {
@@ -37,6 +38,7 @@
     UITapGestureRecognizer *_editGesture; //开启编辑的手势
     BOOL _bIsEdit;
     UIButton *editBgBtn;//修改背景
+    UIButton *deleMessage;//删除留言
     
     VoiceHandle *_voiceHandle;
 }
@@ -47,6 +49,7 @@
 
 @synthesize messageBoardInfo = _messageBoardInfo;
 @synthesize bIsEdit = _bIsEdit;
+@synthesize delegate = _delegate;
 
 - (id)init
 {
@@ -78,10 +81,26 @@
     //修改背景
     editBgBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     editBgBtn.frame = CGRectMake(50, 705, 180, 67);
-    editBgBtn.hidden = YES;
+    if (_bIsEdit) {
+        editBgBtn.hidden = NO;
+    }else{
+        editBgBtn.hidden = YES;
+    }
     [editBgBtn setBackgroundImage:[UIImage imageNamed:@"editBgBtn.png"] forState:UIControlStateNormal];
     [editBgBtn addTarget:self action:@selector(showEditBgView:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:editBgBtn];
+    
+    //删除留言
+    deleMessage = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    deleMessage.frame = CGRectMake(800, 705, 180, 67);
+    if (_bIsEdit) {
+        deleMessage.hidden = NO;
+    }else{
+        deleMessage.hidden = YES;
+    }
+    [deleMessage setBackgroundImage:[UIImage imageNamed:@"deleMessage"] forState:UIControlStateNormal];
+    [deleMessage addTarget:self action:@selector(deleMessage:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:deleMessage];
     
     //点击三次,启动编辑功能
     _editTapView = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 100,
@@ -186,6 +205,8 @@
 
 -(void)toEditMessageBtn:(UIButton *)btn{
     EditMessageViewController *editMessageViewController = [[EditMessageViewController alloc]init];
+    editMessageViewController.delegate = (id<MessageBoardViewControllerDelegate>)(self.delegate);
+    editMessageViewController.bIsEdit = _bIsEdit;
     [self.navigationController pushViewController:editMessageViewController animated:YES];
 }
 -(void)back:(UIButton *)btn{
@@ -211,6 +232,7 @@
     [[MessageBoardManager instance] updateMessageBoard:_messageBoardInfo];
     [popularityBtn.lbCount setText:[NSString stringWithFormat:@"%d",_messageBoardInfo.popularity]];
     [self showIncrementTipsView];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_CHECK_MSG_ACCLAIM object:_messageBoardInfo];
 }
 
 -(void)showIncrementTipsView{
@@ -248,6 +270,7 @@
     if (_bIsEdit) {
         [self cancelEdit];
         editBgBtn.hidden = YES;
+        deleMessage.hidden = YES;
     }else{
         //判断是否已经设置了密码,没有的话直接进入编辑模式,有的话要输入密码
         NSString *editPwdStr = [[PasswordManager instance] passwordForKey:PWD_MAIN_CATALOG];
@@ -256,6 +279,7 @@
         }else{
             self.bIsEdit = YES;
             editBgBtn.hidden = NO;
+            deleMessage.hidden = NO;
         }
     }
 }
@@ -265,12 +289,13 @@
     confirmItem.label = @"确定";
     confirmItem.action = ^{
         self.bIsEdit = NO;
-        //editBgBtn.hidden = YES;
+        
     };
     RIButtonItem *cancelItem = [RIButtonItem item];
     cancelItem.label = @"取消";
     cancelItem.action = ^{
         editBgBtn.hidden = NO;
+        deleMessage.hidden = NO;
     };
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"是否要退出编辑模式"
                                                         message:nil
@@ -306,6 +331,8 @@
         NSString *editPwdStr = [[PasswordManager instance] passwordForKey:PWD_MAIN_CATALOG];
         if([editPwdStr isEqualToString:textField.text]){
             _bIsEdit = YES;
+            editBgBtn.hidden = NO;
+            deleMessage.hidden = NO;
         }else{
             [[AutoDismissView instance] showInView:self.view
                                              title:@"密码错误"
@@ -366,6 +393,34 @@
     else
     {
         [_popController dismissPopoverAnimated:YES];
+    }
+}
+
+//////////////////////////////////////////////////////////////
+#pragma mark 删除留言
+//////////////////////////////////////////////////////////////
+-(void)deleMessage:(UIButton *)btn{
+    if ([_delegate respondsToSelector:@selector(checkMessageCanDeleteMessageBoardInfo:)]) {
+        if ([_delegate checkMessageCanDeleteMessageBoardInfo:_messageBoardInfo]) {
+            MessageBoardInfo *nextMsgInfo = [_delegate checkMessageViewControllerNextMsg:_messageBoardInfo];
+            [_delegate checkMessageViewControllerDidDeleteMsg:_messageBoardInfo];
+            self.messageBoardInfo = nextMsgInfo;            
+            //显示头像
+            UIImage *protraitImage = [[ResourceCache instance] imageForCachePath:_messageBoardInfo.headPortraits];
+            if (!protraitImage) {
+                protraitImage  = [UIImage imageNamed:@"pickPhoto.png"];
+            }
+            headPortraits.image = protraitImage;           
+            messageTextView.text = _messageBoardInfo.messageContent;                        
+            //显示签名
+            UIImage *singeNameImage = [[ResourceCache instance] imageForCachePath:_messageBoardInfo.singeName];
+            if (!singeNameImage) {
+                singeNameImage  = [UIImage imageNamed:@"singe.png"];
+            }
+            singeName.image = singeNameImage;
+        }else{
+            ALERT_MSG(@"已经是最后一条留言", @"请回到留言列表中删除", @"确定");
+        }
     }
 }
 

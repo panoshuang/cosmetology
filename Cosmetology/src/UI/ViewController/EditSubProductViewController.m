@@ -100,9 +100,16 @@
                                  _lbName.frame.origin.y + _lbName.frame.size.height + kCommonSpace *2 ,
                                  120,
                                  30);
-    [_btnPhoto setTitle:@"添加背景图片" forState:UIControlStateNormal];
+    [_btnPhoto setTitle:@"修改背景图片" forState:UIControlStateNormal];
     [_btnPhoto addTarget:self action:@selector(selectPhoto:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btnPhoto];
+    
+    UILabel *imgFrame = [[UILabel alloc]initWithFrame:CGRectMake(_lbName.frame.origin.x,
+                                                                 _lbName.frame.origin.y + _lbName.frame.size.height + kCommonSpace *2 + 40,
+                                                                 120,
+                                                                 30)];
+    imgFrame.text = @"尺寸:600*1000";
+    [self.view addSubview:imgFrame];
     
     _ivPriview = [[UIImageView alloc] initWithFrame:CGRectMake(_btnPhoto.frame.origin.x + _btnPhoto.frame.size.width + 2 *kCommonSpace,
                                                                _btnPhoto.frame.origin.y,
@@ -125,6 +132,18 @@
 
 -(void)enableProduct:(UISwitch *)sw{
     _subProductInfo.enable = _swEnable.isOn;
+}
+
+-(void)selectPhoto:(UIButton *)btn{
+    [_tfName resignFirstResponder];
+	UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+	controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+	controller.allowsEditing = NO;
+	controller.delegate = self;
+    _popController=[[UIPopoverController alloc] initWithContentViewController:controller];
+    [_popController presentPopoverFromRect:_btnPhoto.frame inView:self.view
+                  permittedArrowDirections:UIPopoverArrowDirectionUp
+                                  animated:YES];
 }
 
 -(void)save{

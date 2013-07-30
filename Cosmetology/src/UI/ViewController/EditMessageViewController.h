@@ -30,4 +30,5 @@
 
 -(void)saveMessage:(MessageBoardInfo *)messageBoardInfo forSubProductID:(NSInteger)subProductID;
 
+
 @end
