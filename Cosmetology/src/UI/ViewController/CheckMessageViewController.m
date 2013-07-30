@@ -86,9 +86,9 @@
     
     //删除留言
     deleMessage = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    deleMessage.frame = CGRectMake(800, 705, 180, 67);
+    deleMessage.frame = CGRectMake(800, 705, 192, 67);
     deleMessage.hidden = YES;
-    [deleMessage setBackgroundImage:[UIImage imageNamed:@"editBgBtn.png"] forState:UIControlStateNormal];
+    [deleMessage setBackgroundImage:[UIImage imageNamed:@"deleMessage.png"] forState:UIControlStateNormal];
     [deleMessage addTarget:self action:@selector(deleMessage:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:deleMessage];
     
