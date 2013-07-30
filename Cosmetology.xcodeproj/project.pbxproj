@@ -185,7 +185,7 @@
 		CEE9C13B1777DE2F00F10404 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE9C13A1777DE2F00F10404 /* MediaPlayer.framework */; };
 		CEE9C1771777E74300F10404 /* ss11_8.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CEE9C1321777D79900F10404 /* ss11_8.mp4 */; };
 		CEE9C1781777E74600F10404 /* ss11_8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEE9C1311777D79900F10404 /* ss11_8.jpg */; };
-		CEECE58C17A79066001EE426 /* deleMessage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEECE58B17A79066001EE426 /* deleMessage@2x.png */; };
+		CEECE59117A7939B001EE426 /* deleMessage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEECE59017A7939B001EE426 /* deleMessage@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -485,7 +485,7 @@
 		CEE9C1371777D93000F10404 /* VideoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoItem.h; sourceTree = "<group>"; };
 		CEE9C1381777D93000F10404 /* VideoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoItem.m; sourceTree = "<group>"; };
 		CEE9C13A1777DE2F00F10404 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		CEECE58B17A79066001EE426 /* deleMessage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deleMessage@2x.png"; sourceTree = "<group>"; };
+		CEECE59017A7939B001EE426 /* deleMessage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deleMessage@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -979,7 +979,7 @@
 		6DAC02DF175E2CCC00A3F015 /* res */ = {
 			isa = PBXGroup;
 			children = (
-				CEECE58B17A79066001EE426 /* deleMessage@2x.png */,
+				CEECE59017A7939B001EE426 /* deleMessage@2x.png */,
 				6D5E3BA817A6C1A7005CCB78 /* play@2x.png */,
 				6DB34E0017A39ED0004E45B1 /* Icon.png */,
 				6DB34E0117A39ED2004E45B1 /* Icon@2x.png */,
@@ -1245,7 +1245,7 @@
 				6D03C8D417A6A414003DC92F /* test@2x.jpg in Resources */,
 				6D5E3BA717A6A5C6005CCB78 /* test2@2x.jpg in Resources */,
 				6D5E3BA917A6C1A7005CCB78 /* play@2x.png in Resources */,
-				CEECE58C17A79066001EE426 /* deleMessage@2x.png in Resources */,
+				CEECE59117A7939B001EE426 /* deleMessage@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
