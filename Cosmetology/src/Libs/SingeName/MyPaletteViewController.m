@@ -212,9 +212,7 @@
 	UIImage* image=UIGraphicsGetImageFromCurrentImageContext();
 	
 	UIGraphicsEndImageContext();
-	
-	UIImageWriteToSavedPhotosAlbum(image, self, nil, nil);
-	//遍历view全部按钮在把他们改为１
+		//遍历view全部按钮在把他们改为１
 	for (UIView* temp in [self.view subviews]) 
 	{
 		[temp setAlpha:1.0];
