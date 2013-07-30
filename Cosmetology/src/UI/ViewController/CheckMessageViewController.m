@@ -37,6 +37,7 @@
     UITapGestureRecognizer *_editGesture; //开启编辑的手势
     BOOL _bIsEdit;
     UIButton *editBgBtn;//修改背景
+    UIButton *deleMessage;//删除留言
     
     VoiceHandle *_voiceHandle;
 }
@@ -82,6 +83,14 @@
     [editBgBtn setBackgroundImage:[UIImage imageNamed:@"editBgBtn.png"] forState:UIControlStateNormal];
     [editBgBtn addTarget:self action:@selector(showEditBgView:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:editBgBtn];
+    
+    //删除留言
+    deleMessage = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    deleMessage.frame = CGRectMake(800, 705, 180, 67);
+    deleMessage.hidden = YES;
+    [deleMessage setBackgroundImage:[UIImage imageNamed:@"editBgBtn.png"] forState:UIControlStateNormal];
+    [deleMessage addTarget:self action:@selector(deleMessage:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:deleMessage];
     
     //点击三次,启动编辑功能
     _editTapView = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 100,
@@ -249,6 +258,7 @@
     if (_bIsEdit) {
         [self cancelEdit];
         editBgBtn.hidden = YES;
+        deleMessage.hidden = YES;
     }else{
         //判断是否已经设置了密码,没有的话直接进入编辑模式,有的话要输入密码
         NSString *editPwdStr = [[PasswordManager instance] passwordForKey:PWD_MAIN_CATALOG];
@@ -257,6 +267,7 @@
         }else{
             self.bIsEdit = YES;
             editBgBtn.hidden = NO;
+            deleMessage.hidden = NO;
         }
     }
 }
@@ -266,12 +277,13 @@
     confirmItem.label = @"确定";
     confirmItem.action = ^{
         self.bIsEdit = NO;
-        //editBgBtn.hidden = YES;
+        
     };
     RIButtonItem *cancelItem = [RIButtonItem item];
     cancelItem.label = @"取消";
     cancelItem.action = ^{
         editBgBtn.hidden = NO;
+        deleMessage.hidden = NO;
     };
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"是否要退出编辑模式"
                                                         message:nil
@@ -308,6 +320,7 @@
         if([editPwdStr isEqualToString:textField.text]){
             _bIsEdit = YES;
             editBgBtn.hidden = NO;
+            deleMessage.hidden = NO;
         }else{
             [[AutoDismissView instance] showInView:self.view
                                              title:@"密码错误"
@@ -369,6 +382,13 @@
     {
         [_popController dismissPopoverAnimated:YES];
     }
+}
+
+//////////////////////////////////////////////////////////////
+#pragma mark 删除留言
+//////////////////////////////////////////////////////////////
+-(void)deleMessage:(UIButton *)btn{
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
