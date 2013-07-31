@@ -28,6 +28,7 @@
 #import "FXLabel.h"
 #import "MainCatalogItem.h"
 #import "EditSubProductViewController.h"
+#import "MessageBoardInfo.h"
 
 #define NUMBER_OF_VISIBLE_ITEMS 10
 #define ITEM_SPACING 500.0f
@@ -424,7 +425,7 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
         label.oversampling = 2;
         label.backgroundColor = [UIColor clearColor];
         label.textAlignment = NSTextAlignmentCenter;
-        label.font = [label.font fontWithSize:50];
+        label.font = [label.font fontWithSize:45];
         label.tag = 1;
         [view addSubview:label];
     }
@@ -539,6 +540,7 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
         [_catalogCarousel reloadItemAtIndex:index animated:YES];
     }
 }
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return UIInterfaceOrientationIsLandscape(interfaceOrientation);
