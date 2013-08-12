@@ -101,7 +101,7 @@
     _catalogCarousel.delegate = self;
     _catalogCarousel.dataSource = self;
     _catalogCarousel.type = iCarouselTypeCoverFlow2;
-    _catalogCarousel.scrollSpeed = 0;
+    _catalogCarousel.scrollSpeed = 0.30;
     _catalogCarousel.decelerationRate = 1;
     [self.view addSubview:_catalogCarousel];
     
