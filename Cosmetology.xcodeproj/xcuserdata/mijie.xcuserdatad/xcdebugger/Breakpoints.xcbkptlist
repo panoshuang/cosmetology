@@ -8,7 +8,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/ExperienceViewController.m"
-         timestampString = "396884305.55359"
+         timestampString = "398012472.733261"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "451"
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/ExperienceViewController.m"
-         timestampString = "396884305.55359"
+         timestampString = "398012472.733261"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "536"
-         endingLineNumber = "536"
+         startingLineNumber = "541"
+         endingLineNumber = "541"
          landmarkName = "@implementation ExperienceViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -79,6 +79,32 @@
          startingLineNumber = "501"
          endingLineNumber = "501"
          landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cosmetology/src/UI/ViewController/PriceViewController.m"
+         timestampString = "397140903.9824"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "251"
+         endingLineNumber = "251"
+         landmarkName = "-imagePickerController:didFinishPickingImage:editingInfo:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cosmetology/src/Libs/ICarousel/iCarousel.m"
+         timestampString = "398015022.770239"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1800"
+         endingLineNumber = "1800"
+         landmarkName = "-startDecelerating"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

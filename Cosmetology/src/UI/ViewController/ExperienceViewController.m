@@ -490,6 +490,11 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
 }
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index{
+    if(carousel.isScrolling){
+        [_catalogCarousel scrollToItemAtIndex:_catalogCarousel.currentItemIndex animated:NO];
+        DDetailLog(@"gundong ")
+        return;
+    }
     SubProductInfo *subProductInfo = [_catalogArray objectAtIndex:index];
     
     //跳转到广告页面

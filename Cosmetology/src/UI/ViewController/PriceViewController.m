@@ -63,7 +63,11 @@
     [super viewDidLoad];
 
     _ivPrice = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    _ivPrice.image = [UIImage imageNamed:@"bg_experience.jpg"];
+    UIImage *image = [[ResourceCache instance] imageForCachePath:_subProductInfo.priceImageFilePath];
+    if (image == nil) {
+        image = [UIImage imageNamed:@"bg_experience.jpg"];
+    }
+    _ivPrice.image = image;
     _ivPrice.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview:_ivPrice];
     

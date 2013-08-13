@@ -1796,7 +1796,12 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
     distance = _endOffset - _startOffset;
     
     _startTime = CACurrentMediaTime();
-    _scrollDuration = fabsf(distance) / fabsf(0.5f * _startVelocity);   
+    if (_type == iCarouselTypeCoverFlow2) {
+        _scrollDuration = fabsf(distance) / fabsf(1.f * _startVelocity);//modify huangsp,解决手指拖动过慢
+    }else{
+        _scrollDuration = fabsf(distance) / fabsf(0.5f * _startVelocity);
+    }
+//    _scrollDuration = fabsf(distance) / fabsf(0.5f * _startVelocity);
     
     if (distance != 0.0f)
     {
@@ -2093,6 +2098,10 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
 
 - (void)didTap:(UITapGestureRecognizer *)tapGesture
 {
+    if (_decelerating) {
+        [self scrollToItemAtIndex:self.currentItemIndex animated:NO];
+        return;
+    }
     NSInteger index = [self indexOfItemView:[tapGesture.view.subviews lastObject]];
     if (_centerItemWhenSelected && index != self.currentItemIndex)
     {
@@ -2174,14 +2183,13 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
                     factor = 1.0f - fminf(fabsf(_scrollOffset - [self clampedOffset:_scrollOffset]), _bounceDistance) / _bounceDistance;
                 }
                 if (_type == iCarouselTypeCoverFlow2) {
-                     factor = .35f; //modify huangsp,解决手指拖动过快
+                     factor = .70f; //modify huangsp,解决手指拖动过快
                 }
 
                 _previousTranslation = _vertical? [panGesture translationInView:self].y: [panGesture translationInView:self].x;
                 _startVelocity = -(_vertical? [panGesture velocityInView:self].y: [panGesture velocityInView:self].x) * factor * _scrollSpeed / _itemWidth;
                 _scrollOffset -= translation * factor * _offsetMultiplier / _itemWidth;
                 
-                DDetailLog(@"_scrollOffset %f",_scrollOffset);
                 [self didScroll];
             }
         }
