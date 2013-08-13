@@ -14,11 +14,13 @@
     int productID;
     NSString *name;
     BOOL enable;
+    
     int  index; //排序索引
     NSString *bgImageFile; //背景图片
     NSString *previewImageFile; //预览图片
     NSString *subItemBtnImageName; //子产品的按钮图片
     EnumSubBtnColorType colorType;
+    EnumProductType productType;
 }
 @property(nonatomic) int productID;
 @property(nonatomic, copy) NSString *name;
@@ -28,6 +30,7 @@
 @property(nonatomic,strong) NSString *previewImageFile;
 @property(nonatomic,strong) NSString *subItemBtnImageName;
 @property(nonatomic) EnumSubBtnColorType colorType;
+@property(nonatomic) EnumProductType productType;
 
 
 @end

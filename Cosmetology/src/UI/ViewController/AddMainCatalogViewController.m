@@ -39,6 +39,8 @@
     BOOL _bIsEdit;
     BOOL _bIsProductEnable;
     EnumSubBtnColorType _colorType;
+    EnumProductType _productType;
+    UISwitch *_swIsExperience;//判断是否是超级体验产品
 }
 
 @end
@@ -133,6 +135,24 @@
     _swEnable.frame = swFrame;
     [_swEnable addTarget:self action:@selector(enableProduct:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:_swEnable];
+    
+    
+    UILabel *isExperienceLabel = [[UILabel alloc] initWithFrame:CGRectMake(_tfName.frame.origin.x + _tfName.frame.size.width + _swEnable.frame.size.width + 150,
+                                                                      _lbName.frame.origin.y,
+                                                                      150,
+                                                                      _lbName.frame.size.height)] ;
+    isExperienceLabel.text = @"是否超级体验:";
+    isExperienceLabel.backgroundColor = [UIColor clearColor];
+    isExperienceLabel.font = FONT_SIZE;
+    [self.view addSubview:isExperienceLabel];
+    
+    _swIsExperience = [[UISwitch alloc] init];
+    _swIsExperience.frame = CGRectMake(_tfName.frame.origin.x + _tfName.frame.size.width + _swEnable.frame.size.width + 3 * kCommonSpace + 250,
+                                     _lbName.frame.origin.y,
+                                     150,
+                                     _lbName.frame.size.height);
+    [_swIsExperience addTarget:self action:@selector(isExperience:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:_swIsExperience];
 
     _btnBgPhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     _btnBgPhoto.frame = CGRectMake(_lbName.frame.origin.x,
@@ -220,6 +240,10 @@
 
 -(void)enableProduct:(UISwitch *)sw{
     _bIsProductEnable = _swEnable.isOn;
+}
+
+-(void)isExperience:(UISwitch *)sw{
+    
 }
 
 -(void)save{

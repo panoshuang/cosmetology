@@ -17,6 +17,7 @@
 #define MAIN_PRODUCT_INFO_PREVIEW_IMAGE_FILE            @"previewImageFile"
 #define MAIN_PRODUCT_INFO_SUB_ITEM_BTN_IMAGE_NAME       @"subItemBtnImageName"
 #define MAIN_PRODDUCT_INFO_SUB_ITEM_BTN_COLOR_TYPE      @"subItemBtnColorType"
+#define MAIN_PRODUCT_INFO_PRODUCT_TYPE                  @"productType"//产品类型
 #define MAIN_PRODUCT_INFO_CREATE_AT                     @"createAt" //创建时间,不在实体中记录
 
 #pragma mark - SubProductInfo表

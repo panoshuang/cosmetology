@@ -26,8 +26,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MainProductInfoDao)
                         MAIN_PRODUCT_INFO_PREVIEW_IMAGE_FILE","
                         MAIN_PRODUCT_INFO_SUB_ITEM_BTN_IMAGE_NAME","
                         MAIN_PRODDUCT_INFO_SUB_ITEM_BTN_COLOR_TYPE","
+                        MAIN_PRODUCT_INFO_PRODUCT_TYPE","
                         MAIN_PRODUCT_INFO_CREATE_AT
-            ")""VALUES(?,?,?,?,?,?,?,?)"
+            ")""VALUES(?,?,?,?,?,?,?,?,?)"
 
     ];
     NSArray *argArray = [NSArray arrayWithObjects:mainProductInfo.name.length > 0 ? mainProductInfo.name:@"",
@@ -37,6 +38,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MainProductInfoDao)
                                                  mainProductInfo.previewImageFile,
                                                  mainProductInfo.subItemBtnImageName,
                                                  [NSNumber numberWithInt:mainProductInfo.colorType],
+                                                 [NSNumber numberWithInt:mainProductInfo.productType],
                                                  [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]],
                                                   nil];
     __block BOOL isSuccess;
@@ -67,7 +69,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MainProductInfoDao)
                         MAIN_PRODUCT_INFO_BG_IMAGE_FILE"=?,"
                         MAIN_PRODUCT_INFO_PREVIEW_IMAGE_FILE"=?,"
                         MAIN_PRODUCT_INFO_SUB_ITEM_BTN_IMAGE_NAME"=?,"
-                        MAIN_PRODDUCT_INFO_SUB_ITEM_BTN_COLOR_TYPE"=?"
+                        MAIN_PRODDUCT_INFO_SUB_ITEM_BTN_COLOR_TYPE"=?,"
+                        MAIN_PRODUCT_INFO_PRODUCT_TYPE"=?"
                         " WHERE "MAIN_PRODUCT_INFO_TABLE_PRODUCT_ID"=?"];
     NSArray *argArray = [NSArray arrayWithObjects:mainProductInfo.name,
                          [NSNumber numberWithInteger:mainProductInfo.enable],
@@ -76,6 +79,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MainProductInfoDao)
                          mainProductInfo.previewImageFile,
                          mainProductInfo.subItemBtnImageName,
                          [NSNumber numberWithInt:mainProductInfo.colorType],
+                         [NSNumber numberWithInt:mainProductInfo.productType],
                          [NSNumber numberWithInt:mainProductInfo.productID],nil];
     __block BOOL isSuccess;
     [[[BaseDatabase instance] fmDbQueue] inDatabase:^(FMDatabase *db) {
@@ -151,6 +155,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MainProductInfoDao)
     mainProductInfo.previewImageFile = [resultSet stringForColumn:MAIN_PRODUCT_INFO_PREVIEW_IMAGE_FILE];
     mainProductInfo.subItemBtnImageName = [resultSet stringForColumn:MAIN_PRODUCT_INFO_SUB_ITEM_BTN_IMAGE_NAME];
     mainProductInfo.colorType = (EnumSubBtnColorType)[resultSet intForColumn:MAIN_PRODDUCT_INFO_SUB_ITEM_BTN_COLOR_TYPE];
+    mainProductInfo.productType = (EnumProductType)[resultSet intForColumn:MAIN_PRODUCT_INFO_PRODUCT_TYPE];
     return mainProductInfo;
 }
 
