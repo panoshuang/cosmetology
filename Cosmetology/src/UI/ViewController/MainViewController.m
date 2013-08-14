@@ -55,12 +55,9 @@
         NSMutableDictionary *defaultDic = [NSMutableDictionary dictionary] ;
         [defaultDic setObject:@"" forKey:HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH];
         [userDefaults registerDefaults:defaultDic];
-        
         _bIsWrap = YES;
         _catalogArray = [[NSMutableArray alloc] initWithCapacity:10];
         [self loadData];
-        
-        
     }
     return self;
 }
@@ -73,16 +70,12 @@
     }
 }
 
-
-
-
 -(void)loadView{
     [super loadView];
     self.navigationController.navigationBarHidden = YES;
     UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];    
     mainView.backgroundColor=[UIColor whiteColor];
     self.view = mainView;
-    
     _bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     //获取背景图片填充
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -95,8 +88,6 @@
     }
     
     [self.view addSubview:_bgView];
-    
-    
     _catalogCarousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, kToolBarHeight, self.view.bounds.size.width, self.view.bounds.size.height - kToolBarHeight)];
     _catalogCarousel.delegate = self;
     _catalogCarousel.dataSource = self;
@@ -246,7 +237,6 @@
         {
             _popController = nil;
         }
-        
         UIImagePickerController *controller = [[UIImagePickerController alloc] init];
         controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         controller.allowsEditing = NO;
@@ -353,7 +343,7 @@
 
 #pragma mark - SubCatalogViewControllerDelegate
 
--(void)subCatalogViewController:(SubCatalogViewController *)maiCatalogViewController didSelectCatalogID:(int)catalogID{
+-(void)subCatalogViewController:(SubCatalogViewController *)mainCatalogViewController didSelectCatalogID:(int)catalogID{
     
 }
 
