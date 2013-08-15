@@ -38,6 +38,7 @@
 #define AD_PHOTO_INFO_TABLE_IMAGE_FILE_PATH              @"imageFilePath"
 #define AD_PHOTO_INFO_TABLE_HAD_VEDIO                   @"hadVedio"
 #define AD_PHOTO_INFO_TABLE_VIDIO_FILE_PATH             @"vedioFilePath"
+#define AD_PHOTO_INFO_TABLE_CREATE_AT                   @"createAt" 
 
 #pragma mark - MessageBoardInfo表
 #define MESSAGE_BOARD_INFO_TABLE_TABLE_NAME             @"messageBoardInfo"

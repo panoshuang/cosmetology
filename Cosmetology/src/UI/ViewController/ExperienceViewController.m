@@ -97,7 +97,7 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
     if (image) {
         _ivBg.image = image;
     }else{
-        _ivBg.image = [UIImage imageNamed:@"Default-Landscape~ipad.png"];
+        _ivBg.image = [UIImage imageNamed:@"defaultBg.png"];
     }
     [self.view addSubview:_ivBg];
     
@@ -169,14 +169,19 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
 
 -(void)deleteCurCatalog{
     DDetailLog(@"");
-
+    if (_catalogArray.count == 0) {
+        return ;
+    }
         RIButtonItem *confirmItem = [RIButtonItem item];
         confirmItem.label = @"确定";
         confirmItem.action = ^{
             int index = [_catalogCarousel currentItemIndex];
+            
             SubProductInfo *productInfo = [_catalogArray objectAtIndex:index];
+            
             //删除数据库中的分类
             [[SubCatalogManager instance] deleteSubCatalogForId:productInfo.productID];
+            
             [_catalogArray removeObjectAtIndex:index];
             [_catalogCarousel removeItemAtIndex:index animated:YES];
         }   ;
@@ -190,6 +195,9 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
 }
 
 -(void)editCatalog{
+    if (_catalogArray.count == 0) {
+        return;
+    }
     SubProductInfo *curProduct = [_catalogArray objectAtIndex:_catalogCarousel.currentItemIndex];
     EditSubProductViewController *editCatalogViewController = [[EditSubProductViewController alloc] initWithSubProductInfo:curProduct];
     editCatalogViewController.delegate = self;
@@ -373,7 +381,7 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
     if (image) {
         //生成图片的uuid,保存到缓存
         NSString *bgUuid = [CommonUtil uuid];
-        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 0.8)
                                                                     relatePath:bgUuid
                                                                   resourceType:kResourceCacheTypeBackgroundImage];
         _experienceInfo.bgImageFile = bgImageFilePath;

@@ -82,7 +82,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AutoDismissView )
     lbText.textColor=[UIColor whiteColor];
     lbText.frame=CGRectMake(0,0,lbSize.width,lbSize.height);
     lbText.lineBreakMode = UILineBreakModeCharacterWrap;
-    lbText.textAlignment = NSTextAlignmentCenter;
+    lbText.textAlignment = UITextAlignmentCenter;
     lbText.numberOfLines = 0;
     //lbText.center=aView.center;
 	lbText.center=self.center;

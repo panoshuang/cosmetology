@@ -132,11 +132,26 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MainProductInfoDao)
     return mainProductInfo;
 }
 
--(MainProductInfo *)lastCreateCatalog{
+-(MainProductInfo *)mainCatalogForID:(int)mainProductID{
     __block MainProductInfo *mainProductInfo = nil;
-    NSString *sqlStr = [NSString stringWithFormat:@"select * from "MAIN_PRODUCT_INFO_TABLE_TABLE_NAME" ORDER BY "MAIN_PRODUCT_INFO_CREATE_AT" DESC LIMIT 1"];
+    NSString *sqlStr = [NSString stringWithFormat:@"select * from "MAIN_PRODUCT_INFO_TABLE_TABLE_NAME" WHERE "
+                        MAIN_PRODUCT_INFO_TABLE_NAME"=?  AND "MAIN_PRODUCT_INFO_TABLE_PRODUCT_ID "=?"];
     [[BaseDatabase instance].fmDbQueue inDatabase:^(FMDatabase *db) {
-        FMResultSet *resultSet = [db executeQuery:sqlStr];
+        FMResultSet *resultSet = [db executeQuery:sqlStr,EXPERIENCE_CATALOG_NAME,[NSNumber numberWithInteger:mainProductID]];
+        while ([resultSet next]){
+            mainProductInfo = [self mainProductInfoFromFMResultSet:resultSet];
+        }
+        DBErrorCheckLog(db);
+    }];
+    return mainProductInfo;
+}
+
+
+-(MainProductInfo *)lastCreateCatalog:(EnumProductType)productType{
+    __block MainProductInfo *mainProductInfo = nil;
+    NSString *sqlStr = [NSString stringWithFormat:@"select * from "MAIN_PRODUCT_INFO_TABLE_TABLE_NAME" WHERE "MAIN_PRODUCT_INFO_PRODUCT_TYPE"=? ORDER BY "MAIN_PRODUCT_INFO_CREATE_AT" DESC LIMIT 1"];
+    [[BaseDatabase instance].fmDbQueue inDatabase:^(FMDatabase *db) {
+        FMResultSet *resultSet = [db executeQuery:sqlStr,[NSNumber numberWithInt:productType]];
         while ([resultSet next]){
             mainProductInfo = [self mainProductInfoFromFMResultSet:resultSet];
         }

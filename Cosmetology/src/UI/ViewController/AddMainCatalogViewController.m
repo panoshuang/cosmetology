@@ -243,7 +243,7 @@
 }
 
 -(void)isExperience:(UISwitch *)sw{
-    
+    _productType = _swIsExperience.isOn;
 }
 
 -(void)save{
@@ -267,7 +267,7 @@
         }
         //生成图片的uuid,保存到缓存
         NSString *bgUuid = [CommonUtil uuid];
-        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imageBg, 1)
+        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imageBg, 0.8)
                                                          relatePath:bgUuid
                                                        resourceType:kResourceCacheTypeBackgroundImage];
 
@@ -278,7 +278,7 @@
 
         //保存类别预览图片
         NSString *previewUuid = [CommonUtil uuid];
-        NSString *previewImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imagePriview, 1)
+        NSString *previewImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imagePriview, 0.8)
                                                               relatePath:previewUuid
                                                             resourceType:kResourceCacheTypeMainCatalogPreviewImage];
 
@@ -294,11 +294,12 @@
         _mainProductInfo.previewImageFile = previewImageFilePath;
         _mainProductInfo.subItemBtnImageName = _strSubItemBtnBgName;
         _mainProductInfo.colorType = _colorType;
+        _mainProductInfo.productType = _productType;
         //获取合适index
-        int index = [[MainCatalogManager instance] indexForNewCatalog];
+        int index = [[MainCatalogManager instance] indexForNewCatalog:_productType];
         _mainProductInfo.index = index;
         [[MainCatalogManager instance] addMainCatalog:_mainProductInfo];
-        _mainProductInfo.productID = [[MainCatalogManager instance] lastMainProductInfo].productID;
+        _mainProductInfo.productID = [[MainCatalogManager instance] lastMainProductInfo:_productType].productID;
 
         if ([_delegate respondsToSelector:@selector(addMainCatalogViewController:didAddCatalog:)]) {
             [_delegate addMainCatalogViewController:self didAddCatalog:_mainProductInfo];
@@ -315,7 +316,7 @@
             [[ResourceCache instance] deleteResourceForPath:_mainProductInfo.bgImageFile];
             //生成图片的uuid,保存到缓存
             NSString *bgUuid = [CommonUtil uuid];
-            NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imageBg, 1)
+            NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imageBg, 0.8)
                                                              relatePath:bgUuid
                                                            resourceType:kResourceCacheTypeBackgroundImage];
 
@@ -330,7 +331,7 @@
             [[ResourceCache instance] deleteResourceForPath:_mainProductInfo.previewImageFile];
             //保存类别预览图片
             NSString *previewUuid = [CommonUtil uuid];
-            NSString *previewImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imagePriview, 1)
+            NSString *previewImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imagePriview, 0.8)
                                                                   relatePath:previewUuid
                                                                 resourceType:kResourceCacheTypeMainCatalogPreviewImage];
 

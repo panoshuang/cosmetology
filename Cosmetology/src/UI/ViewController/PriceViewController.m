@@ -244,7 +244,7 @@
     if (image) {
         //生成图片的uuid,保存到缓存
         NSString *bgUuid = [CommonUtil uuid];
-        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 0.8)
                                                                     relatePath:bgUuid
                                                                   resourceType:kResourceCacheTypePriceImage];
         _subProductInfo.priceImageFilePath = bgImageFilePath;

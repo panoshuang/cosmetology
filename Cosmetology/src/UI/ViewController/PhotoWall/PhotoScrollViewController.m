@@ -116,8 +116,8 @@ static BOOL isProsecutingPhoto = NO;
         
         //判断是不是超值体验的广告,是的话不能添加报价页面
         SubProductInfo *subProduct = [[SubCatalogManager instance] subProductInfoForProductID:_subProductID];
-        MainProductInfo *expProduct = [[MainCatalogManager instance] experienceCatalog];
-        if (subProduct.mainProductID != expProduct.productID) {
+        MainProductInfo *expProduct = [[MainCatalogManager instance] mainCatalogForID:subProduct.mainProductID];
+        if (expProduct.productType != kExperienceType) {
             UIButton *priceButton = [UIButton buttonWithType:UIButtonTypeCustom];
             //        [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
             //        [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
@@ -138,8 +138,9 @@ static BOOL isProsecutingPhoto = NO;
     {
         //判断是不是超值体验的广告,是的话不能添加报价页面
         SubProductInfo *subProduct = [[SubCatalogManager instance] subProductInfoForProductID:_subProductID];
-        MainProductInfo *expProduct = [[MainCatalogManager instance] experienceCatalog];
-        if (subProduct.mainProductID != expProduct.productID) {
+        MainProductInfo *expProduct = [[MainCatalogManager instance] mainCatalogForID:subProduct.mainProductID];
+
+        if (expProduct.productType != kExperienceType) {
             UIButton *priceButton = [UIButton buttonWithType:UIButtonTypeCustom];
             //        [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_nomal.png"] forState:UIControlStateNormal];
             //        [priceButton setImage:[UIImage imageNamed:@"btn_photo_brower_toolbar_del_highted.png"] forState:UIControlStateHighlighted];
@@ -451,10 +452,27 @@ static BOOL isProsecutingPhoto = NO;
 #pragma mark - MHImagePickerMutilSelectorDelegate
 
 -(void)imagePickerMutilSelectorDidGetImages:(NSArray*)imageArr {
+    PhotoBrowserDataSource *dataSource = (PhotoBrowserDataSource *)dataSource_;
+    NSArray *curPhotoArray = dataSource.photoList;
+    if (curPhotoArray.count > 0) {        
+        for (int i = curPhotoArray.count; i>currentIndex_; i--) {
+            AdPhotoInfo *lastPhotoInfo = [curPhotoArray objectAtIndex:i];
+            lastPhotoInfo.index += imageArr.count;
+            [[AdPhotoManager instance] updateAdPhoto:lastPhotoInfo];
+        }
+    }
+    
+    int i = 0;
+    int curIndex=0;
+    if (curPhotoArray.count > 0) {
+        AdPhotoInfo *curPhotoInfo = [curPhotoArray objectAtIndex:currentIndex_];
+        curIndex = curPhotoInfo.index;
+    }
+
     for(UIImage *image in imageArr){
         //生成图片的uuid,保存到缓存
         NSString *bgUuid = [CommonUtil uuid];
-        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 0.8)
                                                                     relatePath:bgUuid
                                                                   resourceType:kResourceCacheTypeAdImage];
 
@@ -465,17 +483,17 @@ static BOOL isProsecutingPhoto = NO;
         AdPhotoInfo *adPhotoInfo = [[AdPhotoInfo alloc] init];
         adPhotoInfo.imageFilePath = bgImageFilePath;
         adPhotoInfo.subProductId = _subProductID;
-        int index = [[AdPhotoManager instance] indexForNewPhoto];
+        int index = i + curIndex + 1;
         adPhotoInfo.index = index;
         int photoId = [[AdPhotoManager instance] addAdPhoto:adPhotoInfo];
         if(photoId == NSNotFound){
             ALERT_MSG(@"保存失败", nil, @"确定");
             return;
         }else{
-            adPhotoInfo.photoId = photoId;
-            PhotoBrowserDataSource *dataSource = (PhotoBrowserDataSource *)dataSource_;
-            [dataSource.photoList addObject:adPhotoInfo];
+            adPhotoInfo.photoId = photoId;            
+            [dataSource.photoList insertObject:adPhotoInfo atIndex:currentIndex_ + i];
             [photoViews_ addObject:[NSNull null]];
+            i++;
         }
     }
     photoCount_ += imageArr.count;
