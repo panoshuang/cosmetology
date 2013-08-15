@@ -2061,6 +2061,11 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
                 return NO;
             }
         }
+        //处理滚动时候点击进入下一级
+        if (_decelerating) {
+            [self scrollToItemAtIndex:self.currentItemIndex animated:NO];
+            return NO;
+        }
     }
     else if ([gesture isKindOfClass:[UIPanGestureRecognizer class]])
     {
