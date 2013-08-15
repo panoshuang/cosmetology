@@ -146,7 +146,7 @@
 #define KEY_BUS_NOTIFY  @"notify"
 
 #pragma mark - 默认值定义
-#define EXPERIENCE_CATALOG_INDEX  NSIntegerMax
+#define EXPERIENCE_CATALOG_INDEX  10000
 
 
 #pragma mark - 中文字符串定义

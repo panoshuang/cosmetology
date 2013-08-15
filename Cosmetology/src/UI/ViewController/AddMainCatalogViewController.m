@@ -39,6 +39,8 @@
     BOOL _bIsEdit;
     BOOL _bIsProductEnable;
     EnumSubBtnColorType _colorType;
+    EnumProductType _productType;
+    UISwitch *_swIsExperience;//判断是否是超级体验产品
 }
 
 @end
@@ -133,6 +135,24 @@
     _swEnable.frame = swFrame;
     [_swEnable addTarget:self action:@selector(enableProduct:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:_swEnable];
+    
+    
+    UILabel *isExperienceLabel = [[UILabel alloc] initWithFrame:CGRectMake(_tfName.frame.origin.x + _tfName.frame.size.width + _swEnable.frame.size.width + 150,
+                                                                      _lbName.frame.origin.y,
+                                                                      150,
+                                                                      _lbName.frame.size.height)] ;
+    isExperienceLabel.text = @"是否超级体验:";
+    isExperienceLabel.backgroundColor = [UIColor clearColor];
+    isExperienceLabel.font = FONT_SIZE;
+    [self.view addSubview:isExperienceLabel];
+    
+    _swIsExperience = [[UISwitch alloc] init];
+    _swIsExperience.frame = CGRectMake(_tfName.frame.origin.x + _tfName.frame.size.width + _swEnable.frame.size.width + 3 * kCommonSpace + 250,
+                                     _lbName.frame.origin.y,
+                                     150,
+                                     _lbName.frame.size.height);
+    [_swIsExperience addTarget:self action:@selector(isExperience:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:_swIsExperience];
 
     _btnBgPhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     _btnBgPhoto.frame = CGRectMake(_lbName.frame.origin.x,
@@ -222,6 +242,10 @@
     _bIsProductEnable = _swEnable.isOn;
 }
 
+-(void)isExperience:(UISwitch *)sw{
+    _productType = _swIsExperience.isOn;
+}
+
 -(void)save{
     //判断是否是编辑模式
     if(!_bIsEdit){
@@ -243,7 +267,7 @@
         }
         //生成图片的uuid,保存到缓存
         NSString *bgUuid = [CommonUtil uuid];
-        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imageBg, 1)
+        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imageBg, 0.8)
                                                          relatePath:bgUuid
                                                        resourceType:kResourceCacheTypeBackgroundImage];
 
@@ -254,7 +278,7 @@
 
         //保存类别预览图片
         NSString *previewUuid = [CommonUtil uuid];
-        NSString *previewImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imagePriview, 1)
+        NSString *previewImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imagePriview, 0.8)
                                                               relatePath:previewUuid
                                                             resourceType:kResourceCacheTypeMainCatalogPreviewImage];
 
@@ -270,11 +294,12 @@
         _mainProductInfo.previewImageFile = previewImageFilePath;
         _mainProductInfo.subItemBtnImageName = _strSubItemBtnBgName;
         _mainProductInfo.colorType = _colorType;
+        _mainProductInfo.productType = _productType;
         //获取合适index
-        int index = [[MainCatalogManager instance] indexForNewCatalog];
+        int index = [[MainCatalogManager instance] indexForNewCatalog:_productType];
         _mainProductInfo.index = index;
         [[MainCatalogManager instance] addMainCatalog:_mainProductInfo];
-        _mainProductInfo.productID = [[MainCatalogManager instance] lastMainProductInfo].productID;
+        _mainProductInfo.productID = [[MainCatalogManager instance] lastMainProductInfo:_productType].productID;
 
         if ([_delegate respondsToSelector:@selector(addMainCatalogViewController:didAddCatalog:)]) {
             [_delegate addMainCatalogViewController:self didAddCatalog:_mainProductInfo];
@@ -291,7 +316,7 @@
             [[ResourceCache instance] deleteResourceForPath:_mainProductInfo.bgImageFile];
             //生成图片的uuid,保存到缓存
             NSString *bgUuid = [CommonUtil uuid];
-            NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imageBg, 1)
+            NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imageBg, 0.8)
                                                              relatePath:bgUuid
                                                            resourceType:kResourceCacheTypeBackgroundImage];
 
@@ -306,7 +331,7 @@
             [[ResourceCache instance] deleteResourceForPath:_mainProductInfo.previewImageFile];
             //保存类别预览图片
             NSString *previewUuid = [CommonUtil uuid];
-            NSString *previewImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imagePriview, 1)
+            NSString *previewImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imagePriview, 0.8)
                                                                   relatePath:previewUuid
                                                                 resourceType:kResourceCacheTypeMainCatalogPreviewImage];
 

@@ -49,6 +49,9 @@
     BOOL _bIsEdit;
     
     UIButton *editBgBtn;//修改背景
+    
+    UILabel *_popularityLabel;//总人气
+    int _popularityCount;
 }
 
 @end
@@ -67,6 +70,10 @@
         _msgArray = [[NSMutableArray alloc] init];
         messageBoardInfo = [[MessageBoardInfo alloc]init];
         [self loadData];
+        for (int i = 0; i < _msgArray.count; i++) {
+            MessageBoardInfo *msgBoarInfo = [_msgArray objectAtIndex:i];
+            _popularityCount = _popularityCount + msgBoarInfo.popularity;
+        }
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAcclaimArrived:) name:NOTIFY_CHECK_MSG_ACCLAIM object:nil];
     }
     
@@ -105,7 +112,7 @@
 
     //修改背景
     editBgBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    editBgBtn.frame = CGRectMake(50, 705, 180, 67);
+    editBgBtn.frame = CGRectMake(30, 705, 180, 67);
     editBgBtn.hidden = YES;
     [editBgBtn setBackgroundImage:[UIImage imageNamed:@"editBgBtn.png"] forState:UIControlStateNormal];
     [editBgBtn addTarget:self action:@selector(showEditBgView:) forControlEvents:UIControlEventTouchUpInside];
@@ -113,14 +120,14 @@
 
     //我也要留言按钮
     UIButton *editMessageBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    editMessageBtn.frame = CGRectMake(250, 705, 180, 67);
+    editMessageBtn.frame = CGRectMake(200, 705, 180, 67);
     [editMessageBtn setBackgroundImage:[UIImage imageNamed:@"editMessage.png"] forState:UIControlStateNormal];
     [editMessageBtn addTarget:self action:@selector(toEditMessage:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:editMessageBtn];
     
     //主菜单按钮
     UIButton *mainMeunBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    mainMeunBtn.frame = CGRectMake(500, 705, 120, 67);
+    mainMeunBtn.frame = CGRectMake(430, 705, 120, 67);
     //[backBtn setImage:[UIImage imageNamed:@"save.png"] forState:UIControlStateNormal];
     [mainMeunBtn setBackgroundImage:[UIImage imageNamed:@"bgMainMeun.png"] forState:UIControlStateNormal];
     [mainMeunBtn addTarget:self action:@selector(goToMainMeun:) forControlEvents:UIControlEventTouchUpInside];
@@ -128,12 +135,23 @@
     
     //返回按钮
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    backBtn.frame = CGRectMake(700, 705, 120, 67);
+    backBtn.frame = CGRectMake(600, 705, 120, 67);
     //[backBtn setImage:[UIImage imageNamed:@"save.png"] forState:UIControlStateNormal];
     [backBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backBtn];
     
+    //总人气统计
+    
+    
+    UIFont *font = [UIFont fontWithName:@"Courier-Oblique" size:24];
+    _popularityLabel = [[UILabel alloc]initWithFrame:CGRectMake(750, 705, 250, 60)];
+    _popularityLabel.backgroundColor = [UIColor clearColor];
+    _popularityLabel.textColor = [UIColor whiteColor];
+    _popularityLabel.textAlignment = NSTextAlignmentCenter;
+    _popularityLabel.text =[NSString stringWithFormat:@"总人气:%d",_popularityCount];
+    [_popularityLabel setFont:font];
+    [self.view addSubview:_popularityLabel];
     
     
     //点击三次,启动编辑功能
@@ -336,11 +354,13 @@
         if (index != NSNotFound) {
             MessageBoardInfo *msgInfo = [_msgArray objectAtIndex:index];
             msgInfo.popularity += 1;
+            _popularityCount +=1;
             [[MessageBoardManager instance] updateMessageBoard:msgInfo];
             GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:index];
             if (cell) {
                 MsgItem *msgItem = (MsgItem *)cell.contentView;
                 msgItem.btnAcclaim.lbCount.text = [NSString stringWithFormat:@"%d",msgInfo.popularity];
+                _popularityLabel.text = [NSString stringWithFormat:@"总人气:%d",_popularityCount];
             }
             [self showIncrementTipsView];
         }
@@ -378,7 +398,7 @@
     if (image) {
         //生成图片的uuid,保存到缓存
         NSString *bgUuid = [CommonUtil uuid];
-        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 0.8)
                                                                     relatePath:bgUuid
                                                                   resourceType:kResourceCacheTypeBackgroundImage];
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -699,6 +719,8 @@
             [_gmGridView reloadObjectAtIndex:index animated:NO];
         }
     }
+    _popularityCount += 1;
+    _popularityLabel.text = [NSString stringWithFormat:@"总人气:%d",_popularityCount];
 }
 
 

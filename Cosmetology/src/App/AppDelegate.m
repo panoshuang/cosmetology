@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-
 #import "MainViewController.h"
 #import "PasswordManager.h"
 #import "BaseDatabase.h"
@@ -19,7 +18,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
-    [NSThread sleepForTimeInterval:2];
+    
     //初始化数据库
     [BaseDatabase instance];
     //初始化图片缓存目录
@@ -33,8 +32,13 @@
     self.mainNavigationController = [[UINavigationController alloc] initWithRootViewController:_mainController];
     self.window.rootViewController = self.mainNavigationController;
     [self.window makeKeyAndVisible];
+    
+
+    
+    
     return YES;
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -57,17 +61,6 @@
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
-    NSUserDefaults *userdefault = [NSUserDefaults standardUserDefaults];
-    if ([[[userdefault dictionaryRepresentation] allKeys] containsObject:@"firstRunTime"]) {
-        NSTimeInterval timeInterval = [[NSUserDefaults standardUserDefaults] doubleForKey:@"firstRunTime"];
-        DDetailLog(@"%15.9f",timeInterval);
-        DDetailLog(@"%15.9f",[[NSDate date] timeIntervalSince1970]);
-        NSAssert([[NSDate date] timeIntervalSince1970] < timeInterval + 3600*24*30, @"chaoshile");
-    }else{
-         DDetailLog(@"22222222222  :%15.9f",[[NSDate date] timeIntervalSince1970]);
-        [userdefault setDouble:[[NSDate date] timeIntervalSince1970] forKey:@"firstRunTime"];
-        [userdefault synchronize];
-    }
 
 }
 

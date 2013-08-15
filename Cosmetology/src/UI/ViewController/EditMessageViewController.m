@@ -225,12 +225,12 @@
 {
     //保存头像到缓存
     NSString *headPortraitsUuid = [CommonUtil uuid];
-    NSString *headPortraitsFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(headPortraitsImage, 1)
+    NSString *headPortraitsFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(headPortraitsImage, 0.8)
                                                                       relatePath:[headPortraitsUuid stringByAppendingPathExtension:@"JPEG"]
                                                                     resourceType:kResourceCacheTypeUserPortrait];
     //保存签名到缓存
     NSString *bgUuid = [CommonUtil uuid];
-    NSString *singeNameImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(singeNameImage, 1)
+    NSString *singeNameImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(singeNameImage, 0.8)
                                                                        relatePath:bgUuid
                                                                      resourceType:kResourceCacheTypeUserAutograph];
     
@@ -502,7 +502,7 @@
         if (image) {
             //生成图片的uuid,保存到缓存
             NSString *bgUuid = [CommonUtil uuid];
-            NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+            NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 0.8)
                                                                         relatePath:bgUuid
                                                                       resourceType:kResourceCacheTypeBackgroundImage];
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -524,7 +524,7 @@
         if (image) {
             //生成图片的uuid,保存到缓存
             NSString *bgUuid = [CommonUtil uuid];
-            NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+            NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 0.8)
                                                                         relatePath:bgUuid
                                                                       resourceType:kResourceCacheTypeBackgroundImage];
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];

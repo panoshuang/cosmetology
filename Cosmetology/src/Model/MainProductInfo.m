@@ -19,6 +19,7 @@
 @synthesize previewImageFile;
 @synthesize subItemBtnImageName;
 @synthesize colorType;
+@synthesize productType;
 
 -(id)init{
     self = [super init];

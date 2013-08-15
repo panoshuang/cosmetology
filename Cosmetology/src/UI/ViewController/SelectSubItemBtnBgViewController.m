@@ -29,6 +29,9 @@
         [_imageArray addObject:@"btn_sub_item_3"];
         [_imageArray addObject:@"btn_sub_item_4"];
         [_imageArray addObject:@"btn_sub_item_5"];
+        [_imageArray addObject:@"btn_sub_item_6"];
+        [_imageArray addObject:@"btn_sub_item_7"];
+
     }
     return self;
 }
@@ -84,8 +87,14 @@
         colorType = kSubItemBtnColorGold;
     }else if(indexPath.row == 4){
         colorType = kSubItemBtnColorBlack;
-    }else {
+    }else if(indexPath.row == 5){
         colorType = kSubItemBtnColorWhite;
+    }
+    else if(indexPath.row == 6){
+        colorType = kSubItemBtnColorWhite;
+    }
+    else{
+        colorType = kSubItemBtnColorGold;
     }
     [_delegate selectSubItemBtnBgViewController:self didSelectImageName:imageName colorType:colorType];
 }

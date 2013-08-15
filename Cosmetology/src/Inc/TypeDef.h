@@ -12,4 +12,10 @@ typedef enum _EnumSubBtnColorType {
     kSubItemBtnColorWhite
 }EnumSubBtnColorType;
 
+//产品类型
+typedef enum _EnumProductType{
+    kSubProductType,
+    kExperienceType
+}EnumProductType;
+
 

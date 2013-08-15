@@ -38,7 +38,8 @@
     UITapGestureRecognizer *_editGesture; //开启编辑的手势
     BOOL _bIsEdit;
     BOOL _bIsWrap;
-    NSMutableArray *_catalogArray;   
+    NSMutableArray *_catalogArray;
+    UIImageView *bgImageView;
 }
 
 @end
@@ -55,12 +56,9 @@
         NSMutableDictionary *defaultDic = [NSMutableDictionary dictionary] ;
         [defaultDic setObject:@"" forKey:HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH];
         [userDefaults registerDefaults:defaultDic];
-        
         _bIsWrap = YES;
         _catalogArray = [[NSMutableArray alloc] initWithCapacity:10];
         [self loadData];
-        
-        
     }
     return self;
 }
@@ -73,16 +71,12 @@
     }
 }
 
-
-
-
 -(void)loadView{
     [super loadView];
     self.navigationController.navigationBarHidden = YES;
     UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];    
     mainView.backgroundColor=[UIColor whiteColor];
     self.view = mainView;
-    
     _bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     //获取背景图片填充
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -91,12 +85,10 @@
     if (bgImage) {
         _bgView.image = bgImage;
     }else{
-        _bgView.image = [UIImage imageNamed:@"Default-Landscape~ipad.png"];
+        _bgView.image = [UIImage imageNamed:@"defaultBg.png"];
     }
     
     [self.view addSubview:_bgView];
-    
-    
     _catalogCarousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, kToolBarHeight, self.view.bounds.size.width, self.view.bounds.size.height - kToolBarHeight)];
     _catalogCarousel.delegate = self;
     _catalogCarousel.dataSource = self;
@@ -118,6 +110,11 @@
     _editGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editGestureDidTap:)];
     _editGesture.numberOfTapsRequired = 3;
     [editView addGestureRecognizer:_editGesture];
+    
+    UIBarButtonItem *editStartBgImageItem = [[UIBarButtonItem alloc] initWithTitle:@"修改启动背景"
+                                                                   style:UIBarButtonItemStyleDone
+                                                                  target:self
+                                                                            action:@selector(showEditStartBgView:)];
     
     
     UIBarButtonItem *deleteItem = [[UIBarButtonItem alloc] initWithTitle:@"删除"
@@ -151,7 +148,7 @@
                                                                     target:self
                                                                     action:@selector(cancelEdit)];
     
-   _toolBar.items = [NSArray arrayWithObjects:deleteItem,addItem,editItem,pwdItem,editBgItem,exitEditItem,nil];
+   _toolBar.items = [NSArray arrayWithObjects:editStartBgImageItem,deleteItem,addItem,editItem,pwdItem,editBgItem,exitEditItem,nil];
     
     
     _passwordManagerViewController = [[PasswordManagerViewController alloc] init];
@@ -160,7 +157,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    bgImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,0,1024,768)];
+//获取背景图片填充
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *bgFilePath = [userDefaults stringForKey:START__BACKGROUND_IMAGE_FILE_PATH];
+    UIImage *bgImage = [[ResourceCache instance] imageForCachePath:bgFilePath];
+    if (bgImage) {
+        bgImageView.image = bgImage;
+    }else{
+        bgImageView.image = [UIImage imageNamed:@"defaultBg.png"];
+    }
+
+    [self.view addSubview:bgImageView];
+
+    NSTimer *timer;
+
+    timer = [NSTimer scheduledTimerWithTimeInterval: 3.0f
+                                             target: self
+                                           selector: @selector(handleTimer)
+                                           userInfo: nil
+                                            repeats: NO];
+}
+
+-(void)handleTimer{
+    [bgImageView removeFromSuperview];
+    bgImageView = nil;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -244,10 +265,11 @@
     {
         if (!_popController)
         {
+            _popController.contentViewController = nil;
             _popController = nil;
         }
-        
         UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+        
         controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         controller.allowsEditing = NO;
         controller.delegate = self;
@@ -257,12 +279,41 @@
                                         inView:self.view
                       permittedArrowDirections:UIPopoverArrowDirectionUp
                                       animated:YES];
+        controller.view.tag = 10000;
     }
     else
     {
         [_popController dismissPopoverAnimated:YES];
     }
 }
+
+-(void)showEditStartBgView:(UIBarButtonItem *)sender{
+    if(![_popController isPopoverVisible])
+    {
+        if (!_popController)
+        {
+            _popController.contentViewController = nil;
+            _popController = nil;
+        }
+        UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+        
+        controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        controller.allowsEditing = NO;
+        controller.delegate = self;
+        _popController=[[UIPopoverController alloc] initWithContentViewController:controller];
+        UIView *itemView = [sender valueForKey:@"view"];
+        [_popController presentPopoverFromRect:itemView.frame
+                                        inView:self.view
+                      permittedArrowDirections:UIPopoverArrowDirectionUp
+                                      animated:YES];
+        controller.view.tag = 1000;
+    }
+    else
+    {
+        [_popController dismissPopoverAnimated:YES];
+    }
+}
+
 
 -(void)editGestureDidTap:(UITapGestureRecognizer *)gesture{
     if (_bIsEdit) {
@@ -353,7 +404,7 @@
 
 #pragma mark - SubCatalogViewControllerDelegate
 
--(void)subCatalogViewController:(SubCatalogViewController *)maiCatalogViewController didSelectCatalogID:(int)catalogID{
+-(void)subCatalogViewController:(SubCatalogViewController *)mainCatalogViewController didSelectCatalogID:(int)catalogID{
     
 }
 
@@ -511,7 +562,7 @@
     //检查是否是超值体验项目
     MainProductInfo *productInfo = [_catalogArray objectAtIndex:index];
     UIViewController *viewController = nil;
-    if(index == _catalogArray.count - 1){
+    if(productInfo.productType == kExperienceType){
         _experienceViewController = [[ExperienceViewController alloc] init];
         _experienceViewController.delegate = self;
         _experienceViewController.mainDelegate = self;
@@ -548,12 +599,18 @@
     if (image) {
         //生成图片的uuid,保存到缓存
         NSString *bgUuid = [CommonUtil uuid];
-        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 0.8)
                                                                     relatePath:bgUuid
                                                                   resourceType:kResourceCacheTypeBackgroundImage];
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        if (picker.view.tag == 1000) {
+        [userDefaults setObject:bgImageFilePath forKey:START__BACKGROUND_IMAGE_FILE_PATH];
+        }
+        else{
         [userDefaults setObject:bgImageFilePath forKey:HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH];        
         _bgView.image = image;
+        }
+        [userDefaults synchronize];
     }else{
         [[AutoDismissView instance] showInView:self.view title:@"修改失败" duration:1];
     }
@@ -571,6 +628,9 @@
     }
     [_catalogArray insertObject:mainProductInfo atIndex:index];
     [_catalogCarousel insertItemAtIndex:index animated:YES];
+    [_catalogArray removeAllObjects];
+    [self loadData];
+    [_catalogCarousel reloadData];
 }
 
 
