@@ -393,12 +393,6 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
     return _catalogArray.count;
 }
 
-- (NSUInteger)numberOfVisibleItemsInCarousel:(iCarousel *)carousel
-{
-    //limit the number of items views loaded concurrently (for performance reasons)
-    //this also affects the appearance of circular-type carousels
-    return NUMBER_OF_VISIBLE_ITEMS;
-}
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view
 {
@@ -446,7 +440,7 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
     else{
         ((MainCatalogItem *)view).ivBg.image = bgImage;
     }
-	
+//	((MainCatalogItem *)view).ivBg.image = [UIImage imageNamed:@"test2.jpg"];
     //set label
 	
 	return view;
@@ -482,6 +476,18 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
 //	
 //	return view;
 //}
+
+- (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value{
+    switch (option) {
+        case iCarouselOptionVisibleItems:
+            return 5;
+            break;
+            
+        default:
+            break;
+    }
+    return value;
+}
 
 - (CGFloat)carouselItemWidth:(iCarousel *)carousel
 {
