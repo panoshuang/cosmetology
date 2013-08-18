@@ -295,9 +295,6 @@
 	[(Palette*)self.view Introductionpoint5:SegmentWidth];
 	[(Palette*)self.view Introductionpoint1];
 	[(Palette*)self.view Introductionpoint3:MyBeganpoint];
-	
-	NSLog(@"======================================");
-	NSLog(@"MyPalette Segment=%i",Segment);
 }
 //手指移动时候发出
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event

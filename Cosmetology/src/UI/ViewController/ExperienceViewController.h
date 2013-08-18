@@ -30,6 +30,8 @@
 @property (nonatomic,strong) UIImageView *ivBg;
 @property (nonatomic,strong) GMGridView *gmGridView;
 @property(nonatomic, strong) MainProductInfo *experienceInfo;
+
+-(id)initWithExperienceInfo:(MainProductInfo *)aExperienceInfo;
 @end
 
 

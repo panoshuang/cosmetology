@@ -73,7 +73,17 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
     return self;
 }
 
+-(id)initWithExperienceInfo:(MainProductInfo *)aExperienceInfo{
+    self = [super init];
+    if (self) {
+        _catalogArray = [[NSMutableArray alloc] init];
+        self.experienceInfo = aExperienceInfo;
+    }
+    return self;
+}
+
 -(void)loadCatalog{
+    DDetailLog(@"");
     if(_bIsEdit){
         [_catalogArray addObjectsFromArray:[[SubCatalogManager instance] allSubProductInfoForMainProductID:self.experienceInfo.productID]];
     }else{
@@ -441,13 +451,15 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
     label.text = productInfo.name;
     //获取背景图片填充
     
-    UIImage *bgImage = [[ResourceCache instance] imageForCachePath:productInfo.previewImageFilePath];
-    if (bgImage == nil) {
-        ((MainCatalogItem *)view).ivBg.image = [UIImage imageNamed:@"test2.jpg"];
-    }
-    else{
-        ((MainCatalogItem *)view).ivBg.image = bgImage;
-    }
+    ((MainCatalogItem *)view).ivBg.imageUrl = productInfo.previewImageFilePath;
+    
+//    UIImage *bgImage = [[ResourceCache instance] imageForCachePath:productInfo.previewImageFilePath];
+//    if (bgImage == nil) {
+//        ((MainCatalogItem *)view).ivBg.image = [UIImage imageNamed:@"test2.jpg"];
+//    }
+//    else{
+//        ((MainCatalogItem *)view).ivBg.image = bgImage;
+//    }
 //	((MainCatalogItem *)view).ivBg.image = [UIImage imageNamed:@"test2.jpg"];
     //set label
 	
@@ -485,17 +497,17 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
 //	return view;
 //}
 
-- (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value{
-    switch (option) {
-        case iCarouselOptionVisibleItems:
-            return 5;
-            break;
-            
-        default:
-            break;
-    }
-    return value;
-}
+//- (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value{
+//    switch (option) {
+//        case iCarouselOptionVisibleItems:
+//            return 5;
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//    return value;
+//}
 
 - (CGFloat)carouselItemWidth:(iCarousel *)carousel
 {

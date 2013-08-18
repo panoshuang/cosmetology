@@ -157,6 +157,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _catalogCarousel.hidden = YES;
     bgImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,0,1024,768)];
 //获取背景图片填充
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -167,8 +168,13 @@
     }else{
         bgImageView.image = [UIImage imageNamed:@"defaultBg.png"];
     }
-
+    bgImageView.alpha = 0;
     [self.view addSubview:bgImageView];
+    [UIView animateWithDuration:0.5 animations:^{
+        bgImageView.alpha = 1;
+    }completion:^(BOOL complete){
+        _catalogCarousel.hidden = NO;
+    }];
 
     NSTimer *timer;
 
@@ -180,8 +186,12 @@
 }
 
 -(void)handleTimer{
-    [bgImageView removeFromSuperview];
-    bgImageView = nil;
+    [UIView animateWithDuration:.5 animations:^{
+        bgImageView.alpha = 0;
+    }completion:^(BOOL complete){
+        [bgImageView removeFromSuperview];
+        bgImageView = nil;
+    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -563,7 +573,7 @@
     MainProductInfo *productInfo = [_catalogArray objectAtIndex:index];
     UIViewController *viewController = nil;
     if(productInfo.productType == kExperienceType){
-        _experienceViewController = [[ExperienceViewController alloc] init];
+        _experienceViewController = [[ExperienceViewController alloc] initWithExperienceInfo:productInfo];
         _experienceViewController.delegate = self;
         _experienceViewController.mainDelegate = self;
         _experienceViewController.bIsEdit = _bIsEdit;

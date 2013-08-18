@@ -352,9 +352,8 @@
     [recorder deleteRecording];
     [recorder stop];
     [timer invalidate];
-    
-    NSLog(@"取消发送");
 }
+
 - (void)audio
 {
     //录音设置
@@ -389,7 +388,6 @@
     //音量的最大值  [recorder peakPowerForChannel:0];
     
     double lowPassResults = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
-    NSLog(@"%lf",lowPassResults);
     //最大50  0
     //图片 小-》大
     if (0<lowPassResults<=0.06) {

@@ -51,12 +51,6 @@
 
 -(void)stopPlayVoice;
 
-- (void)cancelCurConvertAmrToWavTask;
-
--(void)addConvertWavToAmrTaskToQueue:(NSString *)wavFilePath amrFilePath:(NSString *)amrFilePath;
-
--(void)convertAmrToWav:(NSString *)aAmrFilePath wavFilePath:(NSString *)aWavFilePath;
-
 
 @end
 

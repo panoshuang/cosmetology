@@ -166,7 +166,7 @@
     [_editTapView addGestureRecognizer:_editGesture];
     
     NSInteger spacing = 15;    
-    GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:CGRectMake(0, 44, self.view.bounds.size.width - 50, self.view.bounds.size.height - 100)];
+    GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:CGRectMake(0, 35, self.view.bounds.size.width - 50, self.view.bounds.size.height - 114)];
     gmGridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     gmGridView.backgroundColor = [UIColor clearColor];
     gmGridView.layer.masksToBounds = YES;

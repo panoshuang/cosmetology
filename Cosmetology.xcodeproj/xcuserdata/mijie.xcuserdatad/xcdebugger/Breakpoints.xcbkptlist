@@ -7,124 +7,27 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Cosmetology/src/UI/ViewController/ExperienceViewController.m"
-         timestampString = "398093723.577138"
+         filePath = "Cosmetology/src/UI/view/DownLoaderImageView.m"
+         timestampString = "398413657.242199"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "445"
-         endingLineNumber = "445"
-         timestampString = "398183211.736645"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "459"
-         endingLineNumber = "459"
-         landmarkName = "-carousel:viewForItemAtIndex:reusingView:"
+         startingLineNumber = "31"
+         endingLineNumber = "31"
+         landmarkName = "-initWithFrame:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Cosmetology/src/UI/ViewController/ExperienceViewController.m"
-         timestampString = "398094028.576114"
+         filePath = "Cosmetology/src/UI/ViewController/PhotoWall/PhotoScrollViewController.m"
+         timestampString = "398529433.118253"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "547"
-         endingLineNumber = "547"
-         timestampString = "398183211.736645"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "549"
-         endingLineNumber = "549"
-         landmarkName = "@implementation ExperienceViewController"
-         landmarkType = "3">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Cosmetology/src/UI/ViewController/EditMessageViewController.m"
-         timestampString = "396886740.927972"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "321"
-         endingLineNumber = "321"
-         landmarkName = "-playRecord:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Cosmetology/src/UI/ViewController/EditMessageViewController.m"
-         timestampString = "396886740.927972"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "495"
-         endingLineNumber = "495"
-         landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Cosmetology/src/UI/ViewController/EditMessageViewController.m"
-         timestampString = "396886740.927972"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "523"
-         endingLineNumber = "523"
-         landmarkName = "-imagePickerController:didFinishPickingImage:editingInfo:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Cosmetology/src/UI/ViewController/EditMessageViewController.m"
-         timestampString = "396886740.927972"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "501"
-         endingLineNumber = "501"
-         landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Cosmetology/src/Libs/ICarousel/iCarousel.m"
-         timestampString = "398015022.770239"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1800"
-         endingLineNumber = "1800"
-         landmarkName = "-startDecelerating"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Cosmetology/src/UI/ViewController/AddMainCatalogViewController.m"
-         timestampString = "398182421.458349"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "297"
-         endingLineNumber = "297"
-         landmarkName = "-save"
+         startingLineNumber = "473"
+         endingLineNumber = "473"
+         landmarkName = "-imagePickerMutilSelectorDidGetImages:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
-   <ExceptionBreakpoints>
-      <ExceptionBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         scope = "0"
-         stopOnStyle = "0">
-      </ExceptionBreakpoint>
-   </ExceptionBreakpoints>
 </Bucket>

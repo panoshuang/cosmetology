@@ -454,8 +454,9 @@ static BOOL isProsecutingPhoto = NO;
 -(void)imagePickerMutilSelectorDidGetImages:(NSArray*)imageArr {
     PhotoBrowserDataSource *dataSource = (PhotoBrowserDataSource *)dataSource_;
     NSArray *curPhotoArray = dataSource.photoList;
+    DDetailLog(@"curPhotoArray %@",curPhotoArray);
     if (curPhotoArray.count > 0) {        
-        for (int i = curPhotoArray.count; i>currentIndex_; i--) {
+        for (int i = curPhotoArray.count-1; i>currentIndex_; i--) {
             AdPhotoInfo *lastPhotoInfo = [curPhotoArray objectAtIndex:i];
             lastPhotoInfo.index += imageArr.count;
             [[AdPhotoManager instance] updateAdPhoto:lastPhotoInfo];
@@ -490,9 +491,17 @@ static BOOL isProsecutingPhoto = NO;
             ALERT_MSG(@"保存失败", nil, @"确定");
             return;
         }else{
-            adPhotoInfo.photoId = photoId;            
-            [dataSource.photoList insertObject:adPhotoInfo atIndex:currentIndex_ + i];
-            [photoViews_ addObject:[NSNull null]];
+            adPhotoInfo.photoId = photoId;
+            if (curIndex == 0) {
+                [dataSource.photoList insertObject:adPhotoInfo atIndex:currentIndex_ + i ];
+                DDetailLog(@"curPhotoArray %@",curPhotoArray);
+                [photoViews_ insertObject:[NSNull null] atIndex:currentIndex_ + i];
+            }else{
+                [dataSource.photoList insertObject:adPhotoInfo atIndex:currentIndex_ + i + 1];
+                DDetailLog(@"curPhotoArray %@",curPhotoArray);
+                [photoViews_ insertObject:[NSNull null] atIndex:currentIndex_ + i + 1];
+            }
+
             i++;
         }
     }
