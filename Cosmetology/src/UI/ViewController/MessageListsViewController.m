@@ -102,12 +102,14 @@
     
     //获取背景图片填充
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *bgFilePath = [userDefaults stringForKey:HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH];
+    NSString *bgFilePath = [userDefaults stringForKey:MSG_PAGE_BACKGROUND_IMAGE_FILE_PATH];
     UIImage *bgImage = [[ResourceCache instance] imageForCachePath:bgFilePath];
     if (bgImage) {
         _bgView.image = bgImage;
+    }else{
+         _bgView.image = [UIImage imageNamed:@"bgMessageLists.jpg"];
     }
-    _bgView.image = [UIImage imageNamed:@"bgMessageLists.jpg"];
+   
     [self.view addSubview:_bgView];
 
     //修改背景

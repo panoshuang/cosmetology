@@ -218,7 +218,6 @@
     AddMainCatalogViewController *addMainCatalogViewController = [[AddMainCatalogViewController alloc] init];
     addMainCatalogViewController.delegate = self;
     [self.navigationController pushViewController:addMainCatalogViewController animated:YES];
-    
 }
 
 -(void)deleteCurCatalog{
