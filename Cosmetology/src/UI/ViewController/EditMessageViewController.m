@@ -79,12 +79,13 @@
     _bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     //获取背景图片填充
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *bgFilePath = [userDefaults stringForKey:HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH];
+    NSString *bgFilePath = [userDefaults stringForKey:EDIT_MSG_BACKGROUND_IMAGE_FILE_PATH];
     UIImage *bgImage = [[ResourceCache instance] imageForCachePath:bgFilePath];
     if (bgImage) {
         _bgView.image = bgImage;
+    }else{
+        _bgView.image = [UIImage imageNamed:@"bgEditMessage.jpg"];
     }
-    _bgView.image = [UIImage imageNamed:@"bgEditMessage.jpg"];
     [self.view addSubview:_bgView];
     
     //修改背景
@@ -203,9 +204,9 @@
     //初始化留言板信息
     _messageBoardInfo = [[MessageBoardInfo alloc]init];
     _messageBoardInfo.messageContent = nil;
-    _messageBoardInfo.messageRecord = @"录音路劲";
-    _messageBoardInfo.headPortraits = @"头像路劲";
-    _messageBoardInfo.singeName = @"签名路径";
+    _messageBoardInfo.messageRecord = @"";
+    _messageBoardInfo.headPortraits = @"";
+    _messageBoardInfo.singeName = @"";
     _messageBoardInfo.popularity = 0;
     _messageBoardInfo.subProductID = _subProductID;
 
@@ -223,14 +224,27 @@
 
 -(void)saveMessage:(UIButton *)btn
 {
+    if (headPortraitsImage == nil) {
+        ALERT_MSG(@"请拍照后再保存", nil, @"确定");
+        return;
+    }else if(singeNameImage == nil){
+        ALERT_MSG(@"请签名后再保存", nil, @"确定");
+        return;
+    }else if(messageEditTextView.text.length == 0){
+        ALERT_MSG(@"请输入留言内容后再保存", nil, @"确定");
+        return;
+    }else if(_messageBoardInfo.messageRecord.length == 0){
+        ALERT_MSG(@"请录音留言后再保存", nil, @"确定");
+        return;
+    }
     //保存头像到缓存
     NSString *headPortraitsUuid = [CommonUtil uuid];
-    NSString *headPortraitsFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(headPortraitsImage, 1)
+    NSString *headPortraitsFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(headPortraitsImage, 0.8)
                                                                       relatePath:[headPortraitsUuid stringByAppendingPathExtension:@"JPEG"]
                                                                     resourceType:kResourceCacheTypeUserPortrait];
     //保存签名到缓存
     NSString *bgUuid = [CommonUtil uuid];
-    NSString *singeNameImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(singeNameImage, 1)
+    NSString *singeNameImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(singeNameImage, 0.8)
                                                                        relatePath:bgUuid
                                                                      resourceType:kResourceCacheTypeUserAutograph];
     
@@ -261,7 +275,23 @@
 }
 
 -(void)back:(UIButton *)btn{
-    [self.navigationController popViewControllerAnimated:YES];
+    if (headPortraitsImage != nil || singeNameImage != nil || messageEditTextView.text.length > 0 || _messageBoardInfo.messageRecord.length > 0) {
+        RIButtonItem *confirmItem = [RIButtonItem item];
+        confirmItem.label = @"确定";
+        confirmItem.action = ^{
+            
+        };
+        RIButtonItem *cancelItem = [RIButtonItem item];
+        cancelItem.label = @"取消";
+        cancelItem.action = ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        };
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"您已经添加了留言内容" message:@"是否要保存留言" cancelButtonItem:cancelItem otherButtonItems:confirmItem, nil];
+        [alertView show];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+  
 }
 
 -(void)pickImage:(UIButton *)btn
@@ -352,9 +382,8 @@
     [recorder deleteRecording];
     [recorder stop];
     [timer invalidate];
-    
-    NSLog(@"取消发送");
 }
+
 - (void)audio
 {
     //录音设置
@@ -389,7 +418,6 @@
     //音量的最大值  [recorder peakPowerForChannel:0];
     
     double lowPassResults = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
-    NSLog(@"%lf",lowPassResults);
     //最大50  0
     //图片 小-》大
     if (0<lowPassResults<=0.06) {
@@ -502,11 +530,11 @@
         if (image) {
             //生成图片的uuid,保存到缓存
             NSString *bgUuid = [CommonUtil uuid];
-            NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+            NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 0.8)
                                                                         relatePath:bgUuid
                                                                       resourceType:kResourceCacheTypeBackgroundImage];
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            [userDefaults setObject:bgImageFilePath forKey:MSG_PAGE_BACKGROUND_IMAGE_FILE_PATH];
+            [userDefaults setObject:bgImageFilePath forKey:EDIT_MSG_BACKGROUND_IMAGE_FILE_PATH];
             [userDefaults synchronize];
             _bgView.image = image;
         }else{
@@ -520,15 +548,15 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
     [_popController dismissPopoverAnimated:YES];
-    if (picker.view.tag = 10000) {
+    if (picker.view.tag == 10000) {
         if (image) {
             //生成图片的uuid,保存到缓存
             NSString *bgUuid = [CommonUtil uuid];
-            NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+            NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 0.8)
                                                                         relatePath:bgUuid
                                                                       resourceType:kResourceCacheTypeBackgroundImage];
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            [userDefaults setObject:bgImageFilePath forKey:MSG_PAGE_BACKGROUND_IMAGE_FILE_PATH];
+            [userDefaults setObject:bgImageFilePath forKey:EDIT_MSG_BACKGROUND_IMAGE_FILE_PATH];
             [userDefaults synchronize];
             _bgView.image = image;
         }else{

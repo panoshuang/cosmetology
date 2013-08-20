@@ -8,7 +8,6 @@
 
 
 #import "VoiceHandle.h"
-#import "VoiceConverter.h"
 #import <AudioToolbox/AudioToolbox.h>
 
 
@@ -138,109 +137,12 @@
     }
 }
 
--(void)addConvertWavToAmrTaskToQueue:(NSString *)wavFilePath amrFilePath:(NSString *)amrFilePath{
-    [convertWavToAmrTaskFilePathDic setObject:amrFilePath forKey:wavFilePath];
-    [self performSelectorInBackground:@selector(convertWavToAmrOnBackground:) withObject:wavFilePath];
-}
 
--(void)convertWavToAmrOnBackground:(NSString *)wavFilePath{
-    DDetailLog(@" 开始转码: %@", wavFilePath)
-     NSString *destinationAmrFilePath = [convertWavToAmrTaskFilePathDic objectForKey:wavFilePath];
-    DDetailLog(@" 开始转码目标地址: %@", destinationAmrFilePath);
-    int convertResult = [VoiceConverter wavToAmr:wavFilePath destinationFilePath:destinationAmrFilePath];
-    DDetailLog(@" 转码结束: %@", destinationAmrFilePath);
-    DDetailLog(@" 结束转码: %d", convertResult);
-    NSDictionary *resultDic = [NSDictionary dictionaryWithObjectsAndKeys:wavFilePath,@"wavFilePath",[NSNumber numberWithInt:convertResult],@"result", nil] ;
-    [self performSelectorOnMainThread:@selector(afterWavToAmrOnMainThread:) withObject:resultDic waitUntilDone:NO];
-}
-
-
-//转换成功后在主线程调用这个方法通知结果
-//@resultDic:结果参数,格式{@"wavFilePath":NSString,@"result":NSNumber}
--(void)afterWavToAmrOnMainThread:(NSDictionary *)resultDic{
-    NSString *wavFilePath = [resultDic objectForKey:@"wavFilePath"];
-    NSString *amrFilePath = [convertWavToAmrTaskFilePathDic objectForKey:wavFilePath];
-    int result = [[resultDic objectForKey:@"result"] intValue];
-
-    if ([delegate respondsToSelector:@selector(voiceHandleDidConvertWavToAmrVoiceHandle:wavFilePath:amrFilePath:error:)]) {
-        if (result == 1){
-            [delegate voiceHandleDidConvertWavToAmrVoiceHandle:self wavFilePath:wavFilePath amrFilePath:amrFilePath error:nil];
-        }else{
-            NSError *error = [[NSError alloc] init];
-            [delegate voiceHandleDidConvertWavToAmrVoiceHandle:self wavFilePath:wavFilePath amrFilePath:amrFilePath error:error];
-            [error release];
-        }
-    }
-
-    //将该装换任务从任务字典中移除
-    [convertWavToAmrTaskFilePathDic removeObjectForKey:wavFilePath];
-}
-
--(void)convertAmrToWav:(NSString *)aAmrFilePath wavFilePath:(NSString *)aWavFilePath{
-    //amr->wav在同一时间只有一个任务存在,所以把不需要的取消掉
-   [self cancelCurConvertAmrToWavTask];
-    [convertAmrToWavTaskFilePathDic setObject:aWavFilePath forKey:aAmrFilePath];
-    NSDictionary *filePathDic = [NSDictionary dictionaryWithObjectsAndKeys:aWavFilePath,aAmrFilePath,nil];
-   [self performSelectorInBackground:@selector(convertAmrToWavOnBackground:) withObject:filePathDic];
-}
-
-
--(void)convertAmrToWavOnBackground:(NSDictionary *)filePathDic{
-    DDetailLog(@" 开始amr to wav");
-    NSString *amrFilePath = [[filePathDic allKeys] objectAtIndex:0];
-    NSString *wavFilePath = [filePathDic objectForKey:amrFilePath];
-    if ([[convertAmrToWavTaskFilePathDic objectForKey:amrFilePath] length] <= 0){
-        return;
-    }
-    int convertResult = [VoiceConverter amrToWav:amrFilePath destinationFilePath:wavFilePath];
-    DDetailLog(@" 转码结束 : %d",convertResult);
-    if ([[convertAmrToWavTaskFilePathDic objectForKey:amrFilePath] length] <= 0){
-        return;
-    }else{
-        NSNumber *resultNumber = [NSNumber numberWithInt:convertResult];
-        NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:wavFilePath,@"wavFilePath",amrFilePath,@"amrFilePath",resultNumber,@"result", nil];
-        [self performSelectorOnMainThread:@selector(afterAmrToWavOnMainThread:) withObject:dictionary waitUntilDone:NO];
-    }    
-}
-
-//转换成功后在主线程调用这个方法通知结果
-//@resultDic:结果参数,格式{@"amrFilePath":NSString,@"wavFilePath":NSString,@"result":NSNumber}
--(void)afterAmrToWavOnMainThread:(NSDictionary *)resultDic {
-    NSString *amrFilePath = [resultDic objectForKey:@"amrFilePath"];
-    NSString *wavFilePath = [resultDic objectForKey:@"wavFilePath"];
-    int result = [[resultDic objectForKey:@"result"] intValue];
-
-    //判断是否转码被取消
-    if([[convertAmrToWavTaskFilePathDic objectForKey:amrFilePath] length] > 0){
-        [convertAmrToWavTaskFilePathDic removeObjectForKey:amrFilePath];
-        if ([delegate respondsToSelector:@selector(voiceHandleDidConvertAmrToWav:amrFilePath:wavFilePath:error:)]){
-            if (result == 1){
-                [delegate voiceHandleDidConvertAmrToWav:self
-                                            amrFilePath:amrFilePath
-                                            wavFilePath:wavFilePath
-                                                  error:nil];
-            }else{
-                NSError *error = [[NSError alloc] init];
-                [delegate voiceHandleDidConvertAmrToWav:self
-                                            amrFilePath:amrFilePath
-                                            wavFilePath:wavFilePath
-                                                  error:error];
-                [error release];
-            }
-
-        }
-    }
-}
 
 -(void)stopPlayVoice{
     [audioPlayer stop];
     [audioPlayer release];
     audioPlayer = nil;
-}
-
--(void)cancelCurConvertAmrToWavTask{
-    //取消当前正在装换的任务
-    [convertAmrToWavTaskFilePathDic removeAllObjects];
 }
 
 

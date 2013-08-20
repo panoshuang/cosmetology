@@ -73,7 +73,17 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
     return self;
 }
 
+-(id)initWithExperienceInfo:(MainProductInfo *)aExperienceInfo{
+    self = [super init];
+    if (self) {
+        _catalogArray = [[NSMutableArray alloc] init];
+        self.experienceInfo = aExperienceInfo;
+    }
+    return self;
+}
+
 -(void)loadCatalog{
+    DDetailLog(@"");
     if(_bIsEdit){
         [_catalogArray addObjectsFromArray:[[SubCatalogManager instance] allSubProductInfoForMainProductID:self.experienceInfo.productID]];
     }else{
@@ -97,7 +107,7 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
     if (image) {
         _ivBg.image = image;
     }else{
-        _ivBg.image = [UIImage imageNamed:@"Default-Landscape~ipad.png"];
+        _ivBg.image = [UIImage imageNamed:@"defaultBg.png"];
     }
     [self.view addSubview:_ivBg];
     
@@ -169,14 +179,19 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
 
 -(void)deleteCurCatalog{
     DDetailLog(@"");
-
+    if (_catalogArray.count == 0) {
+        return ;
+    }
         RIButtonItem *confirmItem = [RIButtonItem item];
         confirmItem.label = @"确定";
         confirmItem.action = ^{
             int index = [_catalogCarousel currentItemIndex];
+            
             SubProductInfo *productInfo = [_catalogArray objectAtIndex:index];
+            
             //删除数据库中的分类
             [[SubCatalogManager instance] deleteSubCatalogForId:productInfo.productID];
+            
             [_catalogArray removeObjectAtIndex:index];
             [_catalogCarousel removeItemAtIndex:index animated:YES];
         }   ;
@@ -190,6 +205,9 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
 }
 
 -(void)editCatalog{
+    if (_catalogArray.count == 0) {
+        return;
+    }
     SubProductInfo *curProduct = [_catalogArray objectAtIndex:_catalogCarousel.currentItemIndex];
     EditSubProductViewController *editCatalogViewController = [[EditSubProductViewController alloc] initWithSubProductInfo:curProduct];
     editCatalogViewController.delegate = self;
@@ -373,7 +391,7 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
     if (image) {
         //生成图片的uuid,保存到缓存
         NSString *bgUuid = [CommonUtil uuid];
-        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 0.8)
                                                                     relatePath:bgUuid
                                                                   resourceType:kResourceCacheTypeBackgroundImage];
         _experienceInfo.bgImageFile = bgImageFilePath;
@@ -393,12 +411,6 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
     return _catalogArray.count;
 }
 
-- (NSUInteger)numberOfVisibleItemsInCarousel:(iCarousel *)carousel
-{
-    //limit the number of items views loaded concurrently (for performance reasons)
-    //this also affects the appearance of circular-type carousels
-    return NUMBER_OF_VISIBLE_ITEMS;
-}
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view
 {
@@ -439,14 +451,16 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
     label.text = productInfo.name;
     //获取背景图片填充
     
-    UIImage *bgImage = [[ResourceCache instance] imageForCachePath:productInfo.previewImageFilePath];
-    if (bgImage == nil) {
-        ((MainCatalogItem *)view).ivBg.image = [UIImage imageNamed:@"test2.jpg"];
-    }
-    else{
-        ((MainCatalogItem *)view).ivBg.image = bgImage;
-    }
-	
+    ((MainCatalogItem *)view).ivBg.imageUrl = productInfo.previewImageFilePath;
+    
+//    UIImage *bgImage = [[ResourceCache instance] imageForCachePath:productInfo.previewImageFilePath];
+//    if (bgImage == nil) {
+//        ((MainCatalogItem *)view).ivBg.image = [UIImage imageNamed:@"test2.jpg"];
+//    }
+//    else{
+//        ((MainCatalogItem *)view).ivBg.image = bgImage;
+//    }
+//	((MainCatalogItem *)view).ivBg.image = [UIImage imageNamed:@"test2.jpg"];
     //set label
 	
 	return view;
@@ -481,6 +495,18 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
 //	label.text = (index == 0)? @"[": @"]";
 //	
 //	return view;
+//}
+
+//- (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value{
+//    switch (option) {
+//        case iCarouselOptionVisibleItems:
+//            return 5;
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//    return value;
 //}
 
 - (CGFloat)carouselItemWidth:(iCarousel *)carousel

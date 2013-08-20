@@ -380,7 +380,7 @@
     if (image) {
         //生成图片的uuid,保存到缓存
         NSString *bgUuid = [CommonUtil uuid];
-        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 0.8)
                                                                     relatePath:bgUuid
                                                                   resourceType:kResourceCacheTypeBackgroundImage];
         _mainProductInfo.bgImageFile = bgImageFilePath;
@@ -464,13 +464,13 @@
         contentItem.lbName.backgroundColor = [UIColor clearColor];
         contentItem.lbName.textAlignment = NSTextAlignmentCenter;
     }else{
-        contentItem.lbName.shadowColor = [UIColor blackColor];
+        contentItem.lbName.shadowColor = [UIColor yellowColor];
         contentItem.lbName.shadowOffset = CGSizeZero;
         contentItem.lbName.shadowBlur = 20.0f;
-        contentItem.lbName.innerShadowColor = [UIColor yellowColor];
+        contentItem.lbName.innerShadowColor = [UIColor whiteColor];
         contentItem.lbName.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
         contentItem.lbName.gradientStartColor = [UIColor whiteColor];
-        contentItem.lbName.gradientEndColor = [UIColor yellowColor];
+        contentItem.lbName.gradientEndColor = [UIColor whiteColor];
         contentItem.lbName.gradientStartPoint = CGPointMake(0.0f, 0.5f);
         contentItem.lbName.gradientEndPoint = CGPointMake(1.0f, 0.5f);
         contentItem.lbName.oversampling = 2;

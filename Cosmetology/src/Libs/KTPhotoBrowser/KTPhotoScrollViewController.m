@@ -240,8 +240,8 @@ const CGFloat ktkDefaultTitlebarHeight         = 46;
     // Set the scroll view's content size, auto-scroll to the stating photo,
     // and setup the other display elements.
     [self setScrollViewContentSize];
-    [self setCurrentIndex:startWithIndex_];
-    [self scrollToIndex:startWithIndex_];
+    [self setCurrentIndex:currentIndex_];
+    [self scrollToIndex:currentIndex_];
 
     [self setTitleWithCurrentPhotoIndex];
     [self toggleNavButtons];
@@ -634,7 +634,7 @@ const CGFloat ktkDefaultTitlebarHeight         = 46;
     if (page != currentIndex_)
     {
         [self setCurrentIndex:page];
-    }
+    }  
 
 }
 

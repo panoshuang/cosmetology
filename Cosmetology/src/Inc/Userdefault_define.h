@@ -11,7 +11,9 @@
 #define PWD_MSG           @"pwdMsg"          //留言的编辑密码
 
 #pragma mark - 图片相关
+#define START__BACKGROUND_IMAGE_FILE_PATH    @"startBackgroundImageFilePath"   //启动背景图
 #define HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH @"homePageBackgroundImageFilePath" //主页的背景图片
 #define MSG_PAGE_BACKGROUND_IMAGE_FILE_PATH  @"msgPageBackgroundImageFilePath"  //留言页面的背景图片
+#define EDIT_MSG_BACKGROUND_IMAGE_FILE_PATH  @"editMsgBackgroundImageFilePath"  //编辑留言页面的背景图片
 
 

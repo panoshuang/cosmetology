@@ -15,10 +15,15 @@
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        _ivBg = [[UIImageView alloc] initWithFrame:self.bounds];
+        _ivBg = [[DownLoaderImageView alloc] initWithFrame:self.bounds];
+        _ivBg.downLoaderImageViewDelegate = self;
         [self addSubview:_ivBg];
     }
     return self;
+}
+
+-(void)imageDidDownLoad:(DownLoaderImageView *)downLoaderImageView{
+    [self setNeedsLayout];
 }
 
 @end

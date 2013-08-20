@@ -14,9 +14,11 @@
 +(MainCatalogManager *)instance;
 
 //初始化超值体验项目
--(BOOL)initExperienceCatalog;
+//-(BOOL)initExperienceCatalog;
 
 -(MainProductInfo *)experienceCatalog;
+
+-(MainProductInfo *)mainCatalogForID:(int)mainProductID;
 
 -(BOOL)addMainCatalog:(MainProductInfo *)mainProductInfo;
 
@@ -28,9 +30,9 @@
 
 -(NSArray *)allEnableProductInfo;
 
--(MainProductInfo *)lastMainProductInfo;
+-(MainProductInfo *)lastMainProductInfo:(EnumProductType )productType;
 
 //为新增类别获取合适的index排序索引
--(int)indexForNewCatalog;
+-(int)indexForNewCatalog:(EnumProductType)productType;
 
 @end

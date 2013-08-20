@@ -25,6 +25,9 @@
 
 -(MainProductInfo *)experienceCatalog;
 
--(MainProductInfo *)lastCreateCatalog;
+
+-(MainProductInfo *)mainCatalogForID:(int)mainProductID;
+
+-(MainProductInfo *)lastCreateCatalog:(EnumProductType )productType;
 
 @end

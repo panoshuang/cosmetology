@@ -102,12 +102,14 @@
     
     //获取背景图片填充
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *bgFilePath = [userDefaults stringForKey:HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH];
+    NSString *bgFilePath = [userDefaults stringForKey:MSG_PAGE_BACKGROUND_IMAGE_FILE_PATH];
     UIImage *bgImage = [[ResourceCache instance] imageForCachePath:bgFilePath];
     if (bgImage) {
         _bgView.image = bgImage;
+    }else{
+         _bgView.image = [UIImage imageNamed:@"bgMessageLists.jpg"];
     }
-    _bgView.image = [UIImage imageNamed:@"bgMessageLists.jpg"];
+   
     [self.view addSubview:_bgView];
 
     //修改背景
@@ -166,7 +168,7 @@
     [_editTapView addGestureRecognizer:_editGesture];
     
     NSInteger spacing = 15;    
-    GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:CGRectMake(0, 44, self.view.bounds.size.width - 50, self.view.bounds.size.height - 100)];
+    GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:CGRectMake(0, 35, self.view.bounds.size.width - 50, self.view.bounds.size.height - 114)];
     gmGridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     gmGridView.backgroundColor = [UIColor clearColor];
     gmGridView.layer.masksToBounds = YES;
@@ -398,7 +400,7 @@
     if (image) {
         //生成图片的uuid,保存到缓存
         NSString *bgUuid = [CommonUtil uuid];
-        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 1)
+        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 0.8)
                                                                     relatePath:bgUuid
                                                                   resourceType:kResourceCacheTypeBackgroundImage];
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];

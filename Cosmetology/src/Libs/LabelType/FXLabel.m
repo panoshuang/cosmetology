@@ -276,12 +276,12 @@
     //set position
     switch (self.textAlignment)
     {
-        case NSTextAlignmentCenter:
+        case UITextAlignmentCenter:
         {
             textRect.origin.x = rect.origin.x + (rect.size.width - textRect.size.width) / 2.0f;
             break;
         }
-        case NSTextAlignmentRight:
+        case UITextAlignmentRight:
         {
             textRect.origin.x = textRect.origin.x + rect.size.width - textRect.size.width;
             break;
