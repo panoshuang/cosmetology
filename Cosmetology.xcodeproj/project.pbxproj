@@ -76,11 +76,6 @@
 		6D917D8F17509DD900263F64 /* GMGridViewLayoutStrategies.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D917D8517509DD900263F64 /* GMGridViewLayoutStrategies.m */; };
 		6D917D9017509DD900263F64 /* UIGestureRecognizer+GMGridViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D917D8717509DD900263F64 /* UIGestureRecognizer+GMGridViewAdditions.m */; };
 		6D917D9117509DD900263F64 /* UIView+GMGridViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D917D8917509DD900263F64 /* UIView+GMGridViewAdditions.m */; };
-		6D917DD41750A20100263F64 /* amrFileCodec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6D917DC41750A20100263F64 /* amrFileCodec.mm */; };
-		6D917DD51750A20100263F64 /* wav.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6D917DC61750A20100263F64 /* wav.mm */; };
-		6D917DD61750A20100263F64 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D917DC81750A20100263F64 /* libopencore-amrnb.a */; };
-		6D917DD71750A20100263F64 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D917DC91750A20100263F64 /* libopencore-amrwb.a */; };
-		6D917DD81750A20100263F64 /* VoiceConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6D917DD11750A20100263F64 /* VoiceConverter.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6D917DD91750A20100263F64 /* VoiceHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D917DD31750A20100263F64 /* VoiceHandle.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6D917DDB1750A24D00263F64 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D917DDA1750A24B00263F64 /* libsqlite3.dylib */; };
 		6D917DDD1750A28900263F64 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D917DDC1750A28900263F64 /* QuartzCore.framework */; };
@@ -142,6 +137,7 @@
 		6DBB0531177094E700C6CC57 /* MessageBoardInfoDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBB0530177094E700C6CC57 /* MessageBoardInfoDao.m */; };
 		6DBB05341770A3D000C6CC57 /* MessageBoardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBB05331770A3D000C6CC57 /* MessageBoardManager.m */; };
 		6DBE8170179A945E00E8871C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DBE816F179A945E00E8871C /* MobileCoreServices.framework */; };
+		6DC0904317BF4BC100D1A939 /* DownLoaderImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBE5A0817BE57E1008D0387 /* DownLoaderImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6DC1DEC91765C495009F43AD /* MainCatalogItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC1DEC81765C495009F43AD /* MainCatalogItem.m */; };
 		6DCF1D32175AEAF200AB4423 /* SubCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF1D31175AEAF200AB4423 /* SubCatalogViewController.m */; };
 		6DCF1D35175AF06500AB4423 /* PasswordManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF1D34175AF06500AB4423 /* PasswordManagerViewController.m */; };
@@ -332,18 +328,6 @@
 		6D917DA41750A11A00263F64 /* UIColor+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extra.m"; sourceTree = "<group>"; };
 		6D917DA51750A13500263F64 /* UIImageExtras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIImageExtras.h; sourceTree = "<group>"; };
 		6D917DA61750A13500263F64 /* UIImageExtras.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIImageExtras.m; sourceTree = "<group>"; };
-		6D917DC31750A20100263F64 /* amrFileCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = amrFileCodec.h; sourceTree = "<group>"; };
-		6D917DC41750A20100263F64 /* amrFileCodec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = amrFileCodec.mm; sourceTree = "<group>"; };
-		6D917DC51750A20100263F64 /* wav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wav.h; sourceTree = "<group>"; };
-		6D917DC61750A20100263F64 /* wav.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = wav.mm; sourceTree = "<group>"; };
-		6D917DC81750A20100263F64 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
-		6D917DC91750A20100263F64 /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
-		6D917DCB1750A20100263F64 /* interf_dec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_dec.h; sourceTree = "<group>"; };
-		6D917DCC1750A20100263F64 /* interf_enc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_enc.h; sourceTree = "<group>"; };
-		6D917DCE1750A20100263F64 /* dec_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dec_if.h; sourceTree = "<group>"; };
-		6D917DCF1750A20100263F64 /* if_rom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_rom.h; sourceTree = "<group>"; };
-		6D917DD01750A20100263F64 /* VoiceConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceConverter.h; sourceTree = "<group>"; };
-		6D917DD11750A20100263F64 /* VoiceConverter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VoiceConverter.mm; sourceTree = "<group>"; };
 		6D917DD21750A20100263F64 /* VoiceHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceHandle.h; sourceTree = "<group>"; };
 		6D917DD31750A20100263F64 /* VoiceHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceHandle.m; sourceTree = "<group>"; };
 		6D917DDA1750A24B00263F64 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -426,6 +410,8 @@
 		6DBB0530177094E700C6CC57 /* MessageBoardInfoDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBoardInfoDao.m; sourceTree = "<group>"; };
 		6DBB05321770A3D000C6CC57 /* MessageBoardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBoardManager.h; sourceTree = "<group>"; };
 		6DBB05331770A3D000C6CC57 /* MessageBoardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBoardManager.m; sourceTree = "<group>"; };
+		6DBE5A0717BE57E1008D0387 /* DownLoaderImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownLoaderImageView.h; sourceTree = "<group>"; };
+		6DBE5A0817BE57E1008D0387 /* DownLoaderImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownLoaderImageView.m; sourceTree = "<group>"; };
 		6DBE816F179A945E00E8871C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		6DC1DEC71765C494009F43AD /* MainCatalogItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainCatalogItem.h; path = Cosmetology/src/UI/View/MainCatalogItem.h; sourceTree = SOURCE_ROOT; };
 		6DC1DEC81765C495009F43AD /* MainCatalogItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainCatalogItem.m; path = Cosmetology/src/UI/View/MainCatalogItem.m; sourceTree = SOURCE_ROOT; };
@@ -512,8 +498,6 @@
 				6D00EBA4174E55C00045BF49 /* UIKit.framework in Frameworks */,
 				6D00EBA6174E55C00045BF49 /* Foundation.framework in Frameworks */,
 				6D00EBA8174E55C00045BF49 /* CoreGraphics.framework in Frameworks */,
-				6D917DD61750A20100263F64 /* libopencore-amrnb.a in Frameworks */,
-				6D917DD71750A20100263F64 /* libopencore-amrwb.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -784,6 +768,8 @@
 		6D917D5017509D7E00263F64 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				6DBE5A0717BE57E1008D0387 /* DownLoaderImageView.h */,
+				6DBE5A0817BE57E1008D0387 /* DownLoaderImageView.m */,
 				6DAABD4B179B839600D4DFFC /* MicroView.h */,
 				6DAABD4C179B839600D4DFFC /* MicroView.m */,
 				6DAA1BA71789236700518FC3 /* PasswordEditView.h */,
@@ -913,55 +899,11 @@
 		6D917DC11750A20100263F64 /* VoiceConvert */ = {
 			isa = PBXGroup;
 			children = (
-				6D917DC21750A20100263F64 /* amrwapper */,
-				6D917DC71750A20100263F64 /* lib */,
-				6D917DCA1750A20100263F64 /* opencore-amrnb */,
-				6D917DCD1750A20100263F64 /* opencore-amrwb */,
-				6D917DD01750A20100263F64 /* VoiceConverter.h */,
-				6D917DD11750A20100263F64 /* VoiceConverter.mm */,
 				6D917DD21750A20100263F64 /* VoiceHandle.h */,
 				6D917DD31750A20100263F64 /* VoiceHandle.m */,
 				63157E968921C04DB20E1681 /* UIAlertView-Blocks */,
 			);
 			path = VoiceConvert;
-			sourceTree = "<group>";
-		};
-		6D917DC21750A20100263F64 /* amrwapper */ = {
-			isa = PBXGroup;
-			children = (
-				6D917DC31750A20100263F64 /* amrFileCodec.h */,
-				6D917DC41750A20100263F64 /* amrFileCodec.mm */,
-				6D917DC51750A20100263F64 /* wav.h */,
-				6D917DC61750A20100263F64 /* wav.mm */,
-			);
-			path = amrwapper;
-			sourceTree = "<group>";
-		};
-		6D917DC71750A20100263F64 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				6D917DC81750A20100263F64 /* libopencore-amrnb.a */,
-				6D917DC91750A20100263F64 /* libopencore-amrwb.a */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
-		6D917DCA1750A20100263F64 /* opencore-amrnb */ = {
-			isa = PBXGroup;
-			children = (
-				6D917DCB1750A20100263F64 /* interf_dec.h */,
-				6D917DCC1750A20100263F64 /* interf_enc.h */,
-			);
-			path = "opencore-amrnb";
-			sourceTree = "<group>";
-		};
-		6D917DCD1750A20100263F64 /* opencore-amrwb */ = {
-			isa = PBXGroup;
-			children = (
-				6D917DCE1750A20100263F64 /* dec_if.h */,
-				6D917DCF1750A20100263F64 /* if_rom.h */,
-			);
-			path = "opencore-amrwb";
 			sourceTree = "<group>";
 		};
 		6D9910791765727B003C7C12 /* ICarousel */ = {
@@ -1266,6 +1208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DC0904317BF4BC100D1A939 /* DownLoaderImageView.m in Sources */,
 				6D63A9AE17A01035008C8C2D /* FXLabel.m in Sources */,
 				6DAABD5A179B8C4500D4DFFC /* MicroView.m in Sources */,
 				6DAA1BA9178923A900518FC3 /* PasswordEditView.m in Sources */,
@@ -1280,9 +1223,6 @@
 				6D917D8F17509DD900263F64 /* GMGridViewLayoutStrategies.m in Sources */,
 				6D917D9017509DD900263F64 /* UIGestureRecognizer+GMGridViewAdditions.m in Sources */,
 				6D917D9117509DD900263F64 /* UIView+GMGridViewAdditions.m in Sources */,
-				6D917DD41750A20100263F64 /* amrFileCodec.mm in Sources */,
-				6D917DD51750A20100263F64 /* wav.mm in Sources */,
-				6D917DD81750A20100263F64 /* VoiceConverter.mm in Sources */,
 				6D917DD91750A20100263F64 /* VoiceHandle.m in Sources */,
 				6D60502617539F49000635F3 /* FMDatabase.m in Sources */,
 				6D60502717539F49000635F3 /* FMDatabaseAdditions.m in Sources */,

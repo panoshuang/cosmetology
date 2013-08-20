@@ -13,23 +13,23 @@
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(MainCatalogManager)
 
-/**
-	初始化超值体验产品分类
- */
--(BOOL)initExperienceCatalog{
-    //判断是否已经存在超值体验分类
-    if ([[MainProductInfoDao instance] experienceCatalog] == nil) {
-        MainProductInfo *productInfo = [[MainProductInfo alloc] init];
-        productInfo.name = EXPERIENCE_CATALOG_NAME;;
-        productInfo.enable = YES;
-        productInfo.index = EXPERIENCE_CATALOG_INDEX;
-        productInfo.productType = kExperienceType;
-        BOOL result = [[MainProductInfoDao instance] addMainProductInfo:productInfo];
-        return result;
-    }else{
-        return YES;
-    }
-}
+///**
+//	初始化超值体验产品分类
+// */
+//-(BOOL)initExperienceCatalog{
+//    //判断是否已经存在超值体验分类
+//    if ([[MainProductInfoDao instance] experienceCatalog] == nil) {
+//        MainProductInfo *productInfo = [[MainProductInfo alloc] init];
+//        productInfo.name = EXPERIENCE_CATALOG_NAME;;
+//        productInfo.enable = YES;
+//        productInfo.index = EXPERIENCE_CATALOG_INDEX;
+//        productInfo.productType = kExperienceType;
+//        BOOL result = [[MainProductInfoDao instance] addMainProductInfo:productInfo];
+//        return result;
+//    }else{
+//        return YES;
+//    }
+//}
 
 -(MainProductInfo *)mainCatalogForID:(int)mainProductID{
     return [[MainProductInfoDao instance] mainCatalogForID:mainProductID];
@@ -69,6 +69,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MainCatalogManager)
     MainProductInfo *productInfo = [[MainProductInfoDao instance] lastCreateCatalog:productType];
     if (productInfo == nil) {
         int newIndex = 0;
+        if (productType == kExperienceType) {
+            newIndex = EXPERIENCE_CATALOG_INDEX;
+        }else{
+            newIndex = 0;
+        }
         return newIndex;
     }
     else{

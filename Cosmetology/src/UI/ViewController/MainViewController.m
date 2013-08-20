@@ -157,6 +157,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _catalogCarousel.hidden = YES;
     bgImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,0,1024,768)];
 //获取背景图片填充
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -167,8 +168,13 @@
     }else{
         bgImageView.image = [UIImage imageNamed:@"defaultBg.png"];
     }
-
+    bgImageView.alpha = 0;
     [self.view addSubview:bgImageView];
+    [UIView animateWithDuration:0.5 animations:^{
+        bgImageView.alpha = 1;
+    }completion:^(BOOL complete){
+        _catalogCarousel.hidden = NO;
+    }];
 
     NSTimer *timer;
 
@@ -180,8 +186,12 @@
 }
 
 -(void)handleTimer{
-    [bgImageView removeFromSuperview];
-    bgImageView = nil;
+    [UIView animateWithDuration:.5 animations:^{
+        bgImageView.alpha = 0;
+    }completion:^(BOOL complete){
+        [bgImageView removeFromSuperview];
+        bgImageView = nil;
+    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -208,33 +218,29 @@
     AddMainCatalogViewController *addMainCatalogViewController = [[AddMainCatalogViewController alloc] init];
     addMainCatalogViewController.delegate = self;
     [self.navigationController pushViewController:addMainCatalogViewController animated:YES];
-    
 }
 
 -(void)deleteCurCatalog{
     DDetailLog(@"");
     //判断是否是超值体验项目,超值体验项目不能删除的
-    if([_catalogCarousel currentItemIndex] == _catalogArray.count - 1){
-        ALERT_MSG(@"不能删除超值体验项目", nil, @"确定");
-    }else{
-        RIButtonItem *confirmItem = [RIButtonItem item];
-        confirmItem.label = @"确定";
-        confirmItem.action = ^{
-            int index = [_catalogCarousel currentItemIndex];
-            MainProductInfo *productInfo = [_catalogArray objectAtIndex:index];
-            //删除数据库中的分类
-            [[MainCatalogManager instance] deleteMainCatalogForId:productInfo.productID];
-            [_catalogArray removeObjectAtIndex:index];
-            [_catalogCarousel removeItemAtIndex:index animated:YES];
-        }   ;
-        RIButtonItem *cancelItem = [RIButtonItem item];
-        cancelItem.label = @"取消";
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"确定要删除当前的项目?"
-                                                            message:nil
-                                                   cancelButtonItem:cancelItem
-                                                   otherButtonItems:confirmItem, nil];
-        [alertView show];
-    }
+
+    RIButtonItem *confirmItem = [RIButtonItem item];
+    confirmItem.label = @"确定";
+    confirmItem.action = ^{
+        int index = [_catalogCarousel currentItemIndex];
+        MainProductInfo *productInfo = [_catalogArray objectAtIndex:index];
+        //删除数据库中的分类
+        [[MainCatalogManager instance] deleteMainCatalogForId:productInfo.productID];
+        [_catalogArray removeObjectAtIndex:index];
+        [_catalogCarousel removeItemAtIndex:index animated:YES];
+    }   ;
+    RIButtonItem *cancelItem = [RIButtonItem item];
+    cancelItem.label = @"取消";
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"确定要删除当前的项目?"
+                                                        message:nil
+                                               cancelButtonItem:cancelItem
+                                               otherButtonItems:confirmItem, nil];
+    [alertView show];
 }
 
 -(void)showEditView:(UIBarButtonItem *)sender{
@@ -563,7 +569,7 @@
     MainProductInfo *productInfo = [_catalogArray objectAtIndex:index];
     UIViewController *viewController = nil;
     if(productInfo.productType == kExperienceType){
-        _experienceViewController = [[ExperienceViewController alloc] init];
+        _experienceViewController = [[ExperienceViewController alloc] initWithExperienceInfo:productInfo];
         _experienceViewController.delegate = self;
         _experienceViewController.mainDelegate = self;
         _experienceViewController.bIsEdit = _bIsEdit;

@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ReflectionView.h"
+#import "DownLoaderImageView.h"
 
-@interface MainCatalogItem : ReflectionView{
-    UIImageView *_ivBg;
+@interface MainCatalogItem : ReflectionView<DownLoaderImageViewDelegate>{
+    DownLoaderImageView *_ivBg;
 }
 
-@property (nonatomic,strong) UIImageView *ivBg;
+@property (nonatomic,strong) DownLoaderImageView *ivBg;
 
 @end

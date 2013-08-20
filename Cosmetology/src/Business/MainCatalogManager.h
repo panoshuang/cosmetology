@@ -14,7 +14,7 @@
 +(MainCatalogManager *)instance;
 
 //初始化超值体验项目
--(BOOL)initExperienceCatalog;
+//-(BOOL)initExperienceCatalog;
 
 -(MainProductInfo *)experienceCatalog;
 

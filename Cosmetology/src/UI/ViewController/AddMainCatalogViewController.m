@@ -261,10 +261,15 @@
             ALERT_MSG(@"预览图片不能为空", nil, @"确定");
             return;
         }
-        if (_imageSubItemBtnBg == nil) {
-            ALERT_MSG(@"子项目按钮图片不能为空", nil, @"确定");
-            return;
+        if (!_swIsExperience.isOn) {
+            if (_imageSubItemBtnBg == nil) {
+                ALERT_MSG(@"子项目按钮图片不能为空", nil, @"确定");
+                return;
+            }
+        }else{
+            _strSubItemBtnBgName = @"";
         }
+
         //生成图片的uuid,保存到缓存
         NSString *bgUuid = [CommonUtil uuid];
         NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imageBg, 0.8)

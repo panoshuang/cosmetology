@@ -24,7 +24,7 @@
     //初始化图片缓存目录
     [[ResourceCache instance] createAllCachePath];
     //初始化超值体验项目
-    [[MainCatalogManager instance] initExperienceCatalog];
+//    [[MainCatalogManager instance] initExperienceCatalog];
     [PasswordManager instance];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
