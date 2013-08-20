@@ -23,6 +23,7 @@
 #import "MainProductInfo.h"
 #import "MainCatalogManager.h"
 #import "UIAlertView+Blocks.h"
+#import <AVFoundation/AVAudioSession.h>
 
 #define BTN_LIKE_TAG   1001
 #define BTN_COMMENT_TAG 1002
@@ -284,6 +285,7 @@ static BOOL isProsecutingPhoto = NO;
     moviePlayer.shouldAutoplay = YES;
     _moviePlayState = MPMoviePlaybackStateStopped;
     [moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     [moviePlayer.view setFrame:self.view.bounds];
     [UIApplication sharedApplication].statusBarHidden = YES;
     [self.view addSubview:moviePlayer.view];
