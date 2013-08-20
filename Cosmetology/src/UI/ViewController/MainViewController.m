@@ -75,7 +75,7 @@
     [super loadView];
     self.navigationController.navigationBarHidden = YES;
     UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];    
-    mainView.backgroundColor=[UIColor whiteColor];
+    mainView.backgroundColor=[UIColor blackColor];
     self.view = mainView;
     _bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     //获取背景图片填充
@@ -89,6 +89,7 @@
     }
     
     [self.view addSubview:_bgView];
+    _bgView.hidden = YES;
     _catalogCarousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, kToolBarHeight, self.view.bounds.size.width, self.view.bounds.size.height - kToolBarHeight)];
     _catalogCarousel.delegate = self;
     _catalogCarousel.dataSource = self;
@@ -159,6 +160,7 @@
     [super viewDidLoad];
     _catalogCarousel.hidden = YES;
     bgImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,0,1024,768)];
+
 //获取背景图片填充
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *bgFilePath = [userDefaults stringForKey:START__BACKGROUND_IMAGE_FILE_PATH];
@@ -173,12 +175,13 @@
     [UIView animateWithDuration:0.5 animations:^{
         bgImageView.alpha = 1;
     }completion:^(BOOL complete){
+        _bgView.hidden = NO;
         _catalogCarousel.hidden = NO;
     }];
 
     NSTimer *timer;
 
-    timer = [NSTimer scheduledTimerWithTimeInterval: 3.0f
+    timer = [NSTimer scheduledTimerWithTimeInterval: 2.0f
                                              target: self
                                            selector: @selector(handleTimer)
                                            userInfo: nil
