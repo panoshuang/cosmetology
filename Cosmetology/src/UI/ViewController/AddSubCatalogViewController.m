@@ -146,7 +146,7 @@
     if (_imagePriview != nil) {
         //保存类别预览图片
         NSString *previewUuid = [CommonUtil uuid];
-        NSString *previewImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imagePriview, 0.8)
+        NSString *previewImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imagePriview, 1)
                                                                          relatePath:previewUuid
                                                                        resourceType:kResourceCacheTypeSubCatalogPreviewImage];
         

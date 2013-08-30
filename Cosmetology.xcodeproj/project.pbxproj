@@ -575,8 +575,6 @@
 		6D00EB94174E55C00045BF49 = {
 			isa = PBXGroup;
 			children = (
-				6DBE816F179A945E00E8871C /* MobileCoreServices.framework */,
-				CEE9C13A1777DE2F00F10404 /* MediaPlayer.framework */,
 				6D00EBA9174E55C00045BF49 /* Cosmetology */,
 				6D00EBA2174E55C00045BF49 /* Frameworks */,
 				6D00EBA0174E55C00045BF49 /* Products */,
@@ -594,6 +592,8 @@
 		6D00EBA2174E55C00045BF49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEE9C13A1777DE2F00F10404 /* MediaPlayer.framework */,
+				6DBE816F179A945E00E8871C /* MobileCoreServices.framework */,
 				CE71EFDB17702E6E00E1B420 /* OpenGLES.framework */,
 				CE71EFD917702E5600E1B420 /* GLKit.framework */,
 				6D98EE12176A0DA000DE5F56 /* CoreTelephony.framework */,
@@ -1330,6 +1330,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1354,6 +1355,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

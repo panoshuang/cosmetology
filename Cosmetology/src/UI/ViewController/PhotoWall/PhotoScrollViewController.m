@@ -486,6 +486,7 @@ static BOOL isProsecutingPhoto = NO;
             
             if (bgImageFilePath.length == 0) {
                 ALERT_MSG(@"保存失败", nil, @"确定");
+                [_popController dismissPopoverAnimated:NO];
                 return;
             }
             AdPhotoInfo *adPhotoInfo = [[AdPhotoInfo alloc] init];
@@ -496,6 +497,7 @@ static BOOL isProsecutingPhoto = NO;
             int photoId = [[AdPhotoManager instance] addAdPhoto:adPhotoInfo];
             if(photoId == NSNotFound){
                 ALERT_MSG(@"保存失败", nil, @"确定");
+                [_popController dismissPopoverAnimated:NO];
                 return;
             }else{
                 adPhotoInfo.photoId = photoId;
@@ -537,6 +539,7 @@ static BOOL isProsecutingPhoto = NO;
             
             if (bgImageFilePath.length == 0) {
                 ALERT_MSG(@"保存失败", nil, @"确定");
+                [_popController dismissPopoverAnimated:NO];
                 return;
             }
             AdPhotoInfo *adPhotoInfo = [[AdPhotoInfo alloc] init];
@@ -547,6 +550,7 @@ static BOOL isProsecutingPhoto = NO;
             int photoId = [[AdPhotoManager instance] addAdPhoto:adPhotoInfo];
             if(photoId == NSNotFound){
                 ALERT_MSG(@"保存失败", nil, @"确定");
+                [_popController dismissPopoverAnimated:NO];
                 return;
             }else{
                 adPhotoInfo.photoId = photoId;
