@@ -216,6 +216,7 @@
 
 -(void)dealloc
 {
+    
     DDetailLog(@"1");
     [delegate release],delegate=nil;
     [pics release];
