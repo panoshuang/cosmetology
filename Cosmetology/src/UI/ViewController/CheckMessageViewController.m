@@ -19,6 +19,7 @@
 #import "CommonUtil.h"
 #import "VoiceHandle.h"
 #import "MessageListsViewController.h"
+#import "FileUtil.h"
 
 @interface CheckMessageViewController ()
 {
@@ -129,7 +130,7 @@
     [self.view addSubview:backBtn];
     
     //显示头像
-    UIImage *protraitImage = [[ResourceCache instance] imageForCachePath:_messageBoardInfo.headPortraits];
+    UIImage *protraitImage = [[ResourceCache instance] imageForCachePath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:_messageBoardInfo.headPortraits]];
     if (!protraitImage) {
         protraitImage  = [UIImage imageNamed:@"pickPhoto.png"];
     }
@@ -224,7 +225,7 @@
         [[AutoDismissView instance] showInView:self.view title:@"没有录音" duration:1];
         return;
     }
-    [_voiceHandle playVoice:_messageBoardInfo.messageRecord];
+    [_voiceHandle playVoice:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:_messageBoardInfo.messageRecord]];
 }
 
 -(void)onAcclaimClick:(AcclaimButton *)btn{
@@ -406,7 +407,7 @@
             [_delegate checkMessageViewControllerDidDeleteMsg:_messageBoardInfo];
             self.messageBoardInfo = nextMsgInfo;            
             //显示头像
-            UIImage *protraitImage = [[ResourceCache instance] imageForCachePath:_messageBoardInfo.headPortraits];
+            UIImage *protraitImage = [[ResourceCache instance] imageForCachePath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:_messageBoardInfo.headPortraits]];
             if (!protraitImage) {
                 protraitImage  = [UIImage imageNamed:@"pickPhoto.png"];
             }

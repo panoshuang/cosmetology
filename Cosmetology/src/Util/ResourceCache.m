@@ -75,6 +75,43 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ResourceCache)
     return path;
 }
 
+-(NSString *)resourceRelateFilePathForCachePath:(EnumResourceCacheType)cacheType{
+    NSString *relateFilePath = nil;
+    switch (cacheType) {
+        case kResourceCacheTypeBackgroundImage:
+            relateFilePath = IMAGE_CACHE_PATH_BACKGROUND;
+            break;
+        case kResourceCacheTypeMainCatalogPreviewImage:
+            relateFilePath = IMAGE_CACHE_PATH_MAIN_CATALOG;
+            break;
+        case kResourceCacheTypeSubCatalogPreviewImage:
+            relateFilePath = IMAGE_CACHE_PATH_SUB_CATALOG;
+            break;
+        case kResourceCacheTypeAdImage:
+            relateFilePath = IMAGE_CACHE_PATH_AD;
+            break;
+        case kResourceCacheTypePriceImage:
+            relateFilePath = IMAGE_CACHE_PATH_PRICE;
+            break;
+        case kResourceCacheTypeUserAutograph:
+            relateFilePath = IMAGE_CACHE_PATH_MSG_USER_AUTOGRAPH;
+            break;
+        case kResourceCacheTypeUserPortrait:
+            relateFilePath = IMAGE_CACHE_PATH_MSG_USER_PORTRAIT;
+            break;
+        case kResourceCacheTypeAudio:
+            relateFilePath = AUDIO_CACHE_PATH;
+            break;
+        case kResourceCacheTypeVedio:
+            relateFilePath = VEDIO_CACHE_PATH;
+            break;
+        default:
+            break;
+    }
+    return relateFilePath;
+
+}
+
 /**
 	保存资源data到指定类型的缓存目录中
 	@param data 类型的data数据
@@ -90,6 +127,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ResourceCache)
     }else{
         return nil;
     }
+}
+
+-(NSString *)saveAndReturnRelateFilePathResourceData:(NSData *)data relatePath:(NSString *)relatePath resourceType:(EnumResourceCacheType)cacheType{
+    NSString *absolutePath = [[self resourceCachePathForCachePath:cacheType] stringByAppendingPathComponent:relatePath];
+    BOOL success =  [FileUtil saveData:data toFileName:absolutePath];
+    if (success) {
+        return [[self resourceRelateFilePathForCachePath:cacheType] stringByAppendingPathComponent:relatePath];
+    }else{
+        return nil;
+    }
+    
 }
 
 -(NSString *)filePathForMediaRelatePath:(NSString *)relatePath resourceType:(EnumResourceCacheType)cacheType{

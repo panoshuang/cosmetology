@@ -24,6 +24,7 @@
 #import "MainCatalogManager.h"
 #import "UIAlertView+Blocks.h"
 #import <AVFoundation/AVAudioSession.h>
+#import "FileUtil.h"
 
 #define BTN_LIKE_TAG   1001
 #define BTN_COMMENT_TAG 1002
@@ -280,7 +281,7 @@ static BOOL isProsecutingPhoto = NO;
     KTPhotoView *photoView = (KTPhotoView *)vedioBtn.superview;
     AdPhotoInfo *photoInfo = [[(PhotoBrowserDataSource *)dataSource_ photoList] objectAtIndex:photoView.index];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(exitFullScreen:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
-    NSURL *url = [NSURL fileURLWithPath:photoInfo.vedioFilePath isDirectory:NO];
+    NSURL *url = [NSURL fileURLWithPath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:photoInfo.vedioFilePath] isDirectory:NO];
     moviePlayer = [[MPMoviePlayerController alloc]initWithContentURL:url];
     [moviePlayer prepareToPlay];
     moviePlayer.shouldAutoplay = YES;
@@ -378,8 +379,8 @@ static BOOL isProsecutingPhoto = NO;
         //获取广告实体,插入视频
         AdPhotoInfo *photoInfo = [[(PhotoBrowserDataSource *)dataSource_ photoList] objectAtIndex:currentIndex_];
         if (photoInfo) {
-            [[ResourceCache instance] deleteResourceForPath:photoInfo.imageFilePath];
-            [[ResourceCache instance] deleteResourceForPath:photoInfo.vedioFilePath];
+            [[ResourceCache instance] deleteResourceForPath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:photoInfo.imageFilePath]];
+            [[ResourceCache instance] deleteResourceForPath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:photoInfo.vedioFilePath]];
             [[AdPhotoManager instance] deleteAdPhotoForId:photoInfo.photoId];
         }
         [self deleteCurrentPhoto];
@@ -421,7 +422,7 @@ static BOOL isProsecutingPhoto = NO;
     NSURL *vedioURL = [info objectForKey:UIImagePickerControllerMediaURL];
     NSData *vedioData = [NSData dataWithContentsOfURL:vedioURL];
     NSString *bgUuid = [CommonUtil uuid];
-    NSString *vedioFilePath = [[ResourceCache instance] saveResourceData:vedioData
+    NSString *vedioFilePath = [[ResourceCache instance] saveAndReturnRelateFilePathResourceData:vedioData
                                                                 relatePath:[bgUuid stringByAppendingPathExtension:@"MP4"]
                                                               resourceType:kResourceCacheTypeVedio];
     
@@ -480,7 +481,7 @@ static BOOL isProsecutingPhoto = NO;
         for(UIImage *image in imageArr){
             //生成图片的uuid,保存到缓存
             NSString *bgUuid = [CommonUtil uuid];
-            NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 0.8)
+            NSString *bgImageFilePath = [[ResourceCache instance] saveAndReturnRelateFilePathResourceData:UIImageJPEGRepresentation(image, 0.8)
                                                                         relatePath:bgUuid
                                                                       resourceType:kResourceCacheTypeAdImage];
             
@@ -531,7 +532,7 @@ static BOOL isProsecutingPhoto = NO;
         for(UIImage *image in imageArr){
             //生成图片的uuid,保存到缓存
             NSString *bgUuid = [CommonUtil uuid];
-            NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 0.8)
+            NSString *bgImageFilePath = [[ResourceCache instance] saveAndReturnRelateFilePathResourceData:UIImageJPEGRepresentation(image, 0.8)
                                                                         relatePath:bgUuid
                                                                       resourceType:kResourceCacheTypeAdImage];
             

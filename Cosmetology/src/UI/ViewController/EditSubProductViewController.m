@@ -10,6 +10,7 @@
 #import "ResourceCache.h"
 #import "CommonUtil.h"
 #import "SubCatalogManager.h"
+#import "FileUtil.h"
 
 #define FONT_SIZE [UIFont systemFontOfSize:18]
 
@@ -115,7 +116,7 @@
                                                                _btnPhoto.frame.origin.y,
                                                                500,
                                                                500 * (768/1024.0))];
-    _ivPriview.image = [[ResourceCache instance] imageForCachePath:_subProductInfo.previewImageFilePath];
+    _ivPriview.image = [[ResourceCache instance] imageForCachePath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:_subProductInfo.previewImageFilePath]];
     [self.view addSubview:_ivPriview];
 
 }
@@ -155,10 +156,10 @@
             _subProductInfo.name = _tfName.text;
         }
         if (_imagePriview != nil) {
-            [[ResourceCache instance] deleteResourceForPath:_subProductInfo.previewImageFilePath];
+            [[ResourceCache instance] deleteResourceForPath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:_subProductInfo.previewImageFilePath]];
             //保存类别预览图片
             NSString *previewUuid = [CommonUtil uuid];
-            NSString *previewImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imagePriview, 0.8)
+            NSString *previewImageFilePath = [[ResourceCache instance] saveAndReturnRelateFilePathResourceData:UIImageJPEGRepresentation(_imagePriview, 0.8)
                                                                              relatePath:previewUuid
                                                                            resourceType:kResourceCacheTypeSubCatalogPreviewImage];
             

@@ -24,6 +24,7 @@
 #import "CommonUtil.h"
 #import "ResourceCache.h"
 #import "FXLabel.h"
+#import "FileUtil.h"
 
 @interface MainViewController ()<SubCatalogViewControllerDelegate,iCarouselDataSource,
         iCarouselDelegate,AddMainCatalogViewControllerDelegate, ExperienceViewControllerDelegate,
@@ -474,7 +475,7 @@
     label.text = productInfo.name;
     //获取背景图片填充
     
-    UIImage *bgImage = [[ResourceCache instance] imageForCachePath:productInfo.previewImageFile];
+    UIImage *bgImage = [[ResourceCache instance] imageForCachePath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:productInfo.previewImageFile]];
     if (bgImage == nil) {
         ((MainCatalogItem *)view).ivBg.image = [UIImage imageNamed:@"test.jpg"];
     }

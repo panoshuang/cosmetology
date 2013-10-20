@@ -20,6 +20,7 @@
 #import "MessageListsViewController.h"
 #import "MainViewController.h"
 #import "MessageListsViewController.h"
+#import "FileUtil.h"
 
 
 @implementation PriceViewController {
@@ -63,7 +64,7 @@
     [super viewDidLoad];
 
     _ivPrice = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    UIImage *image = [[ResourceCache instance] imageForCachePath:_subProductInfo.priceImageFilePath];
+    UIImage *image = [[ResourceCache instance] imageForCachePath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:_subProductInfo.priceImageFilePath]];
     if (image == nil) {
         image = [UIImage imageNamed:@"bg_experience.jpg"];
     }
@@ -244,7 +245,7 @@
     if (image) {
         //生成图片的uuid,保存到缓存
         NSString *bgUuid = [CommonUtil uuid];
-        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 0.8)
+        NSString *bgImageFilePath = [[ResourceCache instance] saveAndReturnRelateFilePathResourceData:UIImageJPEGRepresentation(image, 0.8)
                                                                     relatePath:bgUuid
                                                                   resourceType:kResourceCacheTypePriceImage];
         _subProductInfo.priceImageFilePath = bgImageFilePath;
