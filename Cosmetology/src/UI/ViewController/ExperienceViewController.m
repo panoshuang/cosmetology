@@ -29,6 +29,7 @@
 #import "MainCatalogItem.h"
 #import "EditSubProductViewController.h"
 #import "MessageBoardInfo.h"
+#import "FileUtil.h"
 
 #define NUMBER_OF_VISIBLE_ITEMS 10
 #define ITEM_SPACING 500.0f
@@ -103,7 +104,7 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
     self.view = mainView;
 
     _ivBg = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    UIImage *image = [[ResourceCache instance] imageForCachePath:self.experienceInfo.bgImageFile];
+    UIImage *image = [[ResourceCache instance] imageForCachePath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:self.experienceInfo.bgImageFile]];
     if (image) {
         _ivBg.image = image;
     }else{
@@ -391,7 +392,7 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
     if (image) {
         //生成图片的uuid,保存到缓存
         NSString *bgUuid = [CommonUtil uuid];
-        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 0.8)
+        NSString *bgImageFilePath = [[ResourceCache instance] saveAndReturnRelateFilePathResourceData:UIImageJPEGRepresentation(image, 0.8)
                                                                     relatePath:bgUuid
                                                                   resourceType:kResourceCacheTypeBackgroundImage];
         _experienceInfo.bgImageFile = bgImageFilePath;
@@ -451,7 +452,7 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
     label.text = productInfo.name;
     //获取背景图片填充
     
-    ((MainCatalogItem *)view).ivBg.imageUrl = productInfo.previewImageFilePath;
+    ((MainCatalogItem *)view).ivBg.imageUrl = [[FileUtil getDocumentDirectory] stringByAppendingPathComponent:productInfo.previewImageFilePath];
     
 //    UIImage *bgImage = [[ResourceCache instance] imageForCachePath:productInfo.previewImageFilePath];
 //    if (bgImage == nil) {

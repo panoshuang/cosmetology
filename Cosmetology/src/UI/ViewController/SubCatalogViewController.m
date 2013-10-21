@@ -27,6 +27,7 @@
 #import "PasswordManager.h"
 #import "SubProductInfo.h"
 #import "MainCatalogManager.h"
+#import "FileUtil.h"
 
 
 #define ITEM_SPACE 30
@@ -113,7 +114,7 @@
     
     
     _ivBg = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    UIImage *image = [[ResourceCache instance] imageForCachePath:self.mainProductInfo.bgImageFile];
+    UIImage *image = [[ResourceCache instance] imageForCachePath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:self.mainProductInfo.bgImageFile]];
     if (image) {
         _ivBg.image = image;
     }else{
@@ -380,7 +381,7 @@
     if (image) {
         //生成图片的uuid,保存到缓存
         NSString *bgUuid = [CommonUtil uuid];
-        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 0.8)
+        NSString *bgImageFilePath = [[ResourceCache instance] saveAndReturnRelateFilePathResourceData:UIImageJPEGRepresentation(image, 0.8)
                                                                     relatePath:bgUuid
                                                                   resourceType:kResourceCacheTypeBackgroundImage];
         _mainProductInfo.bgImageFile = bgImageFilePath;

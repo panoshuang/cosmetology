@@ -18,6 +18,7 @@
 #import "RIButtonItem.h"
 #import "PasswordManager.h"
 #import "UIAlertView+Blocks.h"
+#import "FileUtil.h"
 
 @interface EditMessageViewController ()<VoiceHandleDelegate>
 {
@@ -239,12 +240,12 @@
     }
     //保存头像到缓存
     NSString *headPortraitsUuid = [CommonUtil uuid];
-    NSString *headPortraitsFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(headPortraitsImage, 0.8)
+    NSString *headPortraitsFilePath = [[ResourceCache instance] saveAndReturnRelateFilePathResourceData:UIImageJPEGRepresentation(headPortraitsImage, 0.8)
                                                                       relatePath:[headPortraitsUuid stringByAppendingPathExtension:@"JPEG"]
                                                                     resourceType:kResourceCacheTypeUserPortrait];
     //保存签名到缓存
     NSString *bgUuid = [CommonUtil uuid];
-    NSString *singeNameImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(singeNameImage, 0.8)
+    NSString *singeNameImageFilePath = [[ResourceCache instance] saveAndReturnRelateFilePathResourceData:UIImageJPEGRepresentation(singeNameImage, 0.8)
                                                                        relatePath:bgUuid
                                                                      resourceType:kResourceCacheTypeUserAutograph];
     
@@ -355,7 +356,7 @@
     if (_messageBoardInfo.messageRecord.length == 0) {
         return;
     }
-    [_voiceHandle playVoice:_messageBoardInfo.messageRecord];
+    [_voiceHandle playVoice:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:_messageBoardInfo.messageRecord]];
 }
 
 - (IBAction)btnDown:(id)sender
@@ -482,9 +483,14 @@
     //判断录音时间,过短则丢弃该录音(最短不能少于1s),否则进行把录音转成amr文件并且发送出去
     if (recordDuration >= 1){
         if (_messageBoardInfo.messageRecord.length > 0) {
-            [[ResourceCache instance] deleteResourceForPath:_messageBoardInfo.messageRecord];
+            [[ResourceCache instance] deleteResourceForPath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:_messageBoardInfo.messageRecord]];
         }
-        _messageBoardInfo.messageRecord = self.recordWavFilePath;
+        NSRange range = [self.recordWavFilePath rangeOfString:[FileUtil getDocumentDirectory]];
+        if (range.location != NSNotFound) {
+            NSRange relateRange = NSMakeRange(range.length, self.recordWavFilePath.length - range.length);
+            _messageBoardInfo.messageRecord = [self.recordWavFilePath substringWithRange:relateRange];
+        }
+
     } else {
         [[AutoDismissView instance] showInView:self.view
                                          title:@"时间过短"
