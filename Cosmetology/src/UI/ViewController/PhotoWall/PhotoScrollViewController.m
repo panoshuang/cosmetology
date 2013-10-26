@@ -379,8 +379,13 @@ static BOOL isProsecutingPhoto = NO;
         //获取广告实体,插入视频
         AdPhotoInfo *photoInfo = [[(PhotoBrowserDataSource *)dataSource_ photoList] objectAtIndex:currentIndex_];
         if (photoInfo) {
-            [[ResourceCache instance] deleteResourceForPath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:photoInfo.imageFilePath]];
-            [[ResourceCache instance] deleteResourceForPath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:photoInfo.vedioFilePath]];
+            if (photoInfo.imageFilePath.length > 0) {
+                [[ResourceCache instance] deleteResourceForPath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:photoInfo.imageFilePath]];
+            }
+
+            if (photoInfo.vedioFilePath.length > 0) {
+               [[ResourceCache instance] deleteResourceForPath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:photoInfo.vedioFilePath]];
+            }
             [[AdPhotoManager instance] deleteAdPhotoForId:photoInfo.photoId];
         }
         [self deleteCurrentPhoto];
@@ -510,7 +515,13 @@ static BOOL isProsecutingPhoto = NO;
         }
         photoCount_ += imageArr.count;
         [self setScrollViewContentSize];
-        [self setCurrentIndex:currentIndex_];
+        int insertCount = imageArr.count;
+        if (currentIndex_ - insertCount >= 0) {
+            [self setCurrentIndex:currentIndex_ - insertCount];
+        }else{
+            [self setCurrentIndex:currentIndex_];
+        }
+        
         [_popController dismissPopoverAnimated:YES];
     };
     RIButtonItem *afterItem = [RIButtonItem item];

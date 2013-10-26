@@ -319,7 +319,10 @@
         }
         if (_imageBg != nil) {
             //替换背景图片
-            [[ResourceCache instance] deleteResourceForPath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:_mainProductInfo.bgImageFile]];
+            if (_mainProductInfo.bgImageFile.length > 0) {
+               [[ResourceCache instance] deleteResourceForPath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:_mainProductInfo.bgImageFile]];
+            }
+
             //生成图片的uuid,保存到缓存
             NSString *bgUuid = [CommonUtil uuid];
             NSString *bgImageFilePath = [[ResourceCache instance] saveAndReturnRelateFilePathResourceData:UIImageJPEGRepresentation(_imageBg, 0.8)
@@ -334,7 +337,9 @@
 
         }
         if (_imagePriview != nil) {
-            [[ResourceCache instance] deleteResourceForPath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent: _mainProductInfo.previewImageFile]];
+            if (_mainProductInfo.previewImageFile.length > 0) {
+                [[ResourceCache instance] deleteResourceForPath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent: _mainProductInfo.previewImageFile]];
+            }
             //保存类别预览图片
             NSString *previewUuid = [CommonUtil uuid];
             NSString *previewImageFilePath = [[ResourceCache instance] saveAndReturnRelateFilePathResourceData:UIImageJPEGRepresentation(_imagePriview, 0.8)

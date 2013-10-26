@@ -41,7 +41,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AdPhotoInfoDao)
         DBErrorCheckLog(db);
         if(isSuccess){
             productID =  (int)[db lastInsertRowId];
-            DDetailLog(@"get row id")
+            DDetailLog(@"get row id :%d",productID);
             DBErrorCheckLog(db);
         }
 
@@ -54,7 +54,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AdPhotoInfoDao)
                                                   " WHERE "AD_PHOTO_INFO_TABLE_PHOTO_ID" =?"];
     __block BOOL isSuccess;
     [[[BaseDatabase instance] fmDbQueue] inDatabase:^(FMDatabase *db) {
-        isSuccess = [db executeUpdate:sqlStr, [NSNumber numberWithInt:adPhotoInfoID]];
+        isSuccess = [db executeUpdate:sqlStr,@(adPhotoInfoID)];
         DBErrorCheckLog(db);
 
     }];

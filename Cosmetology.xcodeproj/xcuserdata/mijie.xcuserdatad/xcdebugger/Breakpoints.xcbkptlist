@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cosmetology/src/UI/ViewController/PhotoWall/PhotoScrollViewController.m"
-         timestampString = "403965928.451997"
+         timestampString = "404458559.834334"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "474"
-         endingLineNumber = "474"
+         startingLineNumber = "479"
+         endingLineNumber = "479"
          landmarkName = "-imagePickerMutilSelectorDidGetImages:"
          landmarkType = "5">
       </FileBreakpoint>

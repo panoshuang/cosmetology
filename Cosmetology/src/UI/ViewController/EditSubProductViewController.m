@@ -156,7 +156,10 @@
             _subProductInfo.name = _tfName.text;
         }
         if (_imagePriview != nil) {
-            [[ResourceCache instance] deleteResourceForPath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:_subProductInfo.previewImageFilePath]];
+            if (_subProductInfo.previewImageFilePath.length > 0) {
+                 [[ResourceCache instance] deleteResourceForPath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:_subProductInfo.previewImageFilePath]];
+            }
+
             //保存类别预览图片
             NSString *previewUuid = [CommonUtil uuid];
             NSString *previewImageFilePath = [[ResourceCache instance] saveAndReturnRelateFilePathResourceData:UIImageJPEGRepresentation(_imagePriview, 0.8)

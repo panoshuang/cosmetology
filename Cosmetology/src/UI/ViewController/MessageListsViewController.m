@@ -460,7 +460,7 @@
     MsgItem *contentView = (MsgItem *)cell.contentView;
     MessageBoardInfo *messageBoardinfoTemp = [_msgArray objectAtIndex:index];
     
-    UIImage *singeNameImage = [[ResourceCache instance] imageForCachePath:messageBoardinfoTemp.singeName];
+    UIImage *singeNameImage = [[ResourceCache instance] imageForCachePath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:messageBoardinfoTemp.singeName]];
     if (!singeNameImage) {
         singeNameImage  = [UIImage imageNamed:@"singe"];
     }

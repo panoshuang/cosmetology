@@ -136,6 +136,10 @@
         ALERT_MSG(@"名字不能为空", nil, @"确定");
         return;
     }
+    if (_imagePriview == nil) {
+        ALERT_MSG(@"预览图片不能为空", nil, @"确定");
+        return;
+    }
 
     _subProductInfo = [[SubProductInfo alloc] init];
     _subProductInfo.mainProductID = self.mainCatalogId;

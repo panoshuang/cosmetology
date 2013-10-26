@@ -159,7 +159,7 @@
     [messageImageView addSubview:messageTextView];
     
     //显示签名
-    UIImage *singeNameImage = [[ResourceCache instance] imageForCachePath:_messageBoardInfo.singeName];
+    UIImage *singeNameImage = [[ResourceCache instance] imageForCachePath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:_messageBoardInfo.singeName]];
     if (!singeNameImage) {
         singeNameImage  = [UIImage imageNamed:@"singe.png"];
     }
