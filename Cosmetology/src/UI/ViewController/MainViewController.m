@@ -182,7 +182,7 @@
 
     NSTimer *timer;
 
-    timer = [NSTimer scheduledTimerWithTimeInterval: 2.0f
+    timer = [NSTimer scheduledTimerWithTimeInterval: 3.0f
                                              target: self
                                            selector: @selector(handleTimer)
                                            userInfo: nil
