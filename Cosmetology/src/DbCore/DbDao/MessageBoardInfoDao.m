@@ -31,7 +31,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MessageBoardInfoDao)
                         ];
     NSArray *argArray = [NSArray arrayWithObjects:
                          messageBoardInfo.messageContent,
-                         messageBoardInfo.messageRecord,
+                         messageBoardInfo.messageRecord.length>0?messageBoardInfo.messageRecord:@"",
                          messageBoardInfo.headPortraits,
                          messageBoardInfo.singeName,
                          [NSNumber numberWithInteger:messageBoardInfo.popularity],

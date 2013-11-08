@@ -71,12 +71,15 @@
     _bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     //获取背景图片填充
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *bgFilePath = [userDefaults stringForKey:HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH];
+    NSString *bgFilePath = [userDefaults stringForKey:MSG_PAGE_BACKGROUND_IMAGE_FILE_PATH];
     UIImage *bgImage = [[ResourceCache instance] imageForCachePath:bgFilePath];
     if (bgImage) {
         _bgView.image = bgImage;
     }
-    _bgView.image = [UIImage imageNamed:@"bgCheckMessage.jpg"];
+    else{
+        _bgView.image = [UIImage imageNamed:@"bgCheckMessage.jpg"];
+    }
+    
     [self.view addSubview:_bgView];
     
     //修改背景
