@@ -14,6 +14,7 @@
 #import "MainProductInfo.h"
 #import "MainCatalogManager.h"
 #import "UIImageExtras.h"
+#import "FileUtil.h"
 
 #define FONT_SIZE [UIFont systemFontOfSize:18]
 
@@ -218,8 +219,8 @@
 
     if(_bIsEdit){
         _tfName.text = _mainProductInfo.name;
-        _ivBg.image = [[ResourceCache instance] imageForCachePath:_mainProductInfo.bgImageFile];
-        _ivPreview.image = [[ResourceCache instance]imageForCachePath:_mainProductInfo.previewImageFile];
+        _ivBg.image = [[ResourceCache instance] imageForCachePath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:_mainProductInfo.bgImageFile]];
+        _ivPreview.image = [[ResourceCache instance]imageForCachePath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:_mainProductInfo.previewImageFile]];
         _ivSubItemBtnBg.image = [UIImage imageNamed:_mainProductInfo.subItemBtnImageName];
         [_swEnable setOn:_mainProductInfo.enable animated:NO];
     }
@@ -272,7 +273,7 @@
 
         //生成图片的uuid,保存到缓存
         NSString *bgUuid = [CommonUtil uuid];
-        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imageBg, 0.8)
+        NSString *bgImageFilePath = [[ResourceCache instance] saveAndReturnRelateFilePathResourceData:UIImageJPEGRepresentation(_imageBg, 0.8)
                                                          relatePath:bgUuid
                                                        resourceType:kResourceCacheTypeBackgroundImage];
 
@@ -283,7 +284,7 @@
 
         //保存类别预览图片
         NSString *previewUuid = [CommonUtil uuid];
-        NSString *previewImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imagePriview, 0.8)
+        NSString *previewImageFilePath = [[ResourceCache instance] saveAndReturnRelateFilePathResourceData:UIImageJPEGRepresentation(_imagePriview, 0.8)
                                                               relatePath:previewUuid
                                                             resourceType:kResourceCacheTypeMainCatalogPreviewImage];
 
@@ -318,10 +319,13 @@
         }
         if (_imageBg != nil) {
             //替换背景图片
-            [[ResourceCache instance] deleteResourceForPath:_mainProductInfo.bgImageFile];
+            if (_mainProductInfo.bgImageFile.length > 0) {
+               [[ResourceCache instance] deleteResourceForPath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:_mainProductInfo.bgImageFile]];
+            }
+
             //生成图片的uuid,保存到缓存
             NSString *bgUuid = [CommonUtil uuid];
-            NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imageBg, 0.8)
+            NSString *bgImageFilePath = [[ResourceCache instance] saveAndReturnRelateFilePathResourceData:UIImageJPEGRepresentation(_imageBg, 0.8)
                                                              relatePath:bgUuid
                                                            resourceType:kResourceCacheTypeBackgroundImage];
 
@@ -333,10 +337,12 @@
 
         }
         if (_imagePriview != nil) {
-            [[ResourceCache instance] deleteResourceForPath:_mainProductInfo.previewImageFile];
+            if (_mainProductInfo.previewImageFile.length > 0) {
+                [[ResourceCache instance] deleteResourceForPath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent: _mainProductInfo.previewImageFile]];
+            }
             //保存类别预览图片
             NSString *previewUuid = [CommonUtil uuid];
-            NSString *previewImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(_imagePriview, 0.8)
+            NSString *previewImageFilePath = [[ResourceCache instance] saveAndReturnRelateFilePathResourceData:UIImageJPEGRepresentation(_imagePriview, 0.8)
                                                                   relatePath:previewUuid
                                                                 resourceType:kResourceCacheTypeMainCatalogPreviewImage];
 

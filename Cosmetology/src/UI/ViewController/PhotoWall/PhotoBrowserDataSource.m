@@ -11,6 +11,7 @@
 
 #import "AdPhotoInfo.h"
 #import "ResourceCache.h"
+#import "FileUtil.h"
 
 
 @implementation PhotoBrowserDataSource
@@ -48,7 +49,7 @@
 - (void)imageAtIndex:(NSInteger)index photoView:(KTPhotoView *)photoView
 {
     AdPhotoInfo *photoInfo = [arrPhoto objectAtIndex:index];
-    [photoView setImage:[[ResourceCache instance] imageForCachePath:photoInfo.imageFilePath]];
+    [photoView setImage:[[ResourceCache instance] imageForCachePath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:photoInfo.imageFilePath]]];
 
 }
 
@@ -60,7 +61,7 @@
 - (void)thumbImageAtIndex:(NSInteger)index thumbView:(KTThumbView *)thumbView
 {
     AdPhotoInfo *photoInfo = [arrPhoto objectAtIndex:index];
-    [thumbView setThumbImage:[[ResourceCache instance] imageForCachePath:photoInfo.imageFilePath]];
+    [thumbView setThumbImage:[[ResourceCache instance] imageForCachePath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:photoInfo.imageFilePath]]];
 }
 
 - (void)deleteImageAtIndex:(NSInteger)index

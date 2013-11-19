@@ -24,6 +24,7 @@
 #import "MainCatalogManager.h"
 #import "UIAlertView+Blocks.h"
 #import <AVFoundation/AVAudioSession.h>
+#import "FileUtil.h"
 
 #define BTN_LIKE_TAG   1001
 #define BTN_COMMENT_TAG 1002
@@ -280,7 +281,7 @@ static BOOL isProsecutingPhoto = NO;
     KTPhotoView *photoView = (KTPhotoView *)vedioBtn.superview;
     AdPhotoInfo *photoInfo = [[(PhotoBrowserDataSource *)dataSource_ photoList] objectAtIndex:photoView.index];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(exitFullScreen:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
-    NSURL *url = [NSURL fileURLWithPath:photoInfo.vedioFilePath isDirectory:NO];
+    NSURL *url = [NSURL fileURLWithPath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:photoInfo.vedioFilePath] isDirectory:NO];
     moviePlayer = [[MPMoviePlayerController alloc]initWithContentURL:url];
     [moviePlayer prepareToPlay];
     moviePlayer.shouldAutoplay = YES;
@@ -378,8 +379,13 @@ static BOOL isProsecutingPhoto = NO;
         //获取广告实体,插入视频
         AdPhotoInfo *photoInfo = [[(PhotoBrowserDataSource *)dataSource_ photoList] objectAtIndex:currentIndex_];
         if (photoInfo) {
-            [[ResourceCache instance] deleteResourceForPath:photoInfo.imageFilePath];
-            [[ResourceCache instance] deleteResourceForPath:photoInfo.vedioFilePath];
+            if (photoInfo.imageFilePath.length > 0) {
+                [[ResourceCache instance] deleteResourceForPath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:photoInfo.imageFilePath]];
+            }
+
+            if (photoInfo.vedioFilePath.length > 0) {
+               [[ResourceCache instance] deleteResourceForPath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:photoInfo.vedioFilePath]];
+            }
             [[AdPhotoManager instance] deleteAdPhotoForId:photoInfo.photoId];
         }
         [self deleteCurrentPhoto];
@@ -421,7 +427,7 @@ static BOOL isProsecutingPhoto = NO;
     NSURL *vedioURL = [info objectForKey:UIImagePickerControllerMediaURL];
     NSData *vedioData = [NSData dataWithContentsOfURL:vedioURL];
     NSString *bgUuid = [CommonUtil uuid];
-    NSString *vedioFilePath = [[ResourceCache instance] saveResourceData:vedioData
+    NSString *vedioFilePath = [[ResourceCache instance] saveAndReturnRelateFilePathResourceData:vedioData
                                                                 relatePath:[bgUuid stringByAppendingPathExtension:@"MP4"]
                                                               resourceType:kResourceCacheTypeVedio];
     
@@ -457,60 +463,132 @@ static BOOL isProsecutingPhoto = NO;
     PhotoBrowserDataSource *dataSource = (PhotoBrowserDataSource *)dataSource_;
     NSArray *curPhotoArray = dataSource.photoList;
     DDetailLog(@"curPhotoArray %@",curPhotoArray);
-    if (curPhotoArray.count > 0) {        
-        for (int i = curPhotoArray.count-1; i>currentIndex_; i--) {
-            AdPhotoInfo *lastPhotoInfo = [curPhotoArray objectAtIndex:i];
-            lastPhotoInfo.index += imageArr.count;
-            [[AdPhotoManager instance] updateAdPhoto:lastPhotoInfo];
+    RIButtonItem *beforeItem = [RIButtonItem item];
+    beforeItem.label = @"前面";
+    beforeItem.action = ^{
+        if (curPhotoArray.count > 0) {
+            for (int i = curPhotoArray.count-1; i>currentIndex_ -1; i--) {
+                AdPhotoInfo *lastPhotoInfo = [curPhotoArray objectAtIndex:i];
+                lastPhotoInfo.index += imageArr.count;
+                [[AdPhotoManager instance] updateAdPhoto:lastPhotoInfo];
+            }
         }
-    }
-    
-    int i = 0;
-    int curIndex=0;
-    if (curPhotoArray.count > 0) {
-        AdPhotoInfo *curPhotoInfo = [curPhotoArray objectAtIndex:currentIndex_];
-        curIndex = curPhotoInfo.index;
-    }
-
-    for(UIImage *image in imageArr){
-        //生成图片的uuid,保存到缓存
-        NSString *bgUuid = [CommonUtil uuid];
-        NSString *bgImageFilePath = [[ResourceCache instance] saveResourceData:UIImageJPEGRepresentation(image, 0.8)
-                                                                    relatePath:bgUuid
-                                                                  resourceType:kResourceCacheTypeAdImage];
-
-        if (bgImageFilePath.length == 0) {
-            ALERT_MSG(@"保存失败", nil, @"确定");
-            return;
+        
+        int i = 0;
+        int curIndex=0;
+        if (curPhotoArray.count > 0 && currentIndex_ != 0) {
+            AdPhotoInfo *curPhotoInfo = [curPhotoArray objectAtIndex:currentIndex_ - 1];
+            curIndex = curPhotoInfo.index;
         }
-        AdPhotoInfo *adPhotoInfo = [[AdPhotoInfo alloc] init];
-        adPhotoInfo.imageFilePath = bgImageFilePath;
-        adPhotoInfo.subProductId = _subProductID;
-        int index = i + curIndex + 1;
-        adPhotoInfo.index = index;
-        int photoId = [[AdPhotoManager instance] addAdPhoto:adPhotoInfo];
-        if(photoId == NSNotFound){
-            ALERT_MSG(@"保存失败", nil, @"确定");
-            return;
-        }else{
-            adPhotoInfo.photoId = photoId;
-            if (curIndex == 0) {
+        
+        ////////////////////
+        
+        for(UIImage *image in imageArr){
+            //生成图片的uuid,保存到缓存
+            NSString *bgUuid = [CommonUtil uuid];
+            NSString *bgImageFilePath = [[ResourceCache instance] saveAndReturnRelateFilePathResourceData:UIImageJPEGRepresentation(image, 0.8)
+                                                                        relatePath:bgUuid
+                                                                      resourceType:kResourceCacheTypeAdImage];
+            
+            if (bgImageFilePath.length == 0) {
+                ALERT_MSG(@"保存失败", nil, @"确定");
+                [_popController dismissPopoverAnimated:NO];
+                return;
+            }
+            AdPhotoInfo *adPhotoInfo = [[AdPhotoInfo alloc] init];
+            adPhotoInfo.imageFilePath = bgImageFilePath;
+            adPhotoInfo.subProductId = _subProductID;
+            int index = i + curIndex + 1;
+            adPhotoInfo.index = index;
+            int photoId = [[AdPhotoManager instance] addAdPhoto:adPhotoInfo];
+            if(photoId == NSNotFound){
+                ALERT_MSG(@"保存失败", nil, @"确定");
+                [_popController dismissPopoverAnimated:NO];
+                return;
+            }else{
+                adPhotoInfo.photoId = photoId;
                 [dataSource.photoList insertObject:adPhotoInfo atIndex:currentIndex_ + i ];
                 DDetailLog(@"curPhotoArray %@",curPhotoArray);
                 [photoViews_ insertObject:[NSNull null] atIndex:currentIndex_ + i];
-            }else{
-                [dataSource.photoList insertObject:adPhotoInfo atIndex:currentIndex_ + i + 1];
-                DDetailLog(@"curPhotoArray %@",curPhotoArray);
-                [photoViews_ insertObject:[NSNull null] atIndex:currentIndex_ + i + 1];
+                i++;
             }
-
-            i++;
         }
-    }
-    photoCount_ += imageArr.count;
-    [self setScrollViewContentSize];
-    [self setCurrentIndex:currentIndex_];
-    [_popController dismissPopoverAnimated:YES];
+        photoCount_ += imageArr.count;
+        [self setScrollViewContentSize];
+        int insertCount = imageArr.count;
+        if (currentIndex_ - insertCount >= 0) {
+            [self setCurrentIndex:currentIndex_ - insertCount];
+        }else{
+            [self setCurrentIndex:currentIndex_];
+        }
+        
+        [_popController dismissPopoverAnimated:YES];
+    };
+    RIButtonItem *afterItem = [RIButtonItem item];
+    afterItem.label = @"后面";
+    afterItem.action = ^{
+        if (curPhotoArray.count > 0) {
+            for (int i = curPhotoArray.count-1; i>currentIndex_; i--) {
+                AdPhotoInfo *lastPhotoInfo = [curPhotoArray objectAtIndex:i];
+                lastPhotoInfo.index += imageArr.count;
+                [[AdPhotoManager instance] updateAdPhoto:lastPhotoInfo];
+            }
+        }
+        
+        int i = 0;
+        int curIndex=0;
+        if (curPhotoArray.count > 0) {
+            AdPhotoInfo *curPhotoInfo = [curPhotoArray objectAtIndex:currentIndex_];
+            curIndex = curPhotoInfo.index;
+        }
+        
+        for(UIImage *image in imageArr){
+            //生成图片的uuid,保存到缓存
+            NSString *bgUuid = [CommonUtil uuid];
+            NSString *bgImageFilePath = [[ResourceCache instance] saveAndReturnRelateFilePathResourceData:UIImageJPEGRepresentation(image, 0.8)
+                                                                        relatePath:bgUuid
+                                                                      resourceType:kResourceCacheTypeAdImage];
+            
+            if (bgImageFilePath.length == 0) {
+                ALERT_MSG(@"保存失败", nil, @"确定");
+                [_popController dismissPopoverAnimated:NO];
+                return;
+            }
+            AdPhotoInfo *adPhotoInfo = [[AdPhotoInfo alloc] init];
+            adPhotoInfo.imageFilePath = bgImageFilePath;
+            adPhotoInfo.subProductId = _subProductID;
+            int index = i + curIndex + 1;
+            adPhotoInfo.index = index;
+            int photoId = [[AdPhotoManager instance] addAdPhoto:adPhotoInfo];
+            if(photoId == NSNotFound){
+                ALERT_MSG(@"保存失败", nil, @"确定");
+                [_popController dismissPopoverAnimated:NO];
+                return;
+            }else{
+                adPhotoInfo.photoId = photoId;
+                if (curIndex == 0) {
+                    [dataSource.photoList insertObject:adPhotoInfo atIndex:currentIndex_ + i ];
+                    DDetailLog(@"curPhotoArray %@",curPhotoArray);
+                    [photoViews_ insertObject:[NSNull null] atIndex:currentIndex_ + i];
+                }else{
+                    [dataSource.photoList insertObject:adPhotoInfo atIndex:currentIndex_ + i + 1];
+                    DDetailLog(@"curPhotoArray %@",curPhotoArray);
+                    [photoViews_ insertObject:[NSNull null] atIndex:currentIndex_ + i + 1];
+                }
+                i++;
+            }
+        }
+        photoCount_ += imageArr.count;
+        [self setScrollViewContentSize];
+        [self setCurrentIndex:currentIndex_];
+        [_popController dismissPopoverAnimated:YES];
+    };
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"要把广告插入到当前页面的前面还是后面?"
+                                                        message:nil
+                                               cancelButtonItem:nil
+                                               otherButtonItems:beforeItem,afterItem, nil];
+    [alertView show];
+    alertView = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

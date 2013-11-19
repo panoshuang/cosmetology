@@ -29,6 +29,9 @@
 //保存资源data到指定类型的缓存目录中
 -(NSString *)saveResourceData:(NSData *)data relatePath:(NSString *)relatePath resourceType:(EnumResourceCacheType)cacheType;
 
+-(NSString *)saveAndReturnRelateFilePathResourceData:(NSData *)data relatePath:(NSString *)relatePath resourceType:(EnumResourceCacheType)cacheType;
+
+//返回文件的绝对路径
 -(NSString *)filePathForMediaRelatePath:(NSString *)relatePath resourceType:(EnumResourceCacheType)cacheType;
 
 //通过绝对路径名获取图片

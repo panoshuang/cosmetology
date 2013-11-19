@@ -26,4 +26,8 @@
     [self setNeedsLayout];
 }
 
+-(void)imageDownloadFailed:(DownLoaderImageView *)downLoaderImageView{
+    DDetailLog(@"下载图片失败");
+}
+
 @end

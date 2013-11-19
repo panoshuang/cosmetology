@@ -21,6 +21,7 @@
 #import "MsgGridViewCell.h"
 #import "MsgItem.h"
 #import "MainViewController.h"
+#import "FileUtil.h"
 
 #define NUMBER_ITEMS_ON_LOAD 250
 #define NUMBER_ITEMS_ON_LOAD2 30
@@ -459,11 +460,11 @@
     MsgItem *contentView = (MsgItem *)cell.contentView;
     MessageBoardInfo *messageBoardinfoTemp = [_msgArray objectAtIndex:index];
     
-    UIImage *singeNameImage = [[ResourceCache instance] imageForCachePath:messageBoardinfoTemp.singeName];
+    UIImage *singeNameImage = [[ResourceCache instance] imageForCachePath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:messageBoardinfoTemp.singeName]];
     if (!singeNameImage) {
         singeNameImage  = [UIImage imageNamed:@"singe"];
     }
-    UIImage *protraitImage = [[ResourceCache instance] imageForCachePath:messageBoardinfoTemp.headPortraits];
+    UIImage *protraitImage = [[ResourceCache instance] imageForCachePath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:messageBoardinfoTemp.headPortraits]];
     if (!protraitImage) {
         protraitImage  = [UIImage imageNamed:@"pickPhoto"];
     }

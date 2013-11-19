@@ -575,8 +575,6 @@
 		6D00EB94174E55C00045BF49 = {
 			isa = PBXGroup;
 			children = (
-				6DBE816F179A945E00E8871C /* MobileCoreServices.framework */,
-				CEE9C13A1777DE2F00F10404 /* MediaPlayer.framework */,
 				6D00EBA9174E55C00045BF49 /* Cosmetology */,
 				6D00EBA2174E55C00045BF49 /* Frameworks */,
 				6D00EBA0174E55C00045BF49 /* Products */,
@@ -594,6 +592,8 @@
 		6D00EBA2174E55C00045BF49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEE9C13A1777DE2F00F10404 /* MediaPlayer.framework */,
+				6DBE816F179A945E00E8871C /* MobileCoreServices.framework */,
 				CE71EFDB17702E6E00E1B420 /* OpenGLES.framework */,
 				CE71EFD917702E5600E1B420 /* GLKit.framework */,
 				6D98EE12176A0DA000DE5F56 /* CoreTelephony.framework */,
@@ -1055,6 +1055,7 @@
 				6D00EB9B174E55C00045BF49 /* Sources */,
 				6D00EB9C174E55C00045BF49 /* Frameworks */,
 				6D00EB9D174E55C00045BF49 /* Resources */,
+				CE222AA31839A233006370BB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1203,6 +1204,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		CE222AA31839A233006370BB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate\n\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ] || [ \"${PLATFORM_NAME}\" == \"ipados\" ]; then\n\n/Applications/Xcode.app/Contents/Developer/iphoneentitlements/gen_entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\n\ncodesign -f -s \"iPhone Developer\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\n\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6D00EB9B174E55C00045BF49 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1312,8 +1329,13 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+<<<<<<< HEAD
 				CODE_SIGN_IDENTITY = "iPhone Developer: guo rui (DWK7KW59K5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: guo rui (DWK7KW59K5)";
+=======
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+>>>>>>> 548cad98e8f2933d7354cd6b27f8437b6f974822
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1328,8 +1350,12 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
+<<<<<<< HEAD
 				PROVISIONING_PROFILE = "9DA711AC-F073-4444-ADD5-CF057945D9B7";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9DA711AC-F073-4444-ADD5-CF057945D9B7";
+=======
+				RUN_CLANG_STATIC_ANALYZER = YES;
+>>>>>>> 548cad98e8f2933d7354cd6b27f8437b6f974822
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1343,8 +1369,13 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+<<<<<<< HEAD
 				CODE_SIGN_IDENTITY = "iPhone Developer: guo rui (DWK7KW59K5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: guo rui (DWK7KW59K5)";
+=======
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+>>>>>>> 548cad98e8f2933d7354cd6b27f8437b6f974822
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1352,8 +1383,12 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+<<<<<<< HEAD
 				PROVISIONING_PROFILE = "9DA711AC-F073-4444-ADD5-CF057945D9B7";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9DA711AC-F073-4444-ADD5-CF057945D9B7";
+=======
+				RUN_CLANG_STATIC_ANALYZER = YES;
+>>>>>>> 548cad98e8f2933d7354cd6b27f8437b6f974822
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1362,8 +1397,13 @@
 		6D00EBC4174E55C00045BF49 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+<<<<<<< HEAD
 				CODE_SIGN_IDENTITY = "iPhone Developer: guo rui (DWK7KW59K5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: guo rui (DWK7KW59K5)";
+=======
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+>>>>>>> 548cad98e8f2933d7354cd6b27f8437b6f974822
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cosmetology/Cosmetology-Prefix.pch";
 				INFOPLIST_FILE = "Cosmetology/Cosmetology-Info.plist";
@@ -1373,8 +1413,11 @@
 					"\"$(SRCROOT)/Cosmetology/src/Libs/VoiceConvert/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+<<<<<<< HEAD
 				PROVISIONING_PROFILE = "9DA711AC-F073-4444-ADD5-CF057945D9B7";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9DA711AC-F073-4444-ADD5-CF057945D9B7";
+=======
+>>>>>>> 548cad98e8f2933d7354cd6b27f8437b6f974822
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1383,8 +1426,13 @@
 		6D00EBC5174E55C00045BF49 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+<<<<<<< HEAD
 				CODE_SIGN_IDENTITY = "iPhone Developer: guo rui (DWK7KW59K5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: guo rui (DWK7KW59K5)";
+=======
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+>>>>>>> 548cad98e8f2933d7354cd6b27f8437b6f974822
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cosmetology/Cosmetology-Prefix.pch";
 				INFOPLIST_FILE = "Cosmetology/Cosmetology-Info.plist";
@@ -1394,8 +1442,11 @@
 					"\"$(SRCROOT)/Cosmetology/src/Libs/VoiceConvert/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+<<<<<<< HEAD
 				PROVISIONING_PROFILE = "9DA711AC-F073-4444-ADD5-CF057945D9B7";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9DA711AC-F073-4444-ADD5-CF057945D9B7";
+=======
+>>>>>>> 548cad98e8f2933d7354cd6b27f8437b6f974822
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};

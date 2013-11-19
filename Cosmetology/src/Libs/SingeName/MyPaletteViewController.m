@@ -61,6 +61,7 @@
 						   [NSString stringWithString:@"棕"],
 						   [NSString stringWithString:@"粉红"],nil];
 	ColorButton=[[UISegmentedControl alloc] initWithItems:segmentArray];
+    [segmentArray release];
 	CGRect ButtonRect=CGRectMake(0, 0, 320, 40);
 	[ColorButton setFrame:ButtonRect];
 	[ColorButton setMomentary:YES];
@@ -72,7 +73,11 @@
 	[ColorButton setTintColor:[UIColor darkGrayColor]];
 	
 	[self.view addSubview:ColorButton];
+    
 }
+
+    
+
 -(void)segmentColorButton:(id)sender
 {
 	Segment = [sender selectedSegmentIndex] ;
@@ -137,6 +142,7 @@
 						   @"9.0",
 						   @"12.0",nil];
 	WidthButton=[[UISegmentedControl alloc] initWithItems:segmentArray];
+    [segmentArray release];
 	CGRect ButtonRect=CGRectMake(0, 0, 320, 40);
 	[WidthButton setFrame:ButtonRect];
 	[WidthButton setMomentary:YES];
@@ -147,6 +153,7 @@
 	[WidthButton setTintColor:[UIColor darkGrayColor]];
 	
 	[self.view addSubview:WidthButton];
+    //[WidthButton release];
 }
 -(void)segmentWidthButton:(id)sender
 {
@@ -249,8 +256,8 @@
 {
 	
     [super viewDidLoad];
-    UIImageView *bgImageView = [[UIImageView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
-    bgImageView.image = [UIImage imageNamed:@"singeName.png"];
+//    UIImageView *bgImageView = [[UIImageView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
+//    bgImageView.image = [UIImage imageNamed:@"singeName.png"];
     //[self.view addSubview:bgImageView];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgSingeName.jpg"]];
 }
@@ -280,6 +287,8 @@
 - (void)dealloc 
 {
     [super dealloc];
+    ColorButton = nil;
+    
 }
 #pragma mark -
 //手指开始触屏开始

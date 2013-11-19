@@ -19,6 +19,7 @@
 #import "CommonUtil.h"
 #import "VoiceHandle.h"
 #import "MessageListsViewController.h"
+#import "FileUtil.h"
 
 @interface CheckMessageViewController ()
 {
@@ -70,12 +71,15 @@
     _bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     //获取背景图片填充
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *bgFilePath = [userDefaults stringForKey:HOME_PAGE_BACKGROUND_IMAGE_FILE_PATH];
+    NSString *bgFilePath = [userDefaults stringForKey:MSG_PAGE_BACKGROUND_IMAGE_FILE_PATH];
     UIImage *bgImage = [[ResourceCache instance] imageForCachePath:bgFilePath];
     if (bgImage) {
         _bgView.image = bgImage;
     }
-    _bgView.image = [UIImage imageNamed:@"bgCheckMessage.jpg"];
+    else{
+        _bgView.image = [UIImage imageNamed:@"bgCheckMessage.jpg"];
+    }
+    
     [self.view addSubview:_bgView];
     
     //修改背景
@@ -129,7 +133,7 @@
     [self.view addSubview:backBtn];
     
     //显示头像
-    UIImage *protraitImage = [[ResourceCache instance] imageForCachePath:_messageBoardInfo.headPortraits];
+    UIImage *protraitImage = [[ResourceCache instance] imageForCachePath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:_messageBoardInfo.headPortraits]];
     if (!protraitImage) {
         protraitImage  = [UIImage imageNamed:@"pickPhoto.png"];
     }
@@ -158,7 +162,7 @@
     [messageImageView addSubview:messageTextView];
     
     //显示签名
-    UIImage *singeNameImage = [[ResourceCache instance] imageForCachePath:_messageBoardInfo.singeName];
+    UIImage *singeNameImage = [[ResourceCache instance] imageForCachePath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:_messageBoardInfo.singeName]];
     if (!singeNameImage) {
         singeNameImage  = [UIImage imageNamed:@"singe.png"];
     }
@@ -224,7 +228,7 @@
         [[AutoDismissView instance] showInView:self.view title:@"没有录音" duration:1];
         return;
     }
-    [_voiceHandle playVoice:_messageBoardInfo.messageRecord];
+    [_voiceHandle playVoice:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:_messageBoardInfo.messageRecord]];
 }
 
 -(void)onAcclaimClick:(AcclaimButton *)btn{
@@ -406,7 +410,7 @@
             [_delegate checkMessageViewControllerDidDeleteMsg:_messageBoardInfo];
             self.messageBoardInfo = nextMsgInfo;            
             //显示头像
-            UIImage *protraitImage = [[ResourceCache instance] imageForCachePath:_messageBoardInfo.headPortraits];
+            UIImage *protraitImage = [[ResourceCache instance] imageForCachePath:[[FileUtil getDocumentDirectory] stringByAppendingPathComponent:_messageBoardInfo.headPortraits]];
             if (!protraitImage) {
                 protraitImage  = [UIImage imageNamed:@"pickPhoto.png"];
             }
