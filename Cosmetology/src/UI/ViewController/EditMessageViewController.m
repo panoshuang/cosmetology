@@ -366,8 +366,12 @@
 }
 - (IBAction)btnUp:(id)sender
 {
-    //做停止延迟处理,延迟0.2秒,解决最后一个字被截断
-    [self performSelector:@selector(delayHandleEndTouchButton) withObject:nil afterDelay:.2];
+//    //做停止延迟处理,延迟0.2秒,解决最后一个字被截断
+//    [self performSelector:@selector(delayHandleEndTouchButton) withObject:nil afterDelay:.002];
+    //取消禁用页面其他ui的用户响应
+    [_microView removeFromSuperview];
+    self.microView = nil;
+    [_voiceHandle stopRecord];
 }
 
 -(void)delayHandleEndTouchButton{
