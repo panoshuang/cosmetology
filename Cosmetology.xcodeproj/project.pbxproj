@@ -1329,8 +1329,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Guangzhou Tuojing Business Co., Ltd. (AZQD72C28J)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Guangzhou Tuojing Business Co., Ltd. (AZQD72C28J)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1345,6 +1345,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "79C46CBB-C6D0-4DA8-AA8F-72615429723C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "79C46CBB-C6D0-4DA8-AA8F-72615429723C";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 			};
@@ -1359,8 +1361,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Guangzhou Tuojing Business Co., Ltd. (AZQD72C28J)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Guangzhou Tuojing Business Co., Ltd. (AZQD72C28J)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1368,6 +1370,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "79C46CBB-C6D0-4DA8-AA8F-72615429723C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "79C46CBB-C6D0-4DA8-AA8F-72615429723C";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1377,8 +1381,8 @@
 		6D00EBC4174E55C00045BF49 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Guangzhou Tuojing Business Co., Ltd. (AZQD72C28J)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Guangzhou Tuojing Business Co., Ltd. (AZQD72C28J)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cosmetology/Cosmetology-Prefix.pch";
 				INFOPLIST_FILE = "Cosmetology/Cosmetology-Info.plist";
@@ -1388,6 +1392,8 @@
 					"\"$(SRCROOT)/Cosmetology/src/Libs/VoiceConvert/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "79C46CBB-C6D0-4DA8-AA8F-72615429723C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "79C46CBB-C6D0-4DA8-AA8F-72615429723C";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1396,8 +1402,8 @@
 		6D00EBC5174E55C00045BF49 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Guangzhou Tuojing Business Co., Ltd. (AZQD72C28J)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Guangzhou Tuojing Business Co., Ltd. (AZQD72C28J)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cosmetology/Cosmetology-Prefix.pch";
 				INFOPLIST_FILE = "Cosmetology/Cosmetology-Info.plist";
@@ -1407,6 +1413,8 @@
 					"\"$(SRCROOT)/Cosmetology/src/Libs/VoiceConvert/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "79C46CBB-C6D0-4DA8-AA8F-72615429723C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "79C46CBB-C6D0-4DA8-AA8F-72615429723C";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
