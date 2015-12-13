@@ -7,6 +7,8 @@
 //
 
 #import "NICSignatureView.h"
+#import <OpenGLES/ES2/gl.h>
+#import <OpenGLES/ES2/glext.h>
 
 #define             STROKE_WIDTH_MIN 0.002 // Stroke width determined by touch velocity
 #define             STROKE_WIDTH_MAX 0.010

@@ -88,6 +88,7 @@
 {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = NO;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor colorWithRed:0xf9/(CGFloat)0xff
                                                 green:0xf9/(CGFloat)0xff
                                                  blue:0xf9/(CGFloat)0xff

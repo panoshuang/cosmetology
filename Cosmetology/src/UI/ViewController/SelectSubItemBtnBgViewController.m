@@ -39,6 +39,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.contentSizeForViewInPopover = CGSizeMake(250, 500);
     _tvList = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 250, 500) style:UITableViewStylePlain];
     _tvList.dataSource = self;

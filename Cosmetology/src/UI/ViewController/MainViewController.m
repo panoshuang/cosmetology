@@ -74,6 +74,7 @@
 
 -(void)loadView{
     [super loadView];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.navigationController.navigationBarHidden = YES;
     UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];    
     mainView.backgroundColor=[UIColor blackColor];
@@ -159,6 +160,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     _catalogCarousel.hidden = YES;
     bgImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,0,1024,768)];
 

@@ -73,6 +73,7 @@
 @synthesize bIsEdit = _bIsEdit;
 
 -(void)loadView{
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];
     
     mainView.backgroundColor=[UIColor whiteColor];

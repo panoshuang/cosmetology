@@ -99,6 +99,7 @@ iCarouselDelegate,EditSubProductViewControllerDelegate>
 - (void)loadView
 {
     [super loadView];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];
     mainView.backgroundColor=[UIColor whiteColor];
     self.view = mainView;

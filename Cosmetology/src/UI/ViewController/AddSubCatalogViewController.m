@@ -59,6 +59,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0,1024,768)];
     self.view = mainView;
     self.view.backgroundColor = [UIColor colorWithRed:0xf9/(CGFloat)0xff
